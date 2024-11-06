@@ -128,14 +128,20 @@
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="id" name="id" placeholder="Your ID">
-                                <label for="id">Your ID</label>
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Enter ID">
+                                <label for="id">ID</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="password" name="pwd" placeholder="Your Password">
-                                <label for="password">Your Password</label>
+                                <input type="password" class="form-control" id="password" name="pwd" placeholder="Enter Password">
+                                <label for="password">Enter Password</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+                                <label for="email">Enter Email</label>
                             </div>
                         </div>
                         <div class="col-12">
@@ -145,7 +151,7 @@
                             <button class="btn custom-forgot-btn w-100 py-3" type="button">Forgot Password</button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <a href="<c:url value="/register"/>" class="btn custom-register-btn w-100 py-3">register</a>
+                            <button class="btn custom-register-btn w-100 py-3" type="button">Register</button>
                         </div>
                     </div>
                 </form>

@@ -20,6 +20,11 @@ public class MainController {
         model.addAttribute("center", "center");
         return "login";
     }
+    @RequestMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("center", "center");
+        return "register";
+    }
 
     @RequestMapping("/contact")
     public String contact(Model model) {
