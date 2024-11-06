@@ -45,6 +45,10 @@
     <%--틀 끝--%>
 </head>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <body>
 <!-- Spinner Start -->
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -116,28 +120,28 @@
         </div>
         <div class="row g-4 justify-content-center">
             <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                <form>
+                <form id = "login_form">
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="id" placeholder="Your ID">
+                                <input type="text" class="form-control" id="id" name="id" placeholder="Your ID">
                                 <label for="id">Your ID</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="password" placeholder="Your Password">
+                                <input type="password" class="form-control" id="password" name="pwd" placeholder="Your Password">
                                 <label for="password">Your Password</label>
                             </div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Log In</button>
+                            <button class="btn btn-primary w-100 py-3" type="button">Log In</button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button class="btn custom-register-btn w-100 py-3" type="button">Register To User</button>
+                            <button class="btn custom-register-btn w-100 py-3" type="button">Forgot Password</button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button class="btn custom-register-btn w-100 py-3" type="button">Register To Doctor</button>
+                            <button class="btn custom-register-btn w-100 py-3" type="button">Register</button>
                         </div>
                     </div>
                 </form>
@@ -145,6 +149,47 @@
         </div>
     </div>
 </div>
+
+<script>
+    let login = {
+        init:function(){
+            $('#login_form .btn-primary').click(()=>{
+                this.check();
+            });
+        },
+        check:function(){
+            console.log("클릭");
+            let id = $('#id').val();
+            let pwd = $('#password').val();
+            if(id == '' || id == null){
+                alert('Id is Mandatory');
+                $('#id').focus();
+                return;
+            }
+            if(pwd == '' || pwd == null){
+                alert('Pwd is Mandatory');
+                $('#pwd').focus();
+                return;
+            }
+            this.send();
+        },
+        send:function(){
+            $('#login_form').attr('method', 'post');
+            $('#login_form').attr('action', '/loginimpl');
+            $('#login_form').submit();
+        }
+    };
+
+    $(function (){
+        login.init();
+    });
+</script>
+
+<c:if test = "${not empty loginError}">
+    <script>
+        alert("${loginError}");
+    </script>
+</c:if>
 <!-- Contact End -->
 
 
