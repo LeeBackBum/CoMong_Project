@@ -14,11 +14,11 @@ spring:
       suffix: .jsp
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://127.1.0.1:3306/smdb?characterEncoding=utf8
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
     #driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
-    username: ENC(OAjB56HlNziHqNDu8ZFSAw==)
-    password: ENC(zYoWFnp8CokAEj/HgST7Tw==)
+    username: smuser
+    password: 111111
 
 # 3. Mybatis Setting
 mybatis:
@@ -35,7 +35,7 @@ logging:
 # 5. Application Environment Setting
 app:
   url:
-    server_url: http://210.119.34.219:81
+    server_url: http://210.119.34.218:81
   dir:
     imgdir: file:///c:/springsm/imgs/
     uploadimgdir: c:/springsm/imgs/

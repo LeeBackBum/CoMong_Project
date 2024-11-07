@@ -39,6 +39,13 @@ public class MainController {
         return "courses";
     }
 
+    @RequestMapping("/reservation2")
+    public String reservations(Model model) {
+        model.addAttribute("center", "reservation2");
+        return "reservation2";
+    }
+
+
     @RequestMapping("/team")
     public String team(Model model) {
         model.addAttribute("center", "team");

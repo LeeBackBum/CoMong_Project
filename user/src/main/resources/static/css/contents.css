@@ -1,0 +1,393 @@
+/*진료예약*/
+.reservation-area01 {
+    /* height: 700px; */
+    margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid #dbdde0;
+    overflow: hidden;
+}
+.reservation-area01.ex {
+    height: 800px
+}
+.reservation-area01 .reservation-box.choise01 {
+    float:left;
+    width: 500px;
+    height: 1000px;
+    padding: 35px 30px;
+    border-right: 1px solid #dbdde0
+}
+.reservation-area01 .reservation-box.choise02 {
+    float:left;
+    width: 500px;
+    height: 1000px;
+    padding: 35px 30px;
+    border-right: 1px solid #dbdde0
+}
+.reservation-area01 .reservation-box.choise03 {
+    float:left;
+    width: 500px;
+    height: 1000px;
+    padding: 35px 30px;
+}
+.reservation-area01 .reservation-box.choise03.ex {
+    height: 340px;
+    border-bottom: 1px solid #dbdde0;
+    overflow: hidden
+}
+.reservation-area01 .reservation-box.choise04 {
+    float: left;
+    width: 230px;
+    height: 730px;
+    padding: 35px 20px;
+    border-right: 1px solid #dbdde0
+}
+.reservation-area01 .reservation-box.choise05 {
+    float: left;
+    width: 170px;
+    height: 730px;
+    padding: 35px 30px;
+    border-right: 1px solid #dbdde0
+}
+.reservation-area01 .reservation-box.choise06 {
+    float: left;
+    width: 246px;
+    height: 220px;
+    padding: 35px 30px;
+}
+.reservation_ex {
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    padding: 35px 5%;
+    background: #fff;
+    border: 1px solid #dbdde0;
+    overflow: hidden;
+}
+.reservation-area01 .reservation-box h2, .reservation_ex h2 {
+    font-size: 18px;
+    height: 32px;
+    margin-bottom: 30px;
+    color: #222229;
+    border-bottom: 2px solid #a6a6af;
+}
+.type-reservation-choise {
+    margin: 0;
+    padding: 0;
+    border: 0px solid red;
+}
+.type-reservation-choise p {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+.type-reservation-choise p input[type="radio"], .type-reservation-choise p input[type="checkbox"] {
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+.type-reservation-choise p input[type="radio"] + label, .type-reservation-choise p input[type="checkbox"] + label {
+    font-size: 16px;
+    line-height: 16px;
+    color: #666669;
+    cursor: pointer;
+}
+.type-reservation-choise p input[type="radio"]:checked + label, .type-reservation-choise p input[type="checkbox"]:checked + label {
+    color: #096cb8
+}
+.doctor-list-area {
+    /*
+	height: 560px;
+	*/
+    max-height: 560px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.doctor-list-area ul {
+    margin: 0;
+    padding: 0;
+}
+.doctor-list-area ul li {
+    margin-bottom: 10px;
+}
+.doctor-list-area ul li a {
+    position: relative;
+    display: block;
+    border: 2px solid #fff;
+    padding-left: 100px;
+    padding-bottom: 0;
+    overflow: hidden;
+    height: 115px;
+}
+.doctor-list-area ul li a:hover, .doctor-list-area ul li a.on {
+    border: 2px solid #3c99ff;
+}
+.doctor-list-area ul li a .image-box {
+    position: absolute;
+    left: 0;
+    width: 100px;
+    height: 115px;
+    overflow: hidden;
+    background: url(../images/contents/doctor_bg.gif) no-repeat 0 0;
+}
+.doctor-list-area ul li a .image-box img {
+    position: absolute;
+    height: 160px;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: auto;
+}
+.doctor-list-area ul li a .doctor-information {
+    float: left;
+    display: block;
+    width: 82px;
+    height: 76px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.doctor-list-area ul li a .doctor-information .type {
+    display: block;
+    color: #666669;
+    font-size: 15px;
+}
+.doctor-list-area ul li a .doctor-information .name {
+    display: block;
+    font-size: 16px;
+    color: #333339;
+    line-height: 18px;
+    margin-top: 5px
+}
+/*.schdule-information-area {
+	margin-bottom: 33px;
+	border: 0px solid red;
+}*/
+.schdule-information-area .schdule-control {
+    position: relative;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    margin-bottom: 13px;
+    color: #555559;
+    font-size: 17px
+}
+.schdule-information-area .schdule-control .btn-previous {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 26px;
+    height: 26px;
+}
+.schdule-information-area .schdule-control .btn-previous img {
+    display: block;
+    width: 26px;
+    height: 26px;
+}
+.schdule-information-area .schdule-control .btn-next {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 26px;
+    height: 26px;
+}
+.schdule-information-area .schdule-control .btn-next img {
+    display: block;
+    width: 26px;
+    height: 26px;
+}
+.schdule-information-area .schdule-table {
+    margin-bottom: 10px;
+}
+.schdule-information-area .schdule-table table {}
+.schdule-information-area .schdule-table table thead {}
+.schdule-information-area .schdule-table table thead th {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    border: 1px solid #ebebee;
+    border-bottom: 0;
+    text-align: center;
+    font-size: 12px;
+}
+.schdule-information-area .schdule-table table thead th.point-holiday {
+    color: #fc1212
+}
+.schdule-information-area .schdule-table table thead th.point-sat {
+    color: #1686e4
+}
+.schdule-information-area .schdule-table table tbody td {
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    border: 1px solid #ebebee;
+    text-align: center;
+}
+.schdule-information-area .schdule-table table tbody td a {
+    display: block;
+    color: #444449;
+    font-family: "Verdana", Verdana, sans-serif;
+}
+.schdule-information-area .schdule-table table tbody td a:hover {
+    font-weight: bold;
+}
+.schdule-information-area .schdule-table table tbody td.point-holiday a {
+    color: #fc1212
+}
+.schdule-information-area .schdule-table table tbody td.bg-today {
+    background: #eae9e4
+}
+.schdule-information-area .schdule-table table tbody td.bg-reservation {
+    background: #c9f8ff
+}
+.schdule-information-area .schdule-table table tbody td.point-sat a {
+    color: #1686e4
+}
+.schdule-information-area .schdule-table table tbody td a.previous-day {
+    color: #babec5
+}
+.schdule-information-area .schdule-table table tbody td a.choise-day {
+    color: #fff;
+    background: #3498ec
+}
+.schdule-information-area .schdule-information {
+    overflow: hidden;
+}
+.schdule-information-area .schdule-information li {
+    float: left;
+    width: 50%;
+    font-size: 15px;
+    color: #555559;
+}
+.schdule-information-area .schdule-information li img {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 5px;
+    width: initial;
+}
+.cohise-reservation {
+    margin-top: 10px;
+}
+.cohise-reservation dt {
+    display: block;
+    font-size: 16px;
+    color: #444449;
+    margin-bottom: 5px;
+}
+.cohise-reservation dd {
+    border: 0px solid red;
+}
+.cohise-reservation dd select {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    width: 106px;
+    height: 40px;
+    *height: auto;
+    padding-left: 5px;
+    border: 1px solid #dbdde0;
+    padding: 10px 0;
+}
+.cohise-reservation dd span {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 5px;
+}
+.phone-reservation {
+    padding-top: 25px;
+    clear: both;
+    border: 0px solid red;
+}
+.phone-reservation dt {
+    display: block;
+    font-size: 16px;
+    color: #444449;
+    margin-bottom: 10px;
+    word-break: keep-all;
+}
+.phone-reservation dd {
+    border: 0px solid red;
+}
+.phone-reservation dd input[type="text"], .phone-reservation dd input[type="password"] {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    width: 60px;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    border: 1px solid #dbdde0
+}
+.phone-reservation dd input[type="text"]#wr_name {
+    width: 100%;
+}
+.phone-reservation dd .input-jumin-number {
+    display: block;
+}
+.phone-reservation dd .input-jumin-number:after, .phone-reservation dd .input-phone-number:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.phone-reservation dd .input-jumin-number input[type="text"], .phone-reservation dd .input-jumin-number input[type="password"] {
+    float: left;
+    width: 45%;
+}
+.phone-reservation dd .input-jumin-number span {
+    float: left;
+    width: 10%;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+}
+.phone-reservation dd .input-phone-number input[type="text"], .phone-reservation dd .input-phone-number input[type="password"] {
+    float: left;
+    width: 30%;
+}
+.phone-reservation dd .input-phone-number span {
+    float: left;
+    width: 5%;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+}
+.point-color01 {
+    color: #3498ec
+}
+.point-color02 {
+    color: #e62a45
+}
+.choice-reservation-gubun {
+    display: block;
+    margin: 40px 0 25px 0;
+    padding: 12px 0;
+    text-align: center;
+    background: #f8f9f9;
+}
+.choice-reservation-gubun label, .choice-reservation-gubun input[type="radio"] {
+    display: inline-block;
+    vertical-align: middle;
+    color: #444449;
+}
+.choice-reservation-gubun #reservGubun_1 + label {
+    margin-right: 20px;
+}
+.textarea01 {
+    padding: 20px;
+    margin: 10px 0;
+    width: 100%;
+    height: 110px;
+    resize: none;
+    border: 1px solid #dbdde0;
+    background: #fff;
+    box-sizing: border-box;
+    color: #666;
+}
+.M_select {
+    display: none
+}
