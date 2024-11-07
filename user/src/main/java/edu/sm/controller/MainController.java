@@ -1,13 +1,20 @@
 package edu.sm.controller;
 
+import edu.sm.app.dto.BoardDto;
+import edu.sm.app.dto.NoticeDto;
+import edu.sm.app.service.BoardService;
+import edu.sm.app.service.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 public class MainController {
+
     @RequestMapping("/")
     public String main(Model model) {
         model.addAttribute("center", "center");
@@ -27,11 +34,6 @@ public class MainController {
         return "contact";
     }
 
-    @RequestMapping("/about")
-    public String about(Model model) {
-        model.addAttribute("center", "about");
-        return "about";
-    }
 
     @RequestMapping("/courses")
     public String courses(Model model) {

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.BoardRepository">
+
+    <!-- 단일 게시글 조회 -->
+    <select id="selectOne" parameterType="int" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               is_notice AS isNotice
+        FROM board
+        WHERE board_id = #{boardId}
+    </select>
+
+    <!-- 모든 게시글 조회 (공지 포함) -->
+    <select id="select" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               is_notice AS isNotice
+        FROM board
+        ORDER BY is_notice DESC, board_date DESC
+    </select>
+
+    <!-- 게시글 삽입 -->
+<!--    <insert id="insert" parameterType="edu.sm.app.dto.BoardDto">-->
+<!--        INSERT INTO board (board_id, board_title, board_content, board_date, board_update, board_hits, board_answer_num, user_id, is_notice)-->
+<!--        VALUES (#{boardId}, #{boardTitle}, #{boardContent}, #{boardDate}, #{boardUpdate}, #{boardHits}, #{boardAnswerNum}, #{userId}, #{isNotice})-->
+<!--    </insert>-->
+
+    <insert id="insert" parameterType="edu.sm.app.dto.BoardDto">
+        INSERT INTO board (board_title, board_content, board_date, board_hits, user_id)
+        VALUES (#{boardTitle}, #{boardContent}, NOW(), 0, #{userId})
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="update" parameterType="edu.sm.app.dto.BoardDto">
+        UPDATE board
+        SET board_title = #{boardTitle},
+            board_content = #{boardContent},
+            board_update = #{boardUpdate},
+            board_hits = #{boardHits},
+            board_answer_num = #{boardAnswerNum},
+            user_id = #{userId},
+            is_notice = #{isNotice}
+        WHERE board_id = #{boardId}
+    </update>
+    <!--조회수 증가 -->
+    <update id="increaseHits" parameterType="int">
+        UPDATE board
+        SET board_hits = board_hits + 1
+        WHERE board_id = #{boardId}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM board WHERE board_id = #{boardId}
+    </delete>
+
+    <!-- 공지사항만 가져오기 -->
+    <select id="selectNotices" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               is_notice AS isNotice
+        FROM board
+        WHERE is_notice = 1
+        ORDER BY board_date DESC
+    </select>
+
+    <!-- 일반 게시글만 가져오기 -->
+    <select id="selectGeneralBoards" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               is_notice AS isNotice
+        FROM board
+        WHERE is_notice = 0
+        ORDER BY board_date DESC
+    </select>
+
+    <!-- 공지사항 우선 정렬 및 게시글 날짜별 정렬 -->
+    <select id="selectAllBoards" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               is_notice AS isNotice
+        FROM board
+        ORDER BY is_notice DESC, board_date ASC
+    </select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.NoticeRepository">
+
+    <!-- 단일 공지사항 조회 -->
+    <select id="selectOne" parameterType="int" resultType="edu.sm.app.dto.NoticeDto">
+        SELECT notice_id AS noticeId,
+               notice_title AS noticeTitle,
+               notice_content AS noticeContent,
+               notice_date AS noticeDate,
+               notice_hits AS noticeHits,
+               manager_id AS managerId
+        FROM notice
+        WHERE notice_id = #{noticeId}
+    </select>
+
+    <!-- 모든 공지사항 조회 -->
+    <select id="selectAllNotices" resultType="edu.sm.app.dto.NoticeDto">
+        SELECT notice_id AS noticeId,
+               notice_title AS noticeTitle,
+               notice_content AS noticeContent,
+               notice_date AS noticeDate,
+               notice_hits AS noticeHits,
+               manager_id AS managerId
+        FROM notice
+        ORDER BY notice_date ASC
+    </select>
+
+    <!-- 공지사항 추가 -->
+    <insert id="insert" parameterType="edu.sm.app.dto.NoticeDto">
+        INSERT INTO notice (notice_id, notice_title, notice_content, notice_date, notice_hits, manager_id)
+        VALUES (#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeDate}, #{noticeHits}, #{managerId})
+    </insert>
+
+    <!-- 공지사항 수정 -->
+    <update id="update" parameterType="edu.sm.app.dto.NoticeDto">
+        UPDATE notice
+        SET notice_title = #{noticeTitle},
+            notice_content = #{noticeContent},
+            notice_date = #{noticeDate},
+            notice_hits = #{noticeHits},
+            manager_id = #{managerId}
+        WHERE notice_id = #{noticeId}
+    </update>
+
+    <!-- 공지사항 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM notice WHERE notice_id = #{noticeId}
+    </delete>
+</mapper>

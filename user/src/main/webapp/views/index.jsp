@@ -60,7 +60,7 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
-      <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
+      <a href="<c:url value='/board'/>" class="nav-item nav-link">게시판</a>
       <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -187,7 +187,7 @@
         </div>
       </div>
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-        <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+        <h6 class="section-title bg-white text-start text-primary pe-3">게시판</h6>
         <h1 class="mb-4">Welcome to eLEARNING</h1>
         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
@@ -509,7 +509,7 @@
     <div class="row g-5">
       <div class="col-lg-3 col-md-6">
         <h4 class="text-white mb-3">Quick Link</h4>
-        <a class="btn btn-link" href="<c:url value="/"/>">About Us</a>
+        <a class="btn btn-link" href="<c:url value="/board/"/>">boardTEST </a>
         <a class="btn btn-link" href="<c:url value="/"/>">Contact Us</a>
         <a class="btn btn-link" href="<c:url value="/"/>">Privacy Policy</a>
         <a class="btn btn-link" href="<c:url value="/"/>">Terms & Condition</a>
