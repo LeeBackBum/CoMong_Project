@@ -3,17 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-    .custom-register-btn:hover {
-        border-radius: 50px !important;
-        background-color: #ECEBFF; /* 진한 파란색으로 hover 효과 */
-        color: #000;
-    }
-    .custom-forgot-btn:hover {
-        border-radius: 50px !important;
-        background-color: #ECEBFF; /* 진한 파란색으로 hover 효과 */
-        color: #000;
+    .form-floating {
+        width: auto; /* form-floating이 버튼 옆에 배치되도록 */
     }
 
+    .btn-secondary {
+        height: 100%; /* 버튼 높이를 입력 필드와 맞추기 */
+    }
+
+    .custom-button {
+        width: 100px; /* 원하는 너비 */
+        /*height: 40px; !* 원하는 높이 *!*/
+    }
 </style>
 
 <head>
@@ -100,7 +101,7 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
-                <h1 class="display-3 text-white animated slideInDown">Login</h1>
+                <h1 class="display-3 text-white animated slideInDown">Register</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">Home</a></li>
@@ -120,7 +121,7 @@
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="section-title bg-white text-center text-primary px-3">Are you a member?</h6>
-            <h1 class="mb-5">Login</h1>
+            <h1 class="mb-5">Register</h1>
         </div>
         <div class="row g-4 justify-content-center">
             <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
@@ -138,20 +139,24 @@
                                 <label for="password">Enter Password</label>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-floating">
+                        <div class="col-12 d-flex align-items-center">
+                            <div class="form-floating me-2 flex-grow-1">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
                                 <label for="email">Enter Email</label>
                             </div>
+                            <button type="button" class="btn btn-secondary btn-sm custom-button" onclick="sendEmailVerification()">Send Code</button>
+                        </div>
+
+
+                        <div class="col-12 d-flex align-items-center" id="verification-container" style="visibility: hidden; opacity: 0;">
+                            <div class="form-floating me-2 flex-grow-1">
+                                <input type="text" class="form-control" id="verification-code" placeholder="Enter Code">
+                                <label for="verification-code">Enter Code</label>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-sm custom-button" onclick="checkCode()">Certified</button>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="button">Log In</button>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <button class="btn custom-forgot-btn w-100 py-3" type="button">Forgot Password</button>
-                        </div>
-                        <div class="col-6 d-flex justify-content-center">
-                            <button class="btn custom-register-btn w-100 py-3" type="button">Register</button>
+                            <button id="next-button" class="btn btn-primary w-100 py-3" type="button" disabled>Next</button>
                         </div>
                     </div>
                 </form>
@@ -161,45 +166,68 @@
 </div>
 
 <script>
-    let login = {
-        init:function(){
-            $('#login_form .btn-primary').click(()=>{
-                this.check();
-            });
-        },
-        check:function(){
-            console.log("클릭");
-            let id = $('#id').val();
-            let pwd = $('#password').val();
-            if(id == '' || id == null){
-                alert('Id is Mandatory');
-                $('#id').focus();
-                return;
-            }
-            if(pwd == '' || pwd == null){
-                alert('Pwd is Mandatory');
-                $('#pwd').focus();
-                return;
-            }
-            this.send();
-        },
-        send:function(){
-            $('#login_form').attr('method', 'post');
-            $('#login_form').attr('action', '/loginimpl');
-            $('#login_form').submit();
-        }
-    };
+    function sendEmailVerification() {
+        const email = document.getElementById("email").value;
 
-    $(function (){
-        login.init();
-    });
+        if (!email) {
+            alert("Please enter an email.");
+            return;
+        }
+
+        fetch('/mailSend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mail: email })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Verification code sent to your email.");
+                    document.getElementById("verification-container").style.visibility = "visible";
+                    document.getElementById("verification-container").style.opacity = "1";
+                } else {
+                    alert("Failed to send verification code.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function checkCode() {
+        const enteredCode = document.getElementById("verification-code").value;
+
+        if (!enteredCode) {
+            alert("Please enter the verification code.");
+            return;
+        }
+
+        fetch('/mailCheck', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userNumber: enteredCode })
+        })
+            .then(response => response.json())
+            .then(isMatch => {
+                if (isMatch) {
+                    alert("Verification successful.");
+                    document.getElementById("next-button").disabled = false; // Next 버튼 활성화
+                } else {
+                    alert("Incorrect verification code.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+
+
+
 </script>
 
-<c:if test = "${not empty loginError}">
-    <script>
-        alert("${loginError}");
-    </script>
-</c:if>
+
 <!-- Contact End -->
 
 
