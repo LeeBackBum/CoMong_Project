@@ -85,6 +85,42 @@
 
     </style>
     <script>
+        function resetDoctor() {
+            // 서버로 Ajax 요청을 보내 의사 정보 데이터를 가져옴
+            fetch('/getDoctorList')  // `/getDoctorList`는 서버에서 의사 정보를 제공하는 엔드포인트
+                .then(response => response.json())  // JSON 형식으로 변환
+                .then(data => {
+                    const doctorListArea = document.querySelector('.doctor-list-area');
+                    doctorListArea.innerHTML = '';  // 기존 리스트를 초기화
+
+                    // 응답이 배열인지 확인
+                    if (Array.isArray(data)) {
+                        // data가 배열인 경우 forEach를 사용하여 HTML에 추가
+                        data.forEach(doctor => {
+                            const listItem = document.createElement('li');
+                            listItem.innerHTML = `
+                        <a href="javascript:void(0);" stfidx="${doctor.id}" reservopen style="border: 2px solid rgb(60, 153, 255);">
+                            <div class="image-box">
+                                <img src="<c:url value="/imgt/dt.png"/>" alt="${doctor.doctor_name}" class="image-doctor" width="100px">
+                            </div>
+                            <span class="doctor-information" id="staffIdx_${doctor.id}" major="${doctor.subject_name}" doctor="${doctor.doctor_name}">
+                                <span class="type" style="font-size:14px;">${doctor.subject_name}</span>
+                                <span class="name" style="font-size:14px;">${doctor.doctor_name}</span>
+                            </span>
+                        </a>
+                    `;
+                            doctorListArea.appendChild(listItem);
+                        });
+                    } else {
+                        // 배열이 아닌 경우 오류 메시지와 데이터를 확인
+                        console.error('Error: Expected an array but received:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching doctor data:', error);
+                });
+        }
+
     </script>
 </head>
 <body>
@@ -318,61 +354,58 @@
             <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;">
                 <div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
             <div class="doctor-list-area">
-                <ul>
-                    <li><a href="javascript:void(0);" stfidx="144" reservopen style="border: 2px solid rgb(60, 153, 255);">
-                    <div class="image-box">
-                        <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">
-                    </div>
-                    <span class="doctor-information" id="staffIdx_1" major="가정의학과" doctor="이가영&nbsp;과장">
-                        <span class="type" style="font-size:14px;">가정의학과</span>
-                        <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>
-                    </span>
-                </a>
-                    </li>
-                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>
-                    <div class="image-box">
-                        <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">
-                    </div>
-                    <span class="doctor-information" id="staffIdx_2" major="가정의학과" doctor="이가영&nbsp;과장">
-                        <span class="type" style="font-size:14px;">가정의학과</span>
-                        <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>
-                    </span>
-                </a>
-                </li>
-                    </li>
-                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>
-                        <div class="image-box">
-                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">
-                        </div>
-                        <span class="doctor-information" id="staffIdx_3" major="가정의학과" doctor="이가영&nbsp;과장">
-                        <span class="type" style="font-size:14px;">가정의학과</span>
-                        <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>
-                    </span>
-                    </a>
-                    </li>
-                    </li>
-                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>
-                        <div class="image-box">
-                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">
-                        </div>
-                        <span class="doctor-information" id="staffIdx_4" major="가정의학과" doctor="이가영&nbsp;과장">
-                        <span class="type" style="font-size:14px;">가정의학과</span>
-                        <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>
-                    </span>
-                    </a>
-                    </li>
-                    </li>
-                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>
-                        <div class="image-box">
-                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">
-                        </div>
-                        <span class="doctor-information" id="staffIdx_5" major="가정의학과" doctor="이가영&nbsp;과장">
-                        <span class="type" style="font-size:14px;">가정의학과</span>
-                        <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>
-                    </span>
-                    </a>
-                    </li>
-                </ul>
+<%--                <ul>--%>
+<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style="border: 2px solid rgb(60, 153, 255);">--%>
+<%--                        <div class="image-box">--%>
+<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
+<%--                        </div>--%>
+<%--                        <span class="doctor-information" id="staffIdx_1" major="가정의학과" doctor="이가영&nbsp;과장">--%>
+<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
+<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
+<%--                        </span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
+<%--                        <div class="image-box">--%>
+<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
+<%--                        </div>--%>
+<%--                        <span class="doctor-information" id="staffIdx_2" major="가정의학과" doctor="이가영&nbsp;과장">--%>
+<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
+<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
+<%--                        </span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
+<%--                        <div class="image-box">--%>
+<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
+<%--                        </div>--%>
+<%--                        <span class="doctor-information" id="staffIdx_3" major="가정의학과" doctor="이가영&nbsp;과장">--%>
+<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
+<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
+<%--                        </span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
+<%--                        <div class="image-box">--%>
+<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
+<%--                        </div>--%>
+<%--                        <span class="doctor-information" id="staffIdx_4" major="가정의학과" doctor="이가영&nbsp;과장">--%>
+<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
+<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
+<%--                        </span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
+<%--                        <div class="image-box">--%>
+<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
+<%--                        </div>--%>
+<%--                        <span class="doctor-information" id="staffIdx_5" major="가정의학과" doctor="이가영&nbsp;과장">--%>
+<%--                            <span class="type" value="${doctor.doctor_name}" style="font-size:14px;">가정의학과</span>--%>
+<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
+<%--                        </span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
+<%--                </ul>--%>
             </div>
         </div>
             </div>
