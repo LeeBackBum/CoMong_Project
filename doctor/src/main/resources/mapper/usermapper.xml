@@ -5,35 +5,32 @@
 <mapper namespace="edu.sm.app.repository.UserRepository">
 
     <!-- 특정 userId로 사용자 정보 조회 -->
-    <select id="selectOne" parameterType="String" resultMap="userDto">
+    <select id="selectOne" parameterType="String" resultType="userDto">
         SELECT userId, userPwd, userEmail, userName, userAddress, userAge, userSex, diseaseStatus, userNumber
         FROM user
         WHERE userId = #{userId}
     </select>
 
     <!-- 모든 사용자 정보 조회 -->
-    <select id="select" resultMap="userDto">
+    <select id="select" resultType="userDto">
         SELECT userId, userPwd, userEmail, userName, userAddress, userAge, userSex, diseaseStatus, userNumber
         FROM user
     </select>
 
-    <!-- 새로운 사용자 정보 추가 -->
-    <insert id="insert" parameterType="edu.sm.app.dto.UserDto">
-        INSERT INTO user (userId, userPwd, userEmail, userName, userAddress, userAge, userSex, diseaseStatus, userNumber)
-        VALUES (#{userId}, #{userPwd}, #{userEmail}, #{userName}, #{userAddress}, #{userAge}, #{userSex}, #{diseaseStatus}, #{userNumber})
-    </insert>
+    <!-- 의사 ID에 따른 예약 및 상담 정보를 조회 -->
+    <select id="selectAppointments" parameterType="String" resultType="appointmentDto">
+        SELECT DISTINCT u.user_name, u.user_age, u.user_sex, u.disease_status, u.user_number, '예약' AS appointment_type, ma.appointment_date AS date
+        FROM medical_appointment AS ma
+            JOIN user AS u ON ma.user_id = u.user_id
+        WHERE ma.doctor_id = #{doctorId}
 
-    <!-- 기존 사용자 정보 수정 -->
-    <update id="update" parameterType="edu.sm.app.dto.UserDto">
-        UPDATE user
-        SET userPwd = #{userPwd}, userEmail = #{userEmail}, userName = #{userName}, userAddress = #{userAddress},
-            userAge = #{userAge}, userSex = #{userSex}, diseaseStatus = #{diseaseStatus}, userNumber = #{userNumber}
-        WHERE userId = #{userId}
-    </update>
+        UNION
 
-    <!-- 특정 userId로 사용자 정보 삭제 -->
-    <delete id="delete" parameterType="edu.sm.app.dto.UserDto">
-        DELETE FROM user WHERE userId = #{userId}
-    </delete>
+        SELECT DISTINCT u.user_name, u.user_age, u.user_sex, u.disease_status, u.user_number, '상담' AS appointment_type, c.counsel_date AS date
+        FROM counsel AS c
+            JOIN user AS u ON c.user_id = u.user_id
+        WHERE c.doctor_id = #{doctorId}
 
+        ORDER BY date DESC
+    </select>
 </mapper>
