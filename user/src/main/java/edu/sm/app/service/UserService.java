@@ -14,6 +14,7 @@ public class UserService implements SMService<String, UserDto> {
 
     final UserRepository userRepository;
 
+
     @Override
     public void add(UserDto userDto) throws Exception {
         userRepository.insert(userDto);

@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CoMong.iml" filepath="$PROJECT_DIR$/CoMong.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/doctor/src/main/webapp/webapp.iml" filepath="$PROJECT_DIR$/doctor/src/main/webapp/webapp.iml" />
     </modules>
   </component>
 </project>
