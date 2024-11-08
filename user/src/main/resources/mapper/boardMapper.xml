@@ -34,12 +34,28 @@
         ORDER BY is_notice DESC, board_date DESC
     </select>
 
-    <!-- 게시글 삽입 -->
-<!--    <insert id="insert" parameterType="edu.sm.app.dto.BoardDto">-->
-<!--        INSERT INTO board (board_id, board_title, board_content, board_date, board_update, board_hits, board_answer_num, user_id, is_notice)-->
-<!--        VALUES (#{boardId}, #{boardTitle}, #{boardContent}, #{boardDate}, #{boardUpdate}, #{boardHits}, #{boardAnswerNum}, #{userId}, #{isNotice})-->
-<!--    </insert>-->
+    <!-- 페이징을 위한 게시글 조회 -->
+    <select id="selectBoardsWithPagination" parameterType="map" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               is_notice AS isNotice
+        FROM board
+        ORDER BY is_notice DESC, board_date DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
 
+    <!-- 총 게시글 수 조회 -->
+    <select id="countTotalBoards" resultType="int">
+        SELECT COUNT(*) FROM board
+    </select>
+
+    <!-- 게시글 삽입 -->
     <insert id="insert" parameterType="edu.sm.app.dto.BoardDto">
         INSERT INTO board (board_title, board_content, board_date, board_hits, user_id)
         VALUES (#{boardTitle}, #{boardContent}, NOW(), 0, #{userId})
@@ -57,7 +73,8 @@
             is_notice = #{isNotice}
         WHERE board_id = #{boardId}
     </update>
-    <!--조회수 증가 -->
+
+    <!-- 조회수 증가 -->
     <update id="increaseHits" parameterType="int">
         UPDATE board
         SET board_hits = board_hits + 1
@@ -114,5 +131,28 @@
                is_notice AS isNotice
         FROM board
         ORDER BY is_notice DESC, board_date ASC
+    </select>
+
+    <!-- 제목 또는 내용으로 게시글 검색 -->
+    <select id="searchBoards" parameterType="map" resultType="edu.sm.app.dto.BoardDto">
+        SELECT board_id AS boardId,
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_hits AS boardHits,
+               user_id AS userId
+        FROM board
+        WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+           OR board_content LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY board_date DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- 검색 결과 총 개수 조회 -->
+    <select id="countSearchResults" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM board
+        WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+           OR board_content LIKE CONCAT('%', #{keyword}, '%')
     </select>
 </mapper>

@@ -72,6 +72,24 @@ public class BoardService implements SMService<Integer, BoardDto> {
     public void increaseHits(Integer boardId) {
         boardRepository.increaseHits(boardId);
     }
+
+    public List<BoardDto> getBoardsWithPagination(int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        return boardRepository.selectBoardsWithPagination(offset, pageSize);
+    }
+
+    public int getTotalBoardCount() {
+        return boardRepository.countTotalBoards();
+    }
+
+    public List<BoardDto> searchBoards(String keyword, int page, int pageSize) {
+        int offset = (page - 1) * pageSize;
+        return boardRepository.searchBoards(keyword, offset, pageSize);
+    }
+
+    public int getSearchResultCount(String keyword) {
+        return boardRepository.countSearchResults(keyword);
+    }
 }
 
 

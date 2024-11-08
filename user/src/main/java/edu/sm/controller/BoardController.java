@@ -1,7 +1,9 @@
 package edu.sm.controller;
 
+import edu.sm.app.dto.AnswerDto;
 import edu.sm.app.dto.BoardDto;
 import edu.sm.app.dto.NoticeDto;
+import edu.sm.app.service.AnswerService;
 import edu.sm.app.service.BoardService;
 import edu.sm.app.service.NoticeService;
 import jakarta.servlet.http.Cookie;
@@ -12,12 +14,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -28,62 +28,65 @@ public class BoardController {
 
     private final BoardService boardService;
     private final NoticeService noticeService;
+    private final AnswerService answerService; // AnswerService 추가
+    private final String dir = "board/";
 
-    private final String dir = "board/"; // JSP 파일 경로 기본 설정
-
-    /**
-     * 게시판 메인 페이지
-     * 공지사항과 일반 게시글을 함께 조회하여 화면에 표시합니다.
-     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String boardMain(Model model) {
+    @GetMapping("")
+    public String boardMain(Model model, HttpSession session,
+                            @RequestParam(value = "page", defaultValue = "1") int page,
+                            @RequestParam(value = "size", defaultValue = "10") int pageSize,
+                            @RequestParam(value = "keyword", required = false) String keyword) {
         try {
             List<NoticeDto> notices = noticeService.getAllNotices();
-            List<BoardDto> boards = boardService.getAllBoards();
             model.addAttribute("notices", notices);
+
+            List<BoardDto> boards;
+            int totalPages;
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                boards = boardService.searchBoards(keyword, page, pageSize);
+                int totalResults = boardService.getSearchResultCount(keyword);
+                totalPages = (int) Math.ceil((double) totalResults / pageSize);
+
+                LinkedList<String> searchHistory = (LinkedList<String>) session.getAttribute("searchHistory");
+                if (searchHistory == null) {
+                    searchHistory = new LinkedList<>();
+                    session.setAttribute("searchHistory", searchHistory);
+                }
+                if (!searchHistory.contains(keyword)) {
+                    searchHistory.addFirst(keyword);
+                    if (searchHistory.size() > 10) {
+                        searchHistory.removeLast();
+                    }
+                }
+            } else {
+                boards = boardService.getBoardsWithPagination(page, pageSize);
+                int totalBoardCount = boardService.getTotalBoardCount();
+                totalPages = (int) Math.ceil((double) totalBoardCount / pageSize);
+            }
+
             model.addAttribute("boards", boards);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("pageSize", pageSize);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("searchHistory", session.getAttribute("searchHistory"));
+
         } catch (Exception e) {
             log.error("게시판 데이터 로딩 실패", e);
         }
+
         model.addAttribute("center", dir + "boardMain");
         return dir + "boardMain";
     }
 
-    /**
-     * 글쓰기 페이지로 이동
-     */
-    @RequestMapping(value = "/write", method = RequestMethod.GET)
-    public String writeForm(Model model) {
-        model.addAttribute("boardDto", new BoardDto());
-        model.addAttribute("center", dir + "write");
-        return dir + "write";
-    }
-
-    /**
-     * 글쓰기 요청 처리 및 저장
-     */
-    @RequestMapping(value = "/write", method = RequestMethod.POST)
-    public String saveBoard(@ModelAttribute BoardDto boardDto, HttpSession session) {
+    @GetMapping("/{boardId}")
+    public String detail(Model model, @PathVariable("boardId") Integer boardId,
+                         HttpServletRequest request, HttpServletResponse response) {
         try {
-            boardDto.setUserId("guestUser");  // 세션 구현 시 `loginid`로 대체
-            boardService.add(boardDto);
-        } catch (Exception e) {
-            log.error("글 저장 실패", e);
-        }
-        return "redirect:/board";
-    }
-
-    /**
-     * 게시글 상세 페이지
-     */
-    @RequestMapping(value = "/{boardId}", method = RequestMethod.GET)
-    public String detail(Model model, @PathVariable("boardId") Integer boardId, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            // 조회수 증가 여부 확인을 위한 쿠키 체크
             boolean isViewed = false;
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
+            if (request.getCookies() != null) {
+                for (Cookie cookie : request.getCookies()) {
                     if (cookie.getName().equals("viewed_" + boardId)) {
                         isViewed = true;
                         break;
@@ -91,16 +94,20 @@ public class BoardController {
                 }
             }
 
-            // 조회수 증가 (쿠키가 없는 경우만)
             if (!isViewed) {
-                boardService.increaseHits(boardId); // 조회수 증가
+                boardService.increaseHits(boardId);
                 Cookie newCookie = new Cookie("viewed_" + boardId, "true");
-                newCookie.setMaxAge(24 * 60 * 60); // 1일간 유지
+                newCookie.setMaxAge(24 * 60 * 60);
                 response.addCookie(newCookie);
             }
 
             BoardDto board = boardService.get(boardId);
             String formattedDate = board.getBoardDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+            // 댓글 목록 추가
+            List<AnswerDto> answers = answerService.getAnswersByBoardId(boardId);
+            model.addAttribute("answers", answers); // 댓글 목록을 Model에 추가
+
             model.addAttribute("board", board);
             model.addAttribute("formattedDate", formattedDate);
         } catch (Exception e) {
@@ -110,60 +117,54 @@ public class BoardController {
         return "board/detail";
     }
 
-    /**
-     * 게시글 삭제 요청 처리
-     */
-    @RequestMapping(value = "/delete/{boardId}", method = RequestMethod.POST)
-    public String deleteBoard(@PathVariable("boardId") Integer boardId) {
+    @GetMapping("/write")
+    public String writeForm(Model model) {
+        model.addAttribute("boardDto", new BoardDto());
+        model.addAttribute("center", dir + "write");
+        return dir + "write";
+    }
+
+    @PostMapping("/write")
+    public String saveBoard(@ModelAttribute BoardDto boardDto, HttpSession session) {
         try {
-            boardService.del(boardId);
-            log.info("게시글 삭제 성공: {}", boardId);
+            boardDto.setUserId("guestUser");
+            boardService.add(boardDto);
         } catch (Exception e) {
-            log.error("게시글 삭제 실패: {}", boardId, e);
+            log.error("글 저장 실패", e);
         }
         return "redirect:/board";
     }
 
-    /**
-     * 수정 페이지로 이동
-     */
-    @RequestMapping(value = "/edit/{boardId}", method = RequestMethod.GET)
+    @GetMapping("/edit/{boardId}")
     public String editForm(@PathVariable("boardId") Integer boardId, Model model) {
         try {
-            BoardDto board = boardService.get(boardId);
-            model.addAttribute("boardDto", board);
+            BoardDto board = boardService.get(boardId);  // 해당 게시글의 정보를 가져옴
+            model.addAttribute("boardDto", board);  // 수정 폼에 게시글 데이터 전달
         } catch (Exception e) {
-            log.error("수정 페이지 로딩 실패", e);
+            log.error("게시글 수정 폼 로딩 실패", e);
         }
         model.addAttribute("center", dir + "edit");
         return dir + "edit";
     }
 
-    /**
-     * 수정 요청 처리 및 저장
-     */
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String updateBoard(@ModelAttribute BoardDto boardDto, HttpSession session) {
+    @PostMapping("/edit/{boardId}")
+    public String updateBoard(@PathVariable("boardId") Integer boardId, @ModelAttribute BoardDto boardDto) {
         try {
-            // 게시글 작성자의 userId를 유지합니다.
-            BoardDto existingBoard = boardService.get(boardDto.getBoardId());
-            boardDto.setUserId(existingBoard.getUserId());
-
-            // 로그인된 사용자와 게시글 작성자가 일치하는지 확인하는 로직 (나중에 사용 예정)
-            /*
-            String loginUserId = (String) session.getAttribute("loginid");
-            if (!loginUserId.equals(existingBoard.getUserId())) {
-                // 만약 로그인된 사용자와 게시글 작성자가 다르다면 수정 금지
-                log.warn("수정 권한 없음: 로그인한 사용자와 작성자가 일치하지 않습니다.");
-                return "redirect:/board/" + boardDto.getBoardId();
-            }
-            */
-
-            boardService.modify(boardDto);
-            log.info("게시글 수정 성공: {}", boardDto.getBoardId());
+            boardDto.setBoardId(boardId);  // 게시글 ID 설정
+            boardService.modify(boardDto);  // 게시글 수정 요청
         } catch (Exception e) {
             log.error("게시글 수정 실패", e);
         }
-        return "redirect:/board/" + boardDto.getBoardId();
+        return "redirect:/board/" + boardId;  // 수정 완료 후 해당 게시글 상세 페이지로 리디렉션
+    }
+
+    @PostMapping("/delete/{boardId}")
+    public String deleteBoard(@PathVariable("boardId") Integer boardId) {
+        try {
+            boardService.del(boardId);  // 게시글 삭제 서비스 호출
+        } catch (Exception e) {
+            log.error("게시글 삭제 실패", e);
+        }
+        return "redirect:/board";  // 삭제 후 게시판 목록으로 리디렉션
     }
 }

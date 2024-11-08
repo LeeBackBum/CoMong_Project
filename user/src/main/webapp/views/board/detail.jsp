@@ -5,13 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세 보기</title>
-    <link href="<c:url value='/css/bootstrap.min.css' />" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-5">
     <h3 class="ui dividing header">게시글 상세 보기</h3>
 
-    <div class="card">
+    <!-- 게시글 내용 -->
+    <div class="card mb-4">
         <div class="card-header">
             <h4>${board.boardTitle}</h4>
         </div>
@@ -23,17 +24,42 @@
             <p>${board.boardContent}</p>
         </div>
         <div class="card-footer text-end">
-            <a href="<c:url value='/board' />" class="btn btn-secondary">목록으로</a>
-            <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-primary">수정</a>
-
-            <!-- 삭제 버튼 (POST 방식으로 삭제 요청 전송) -->
-            <form action="<c:url value='/board/delete/${board.boardId}' />" method="post" style="display:inline;">
-                <button type="submit" class="btn btn-danger">삭제</button>
+            <a href="${pageContext.request.contextPath}/board" class="btn btn-secondary">목록으로</a>
+            <a href="${pageContext.request.contextPath}/board/edit/${board.boardId}" class="btn btn-primary">수정</a>
+            <form action="${pageContext.request.contextPath}/board/delete/${board.boardId}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">게시글 삭제</button>
             </form>
         </div>
     </div>
-</div>
 
-<script src="<c:url value='/js/bootstrap.bundle.min.js' />"></script>
+    <!-- 댓글 작성 폼 -->
+    <div class="comment-form mb-4">
+        <h5>댓글 작성</h5>
+        <form action="${pageContext.request.contextPath}/answers/board/${board.boardId}/add" method="post">
+            <div class="mb-3">
+                <textarea name="content" class="form-control" rows="3" placeholder="댓글을 입력하세요..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">댓글 작성</button>
+        </form>
+    </div>
+
+    <!-- 댓글 목록 -->
+    <div class="comments-section mb-4">
+        <h5>댓글</h5>
+        <c:forEach var="answer" items="${answers}">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p><strong>${answer.userId}</strong> - <fmt:formatDate value="${answer.answerDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
+                    <p>${answer.answerContent}</p>
+                    <form action="${pageContext.request.contextPath}/answers/delete/${answer.answerId}" method="post" style="display:inline;">
+                        <input type="hidden" name="boardId" value="${board.boardId}">
+                        <button type="submit" class="btn btn-sm btn-danger">댓글 삭제</button>
+                    </form>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
+<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

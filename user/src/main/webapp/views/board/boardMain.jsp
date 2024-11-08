@@ -44,7 +44,7 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
   <a href="<c:url value='/'/>" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-    <h2 class="m-0 text-primary"><img class="img-logo" src="img/logo2.jpg" alt="" style="width: 140px; height: auto;"></h2>
+    <h2 class="m-0 text-primary"><img class="img-logo" src="<c:url value='/img/logo2.jpg'/>" alt="" style="width: 140px; height: auto;"></h2>
   </a>
   <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
     <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,7 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value='/'/>" class="nav-item nav-link active">Home</a>
-      <a href="<c:url value='/board'/>" class="nav-item nav-link">Board</a>
+      <a href="<c:url value='/board'/>" class="nav-item nav-link">게시판</a>
       <a href="<c:url value='/courses'/>" class="nav-item nav-link">Courses</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -90,6 +90,13 @@
 <!-- Board Start -->
 <div class="container mt-5">
   <h3 class="ui dividing header">게시판</h3>
+
+  <!-- 검색 폼 -->
+  <form action="<c:url value='/board' />" method="get" class="d-flex mb-3">
+    <input type="text" name="keyword" class="form-control me-2" placeholder="제목 또는 내용 검색" value="${keyword}">
+    <button type="submit" class="btn btn-primary">검색</button>
+  </form>
+
   <table class="table">
     <thead>
     <tr>
@@ -124,9 +131,27 @@
     </tbody>
   </table>
 
-  <!-- 글쓰기 버튼 -->
-  <div class="text-end mt-3">
-    <a href="<c:url value='/board/write' />" class="btn btn-primary">글쓰기</a>
+  <!-- 글쓰기 버튼 및 Pagination -->
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <!-- 글쓰기 버튼 -->
+    <div>
+      <a href="<c:url value='/board/write' />" class="btn btn-primary">글쓰기</a>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination d-flex justify-content-center">
+      <c:if test="${currentPage > 1}">
+        <a href="?page=${currentPage - 1}&size=${pageSize}&keyword=${keyword}" class="btn btn-secondary mx-1">이전</a>
+      </c:if>
+
+      <c:forEach var="i" begin="1" end="${totalPages}">
+        <a href="?page=${i}&size=${pageSize}&keyword=${keyword}" class="btn mx-1 ${i == currentPage ? 'btn-primary' : 'btn-light'}">${i}</a>
+      </c:forEach>
+
+      <c:if test="${currentPage < totalPages}">
+        <a href="?page=${currentPage + 1}&size=${pageSize}&keyword=${keyword}" class="btn btn-secondary mx-1">다음</a>
+      </c:if>
+    </div>
   </div>
 </div>
 <!-- Board End -->
@@ -137,11 +162,11 @@
     <div class="row g-5">
       <div class="col-lg-3 col-md-6">
         <h4 class="text-white mb-3">Quick Link</h4>
-        <a class="btn btn-link" href="">About Us</a>
-        <a class="btn btn-link" href="">Contact Us</a>
-        <a class="btn btn-link" href="">Privacy Policy</a>
-        <a class="btn btn-link" href="">Terms & Condition</a>
-        <a class="btn btn-link" href="">FAQs & Help</a>
+        <a class="btn btn-link" href="#">About Us</a>
+        <a class="btn btn-link" href="#">Contact Us</a>
+        <a class="btn btn-link" href="#">Privacy Policy</a>
+        <a class="btn btn-link" href="#">Terms & Condition</a>
+        <a class="btn btn-link" href="#">FAQs & Help</a>
       </div>
       <div class="col-lg-3 col-md-6">
         <h4 class="text-white mb-3">Contact</h4>
@@ -158,9 +183,9 @@
       <div class="col-lg-3 col-md-6">
         <h4 class="text-white mb-3">Gallery</h4>
         <div class="row g-2 pt-2">
-          <div class="col-4"><img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt=""></div>
-          <div class="col-4"><img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt=""></div>
-          <div class="col-4"><img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt=""></div>
+          <div class="col-4"><img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg'/>" alt=""></div>
+          <div class="col-4"><img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg'/>" alt=""></div>
+          <div class="col-4"><img class="img-fluid bg-light p-1" src="<c:url value='/img/course-3.jpg'/>" alt=""></div>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">

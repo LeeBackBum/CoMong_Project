@@ -10,8 +10,8 @@
 <body>
 <div class="container mt-5">
     <h3 class="ui dividing header">게시글 수정</h3>
-    <form action="<c:url value='/board/edit' />" method="post">
-        <input type="hidden" name="boardId" value="${boardDto.boardId}">
+    <form action="<c:url value='/board/edit/${boardDto.boardId}' />" method="post">
+    <input type="hidden" name="boardId" value="${boardDto.boardId}">
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
             <input type="text" class="form-control" id="title" name="boardTitle" value="${boardDto.boardTitle}" required>
