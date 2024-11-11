@@ -47,6 +47,7 @@
 <!-- Spinner End -->
 
 
+
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
   <a href="<c:url value="/"/> " class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -72,9 +73,33 @@
       </div>
       <a href="<c:url value="/contact"/>" class="nav-item nav-link">Contact</a>
     </div>
-    <a href="<c:url value="/login"/>" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+    <ul class="nav justify-content-end">
+      <c:choose>
+      <c:when test="${sessionScope.loginid == null}">
+        <a href="<c:url value="/login"/>" class=""
+           style="background-color: #38c9d6; color: #ffff; padding: 10.5px 22.5px; border-radius: 5px; font-weight:400; font-size:1rem; margin-right: 30px; ">
+          Join Now
+          <i class=""></i></a>
+      </c:when>
+      <c:otherwise>
+      <li>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+             style="background-color: #38c9d6; color: #ffffff; padding: 10px 20px; border-radius: 5px; font-weight: 400; font-size: 1rem; margin-right: 30px;">
+              ${sessionScope.loginid.userName}님
+          </a>
+          <div class="dropdown-menu fade-down m-0" style="right: 0; width: 10px;">
+            <a href="<c:url value="/mypage"/>" class="dropdown-item">MyPage</a>
+            <a href="<c:url value="/logoutimpl"/>" class="dropdown-item">LogOut</a>
+            <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
+          </div>
+        </div>
+      </li>
+      </c:otherwise>
+      </c:choose>
   </div>
 </nav>
+
 
 <!-- Navbar End -->
 <div class="container-fluid" style="margin-top:0px">

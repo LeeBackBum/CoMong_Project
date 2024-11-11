@@ -23,6 +23,14 @@ public class MainInputController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @RequestMapping("/logoutimpl")
+    public String logoutimpl(HttpSession session, Model model) {
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+
     @RequestMapping("/loginimpl")
     public String loginimpl(Model model,
                             @RequestParam("id") String id,
