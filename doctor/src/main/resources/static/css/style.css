@@ -80,7 +80,7 @@
 }
 
 .content {
-    margin-left: 250px;
+    margin-left: 125px;
     min-height: 100vh;
     background: #FFFFFF;
     transition: 0.5s;
@@ -130,6 +130,7 @@
     border-radius: 0 30px 30px 0;
     outline: none;
 }
+
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
@@ -195,6 +196,7 @@
     background: #FFFFFF;
     border-radius: 40px;
 }
+
 
 .content .navbar .dropdown-toggle::after {
     margin-left: 6px;
