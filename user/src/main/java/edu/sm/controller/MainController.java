@@ -61,4 +61,16 @@ public class MainController {
         model.addAttribute("center", "testimonial");
         return "index";
     }
+
+    @RequestMapping("/mypage")
+    public String mypage(Model model) {
+        model.addAttribute("center", "mypage");
+        return "index";
+    }
+
+    @RequestMapping("/forgot")
+    public String forgot(Model model) {
+        model.addAttribute("center", "forgot");
+        return "index";
+    }
 }

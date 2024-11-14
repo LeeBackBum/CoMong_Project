@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface UserRepository extends SMRepository <String, UserDto>{
+    int updatePwd(UserDto user);
 }

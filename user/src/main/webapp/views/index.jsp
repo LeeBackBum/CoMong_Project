@@ -90,8 +90,8 @@
           </a>
           <div class="dropdown-menu fade-down m-0" style="right: 0; width: 10px;">
             <a href="<c:url value="/mypage"/>" class="dropdown-item">MyPage</a>
+            <a href="<c:url value="/recordpage"/>" class="dropdown-item">Record</a>
             <a href="<c:url value="/logoutimpl"/>" class="dropdown-item">LogOut</a>
-            <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
           </div>
         </div>
       </li>
