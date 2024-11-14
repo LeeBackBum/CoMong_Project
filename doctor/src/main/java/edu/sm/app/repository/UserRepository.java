@@ -16,7 +16,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UserRepository extends SMRepository<String, UserDto> {
-    Page<UserDto> getpage() throws Exception;
     Page<UserDto> getfindpage(MergedAnnotations.Search search) throws Exception;
     // 예약 및 상담 정보 조회 메서드
     List<AppointmentDto> selectAppointments(String doctorId);

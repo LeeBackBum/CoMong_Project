@@ -42,18 +42,15 @@ public class UserService implements SMService<String, UserDto> {
     public List<UserDto> get() throws Exception {
         return List.of();
     }
-
-    public Page<UserDto> getPage(int pageNo) throws Exception {
-        PageHelper.startPage(pageNo, 5);// 3: 한화면에 출력되는 개수
-        return userRepository.getpage();
-    }
-
     public Page<UserDto> getFindPage(int pageNo, MergedAnnotations.Search search) throws Exception {
         PageHelper.startPage(pageNo, 3);// 3: 한화면에 출력되는 개수
         return userRepository.getfindpage(search);
     }
     // 예약 및 상담 정보 조회
-    public List<AppointmentDto> getAppointments(String doctorId) {
+    public List<AppointmentDto> getAppointments(String doctorId,int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 5);
         return userRepository.selectAppointments(doctorId);
     }
+
+
 }

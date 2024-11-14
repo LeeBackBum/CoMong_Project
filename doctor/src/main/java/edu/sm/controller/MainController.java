@@ -30,15 +30,14 @@ public class MainController {
 
     @RequestMapping("/main")
     public String main(Model model) {
-        model.addAttribute("center", "center");
         log.info("Start Main ,,,,,,");
         return "main";
     }
 
     @RequestMapping("blank")
     public String blank(Model model) {
-        model.addAttribute("center", "center");
-        return "blank";
+        model.addAttribute("center", "blank");
+        return "main";
     }
 
     @RequestMapping("button")
@@ -47,10 +46,10 @@ public class MainController {
         return "button";
     }
 
-    @RequestMapping("chart")
+    @RequestMapping("/chart")
     public String chart(Model model) {
-        model.addAttribute("center", "center");
-        return "chart";
+        model.addAttribute("center", "chart");
+        return "main";
     }
 
     @RequestMapping("element")
@@ -111,8 +110,6 @@ public class MainController {
         try {
             doctorDto = doctorService.get(id);
             if(doctorDto == null){
-
-
                 throw new Exception();
             }
             if(!doctorDto.getDoctorPwd().equals(pwd)){
