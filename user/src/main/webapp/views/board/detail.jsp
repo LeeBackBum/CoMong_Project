@@ -43,23 +43,56 @@
         </form>
     </div>
 
-    <!-- 댓글 목록 -->
-    <div class="comments-section mb-4">
-        <h5>댓글</h5>
-        <c:forEach var="answer" items="${answers}">
-            <div class="card mb-2">
-                <div class="card-body">
-                    <p><strong>${answer.userId}</strong> - <fmt:formatDate value="${answer.answerDate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-                    <p>${answer.answerContent}</p>
-                    <form action="${pageContext.request.contextPath}/answers/delete/${answer.answerId}" method="post" style="display:inline;">
-                        <input type="hidden" name="boardId" value="${board.boardId}">
-                        <button type="submit" class="btn btn-sm btn-danger">댓글 삭제</button>
-                    </form>
-                </div>
+    <!-- 댓글 및 대댓글 목록 -->
+    <c:forEach var="answer" items="${answers}">
+        <div id="comment-${answer.answerId}" class="card mb-2" style="margin-left: ${answer.depth * 20}px;">
+            <div class="card-body">
+                <p><strong>${answer.userId}</strong> -
+                    <fmt:formatDate value="${answer.answerDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                </p>
+
+                <!-- 수정 중인지 확인 -->
+                <c:choose>
+                    <c:when test="${not empty param.editId and param.editId == answer.answerId}">
+                        <!-- 댓글 수정 폼 -->
+                        <form action="${pageContext.request.contextPath}/answers/edit/${answer.answerId}" method="post">
+                            <textarea name="content" class="form-control" rows="2" required>${answer.answerContent}</textarea>
+                            <input type="hidden" name="boardId" value="${board.boardId}">
+                            <button type="submit" class="btn btn-sm btn-success">수정 완료</button>
+                            <a href="${pageContext.request.contextPath}/board/${board.boardId}" class="btn btn-sm btn-secondary">취소</a>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- 댓글 내용 -->
+                        <p>${answer.answerContent}</p>
+
+                        <!-- 버튼 배치 -->
+                        <div class="mt-2">
+                            <!-- 대댓글 작성 -->
+                            <form action="${pageContext.request.contextPath}/answers/reply/${answer.answerId}" method="post" style="display:inline;">
+                                <textarea name="content" class="form-control d-inline" rows="1" placeholder="대댓글 입력" required></textarea>
+                                <input type="hidden" name="boardId" value="${board.boardId}">
+                                <button type="submit" class="btn btn-sm btn-success">대댓글 작성</button>
+                            </form>
+
+                            <!-- 댓글 수정 -->
+                            <form action="${pageContext.request.contextPath}/board/${board.boardId}" method="get" style="display:inline;">
+                                <input type="hidden" name="editId" value="${answer.answerId}">
+                                <button type="submit" class="btn btn-sm btn-primary">댓글 수정</button>
+                            </form>
+
+                            <!-- 댓글 삭제 -->
+                            <form action="${pageContext.request.contextPath}/answers/delete/${answer.answerId}" method="post" style="display:inline;">
+                                <input type="hidden" name="boardId" value="${board.boardId}">
+                                <button type="submit" class="btn btn-sm btn-danger">댓글 삭제</button>
+                            </form>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
-        </c:forEach>
-    </div>
+        </div>
+    </c:forEach>
 </div>
-<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

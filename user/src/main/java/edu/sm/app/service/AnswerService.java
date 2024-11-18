@@ -15,8 +15,21 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     public void addAnswer(AnswerDto answer) {
-        answer.setAnswerDate(LocalDateTime.now()); // 현재 시간으로 설정
+        answer.setAnswerDate(LocalDateTime.now());
+        answer.setDepth(0);
         answerRepository.insertAnswer(answer);
+        answer.setGroupId(answer.getAnswerId());
+        answerRepository.updateGroupId(answer);
+    }
+
+    public void addReply(AnswerDto reply, int parentAnswerId) {
+        AnswerDto parent = answerRepository.selectAnswerById(parentAnswerId);
+        if (parent != null) {
+            reply.setAnswerDate(LocalDateTime.now());
+            reply.setGroupId(parent.getGroupId());
+            reply.setDepth(parent.getDepth() + 1);
+            answerRepository.insertReply(reply);
+        }
     }
 
     public List<AnswerDto> getAnswersByBoardId(int boardId) {
@@ -29,5 +42,9 @@ public class AnswerService {
 
     public AnswerDto getAnswerById(int answerId) {
         return answerRepository.selectAnswerById(answerId);
+    }
+
+    public void editAnswer(AnswerDto answer) {
+        answerRepository.updateAnswer(answer);
     }
 }

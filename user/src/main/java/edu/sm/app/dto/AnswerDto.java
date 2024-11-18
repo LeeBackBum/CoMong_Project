@@ -17,4 +17,7 @@ public class AnswerDto {
     private LocalDateTime answerDate;
     private String userId;
     private int boardId;
+    private Integer parentAnswerId; // 상위 댓글 ID
+    private int groupId;            // 그룹 ID (최상위 댓글의 ID)
+    private int depth;              // 댓글 깊이
 }

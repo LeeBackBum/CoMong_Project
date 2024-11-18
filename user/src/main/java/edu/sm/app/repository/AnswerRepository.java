@@ -9,9 +9,18 @@ import java.util.List;
 @Mapper
 public interface AnswerRepository {
     void insertAnswer(AnswerDto answer);
-    List<AnswerDto> selectAnswersByBoardId(int boardId);
-    void deleteAnswerById(int answerId);
 
-    // Answer ID로 특정 답변 조회
+    void updateGroupId(AnswerDto answer);
+
+    void insertReply(AnswerDto reply);
+
+    List<AnswerDto> selectAnswersByBoardId(int boardId);
+
     AnswerDto selectAnswerById(@Param("answerId") int answerId);
+
+    List<AnswerDto> selectRepliesByParentId(@Param("parentAnswerId") int parentAnswerId);
+
+    void deleteAnswerById(int answerId);
+    // 댓글 및 대댓글 수정 메서드 추가
+    void updateAnswer(AnswerDto answer);
 }
