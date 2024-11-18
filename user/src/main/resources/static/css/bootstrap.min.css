@@ -2069,7 +2069,7 @@ textarea.form-control-lg{
 }
 .form-floating>.form-control:focus ~ label,.form-floating>.form-control:not(:placeholder-shown) ~ label,.form-floating>.form-select ~ label{
     opacity:.65;
-    transform:scale(0.85) translateY(-0.5rem) translateX(-3.15rem)
+    transform:scale(0.85) translateY(-0.5rem) translateX(-0.15rem)
 }
 .form-floating>.form-control:-webkit-autofill ~ label{
     opacity:.65;
@@ -2816,7 +2816,8 @@ textarea.form-control-lg{
 }
 .dropdown-menu[data-bs-popper]{
     top:100%;
-    left:0;
+    left:auto;
+    right: 0;
     margin-top:.125rem
 }
 .dropdown-menu-start{
@@ -3254,8 +3255,8 @@ textarea.form-control-lg{
     flex-wrap:wrap;
     align-items:center;
     justify-content:space-between;
-    padding-top:.5rem;
-    padding-bottom:.5rem
+    padding-top:0;
+    padding-bottom:0;
 }
 .navbar>.container,.navbar>.container-fluid,.navbar>.container-sm,.navbar>.container-md,.navbar>.container-lg,.navbar>.container-xl,.navbar>.container-xxl{
     display:flex;

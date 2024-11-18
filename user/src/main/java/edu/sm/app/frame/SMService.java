@@ -1,9 +1,10 @@
 package edu.sm.app.frame;
 
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
-public interface SMService<K, V> {
+public interface SMService<K,V> {
     @Transactional
     void add(V v) throws Exception;
     @Transactional
