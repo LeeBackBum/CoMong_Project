@@ -104,9 +104,9 @@ public class BoardController {
             BoardDto board = boardService.get(boardId);
             String formattedDate = board.getBoardDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
-            // 댓글 목록 추가
+            // 댓글 및 대댓글 목록 추가
             List<AnswerDto> answers = answerService.getAnswersByBoardId(boardId);
-            model.addAttribute("answers", answers); // 댓글 목록을 Model에 추가
+            model.addAttribute("answers", answers); // 댓글 및 대댓글 목록을 Model에 추가
 
             model.addAttribute("board", board);
             model.addAttribute("formattedDate", formattedDate);
@@ -166,5 +166,27 @@ public class BoardController {
             log.error("게시글 삭제 실패", e);
         }
         return "redirect:/board";  // 삭제 후 게시판 목록으로 리디렉션
+    }
+
+    // 대댓글 작성 메서드
+    @PostMapping("/reply/{parentAnswerId}")
+    public String addReply(@PathVariable int parentAnswerId,
+                           @RequestParam("content") String content,
+                           @RequestParam("boardId") int boardId,
+                           HttpSession session) {
+        try {
+            String userId = (String) session.getAttribute("loginid");
+            AnswerDto replyDto = AnswerDto.builder()
+                    .answerContent(content)
+                    .boardId(boardId)
+                    .userId(userId != null ? userId : "guestUser")
+                    .parentAnswerId(parentAnswerId)
+                    .build();
+            answerService.addReply(replyDto, parentAnswerId); // 대댓글 추가
+        } catch (Exception e) {
+            log.error("대댓글 작성 실패", e);
+            return "redirect:/board/" + boardId + "?error=true";
+        }
+        return "redirect:/board/" + boardId;  // 대댓글 작성 후 게시글 상세 페이지로 리디렉션
     }
 }
