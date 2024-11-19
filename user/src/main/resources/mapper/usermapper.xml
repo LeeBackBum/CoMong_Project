@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.UserRepository">
+
+    <update id="updatePwd" parameterType="userDto">
+        UPDATE user SET user_pwd=#{userPwd} WHERE user_id=#{userId}
+    </update>
+    <select id="findById" resultType="UserDto" parameterType="String">
+        SELECT * FROM user WHERE user_id = #{userId}
+    </select>
+
+
+    <select id="selectOne" parameterType="String" resultType="userDto">
+        SELECT * FROM user WHERE user_id=#{id}
+    </select>
+    <select id="select" resultType="userDto">
+        SELECT * FROM user
+    </select>
+    <insert id="insert" parameterType="userDto">
+        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber})
+    </insert>
+    <update id="update" parameterType="userDto">
+        UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}
+    </update>
+    <delete id="delete" parameterType="String">
+        DELETE FROM user WHERE user_id=#{id}
+    </delete>
+
+
+</mapper>

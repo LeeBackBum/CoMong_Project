@@ -1,72 +1,83 @@
 package edu.sm.controller;
 
-import edu.sm.app.dto.AdminDto;
-import edu.sm.app.service.AdminService;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor
 public class MainController {
-
-    private final AdminService adminService;
-
-    @Value("${app.url.server-url}")
-    String serverUrl;
-
     @RequestMapping("/")
-    public String main(Model model){
-        model.addAttribute("charturl",serverUrl);
-        model.addAttribute("serverurl",serverUrl);
+    public String main(Model model) {
+        model.addAttribute("center", "center");
+        log.info("Start Main ,,,,,,");
+        return "index";
+    }
 
-        return "index";
+    @RequestMapping("blank")
+    public String blank(Model model) {
+        model.addAttribute("center", "center");
+        return "blank";
     }
-    @RequestMapping("/websocket")
-    public String websocket(Model model){
-        model.addAttribute("serverurl",serverUrl);
-        model.addAttribute("center","websocket");
-        return "index";
-    }
-    @RequestMapping("/chat")
-    public String chat(Model model){
-        model.addAttribute("serverurl",serverUrl);
-        model.addAttribute("center","chat");
-        return "index";
-    }
-    @RequestMapping("/logout")
-    public String logout(HttpSession httpSession){
-        if(httpSession != null){
-            httpSession.invalidate();
-        }
-        return "index";
-    }
-    @RequestMapping("/loginimpl")
-    public String loginimpl(
-            @RequestParam("id") String id,
-            @RequestParam("pwd") String pwd,
-            HttpSession httpSession){
-        AdminDto adminDto = null;
 
-        try {
-            adminDto = adminService.get(id);
-            if(adminDto == null){
-                throw new Exception();
-            }
-            if(!adminDto.getPwd().equals(pwd)){
-                throw new Exception();
-            }
-            httpSession.setAttribute("admin",adminDto);
-        } catch (Exception e) {
-            return "index";
-        }
+    @RequestMapping("button")
+    public String button(Model model) {
+        model.addAttribute("center", "center");
+        return "button";
+    }
 
-        return "redirect:/";
+    @RequestMapping("chart")
+    public String chart(Model model) {
+        model.addAttribute("center", "center");
+        return "chart";
+    }
+
+    @RequestMapping("element")
+    public String element(Model model) {
+        model.addAttribute("center", "center");
+        return "element";
+    }
+
+    @RequestMapping("errorpage")
+    public String errorpage(Model model) {
+        model.addAttribute("center", "center");
+        return "errorpage";
+    }
+
+    @RequestMapping("form")
+    public String form(Model model) {
+        model.addAttribute("center", "center");
+        return "form";
+    }
+
+    @RequestMapping("signin")
+    public String signin(Model model) {
+        model.addAttribute("center", "center");
+        return "signin";
+    }
+
+    @RequestMapping("signup")
+    public String signup(Model model) {
+        model.addAttribute("center", "center");
+        return "signup";
+    }
+
+    @RequestMapping("table")
+    public String table(Model model) {
+        model.addAttribute("center", "center");
+        return "table";
+    }
+
+    @RequestMapping("typography")
+    public String typography(Model model) {
+        model.addAttribute("center", "center");
+        return "typography";
+    }
+
+    @RequestMapping("widget")
+    public String widget(Model model) {
+        model.addAttribute("center", "widget");
+        return "index";
     }
 }

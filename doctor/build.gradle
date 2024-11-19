@@ -53,6 +53,10 @@ dependencies {
     // Mysql handler
     implementation 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
 
+    // 이메일 인증
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
     //openCsv 라이브러리
     implementation 'com.opencsv:opencsv:5.5.2'
 
