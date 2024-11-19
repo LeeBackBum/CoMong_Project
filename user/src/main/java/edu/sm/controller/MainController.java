@@ -21,12 +21,11 @@ public class MainController {
         return "index";
     }
 
-    //login 수정
-    // 로그인 페이지 요청(GET)
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(Model model) {
         log.info("로그인 페이지 로드");
-        return "login"; // 로그인 페이지로 이동
+        model.addAttribute("center", "login"); // center에 "login" 설정
+        return "index"; // 메인 레이아웃 페이지로 이동
     }
 
     // 로그인 처리 요청(POST)
