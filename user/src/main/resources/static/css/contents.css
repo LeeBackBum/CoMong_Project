@@ -391,3 +391,15 @@
 .M_select {
     display: none
 }
+.btnTypeJ {
+    border: 0px;
+    -webkit-appearance: none;
+    font-size: 17px;
+    width: 246px;
+    height: 46px;
+    color: #fff !important;
+    line-height: 42px;
+    text-align: center;
+    text-decoration: none !important;
+    background: #1a7edf
+}

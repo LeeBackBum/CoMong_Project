@@ -1,7 +1,29 @@
 
 [
-{ "id": 1, "doctor_name": "이가영", "subject_name": "가정의학과" },
-{ "id": 2, "doctor_name": "김철수", "subject_name": "내과" },
-{ "id": 2, "doctor_name": "김철수", "subject_name": "내과" }
+{
+"doctorId": "D001",
+"doctorPwd": "password",
+"doctorNumber": "123456789",
+"doctorName": "John Doe",
+"doctorAge": "45",
+"doctorEmail": "johndoe@example.com",
+"doctorImg": "image-url",
+"career": "10 years",
+"ancestry": "Harvard",
+"society": "Medical Society",
+"subjectName": "Cardiology"
+},
+{
+"doctorId": "D002",
+"doctorPwd": "password",
+"doctorNumber": "987654321",
+"doctorName": "Jane Smith",
+"doctorAge": "38",
+"doctorEmail": "janesmith@example.com",
+"doctorImg": "image-url",
+"career": "8 years",
+"ancestry": "Yale",
+"society": "Medical Society",
+"subjectName": "Neurology"
+}
 ]
-

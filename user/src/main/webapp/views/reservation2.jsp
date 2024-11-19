@@ -77,6 +77,7 @@
 
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Title</title>
     <style>
         table {border-collapse: collapse;}
@@ -85,44 +86,554 @@
 
     </style>
     <script>
-        function resetDoctor() {
-            // 서버로 Ajax 요청을 보내 의사 정보 데이터를 가져옴
-            fetch('/getDoctorList')  // `/getDoctorList`는 서버에서 의사 정보를 제공하는 엔드포인트
-                .then(response => response.json())  // JSON 형식으로 변환
-                .then(data => {
-                    const doctorListArea = document.querySelector('.doctor-list-area');
-                    doctorListArea.innerHTML = '';  // 기존 리스트를 초기화
+        <%--function resetDoctor() {--%>
+        <%--    // 서버로 Ajax 요청을 보내 의사 정보 데이터를 가져옴--%>
+        <%--    fetch('/getDoctorList')  // `/getDoctorList`는 서버에서 의사 정보를 제공하는 엔드포인트--%>
+        <%--        .then(response => response.json())  // JSON 형식으로 변환--%>
+        <%--        .then(data => {--%>
+        <%--            const doctorListArea = document.querySelector('.doctor-list-area');--%>
+        <%--            doctorListArea.innerHTML = '';  // 기존 리스트를 초기화--%>
 
-                    // 응답이 배열인지 확인
-                    if (Array.isArray(data)) {
-                        // data가 배열인 경우 forEach를 사용하여 HTML에 추가
-                        data.forEach(doctor => {
-                            const listItem = document.createElement('li');
-                            listItem.innerHTML = `
-                        <a href="javascript:void(0);" stfidx="${doctor.id}" reservopen style="border: 2px solid rgb(60, 153, 255);">
-                            <div class="image-box">
-                                <img src="<c:url value="/imgt/dt.png"/>" alt="${doctor.doctor_name}" class="image-doctor" width="100px">
-                            </div>
-                            <span class="doctor-information" id="staffIdx_${doctor.id}" major="${doctor.subject_name}" doctor="${doctor.doctor_name}">
-                                <span class="type" style="font-size:14px;">${doctor.subject_name}</span>
-                                <span class="name" style="font-size:14px;">${doctor.doctor_name}</span>
-                            </span>
-                        </a>
-                    `;
-                            doctorListArea.appendChild(listItem);
-                        });
+        <%--            // 응답이 배열인지 확인--%>
+        <%--            if (Array.isArray(data)) {--%>
+        <%--                // data가 배열인 경우 forEach를 사용하여 HTML에 추가--%>
+        <%--                data.forEach(doctor => {--%>
+        <%--                    const listItem = document.createElement('li');--%>
+        <%--                    listItem.innerHTML = `--%>
+        <%--                <a href="javascript:void(0);" stfidx="${doctor.id}" reservopen style="border: 2px solid rgb(60, 153, 255);">--%>
+        <%--                    <div class="image-box">--%>
+        <%--                        <img src="<c:url value="/imgt/dt.png"/>" alt="${doctor.doctor_name}" class="image-doctor" width="100px">--%>
+        <%--                    </div>--%>
+        <%--                    <span class="doctor-information" id="staffIdx_${doctor.id}" major="${doctor.subject_name}" doctor="${doctor.doctor_name}">--%>
+        <%--                        <span class="type" style="font-size:14px;">${doctor.subject_name}</span>--%>
+        <%--                        <span class="name" style="font-size:14px;">${doctor.doctor_name}</span>--%>
+        <%--                    </span>--%>
+        <%--                </a>--%>
+        <%--            `;--%>
+        <%--                    doctorListArea.appendChild(listItem);--%>
+        <%--                });--%>
+        <%--            } else {--%>
+        <%--                // 배열이 아닌 경우 오류 메시지와 데이터를 확인--%>
+        <%--                console.error('Error: Expected an array but received:', data);--%>
+        <%--            }--%>
+        <%--        })--%>
+        <%--        .catch(error => {--%>
+        <%--            console.error('Error fetching doctor data:', error);--%>
+        <%--        });--%>
+        <%--}--%>
+        <%--$(document).ready(function() {--%>
+        <%--    $("#loadData").click(function() {--%>
+        <%--        $.ajax({--%>
+        <%--            url: "jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8",--%>
+        <%--            type: "GET",--%>
+        <%--            success: function(data) {--%>
+        <%--                let html = "<ul>";--%>
+        <%--                data.forEach(item => {--%>
+        <%--                    html += `<li>${doctorName}</li>`;  // 예시: name 필드 출력--%>
+        <%--                });--%>
+        <%--                html += "</ul>";--%>
+        <%--                $("#dataContainer").html(html);--%>
+        <%--            },--%>
+        <%--            error: function(error) {--%>
+        <%--                console.log("Error:", error);--%>
+        <%--            }--%>
+        <%--        });--%>
+        <%--    });--%>
+        <%--});--%>
+        <%--function resetDoctor() {--%>
+        <%--    // AJAX 요청을 보내서 서버에서 의사 목록을 가져옴--%>
+        <%--    $.ajax({--%>
+        <%--        url: "/getDoctorList",  // 서버 URL--%>
+        <%--        type: "GET",--%>
+        <%--        dataType: "json",  // 서버 응답을 JSON으로 처리--%>
+        <%--        success: function(data) {--%>
+        <%--            // 응답 받은 doctorList 데이터 처리--%>
+        <%--            let html = '';--%>
+
+        <%--            // doctorName과 subjectName을 화면에 출력--%>
+        <%--            data.forEach(function(doctor) {--%>
+        <%--                html += `--%>
+        <%--            <div class="doctor-item">--%>
+        <%--                <p><strong>Doctor Name:</strong> ${doctor.doctorName}</p>--%>
+        <%--                <p><strong>Subject Name:</strong> ${doctor.subjectName}</p>--%>
+        <%--            </div>--%>
+        <%--        `;--%>
+        <%--            });--%>
+
+        <%--            // 데이터를 doctor-list-area에 삽입--%>
+        <%--            $(".doctor-list-area").html(html);--%>
+        <%--        },--%>
+        <%--        error: function(error) {--%>
+        <%--            console.error("Error:", error);--%>
+        <%--        }--%>
+        <%--    });--%>
+        <%--}--%>
+
+        // function resetDoctor(value=" ") {
+        //     // 서버에서 testdo.jsp 렌더링 결과를 가져오는 URL
+        //     const url = "/testdo";
+        //
+        //     fetch(url, {
+        //         method: "GET",
+        //     })
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error("Network response was not ok");
+        //             }
+        //             return response.text(); // 서버에서 반환된 HTML
+        //         })
+        //         .then(html => {
+        //             if(value==1) {
+        //                 // doctor-list-area 영역에 HTML 삽입
+        //                 const doctorListArea = document.querySelector(".doctor-list-area");
+        //                 doctorListArea.innerHTML = html;
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error("Error fetching the JSP content:", error);
+        //         });
+        // }
+// --------------------------일단 이거 됨-----------------------
+<%--        function resetDoctor(value = " ") {--%>
+<%--            // 진료과에 맞는 subjectName 설정--%>
+<%--            let subjectName = "";--%>
+<%--            switch (value) {--%>
+<%--                case 1:--%>
+<%--                    subjectName = "내과";--%>
+<%--                    break;--%>
+<%--                case 2:--%>
+<%--                    subjectName = "내과";--%>
+<%--                    break;--%>
+<%--                case 3:--%>
+<%--                    subjectName = "외과";--%>
+<%--                    break;--%>
+<%--                case 4:--%>
+<%--                    subjectName = "외과";--%>
+<%--                    break;--%>
+<%--                default:--%>
+<%--                    console.log("유효하지 않은 진료과 값입니다.");--%>
+<%--                    return; // 잘못된 값이면 실행을 멈춤--%>
+<%--            }--%>
+
+<%--            // JavaScript에서 encodeURIComponent 사용--%>
+<%--            const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);--%>
+
+<%--            &lt;%&ndash;const url = `reservation2/getlist?subjectName=${encodeURIComponent(subjectName)}`;&ndash;%&gt;--%>
+
+<%--            // const url = "/testdo2"--%>
+<%--            fetch(url, {--%>
+<%--                method: "GET",--%>
+<%--            })--%>
+<%--                .then(response => {--%>
+<%--                    if (!response.ok) {--%>
+<%--                        throw new Error("Network response was not ok");--%>
+<%--                    }--%>
+<%--                    return response.text(); // 서버에서 반환된 HTML--%>
+<%--                })--%>
+<%--                .then(html => {--%>
+<%--                    if (value == 2) {--%>
+<%--                        // doctor-list-area 영역에 HTML 삽입--%>
+<%--                        const doctorListArea = document.querySelector(".doctor-list-area");--%>
+<%--                        doctorListArea.innerHTML = html;--%>
+<%--                    }--%>
+<%--                })--%>
+<%--                .catch(error => {--%>
+<%--                    console.error("Error fetching the JSP content:", error);--%>
+<%--                });--%>
+<%--        }--%>
+
+
+        <%--function resetDoctor(value = " ") {--%>
+        <%--    const url = "/doctors/search"; // 서버의 검색 엔드포인트--%>
+
+        <%--    // 진료과에 맞는 subjectName 설정--%>
+        <%--    let subjectName = "";--%>
+        <%--    switch(value) {--%>
+        <%--        case 1:--%>
+        <%--            subjectName = "내과";--%>
+        <%--            break;--%>
+        <%--        case 2:--%>
+        <%--            subjectName = "외과";--%>
+        <%--            break;--%>
+        <%--        case 3:--%>
+        <%--            subjectName = "안과";--%>
+        <%--            break;--%>
+        <%--        default:--%>
+        <%--            console.log("유효하지 않은 진료과 값입니다.");--%>
+        <%--            return; // 잘못된 값이면 실행을 멈춤--%>
+        <%--    }--%>
+
+        <%--    // JavaScript에서 encodeURIComponent 사용--%>
+        <%--    const encodedSubjectName = encodeURIComponent(subjectName);--%>
+
+        <%--    // 서버에 GET 요청 보내기 (subjectName을 쿼리 파라미터로 전달)--%>
+        <%--    fetch(`${url}?subjectName=${encodedSubjectName}`)--%>
+        <%--        .then(response => {--%>
+        <%--            // 응답이 JSON 형식인지 확인--%>
+        <%--            if (!response.ok) {--%>
+        <%--                throw new Error('서버 응답이 올바르지 않습니다.');--%>
+        <%--            }--%>
+        <%--            const contentType = response.headers.get("Content-Type");--%>
+        <%--            if (contentType && contentType.includes("application/json")) {--%>
+        <%--                return response.json(); // JSON 응답이면 JSON으로 파싱--%>
+        <%--            } else {--%>
+        <%--                return response.text(); // JSON이 아니라면 텍스트로 반환--%>
+        <%--            }--%>
+        <%--        })--%>
+        <%--        .then(data => {--%>
+        <%--            if (typeof data === 'string') {--%>
+        <%--                console.error("서버에서 오류 페이지 또는 HTML을 반환했습니다.");--%>
+        <%--                return;--%>
+        <%--            }--%>
+
+        <%--            if (data && data.length > 0) {--%>
+        <%--                let outputHTML = "";--%>
+        <%--                data.forEach(doctor => {--%>
+        <%--                    outputHTML += `--%>
+        <%--                <div class="doctor-item">--%>
+        <%--                    <h3>${doctor.name}</h3>--%>
+        <%--                    <p>전문분야: ${doctor.specialization}</p>--%>
+        <%--                    <p>전화번호: ${doctor.phone}</p>--%>
+        <%--                </div>--%>
+        <%--            `;--%>
+        <%--                });--%>
+        <%--                document.querySelector(".doctor-list-area").innerHTML = outputHTML;--%>
+        <%--            } else {--%>
+        <%--                console.log("해당 진료과에 대한 데이터가 없습니다.");--%>
+        <%--            }--%>
+        <%--        })--%>
+        <%--        .catch(error => {--%>
+        <%--            console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);--%>
+        <%--        });--%>
+        <%--}--%>
+
+        <%--function resetDoctor(value) {--%>
+        <%--    // 진료과에 맞는 subjectName 설정--%>
+        <%--    let subjectName = "";--%>
+        <%--    if (value === 1) subjectName = "내과";--%>
+        <%--    else if (value === 2) subjectName = "외과";--%>
+        <%--    else return; // 값이 유효하지 않으면 종료--%>
+
+        <%--    // 서버에 GET 요청을 보내서 의사 목록을 가져옵니다.--%>
+        <%--    const url = `reservation2/getlist?subjectName=${encodeURIComponent(subjectName)}`;--%>
+
+        <%--    fetch(url)--%>
+        <%--        .then(response => response.json())--%>
+        <%--        .then(data => {--%>
+        <%--            const doctorListArea = document.querySelector(".doctor-list-area");--%>
+        <%--            doctorListArea.innerHTML = data.map(doctor => `--%>
+        <%--        <div class="doctor-item">--%>
+        <%--            <h3>${doctor.doctorName}</h3>--%>
+        <%--            <p>전문분야: ${doctor.specialization}</p>--%>
+        <%--            <p>전화번호: ${doctor.phone}</p>--%>
+        <%--        </div>--%>
+        <%--    `).join('');--%>
+        <%--        })--%>
+        <%--        .catch(error => {--%>
+        <%--            console.error("오류 발생:", error);--%>
+        <%--        });--%>
+        <%--}--%>
+
+        <%--function resetDoctor(value) {--%>
+        <%--    // 라디오 버튼 값이 없을 경우 처리--%>
+        <%--    if (!value) {--%>
+        <%--        console.error("유효하지 않은 값입니다.");--%>
+        <%--        return;--%>
+        <%--    }--%>
+
+        <%--    // 진료과 라벨 값 가져오기--%>
+        <%--    const selectedLabel = document.querySelector(`label[for="radio0101${value}"]`);--%>
+        <%--    if (!selectedLabel) {--%>
+        <%--        console.error("라벨을 찾을 수 없습니다.");--%>
+        <%--        return;--%>
+        <%--    }--%>
+
+        <%--    const subjectName = selectedLabel.textContent.trim(); // 선택된 라벨의 텍스트--%>
+
+        <%--    if (!subjectName) {--%>
+        <%--        console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");--%>
+        <%--        return;--%>
+        <%--    }--%>
+
+        <%--    // URL에 subjectName 추가--%>
+        <%--    &lt;%&ndash;const url = `/testdo2?subjectName=${encodeURIComponent(subjectName)}`;&ndash;%&gt;--%>
+        <%--    const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);--%>
+
+        <%--    // 데이터 요청--%>
+        <%--    fetch(url, {--%>
+        <%--        method: "GET",--%>
+        <%--    })--%>
+        <%--        .then(response => {--%>
+        <%--            if (!response.ok) {--%>
+        <%--                throw new Error("Network response was not ok");--%>
+        <%--            }--%>
+        <%--            return response.text(); // 서버에서 반환된 HTML--%>
+        <%--        })--%>
+        <%--        .then(html => {--%>
+        <%--            // doctor-list-area 영역에 데이터 삽입--%>
+        <%--            const doctorListArea = document.querySelector(".doctor-list-area");--%>
+        <%--            if (doctorListArea) {--%>
+        <%--                doctorListArea.innerHTML = html;--%>
+        <%--            } else {--%>
+        <%--                console.error("doctor-list-area를 찾을 수 없습니다.");--%>
+        <%--            }--%>
+        <%--        })--%>
+        <%--        .catch(error => {--%>
+        <%--            console.error("Error fetching the JSP content:", error);--%>
+        <%--        });--%>
+        <%--}--%>
+
+//----------------------------------진료과 마다 호출하기 1 일단 됨 -------------------------------------
+<%--        function resetDoctor(value, id) {--%>
+<%--            // 라벨 찾기--%>
+<%--            const selectedLabel = document.querySelector(`label[for="radio0101${value}"]`);--%>
+<%--            if (!selectedLabel) {--%>
+<%--                console.error(`라벨을 찾을 수 없습니다. (for="radio0101${value}")`);--%>
+<%--                return;--%>
+<%--            }--%>
+<%--            const subjectName = selectedLabel.textContent.trim();--%>
+
+<%--            if (!subjectName) {--%>
+<%--                console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");--%>
+<%--                return;--%>
+<%--            }--%>
+
+<%--            const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);--%>
+
+<%--            fetch(url, { method: "GET" })--%>
+<%--                .then(response => response.text())--%>
+<%--                .then(html => {--%>
+<%--                    const doctorListArea = document.querySelector(".doctor-list-area");--%>
+<%--                    if (doctorListArea) {--%>
+<%--                        doctorListArea.innerHTML = html;--%>
+<%--                    } else {--%>
+<%--                        console.error("doctor-list-area를 찾을 수 없습니다.");--%>
+<%--                    }--%>
+<%--                })--%>
+<%--                .catch(error => console.error("Error fetching the JSP content:", error));--%>
+<%--        }--%>
+
+        <%--function resetDoctor(id) {--%>
+        <%--    // 라벨 찾기--%>
+        <%--    const selectedLabel = document.querySelector(`label[for="${id}"]`);--%>
+        <%--    if (!selectedLabel) {--%>
+        <%--        console.error(`라벨을 찾을 수 없습니다. (for="${id}")`);--%>
+        <%--        return;--%>
+        <%--    }--%>
+        <%--    const subjectName = selectedLabel.textContent.trim();--%>
+
+        <%--    if (!subjectName) {--%>
+        <%--        console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");--%>
+        <%--        return;--%>
+        <%--    }--%>
+
+        <%--    // 서버에 요청할 URL 생성--%>
+        <%--    const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);--%>
+
+        <%--    // 서버로 데이터 요청--%>
+        <%--    fetch(url, { method: "GET" })--%>
+        <%--        .then(response => response.text())--%>
+        <%--        .then(html => {--%>
+        <%--            const doctorListArea = document.querySelector(".doctor-list-area");--%>
+        <%--            if (doctorListArea) {--%>
+        <%--                doctorListArea.innerHTML = html;--%>
+        <%--            } else {--%>
+        <%--                console.error("doctor-list-area를 찾을 수 없습니다.");--%>
+        <%--            }--%>
+        <%--        })--%>
+        <%--        .catch(error => console.error("Error fetching the JSP content:", error));--%>
+        <%--}--%>
+
+
+        <%--function resetDoctor(id) {--%>
+        <%--    // 라벨 찾기--%>
+        <%--    console.log("받은 id:", id);--%>
+        <%--    const selectedLabel = document.querySelector(`label[for="${id}"]`);--%>
+
+        <%--    if (!selectedLabel) {--%>
+        <%--        console.error(`라벨을 찾을 수 없습니다. (for="${value}")`);--%>
+        <%--        console.log("선택된 라벨:", selectedLabel);--%>
+        <%--        console.log("입력된 value:", value);--%>
+        <%--        return;--%>
+        <%--    }--%>
+        <%--    const subjectName = selectedLabel.textContent.trim();--%>
+        <%--    if (!subjectName) {--%>
+        <%--        console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");--%>
+        <%--        return;--%>
+        <%--    }--%>
+
+        <%--    const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);--%>
+        <%--    fetch(url, { method: "GET" })--%>
+        <%--        .then(response => response.text())--%>
+        <%--        .then(html => {--%>
+        <%--            const doctorListArea = document.querySelector(".doctor-list-area");--%>
+        <%--            if (doctorListArea) {--%>
+        <%--                doctorListArea.innerHTML = html;--%>
+        <%--            } else {--%>
+        <%--                console.error("doctor-list-area를 찾을 수 없습니다.");--%>
+        <%--            }--%>
+        <%--        })--%>
+        <%--        .catch(error => console.error("Error fetching the JSP content:", error));--%>
+        <%--}--%>
+
+        function resetDoctor(id) {
+            console.log("받은 id:", id);
+
+            // 먼저 input 요소를 찾고, 그 후 부모 요소로부터 label을 찾습니다.
+            const inputElement = document.getElementById(id);
+            if (!inputElement) {
+                console.error(`input 요소를 찾을 수 없습니다. id="${id}"`);
+                return;
+            }
+
+            // input과 연관된 label 찾기
+            const labelElement = inputElement.nextElementSibling; // input 뒤에 위치한 label을 찾아냄
+            if (!labelElement || labelElement.tagName !== "LABEL") {
+                console.error(`연관된 label을 찾을 수 없습니다.`);
+                return;
+            }
+
+            console.log("선택된 라벨:", labelElement);
+            const subjectName = labelElement.textContent.trim();
+            if (!subjectName) {
+                console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");
+                return;
+            }
+
+            const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);
+            fetch(url, { method: "GET" })
+                .then(response => response.text())
+                .then(html => {
+                    const doctorListArea = document.querySelector(".doctor-list-area");
+                    if (doctorListArea) {
+                        doctorListArea.innerHTML = html;
                     } else {
-                        // 배열이 아닌 경우 오류 메시지와 데이터를 확인
-                        console.error('Error: Expected an array but received:', data);
+                        console.error("doctor-list-area를 찾을 수 없습니다.");
                     }
                 })
-                .catch(error => {
-                    console.error('Error fetching doctor data:', error);
+                .catch(error => console.error("Error fetching the JSP content:", error));
+        }
+
+        function get_minutes() {
+            // 시와 분 값을 가져오기
+            var hour = document.getElementById("times1").value;
+            var minute = document.getElementById("times2").value;
+
+            // 값이 없을 경우 (선택하지 않은 경우 처리)
+            if (hour === "" || minute === "") {
+                console.log("시 또는 분이 선택되지 않았습니다.");
+                return;
+            }
+
+            // 선택한 시와 분을 결합하여 출력
+            var time = hour + ":" + minute;
+
+            // 시간 정보를 콘솔에 출력 (여기서는 콘솔 출력 예시)
+            console.log("선택한 시간은: " + time);
+
+            // 선택된 시간 정보를 다른 곳에 표시하거나 다른 작업을 할 수 있습니다.
+            // 예를 들어, div에 표시
+            document.getElementById("selected_time").innerText = "선택한 시간: " + time;
+        }
+
+        // function submitAction() {
+        //     // 입력값 수집   phone01
+        //     const name = document.getElementById('reservName').value.trim();
+        //     const hour = document.getElementById('times1').value;
+        //     const minute = document.getElementById('times2').value;
+        //     const reservGubun_1 = document.getElementById('reservGubun_1').value;
+        //     const reservGubun_2 = document.getElementById('reservGubun_2').value;
+        //     // const phone03 = document.getElementById('phone03').value;
+        //
+        //
+        //     // 간단한 검증
+        //     if (!name || !hour || !minute || !reservGubun_1 || !reservGubun_2 ) {
+        //         alert("모든 필수 정보를 입력해주세요.");
+        //         return;
+        //     }
+        //
+        //     // 전송할 데이터 구성
+        //     const data = {
+        //         name: name,
+        //         time: {hour, minute},
+        //         reservGubun: {reservGubun_1,reservGubun_2}
+        //         // phone: {phone01, phone02, phone03}
+        //     };
+        //
+        //     // 데이터 전송
+        //     fetch('/submitReservation', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(data)
+        //     })
+        //
+        //         .then(response => response.json())
+        //         .then(result => {
+        //             if (result.success) {
+        //                 alert("예약이 성공적으로 접수되었습니다.");
+        //             } else {
+        //                 alert("예약 접수 중 문제가 발생했습니다. 다시 시도해주세요.");
+        //                 console.log(data);
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error("Error:", error);
+        //             alert("서버와의 통신 중 문제가 발생했습니다.");
+        //             console.log(data);
+        //         });
+        // }
+
+        function submitAction() {
+            const name = document.getElementById('reservName').value.trim();
+            const hour = document.getElementById('times1').value;
+            const minute = document.getElementById('times2').value;
+            const reservGubun_1 = document.getElementById('reservGubun_1').value;
+            const reservGubun_2 = document.getElementById('reservGubun_2').value;
+
+            if (!name || !hour || !minute || !reservGubun_1 || !reservGubun_2) {
+                alert("모든 필수 정보를 입력해주세요.");
+                return;
+            }
+
+            // 날짜 계산
+            const today = new Date().toISOString().split('T')[0];
+
+            const data = {
+                name: name,
+                time: `${hour}:${minute}`,
+                reservGubun: { reservGubun_1, reservGubun_2 },
+                appointment_date: today, // 서버에 전송할 날짜
+            };
+
+            fetch('/submitReservation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((result) => {
+                    if (result.success) {
+                        alert("예약이 성공적으로 접수되었습니다.");
+                    } else {
+                        alert("예약 접수 중 문제가 발생했습니다.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("서버와의 통신 중 문제가 발생했습니다.");
+                    console.log(data);
                 });
         }
 
+
+
+
+
     </script>
 </head>
+
 <body>
 <div class="reservation-area01 mgt10">
     <div class="reservation-box choise01">
@@ -130,23 +641,22 @@
         <div class="type-reservation-choise mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
             <div class="dept-list-area" id="dept-list-area">
                 <p>
-                    <input type="radio" id="radio0101" name="wr_4" class="step01" value="1" onclick="resetDoctor()" checked="">
-                    <label for="radio0101">
-                        가정의학과</label>
+                    <input type="radio" id="radio0101" name="wr_4" class="step01" value=0101 onclick="resetDoctor(id)" checked="">
+                    <label for="radio0101">내과</label>
                     <input type="hidden" id="step01_cat01" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
                     <span style="color:red; font-size:12px; "></span>
                 </p>
 
                 <p>
-                    <input type="radio" id="radio0102" name="wr_4" class="step01" value="26" onclick="resetDoctor()">
+                    <input type="radio" id="radio0102" name="wr_4" class="step01" value="26" onclick="resetDoctor(id)">
                     <label for="radio0102">
-                        내분비내과</label>
+                        외과</label>
                     <input type="hidden" id="step01_cat02" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
                     <span style="color:red; font-size:12px; "></span>
                 </p>
 
                 <p>
-                    <input type="radio" id="radio0103" name="wr_4" class="step01" value="27" onclick="resetDoctor()">
+                    <input type="radio" id="radio0103" name="wr_4" class="step01" value="27" onclick="resetDoctor(id)">
                     <label for="radio0103">
                         소화기내과</label>
                     <input type="hidden" id="step01_cat03" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -154,7 +664,7 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio0104" name="wr_4" class="step01" value="28" onclick="resetDoctor()">
+                    <input type="radio" id="radio0104" name="wr_4" class="step01" value="28" onclick="resetDoctor(id)">
                     <label for="radio0104">
                         순환기내과</label>
                     <input type="hidden" id="step01_cat04" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -162,31 +672,19 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio0105" name="wr_4" class="step01" value="29" onclick="resetDoctor()">
+                    <input type="radio" id="radio0105" name="wr_4" class="step01" value="29" onclick="resetDoctor(id)">
                     <label for="radio0105">
                         신장내과</label>
                     <input type="hidden" id="step01_cat05" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
                     <span style="color:red; font-size:12px; "></span>
                 </p>
 
-                <p>
-                    <input type="radio" id="radio0106" name="wr_4" class="step01" value="23" onclick="resetDoctor()">
-                    <label for="radio0106">
-                        종양·혈액내과</label>
-                    <input type="hidden" id="step01_cat06" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
+
+
+
 
                 <p>
-                    <input type="radio" id="radio0107" name="wr_4" class="step01" value="24" onclick="resetDoctor()">
-                    <label for="radio0107">
-                        방사선종양학과</label>
-                    <input type="hidden" id="step01_cat07" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio0108" name="wr_4" class="step01" value="5" onclick="resetDoctor()">
+                    <input type="radio" id="radio0108" name="wr_4" class="step01" value="5" onclick="resetDoctor(id)">
                     <label for="radio0108">
                         비뇨의학과</label>
                     <input type="hidden" id="step01_cat08" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -194,7 +692,7 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio0109" name="wr_4" class="step01" value="6" onclick="resetDoctor()">
+                    <input type="radio" id="radio0109" name="wr_4" class="step01" value="6" onclick="resetDoctor(id)">
                     <label for="radio0109">
                         산부인과</label>
                     <input type="hidden" id="step01_cat09" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -202,7 +700,7 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio01010" name="wr_4" class="step01" value="7" onclick="resetDoctor()">
+                    <input type="radio" id="radio01010" name="wr_4" class="step01" value="7" onclick="resetDoctor(id)">
                     <label for="radio01010">
                         소아청소년과</label>
                     <input type="hidden" id="step01_cat010" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -210,7 +708,7 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio01011" name="wr_4" class="step01" value="8" onclick="resetDoctor()">
+                    <input type="radio" id="radio01011" name="wr_4" class="step01" value="8" onclick="resetDoctor(id)">
                     <label for="radio01011">
                         신경과</label>
                     <input type="hidden" id="step01_cat011" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -218,7 +716,7 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio01012" name="wr_4" class="step01" value="9" onclick="resetDoctor()">
+                    <input type="radio" id="radio01012" name="wr_4" class="step01" value="9" onclick="resetDoctor(id)">
                     <label for="radio01012">
                         신경외과</label>
                     <input type="hidden" id="step01_cat012" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
@@ -226,92 +724,33 @@
                 </p>
 
                 <p>
-                    <input type="radio" id="radio01013" name="wr_4" class="step01" value="19" onclick="resetDoctor()">
+                    <input type="radio" id="radio01013" name="wr_4" class="step01" value="19" onclick="resetDoctor(id)">
                     <label for="radio01013">
                         심장혈관흉부외과</label>
                     <input type="hidden" id="step01_cat013" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
                     <span style="color:red; font-size:12px; "></span>
                 </p>
 
+
                 <p>
-                    <input type="radio" id="radio01014" name="wr_4" class="step01" value="10" onclick="resetDoctor()">
+                    <input type="radio" id="radio01014" name="wr_4" class="step01" value="13" onclick="resetDoctor(id)">
                     <label for="radio01014">
-                        안과</label>
-                    <input type="hidden" id="step01_cat014" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio01015" name="wr_4" class="step01" value="31" onclick="resetDoctor()">
-                    <label for="radio01015">
-                        간담췌간이식외과</label>
-                    <input type="hidden" id="step01_cat015" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio01016" name="wr_4" class="step01" value="36" onclick="resetDoctor()">
-                    <label for="radio01016">
-                        갑상선내분비외과</label>
-                    <input type="hidden" id="step01_cat016" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio01017" name="wr_4" class="step01" value="35" onclick="resetDoctor()">
-                    <label for="radio01017">
-                        대장항문외과</label>
-                    <input type="hidden" id="step01_cat017" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio01018" name="wr_4" class="step01" value="12" onclick="resetDoctor()">
-                    <label for="radio01018">
-                        외과</label>
-                    <input type="hidden" id="step01_cat018" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio01019" name="wr_4" class="step01" value="33" onclick="resetDoctor()">
-                    <label for="radio01019">
-                        혈관외과</label>
-                    <input type="hidden" id="step01_cat019" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
-
-                <p>
-                    <input type="radio" id="radio01020" name="wr_4" class="step01" value="13" onclick="resetDoctor()">
-                    <label for="radio01020">
-                        이비인후과(갑상선)</label>
+                        이비인후과</label>
                     <input type="hidden" id="step01_cat020" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
                     <span style="color:red; font-size:12px; "></span>
                 </p>
 
-                <p>
-                    <input type="radio" id="radio01021" name="wr_4" class="step01" value="14" onclick="resetDoctor()">
-                    <label for="radio01021">
-                        재활의학과</label>
-                    <input type="hidden" id="step01_cat021" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
+
 
                 <p>
-                    <input type="radio" id="radio01022" name="wr_4" class="step01" value="16" onclick="resetDoctor()">
-                    <label for="radio01022">
+                    <input type="radio" id="radio01015" name="wr_4" class="step01" value="16" onclick="resetDoctor(id)">
+                    <label for="radio01015">
                         정형외과</label>
                     <input type="hidden" id="step01_cat022" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
                     <span style="color:red; font-size:12px; "></span>
                 </p>
 
-                <p>
-                    <input type="radio" id="radio01023" name="wr_4" class="step01" value="25" onclick="resetDoctor()">
-                    <label for="radio01023">
-                        핵의학과</label>
-                    <input type="hidden" id="step01_cat023" class="step01_cat" name="step01_cat" value="GANGAN_MEDICAL_DEPT">
-                    <span style="color:red; font-size:12px; "></span>
-                </p>
+
 
             </div>
         </div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
@@ -325,24 +764,13 @@
                 <option value="27" cat="GANGAN_MEDICAL_DEPT">소화기내과</option>
                 <option value="28" cat="GANGAN_MEDICAL_DEPT">순환기내과</option>
                 <option value="29" cat="GANGAN_MEDICAL_DEPT">신장내과</option>
-                <option value="23" cat="GANGAN_MEDICAL_DEPT">종양·혈액내과</option>
-                <option value="24" cat="GANGAN_MEDICAL_DEPT">방사선종양학과</option>
                 <option value="5" cat="GANGAN_MEDICAL_DEPT">비뇨의학과</option>
                 <option value="6" cat="GANGAN_MEDICAL_DEPT">산부인과</option>
-                <option value="7" cat="GANGAN_MEDICAL_DEPT">소아청소년과</option>
                 <option value="8" cat="GANGAN_MEDICAL_DEPT">신경과</option>
                 <option value="9" cat="GANGAN_MEDICAL_DEPT">신경외과</option>
-                <option value="19" cat="GANGAN_MEDICAL_DEPT">심장혈관흉부외과</option>
-                <option value="10" cat="GANGAN_MEDICAL_DEPT">안과</option>
-                <option value="31" cat="GANGAN_MEDICAL_DEPT">간담췌간이식외과</option>
-                <option value="36" cat="GANGAN_MEDICAL_DEPT">갑상선내분비외과</option>
-                <option value="35" cat="GANGAN_MEDICAL_DEPT">대장항문외과</option>
                 <option value="12" cat="GANGAN_MEDICAL_DEPT">외과</option>
-                <option value="33" cat="GANGAN_MEDICAL_DEPT">혈관외과</option>
-                <option value="13" cat="GANGAN_MEDICAL_DEPT">이비인후과(갑상선)</option>
-                <option value="14" cat="GANGAN_MEDICAL_DEPT">재활의학과</option>
-                <option value="16" cat="GANGAN_MEDICAL_DEPT">정형외과</option>
-                <option value="25" cat="GANGAN_MEDICAL_DEPT">핵의학과</option>
+                <option value="13" cat="GANGAN_MEDICAL_DEPT">이비인후과</option>
+
             </select>
         </div>
         <!--//모바일-->
@@ -353,18 +781,93 @@
         <div class="doctor-list-wrapper mCustomScrollbar _mCS_2 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;">
             <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;">
                 <div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-            <div class="doctor-list-area">
+                        <div class="doctor-list-area">
+<%--                            <jsp:include page="/views/testdo.jsp" />--%>
+
+<%--                            <c:choose>--%>
+<%--                                <c:when test="${center == null}">--%>
+<%--                                    <jsp:include page="testdo.jsp"/>--%>
+<%--                                </c:when>--%>
+<%--                            </c:choose>--%>
+
+<%--                                <ul>--%>
+<%--                                    <c:forEach var="doctor" items="${doctorlist}">--%>
+<%--                                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
+<%--                                        <div class="image-box">--%>
+<%--                                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
+<%--                                        </div>--%>
+<%--                                        <span class="doctor-information" id="staffIdx_2" major="${doctor.subjectName}" doctor="${doctor.doctorName}">--%>
+<%--                                                        <span class="type" style="font-size:14px;">${doctor.subjectName}</span>--%>
+<%--                                                        <span class="name" style="font-size:14px;">${doctor.doctorName}</span>--%>
+<%--                                                    </span>--%>
+<%--                                    </a>--%>
+<%--                                    </li>--%>
+<%--                                        </c:forEach>--%>
+<%--                                </ul>--%>
+
+
+
+
+                        </div>
+
+
+
+
+                    <%--            <div class="doctor-list-area">--%>
 <%--                <ul>--%>
-<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style="border: 2px solid rgb(60, 153, 255);">--%>
+<%--                    <table class="table">--%>
+<%--                        <thead class="thead-dark">--%>
+<%--                        <tr>--%>
+<%--                            <th>Image</th>--%>
+<%--                            <th>DoctorID</th>--%>
+<%--                            <th>DoctorName</th>--%>
+<%--                            <th>CAREER</th>--%>
+<%--                            <th>SUBJECTNAME</th>--%>
+<%--                        </tr>--%>
+<%--                        </thead>--%>
+<%--                        <tbody>--%>
+<%--                        <c:forEach var="doctor" items="${doctorlist}">--%>
+<%--                            <tr>--%>
+<%--                                <td>--%>
+<%--                                    <a href="<c:url value="/item/detail"/>?id=${doctor.doctorId}">--%>
+<%--                                        <img id="item_img" src="<c:url value="/imgs"/>/${doctor.doctorImg}">--%>
+<%--                                    </a>--%>
+<%--                                </td>--%>
+<%--                                <td>${doctor.doctorId}</td>--%>
+<%--                                <td>${doctor.doctorName}</td>--%>
+<%--                                <td>${doctor.career}</td>--%>
+<%--                                <td>${doctor.subjectName}</td>--%>
+
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        </tbody>--%>
+<%--                    </table>--%>
+<%--                    --%>
+
+
+                <%--                    <li>--%>
+<%--                        <c:forEach var="doctor" items="${doctorlist}">--%>
+<%--                        <span class="doctor-information" id="staffIdx_1" value="${doctor.doctorName}" doctor="이가영&nbsp;과장">--%>
+<%--                        <span class="type" style="font-size:14px;">${doctor.doctorName}</span>--%>
+<%--                        <span class="name" style="font-size:14px;">${doctor.doctorName}</span>--%>
+<%--                        </span>--%>
+<%--                        </c:forEach>--%>
+<%--           -------------------tlqkfsha------------------%>
+<%--                    <ul>--%>
+<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
+<%--                        <c:forEach var="doctor" items="${doctorlist}">--%>
 <%--                        <div class="image-box">--%>
 <%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
 <%--                        </div>--%>
-<%--                        <span class="doctor-information" id="staffIdx_1" major="가정의학과" doctor="이가영&nbsp;과장">--%>
-<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
-<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
+<%--                        <span class="doctor-information" id="staffIdx_2" major="${doctor.subjectName}" doctor="${doctor.doctorName}">--%>
+<%--                            <span class="type" style="font-size:14px;">${doctor.subjectName}</span>--%>
+<%--                            <span class="name" style="font-size:14px;">${doctor.doctorName}</span>--%>
 <%--                        </span>--%>
 <%--                        </a>--%>
+<%--                        </c:forEach>--%>
 <%--                    </li>--%>
+<%--                    </ul>--%>
+
 <%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
 <%--                        <div class="image-box">--%>
 <%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
@@ -373,40 +876,11 @@
 <%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
 <%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
 <%--                        </span>--%>
-<%--                        </a>--%>
+<%--                    </a>--%>
 <%--                    </li>--%>
-<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
-<%--                        <div class="image-box">--%>
-<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
-<%--                        </div>--%>
-<%--                        <span class="doctor-information" id="staffIdx_3" major="가정의학과" doctor="이가영&nbsp;과장">--%>
-<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
-<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
-<%--                        </span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
-<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
-<%--                        <div class="image-box">--%>
-<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
-<%--                        </div>--%>
-<%--                        <span class="doctor-information" id="staffIdx_4" major="가정의학과" doctor="이가영&nbsp;과장">--%>
-<%--                            <span class="type" style="font-size:14px;">가정의학과</span>--%>
-<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
-<%--                        </span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
-<%--                    <li><a href="javascript:void(0);" stfidx="144" reservopen style>--%>
-<%--                        <div class="image-box">--%>
-<%--                            <img src="<c:url value="/imgt/dt.png"/>" alt="이가영" class="image-doctor" width="100px">--%>
-<%--                        </div>--%>
-<%--                        <span class="doctor-information" id="staffIdx_5" major="가정의학과" doctor="이가영&nbsp;과장">--%>
-<%--                            <span class="type" value="${doctor.doctor_name}" style="font-size:14px;">가정의학과</span>--%>
-<%--                            <span class="name" style="font-size:14px;">이가영&nbsp;과장</span>--%>
-<%--                        </span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
+
 <%--                </ul>--%>
-            </div>
+<%--            </div>--%>
         </div>
             </div>
             <div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;">
@@ -492,8 +966,8 @@
         <!-- <input type="hidden" name="reservGubun" id="reservGubun" value="record"> -->
         <dl class="choice-reservation-gubun">
             <dd>
-                <input type="radio" name="reservGubun" id="reservGubun_1" value="record"><label for="reservGubun_1" style="line-height:24px;">재진료예약</label>
-                <input type="radio" name="reservGubun" id="reservGubun_2" value="first"><label for="reservGubun_2" style="line-height:24px;">첫진료예약</label>
+                <input type="radio" name="reservGubun" id="reservGubun_1" value="record"><label for="reservGubun_1" style="line-height:24px;">진료예약</label>
+                <input type="radio" name="reservGubun" id="reservGubun_2" value="first"><label for="reservGubun_2" style="line-height:24px;">상담예약</label>
             </dd>
         </dl>
         <dl class="cohise-reservation">
@@ -503,17 +977,31 @@
             <dd>
                 <label for="times1" class="blind">시</label>
                 <select name="times1" id="times1" class="text18s" onchange="javascript:get_minutes();">
-                    <option value="">시</option>
+                    <option value="">-시</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
                 </select>
                 <span>:</span>
                 <span id="times2_div">
 							<label for="times2" class="blind">분</label>
 							<select name="times2" id="times2" class="text18s">
-								<option value="">분</option>
+								<option value="">-분</option>
+                                <option value="00">00</option>
+                                <option value="30">30</option>
+
 							</select>
 						</span>
             </dd>
         </dl>
+
+        <div id="selected_time"></div>
+
         <dl class="phone-reservation">
             <dt>예약자 이름</dt>
             <dd>
@@ -522,23 +1010,23 @@
             </dd>
         </dl>
 
-        <dl class="phone-reservation">
-            <dt>연락처</dt>
-            <dd>
-                <label for="phone01" class="blind">휴대전화 번호 입력</label>
-                <select name="phone01" id="phone01" style="width:72px; height:40px;">
-                    <option value="010">010</option>
-                    <option value="011">011</option>
-                </select>
-                <!-- <input type="text" id="phone01" name="phone01" maxlength="3" value="010"/> -->
-                <span>-</span>
-<%--                <label for="phone02" class="blind">휴대전화 중간자리 입력</label>--%>
-                <input type="text" id="phone02" name="phone02" maxlength="4">
-                <span>-</span>
-<%--                <label for="phone03" class="blind">휴대전화 뒷자리 입력</label>--%>
-                <input type="text" id="phone03" name="phone03" maxlength="4">
-            </dd>
-        </dl>
+<%--        <dl class="phone-reservation">--%>
+<%--            <dt>연락처</dt>--%>
+<%--            <dd>--%>
+<%--                <label for="phone01" class="blind">휴대전화 번호 입력</label>--%>
+<%--                <select name="phone01" id="phone01" style="width:72px; height:40px;">--%>
+<%--                    <option value="010">010</option>--%>
+<%--                    <option value="011">011</option>--%>
+<%--                </select>--%>
+<%--                <!-- <input type="text" id="phone01" name="phone01" maxlength="3" value="010"/> -->--%>
+<%--                <span>-</span>--%>
+<%--&lt;%&ndash;                <label for="phone02" class="blind">휴대전화 중간자리 입력</label>&ndash;%&gt;--%>
+<%--                <input type="text" id="phone02" name="phone02" maxlength="4">--%>
+<%--                <span>-</span>--%>
+<%--&lt;%&ndash;                <label for="phone03" class="blind">휴대전화 뒷자리 입력</label>&ndash;%&gt;--%>
+<%--                <input type="text" id="phone03" name="phone03" maxlength="4">--%>
+<%--            </dd>--%>
+<%--        </dl>--%>
 
         <!-- 강안병원만 -->
         <!--<dl class="phone-reservation">

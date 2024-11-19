@@ -60,7 +60,7 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
-      <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
+      <a href="<c:url value="/testdo"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
       <a href="<c:url value="/reservation2"/>" class="nav-item nav-link">Reservation</a>
       <div class="nav-item dropdown">
