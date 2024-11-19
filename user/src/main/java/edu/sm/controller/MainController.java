@@ -106,5 +106,9 @@ public class MainController {
         return "index";
     }
 
-
+    @RequestMapping("/forgot")
+    public String forgot(Model model) {
+        model.addAttribute("center", "forgot");
+        return "index";
+    }
 }
