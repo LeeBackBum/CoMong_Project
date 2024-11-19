@@ -85,100 +85,98 @@
 </head>
 
 <script>
-    $(document).ready(function () {
-        $('#mypage_form').attr({
-            'method': 'post',
-            'enctype': 'multipart/form-data',
-            'action': '<c:url value="/user/mypage"/>'
-        });
-    });
+
 </script>
 
 <div class="container">
     <div class="row">
-        <h2>MyPage</h2> <!-- 추가된 h2 -->
+        <h2>MyPage</h2>
     </div>
     <div class="main-body">
         <div class="row gutters-sm">
             <div class="col-md-8">
-                <form id="mypage_form">
-                    <c:out value="${user}" default="No user data found" />
-                    <c:out value="${user.userId}" default="No ID" />
-                    <c:out value="${user.userName}" default="No Name" />
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">ID</h6>
+                <c:if test="${not empty message}">
+                    <div class="alert alert-warning">${message}</div>
+                </c:if>
+                <c:if test="${not empty user}">
+                    <form id="mypage_form">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">ID</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:out value="${user.userId}" />
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userId}
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:out value="${user.userName}" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Name</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:out value="${user.userEmail}" />
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userName}
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:out value="${user.userNumber}" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Age</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:out value="${user.userAge}" />
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userEmail}
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Gender</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:choose>
+                                            <c:when test="${user.userSex == 'M'}">Male</c:when>
+                                            <c:otherwise>Female</c:otherwise>
+                                        </c:choose>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <c:out value="${user.userAddress}" />
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userNumber}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Age</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userAge}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Gender</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userSex == 'M' ? 'Male' : 'Female'}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    ${user.userAddress}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="<c:url value="/register"/>" class="btn btn-info" target="__blank">Edit</a>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a href="<c:url value='/register'/>" class="btn btn-info">Edit</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
-
+                    </form>
+                </c:if>
                 <div class="row gutters-sm">
                     <div class="col-sm-6 mb-3">
                         <div class="card h-100">

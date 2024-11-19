@@ -4,6 +4,8 @@ import edu.sm.app.dto.UserDto;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class UserService implements SMService<String, UserDto> {
     }
 
     @Override
-    public UserDto get(String s) throws Exception {
-        return userRepository.selectOne(s);
+    public UserDto get(String id) throws Exception {
+        return userRepository.selectOne(id);
     }
 
     @Override
@@ -43,4 +45,9 @@ public class UserService implements SMService<String, UserDto> {
     public void updatePwd(UserDto userDto) throws Exception {
         userRepository.updatePwd(userDto);
     }
+
+    public List<UserDto> findById(String userId) throws Exception {
+        return userRepository.findById(userId);
+    }
+
 }

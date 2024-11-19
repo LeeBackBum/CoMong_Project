@@ -13,7 +13,15 @@ public class UserDto {
     private String userName;
     private String userAddress;
     private String userAge;
-    private char userSex;
+    private String userSex;
     private String diseaseStatus;
     private String userNumber;
+
+    public String getUserSex() {
+        return userSex != null ? userSex.trim() : null;
+    }
+
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
 }
