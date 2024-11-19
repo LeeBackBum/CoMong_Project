@@ -43,4 +43,7 @@ public class UserService implements SMService<String, UserDto> {
     public void updatePwd(UserDto userDto) throws Exception {
         userRepository.updatePwd(userDto);
     }
+    public UserDto authenticate(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
 }

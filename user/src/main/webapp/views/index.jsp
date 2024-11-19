@@ -71,7 +71,7 @@
           <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
         </div>
       </div>
-      <a href="<c:url value="/contact"/>" class="nav-item nav-link">Contact</a>
+      <a href="<c:url value="/board"/>" class="nav-item nav-link">게시판</a>
     </div>
     <ul class="nav justify-content-end">
       <c:choose>

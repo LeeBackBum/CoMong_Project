@@ -16,6 +16,7 @@ public class AnswerDto {
     private String answerContent;
     private LocalDateTime answerDate;
     private String userId;
+    private String userName;  // 작성자 이름
     private int boardId;
     private Integer parentAnswerId; // 상위 댓글 ID
     private int groupId;            // 그룹 ID (최상위 댓글의 ID)

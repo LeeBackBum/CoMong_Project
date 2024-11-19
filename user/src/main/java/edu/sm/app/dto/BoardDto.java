@@ -20,5 +20,6 @@ public class BoardDto {
     private int boardHits;
     private int boardAnswerNum;
     private String userId;
+    private String userName;  // 작성자 이름
     private int isNotice; // 공지사항 여부를 나타내는 필드 추가 (1: 공지, 0: 일반)
 }

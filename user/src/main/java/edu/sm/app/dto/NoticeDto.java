@@ -18,4 +18,5 @@ public class NoticeDto {
     private LocalDateTime noticeDate;
     private int noticeHits;
     private String managerId;
+    private String managerName; // 관리자 이름 필드 추가
 }

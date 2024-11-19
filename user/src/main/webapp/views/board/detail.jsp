@@ -17,7 +17,7 @@
             <h4>${board.boardTitle}</h4>
         </div>
         <div class="card-body">
-            <p><strong>작성자:</strong> ${board.userId}</p>
+            <p><strong>작성자:</strong> ${board.userName}</p>
             <p><strong>작성일:</strong> ${formattedDate}</p>
             <p><strong>조회수:</strong> ${board.boardHits}</p>
             <hr>
@@ -47,7 +47,7 @@
     <c:forEach var="answer" items="${answers}">
         <div id="comment-${answer.answerId}" class="card mb-2" style="margin-left: ${answer.depth * 20}px;">
             <div class="card-body">
-                <p><strong>${answer.userId}</strong> -
+                <p><strong>${answer.userName}</strong> -
                     <fmt:formatDate value="${answer.answerDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
                 </p>
 

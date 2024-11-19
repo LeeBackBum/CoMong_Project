@@ -8,5 +8,6 @@ import lombok.Data;
 public class ManagerDto {
     private String managerId;
     private String managerPwd;
+    private String managerName;
     private char role;
 }
