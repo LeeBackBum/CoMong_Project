@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sm.app.repository.UserRepository">
 
+    <update id="updatePwd" parameterType="userDto">
+        UPDATE user SET user_pwd=#{userPwd} WHERE user_id=#{userId}
+    </update>
+
     <select id="selectOne" parameterType="String" resultType="userDto">
         SELECT * FROM user WHERE user_id=#{id}
     </select>
@@ -19,5 +23,6 @@
     <delete id="delete" parameterType="String">
         DELETE FROM user WHERE user_id=#{id}
     </delete>
+
 
 </mapper>

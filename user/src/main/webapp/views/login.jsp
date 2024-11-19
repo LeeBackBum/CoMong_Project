@@ -105,7 +105,7 @@
                             <button class="btn btn-primary w-100 py-3" type="button">Log In</button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-                            <button class="btn custom-forgot-btn w-100 py-3" type="button">Forgot Password</button>
+                            <a href="<c:url value="/forgot"/>" class="btn custom-register-btn w-100 py-3">Forgot Password</a>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
                             <a href="<c:url value="/register"/>" class="btn custom-register-btn w-100 py-3">register</a>

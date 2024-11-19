@@ -39,4 +39,8 @@ public class UserService implements SMService<String, UserDto> {
     public List<UserDto> get() throws Exception {
         return userRepository.select();
     }
+
+    public void updatePwd(UserDto userDto) throws Exception {
+        userRepository.updatePwd(userDto);
+    }
 }

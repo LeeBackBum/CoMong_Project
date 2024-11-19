@@ -77,7 +77,7 @@ public class MainController {
 
     @RequestMapping("widget")
     public String widget(Model model) {
-        model.addAttribute("center", "center");
-        return "widget";
+        model.addAttribute("center", "widget");
+        return "index";
     }
 }
