@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import edu.sm.app.service.UserService;
 
+import java.security.Principal;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -19,12 +21,15 @@ public class UserController {
     String dir = "user/";
     final UserService userService;
 
-    @RequestMapping("mypage")
-    public String mypage(Model model, @RequestParam("id") String id) throws Exception {
-        UserDto userDto = null;
-        userDto = userService.get(id);
-        model.addAttribute("user", userDto);
-        model.addAttribute("center", dir + "mypage");
+    @RequestMapping("/mypage")
+    public String mypage(Model model, HttpSession session) {
+        UserDto loginUser = (UserDto) session.getAttribute("loginid");
+        System.out.println("세션에서 가져온 사용자: " + loginUser);
+        if (loginUser == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", loginUser);
+        model.addAttribute("center", "mypage");
         return "index";
     }
 }

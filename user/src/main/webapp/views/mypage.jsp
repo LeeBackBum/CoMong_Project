@@ -79,13 +79,21 @@
     }
 
 </style>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
 <script>
-    $('#mypage_form').attr({
-        'method':'post',
-        'enctype':'multipart/form-data',
-        'action':'<c:url value="/user/mypage"/>'
+    $(document).ready(function () {
+        $('#mypage_form').attr({
+            'method': 'post',
+            'enctype': 'multipart/form-data',
+            'action': '<c:url value="/user/mypage"/>'
+        });
     });
 </script>
+
 <div class="container">
     <div class="row">
         <h2>MyPage</h2> <!-- 추가된 h2 -->
@@ -94,6 +102,9 @@
         <div class="row gutters-sm">
             <div class="col-md-8">
                 <form id="mypage_form">
+                    <c:out value="${user}" default="No user data found" />
+                    <c:out value="${user.userId}" default="No ID" />
+                    <c:out value="${user.userName}" default="No Name" />
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="row">
@@ -101,7 +112,7 @@
                                     <h6 class="mb-0">ID</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <td>${userId}</td>
+                                    ${user.userId}
                                 </div>
                             </div>
                             <hr>
@@ -110,7 +121,7 @@
                                     <h6 class="mb-0">Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Kenneth Valdez
+                                    ${user.userName}
                                 </div>
                             </div>
                             <hr>
@@ -119,7 +130,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    fip@jukmuh.al
+                                    ${user.userEmail}
                                 </div>
                             </div>
                             <hr>
@@ -128,7 +139,7 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    (239) 816-9029
+                                    ${user.userNumber}
                                 </div>
                             </div>
                             <hr>
@@ -137,7 +148,7 @@
                                     <h6 class="mb-0">Age</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    24
+                                    ${user.userAge}
                                 </div>
                             </div>
                             <hr>
@@ -146,7 +157,7 @@
                                     <h6 class="mb-0">Gender</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    24
+                                    ${user.userSex == 'M' ? 'Male' : 'Female'}
                                 </div>
                             </div>
                             <hr>
@@ -155,7 +166,7 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Bay Area, San Francisco, CA
+                                    ${user.userAddress}
                                 </div>
                             </div>
                             <hr>
