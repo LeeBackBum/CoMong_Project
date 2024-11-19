@@ -6,26 +6,30 @@
 
     <!-- 단일 공지사항 조회 -->
     <select id="selectOne" parameterType="int" resultType="edu.sm.app.dto.NoticeDto">
-        SELECT notice_id AS noticeId,
-               notice_title AS noticeTitle,
-               notice_content AS noticeContent,
-               notice_date AS noticeDate,
-               notice_hits AS noticeHits,
-               manager_id AS managerId
-        FROM notice
-        WHERE notice_id = #{noticeId}
+        SELECT n.notice_id AS noticeId,
+               n.notice_title AS noticeTitle,
+               n.notice_content AS noticeContent,
+               n.notice_date AS noticeDate,
+               n.notice_hits AS noticeHits,
+               n.manager_id AS managerId,
+               m.manager_name AS managerName
+        FROM notice n
+                 LEFT JOIN manager m ON n.manager_id = m.manager_id
+        WHERE n.notice_id = #{noticeId}
     </select>
 
     <!-- 모든 공지사항 조회 -->
     <select id="selectAllNotices" resultType="edu.sm.app.dto.NoticeDto">
-        SELECT notice_id AS noticeId,
-               notice_title AS noticeTitle,
-               notice_content AS noticeContent,
-               notice_date AS noticeDate,
-               notice_hits AS noticeHits,
-               manager_id AS managerId
-        FROM notice
-        ORDER BY notice_date ASC
+        SELECT n.notice_id AS noticeId,
+               n.notice_title AS noticeTitle,
+               n.notice_content AS noticeContent,
+               n.notice_date AS noticeDate,
+               n.notice_hits AS noticeHits,
+               n.manager_id AS managerId,
+               m.manager_name AS managerName
+        FROM notice n
+                 LEFT JOIN manager m ON n.manager_id = m.manager_id
+        ORDER BY n.notice_date ASC
     </select>
 
     <!-- 공지사항 추가 -->

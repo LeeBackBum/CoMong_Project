@@ -38,8 +38,10 @@ public class NoticeController {
             model.addAttribute("formattedDate", formattedDate); // 포맷팅된 작성일 추가
         } catch (Exception e) {
             log.error("공지사항 상세 조회 실패", e);
+            model.addAttribute("errorMessage", "공지사항 조회 중 문제가 발생했습니다.");
         }
-        model.addAttribute("center", dir + "detail");
-        return dir + "detail";
+
+        model.addAttribute("center", dir + "detail"); // center에 상세 페이지 설정
+        return "index"; // 메인 레이아웃 반환
     }
 }
