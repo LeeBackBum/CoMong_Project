@@ -92,28 +92,55 @@
     <c:forEach var="answer" items="${answers}">
         <div id="comment-${answer.answerId}" class="card mb-2" style="margin-left: ${answer.depth * 20}px;">
             <div class="card-body">
+                <!-- 댓글 작성자와 작성일 -->
                 <p><strong>${answer.userName}</strong> - ${answer.answerDate}</p>
-                <p>${answer.answerContent}</p>
-                <div class="mt-2">
-                    <!-- 대댓글 작성 -->
-                    <form action="<c:url value='/answers/reply/${answer.answerId}' />" method="post" style="display:inline;">
-                        <textarea name="content" class="form-control d-inline" rows="1" placeholder="대댓글 입력" required></textarea>
+
+                <!-- 댓글 내용 -->
+                <c:if test="${empty param.editId || param.editId != answer.answerId}">
+                    <p>${answer.answerContent}</p>
+                </c:if>
+
+                <!-- 댓글 수정 폼 -->
+                <c:if test="${!empty param.editId && param.editId == answer.answerId}">
+                    <form action="<c:url value='/answers/edit/${answer.answerId}' />" method="post">
+                        <textarea name="content" class="form-control mb-2">${answer.answerContent}</textarea>
                         <input type="hidden" name="boardId" value="${board.boardId}">
-                        <button type="submit" class="btn btn-sm btn-success">대댓글 작성</button>
+                        <button type="submit" class="btn btn-primary btn-sm">등록</button>
+                        <a href="<c:url value='/board/${board.boardId}' />" class="btn btn-secondary btn-sm">취소</a>
+                    </form>
+                </c:if>
+
+                <!-- 대댓글 입력창 -->
+                <form action="<c:url value='/answers/reply/${answer.answerId}' />" method="post" class="mt-2">
+                <textarea name="content"
+                          class="form-control mb-2"
+                          rows="3"
+                          style="width: 50%; height: 80px;"
+                          placeholder="대댓글을 입력하세요"
+                          required></textarea>
+                    <input type="hidden" name="boardId" value="${board.boardId}">
+                    <button type="submit" class="btn btn-sm btn-success mb-2">답글</button>
+                </form>
+
+                <!-- 버튼 섹션 -->
+                <div class="d-flex justify-content-start align-items-center">
+                    <!-- 수정 버튼 -->
+                    <form action="<c:url value='/board/${board.boardId}' />" method="get" style="margin-right: 5px;">
+                        <input type="hidden" name="editId" value="${answer.answerId}">
+                        <button type="submit" class="btn btn-sm btn-primary">수정</button>
                     </form>
 
-                    <!-- 댓글 수정 -->
-                    <a href="<c:url value='/board/${board.boardId}?editId=${answer.answerId}' />" class="btn btn-sm btn-primary">댓글 수정</a>
-
-                    <!-- 댓글 삭제 -->
-                    <form action="<c:url value='/answers/delete/${answer.answerId}' />" method="post" style="display:inline;">
+                    <!-- 삭제 버튼 -->
+                    <form action="<c:url value='/answers/delete/${answer.answerId}' />" method="post" style="margin-right: 5px;">
                         <input type="hidden" name="boardId" value="${board.boardId}">
-                        <button type="submit" class="btn btn-sm btn-danger">댓글 삭제</button>
+                        <button type="submit" class="btn btn-sm btn-danger">삭제</button>
                     </form>
                 </div>
             </div>
         </div>
     </c:forEach>
+
+
 </div>
 <!-- Board Detail End -->
 

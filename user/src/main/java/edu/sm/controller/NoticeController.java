@@ -28,6 +28,8 @@ public class NoticeController {
      *
      * @param noticeId 조회할 공지사항의 ID
      */
+
+
     @RequestMapping(value = "/{noticeId}", method = RequestMethod.GET)
     public String detail(Model model, @PathVariable("noticeId") Integer noticeId) {
         try {
