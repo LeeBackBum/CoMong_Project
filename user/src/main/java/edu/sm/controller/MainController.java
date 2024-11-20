@@ -4,6 +4,7 @@ import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ import java.util.List;
 public class MainController {
 
     private final UserService userService;
+
+    @Value("${app.url.server_url}")
+    String serverurl;
 
     public MainController(UserService userService) {
         this.userService = userService;
@@ -109,6 +113,13 @@ public class MainController {
     @RequestMapping("/forgot")
     public String forgot(Model model) {
         model.addAttribute("center", "forgot");
+        return "index";
+    }
+
+    @RequestMapping("/counseling")
+    public String counseling(Model model) {
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("center", "Counseling/counseling");
         return "index";
     }
 }

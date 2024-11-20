@@ -19,7 +19,7 @@
         SELECT * FROM user
     </select>
     <insert id="insert" parameterType="userDto">
-        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber})
+        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber},CASE WHEN #{role} IS NULL OR #{role} = '' THEN '0' ELSE #{role} END)
     </insert>
     <update id="update" parameterType="userDto">
         UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}
