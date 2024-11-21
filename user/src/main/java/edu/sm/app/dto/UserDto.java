@@ -13,7 +13,7 @@ public class UserDto {
     private String userName;
     private String userAddress;
     private String userAge;
-    private char userSex;               // 성별 (1: 남자, 0: 여자)
+    private String userSex;               // 성별 (1: 남자, 0: 여자)
     private String diseaseStatus;       // 특이사항 (지병 정보 등)
     private String userNumber;
     private String role;
@@ -23,7 +23,7 @@ public class UserDto {
     }
 
     public void setUserSex(String userSex) {
+
         this.userSex = userSex;
     }
-    private String role;
 }
