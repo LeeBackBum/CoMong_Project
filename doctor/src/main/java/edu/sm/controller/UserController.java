@@ -72,10 +72,6 @@ public class UserController {
         }
 
         return "main";
-
-        // 유저의 건강 차트 (예: 차트 데이터)
-//        List<HealthChart> healthCharts = userService.getHealthCharts(userId);
-//        model.addAttribute("healthCharts", healthCharts);
     }
 
     @RequestMapping("/chart")
