@@ -35,6 +35,10 @@
   <!-- Template Stylesheet -->
   <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
   <%--틀 끝--%>
+
+  <%-- web socket --%>
+  <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+  <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
 <body>

@@ -80,7 +80,7 @@
     width: 400px;
     height: 200px;
     overflow: auto;
-    border: 2px;
+    border: 2px solid black;
   }
 </style>
 
@@ -177,8 +177,9 @@
           <button id="disconnect">Disconnect</button>
 
           <h3>All</h3>
-          <div id="all"></div>
           <input type="text" id="alltext"><button id="sendall">Send</button>
+          <div id="all"></div>
+
         </div>
       </div>
     </div>
