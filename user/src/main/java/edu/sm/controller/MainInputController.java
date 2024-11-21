@@ -59,6 +59,8 @@ public class MainInputController {
                 model.addAttribute("loginError", "Login Fail");
             }
         }
+        System.out.println("로그인된 사용자: " + userDto); // 로그인 성공한 유저 정보 확인
+        System.out.println("세션 저장 키: loginid, 값: " + session.getAttribute("loginid"));
         return next;
     }
 

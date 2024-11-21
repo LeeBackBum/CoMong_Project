@@ -17,4 +17,13 @@ public class UserDto {
     private String diseaseStatus;       // 특이사항 (지병 정보 등)
     private String userNumber;
     private String role;
+
+    public String getUserSex() {
+        return userSex != null ? userSex.trim() : null;
+    }
+
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+    private String role;
 }
