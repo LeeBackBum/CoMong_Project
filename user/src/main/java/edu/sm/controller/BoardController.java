@@ -82,7 +82,7 @@ public class BoardController {
 
     @GetMapping("/{boardId}")
     public String detail(Model model, @PathVariable("boardId") Integer boardId,
-                         HttpServletRequest request, HttpServletResponse response) {
+                         HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         try {
             boolean isViewed = false;
             if (request.getCookies() != null) {
@@ -108,9 +108,13 @@ public class BoardController {
             }
 
             List<AnswerDto> answers = answerService.getAnswersByBoardId(boardId);
+
+            // 현재 로그인된 사용자 정보를 추가로 JSP로 전달
+            UserDto user = (UserDto) session.getAttribute("loginid");
+            model.addAttribute("user", user);
+
             model.addAttribute("board", board);
             model.addAttribute("answers", answers);
-
         } catch (Exception e) {
             log.error("게시글 상세 조회 중 오류 발생", e);
             return "redirect:/board?error=exception";
@@ -160,14 +164,21 @@ public class BoardController {
     }
 
     @GetMapping("/edit/{boardId}")
-    public String editForm(@PathVariable("boardId") Integer boardId, Model model) {
-        try {
-            BoardDto board = boardService.get(boardId);
-            model.addAttribute("boardDto", board);
-            model.addAttribute("center", dir + "edit");
-        } catch (Exception e) {
-            log.error("게시글 수정 폼 로딩 실패", e);
+    public String editForm(@PathVariable("boardId") Integer boardId, HttpSession session, Model model) throws Exception {
+        UserDto user = (UserDto) session.getAttribute("loginid");
+        if (user == null) {
+            log.warn("로그인되지 않은 사용자: 수정 페이지 접근");
+            return "redirect:/login?error=not_logged_in";
         }
+
+        BoardDto board = boardService.get(boardId);
+        if (board == null || (!user.getUserId().equals(board.getUserId()) && !"1".equals(user.getRole()))) {
+            log.warn("수정 권한 없음: 사용자 ID={}, 게시글 작성자 ID={}", user.getUserId(), board.getUserId());
+            return "redirect:/board?error=unauthorized";
+        }
+
+        model.addAttribute("boardDto", board);
+        model.addAttribute("center", dir + "edit");
         return "index";
     }
 
@@ -183,12 +194,31 @@ public class BoardController {
     }
 
     @PostMapping("/delete/{boardId}")
-    public String deleteBoard(@PathVariable("boardId") Integer boardId) {
+    public String deleteBoard(@PathVariable("boardId") Integer boardId, HttpSession session) throws Exception {
+        UserDto user = (UserDto) session.getAttribute("loginid");
+        BoardDto board = boardService.get(boardId);
+
+        if (user == null || board == null) {
+            log.warn("삭제 권한 없음: 사용자 또는 게시글 존재하지 않음");
+            return "redirect:/board?error=unauthorized";
+        }
+
+        // 작성자와 관리자 권한 확인
+        if (!user.getUserId().equals(board.getUserId()) && !"1".equals(user.getRole())) {
+            log.warn("삭제 권한 없음: 사용자 ID={}, 게시글 작성자 ID={}", user.getUserId(), board.getUserId());
+            return "redirect:/board?error=unauthorized";
+        }
+
         try {
             boardService.del(boardId);
+            log.info("게시글 삭제 성공: boardId={}", boardId);
         } catch (Exception e) {
             log.error("게시글 삭제 실패", e);
+            return "redirect:/board?error=true";
         }
         return "redirect:/board";
     }
+
+   
+
 }

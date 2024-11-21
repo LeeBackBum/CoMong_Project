@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>공지사항 상세보기 - SM Korea</title>
+    <title>게시판 - eLearning HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -43,7 +43,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Notice</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Board</li>
                     </ol>
                 </nav>
             </div>
@@ -52,34 +52,31 @@
 </div>
 <!-- Header End -->
 
+<!-- Board Start -->
 <div class="container mt-5">
-    <h3 class="ui dividing header">공지사항 상세 보기</h3>
-
-    <!-- 공지사항 내용 -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h4>${notice.noticeTitle}</h4>
-        </div>
-        <div class="card-body">
-            <p><strong>작성자:</strong> ${notice.userName}</p>
-            <p><strong>작성일:</strong> ${formattedDate}</p>
-            <hr>
-            <p>${notice.noticeContent}</p>
-        </div>
-        <div class="card-footer text-end">
-            <a href="<c:url value='/board' />" class="btn btn-secondary">목록으로</a>
-
-            <!-- role이 1인 사용자만 수정 및 삭제 버튼 표시 -->
-            <c:if test="${sessionScope.loginid != null && sessionScope.loginid.role == '1'}">
-                <a href="<c:url value='/notice/edit/${notice.noticeId}' />" class="btn btn-primary">수정</a>
-                <form action="<c:url value='/notice/delete/${notice.noticeId}' />" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">삭제</button>
-                </form>
-            </c:if>
-        </div>
-    </div>
+    <c:if test="${sessionScope.loginid != null && sessionScope.loginid.role == '1'}">
+        <h3 class="ui dividing header">공지사항 작성</h3>
+        <form action="<c:url value='/notice/write' />" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">제목</label>
+                <input type="text" class="form-control" id="title" name="noticeTitle" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">내용</label>
+                <textarea class="form-control" id="content" name="noticeContent" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">작성하기</button>
+            <a href="<c:url value='/board' />" class="btn btn-secondary">취소</a>
+        </form>
+    </c:if>
+    <c:if test="${sessionScope.loginid == null || sessionScope.loginid.role != '1'}">
+        <p>공지사항 작성은 관리자만 가능합니다.</p>
+    </c:if>
 </div>
-<!-- Notice Detail End -->
+
+<!-- Board End -->
+
+
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

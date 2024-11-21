@@ -56,6 +56,16 @@
 <div class="container mt-5">
   <h3 class="ui dividing header">게시판</h3>
 
+  <!-- 공지 작성 버튼 (role이 1인 사용자만 표시) -->
+  <c:if test="${sessionScope.loginid != null && sessionScope.loginid.role == '1'}">
+    <a href="<c:url value='/notice/write' />" class="btn btn-success">공지 작성</a>
+  </c:if>
+
+  <!-- 글쓰기 버튼 (role이 0 또는 1인 사용자 표시) -->
+<%--  <c:if test="${user.role == '1' || user.role == '0'}">--%>
+    <a href="<c:url value='/board/write' />" class="btn btn-primary">글쓰기</a>
+<%--  </c:if>--%>
+
   <!-- 검색 폼 -->
   <form action="<c:url value='/board' />" method="get" class="d-flex mb-3">
     <input type="text" name="keyword" class="form-control me-2" placeholder="제목 또는 내용 검색" value="${keyword}">
@@ -78,7 +88,7 @@
       <tr>
         <td>${notice.noticeId}</td>
         <td><strong>[공지]</strong> <a href="<c:url value='/notice/${notice.noticeId}' />">${notice.noticeTitle}</a></td>
-        <td>${notice.managerName}</td> <!-- managerUsername -> managerName -->
+        <td>${notice.userName}</td>
         <td>${notice.noticeDate}</td>
         <td>${notice.noticeHits}</td>
       </tr>
@@ -88,7 +98,7 @@
       <tr>
         <td>${board.boardId}</td>
         <td><a href="<c:url value='/board/${board.boardId}' />">${board.boardTitle}</a></td>
-        <td>${board.userName}</td> <!-- userId -> userName -->
+        <td>${board.userName}</td>
         <td>${board.boardDate}</td>
         <td>${board.boardHits}</td>
       </tr>
@@ -98,11 +108,6 @@
 
   <!-- 글쓰기 버튼 및 Pagination -->
   <div class="d-flex justify-content-between align-items-center mt-4">
-    <!-- 글쓰기 버튼 -->
-    <div>
-      <a href="<c:url value='/board/write' />" class="btn btn-primary">글쓰기</a>
-    </div>
-
     <!-- Pagination -->
     <div class="pagination d-flex justify-content-center">
       <c:if test="${currentPage > 1}">
@@ -120,6 +125,7 @@
   </div>
 </div>
 <!-- Board End -->
+
 
 
 <!-- Back to Top -->

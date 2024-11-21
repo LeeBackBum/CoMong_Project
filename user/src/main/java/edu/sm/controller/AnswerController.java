@@ -106,12 +106,22 @@ public class AnswerController {
 
     // 댓글 삭제
     @PostMapping("/delete/{answerId}")
-    public String deleteAnswer(@PathVariable int answerId, @RequestParam int boardId) {
+    public String deleteAnswer(@PathVariable int answerId, @RequestParam int boardId, HttpSession session) {
+        UserDto user = (UserDto) session.getAttribute("loginid");
+        AnswerDto answer = answerService.getAnswerById(answerId);
+
+        if (!hasPermission(user, answer)) {
+            log.warn("삭제 권한 없음: 사용자 ID={}, 댓글 작성자 ID={}",
+                    user != null ? user.getUserId() : "null",
+                    answer != null ? answer.getUserId() : "null");
+            return "redirect:/board/" + boardId + "?error=unauthorized";
+        }
+
         try {
             answerService.deleteAnswer(answerId);
             log.info("댓글 삭제 성공: answerId={}", answerId);
         } catch (Exception e) {
-            log.error("댓글 삭제 실패: {}", e.getMessage(), e);
+            log.error("댓글 삭제 실패", e);
             return "redirect:/board/" + boardId + "?error=true";
         }
         return "redirect:/board/" + boardId;
@@ -120,19 +130,29 @@ public class AnswerController {
     // 댓글 수정
     @PostMapping("/edit/{answerId}")
     public String editAnswer(@PathVariable int answerId, @RequestParam("content") String content,
-                             @RequestParam("boardId") int boardId) {
+                             @RequestParam("boardId") int boardId, HttpSession session) {
+        UserDto user = (UserDto) session.getAttribute("loginid");
+        AnswerDto answerDto = answerService.getAnswerById(answerId);
+
+        if (!hasPermission(user, answerDto)) {
+            log.warn("수정 권한 없음: 사용자 ID={}, 댓글 작성자 ID={}",
+                    user != null ? user.getUserId() : "null",
+                    answerDto != null ? answerDto.getUserId() : "null");
+            return "redirect:/board/" + boardId + "?error=unauthorized";
+        }
+
         try {
-            AnswerDto answerDto = answerService.getAnswerById(answerId);
-            if (answerDto != null) {
-                answerDto.setAnswerContent(content);
-                answerService.editAnswer(answerDto);
-                log.info("댓글 수정 성공: answerId={}", answerId);
-            }
+            answerDto.setAnswerContent(content);
+            answerService.editAnswer(answerDto);
+            log.info("댓글 수정 성공: answerId={}", answerId);
         } catch (Exception e) {
             log.error("댓글 수정 실패: {}", e.getMessage(), e);
             return "redirect:/board/" + boardId + "?error=true";
         }
         return "redirect:/board/" + boardId + "#comment-" + answerId;
     }
-
+    // 권한 확인 메서드
+    private boolean hasPermission(UserDto user, AnswerDto answer) {
+        return user != null && (user.getUserId().equals(answer.getUserId()) || "1".equals(user.getRole()));
+    }
 }

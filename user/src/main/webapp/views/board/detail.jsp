@@ -55,7 +55,12 @@
 <!-- Board Detail Start -->
 <div class="container mt-5">
     <h3 class="ui dividing header">게시글 상세 보기</h3>
-
+<%--    <c:if test="${user.role == '1' || user.userId == board.userId}">--%>
+<%--        <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-primary">수정</a>--%>
+<%--        <form action="<c:url value='/board/delete/${board.boardId}' />" method="post" style="display:inline;">--%>
+<%--            <button type="submit" class="btn btn-danger">삭제</button>--%>
+<%--        </form>--%>
+<%--    </c:if>--%>
     <!-- 게시글 내용 -->
     <div class="card mb-4">
         <div class="card-header">
@@ -70,13 +75,20 @@
         </div>
         <div class="card-footer text-end">
             <a href="<c:url value='/board' />" class="btn btn-secondary">목록으로</a>
-            <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-primary">수정</a>
-            <form action="<c:url value='/board/delete/${board.boardId}' />" method="post" style="display:inline;">
-                <button type="submit" class="btn btn-danger">게시글 삭제</button>
-            </form>
+
+            <!-- 자신의 게시글이거나 관리자인 경우 수정/삭제 버튼 표시 -->
+<%--            <c:if test="${user.role == '1' || user.userId == board.userId}">--%>
+<%--                <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-primary">수정</a>--%>
+<%--            </c:if>--%>
+
+            <!-- 관리자 또는 게시글 작성자인 경우 삭제 버튼 표시 -->
+            <c:if test="${user.role == '1' || user.userId == board.userId}">
+                <form action="<c:url value='/board/delete/${board.boardId}' />" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">게시글 삭제</button>
+                </form>
+            </c:if>
         </div>
     </div>
-
     <!-- 댓글 작성 폼 -->
     <div class="comment-form mb-4">
         <h5>댓글 작성</h5>
@@ -122,20 +134,25 @@
                     <button type="submit" class="btn btn-sm btn-success mb-2">답글</button>
                 </form>
 
-                <!-- 버튼 섹션 -->
-                <div class="d-flex justify-content-start align-items-center">
-                    <!-- 수정 버튼 -->
-                    <form action="<c:url value='/board/${board.boardId}' />" method="get" style="margin-right: 5px;">
-                        <input type="hidden" name="editId" value="${answer.answerId}">
-                        <button type="submit" class="btn btn-sm btn-primary">수정</button>
-                    </form>
+                <!-- 자신의 댓글이거나 관리자인 경우 삭제 버튼 표시 -->
+                <c:if test="${not empty user and (user.role == '1' || user.userId == answer.userId)}">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <!-- 수정 버튼 -->
+                        <c:if test="${user.userId == answer.userId}">
+                            <form action="<c:url value='/board/${board.boardId}' />" method="get" style="margin-right: 5px;">
+                                <input type="hidden" name="editId" value="${answer.answerId}">
+                                <button type="submit" class="btn btn-sm btn-primary">수정</button>
+                            </form>
+                        </c:if>
 
-                    <!-- 삭제 버튼 -->
-                    <form action="<c:url value='/answers/delete/${answer.answerId}' />" method="post" style="margin-right: 5px;">
-                        <input type="hidden" name="boardId" value="${board.boardId}">
-                        <button type="submit" class="btn btn-sm btn-danger">삭제</button>
-                    </form>
-                </div>
+                        <!-- 삭제 버튼 -->
+                        <form action="<c:url value='/answers/delete/${answer.answerId}' />" method="post" style="margin-right: 5px;">
+                            <input type="hidden" name="boardId" value="${board.boardId}">
+                            <button type="submit" class="btn btn-sm btn-danger">삭제</button>
+                        </form>
+                    </div>
+                </c:if>
+
             </div>
         </div>
     </c:forEach>

@@ -11,10 +11,10 @@
                n.notice_content AS noticeContent,
                n.notice_date AS noticeDate,
                n.notice_hits AS noticeHits,
-               n.manager_id AS managerId,
-               m.manager_name AS managerName
+               n.user_id AS userId,
+               m.user_name AS userName
         FROM notice n
-                 LEFT JOIN manager m ON n.manager_id = m.manager_id
+                 LEFT JOIN user m ON n.user_id = m.user_id
         WHERE n.notice_id = #{noticeId}
     </select>
 
@@ -25,27 +25,34 @@
                n.notice_content AS noticeContent,
                n.notice_date AS noticeDate,
                n.notice_hits AS noticeHits,
-               n.manager_id AS managerId,
-               m.manager_name AS managerName
+               n.user_id AS userId,
+               m.user_name AS userName
         FROM notice n
-                 LEFT JOIN manager m ON n.manager_id = m.manager_id
+                 LEFT JOIN user m ON n.user_id = m.user_id
         ORDER BY n.notice_date ASC
     </select>
 
     <!-- 공지사항 추가 -->
     <insert id="insert" parameterType="edu.sm.app.dto.NoticeDto">
-        INSERT INTO notice (notice_id, notice_title, notice_content, notice_date, notice_hits, manager_id)
-        VALUES (#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeDate}, #{noticeHits}, #{managerId})
+        INSERT INTO notice (notice_id, notice_title, notice_content, notice_date, notice_hits, user_Id, user_name)
+        VALUES (#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeDate}, #{noticeHits}, #{userId}, #{userName})
     </insert>
 
     <!-- 공지사항 수정 -->
+<!--    <update id="update" parameterType="edu.sm.app.dto.NoticeDto">-->
+<!--        UPDATE notice-->
+<!--        SET notice_title = #{noticeTitle},-->
+<!--            notice_content = #{noticeContent},-->
+<!--            notice_date = #{noticeDate},-->
+<!--            notice_hits = #{noticeHits},-->
+<!--            user_id = #{userId}-->
+<!--        WHERE notice_id = #{noticeId}-->
+<!--    </update>-->
     <update id="update" parameterType="edu.sm.app.dto.NoticeDto">
         UPDATE notice
         SET notice_title = #{noticeTitle},
             notice_content = #{noticeContent},
-            notice_date = #{noticeDate},
-            notice_hits = #{noticeHits},
-            manager_id = #{managerId}
+            notice_hits = #{noticeHits} -- 작성자와 작성시간은 수정하지 않음
         WHERE notice_id = #{noticeId}
     </update>
 

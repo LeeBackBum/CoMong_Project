@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.19 15:44 공지 센터이동 및 작성자이름 출력">
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/center.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/NoticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/NoticeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/UserDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/AnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/NoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/noticeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/noticeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +66,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -162,6 +175,9 @@
       <updated>1731983263742</updated>
       <workItem from="1731983264956" duration="18486000" />
       <workItem from="1732064413075" duration="5863000" />
+      <workItem from="1732151216633" duration="1199000" />
+      <workItem from="1732153049903" duration="1679000" />
+      <workItem from="1732163119469" duration="2628000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -214,11 +230,6 @@
           <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp</url>
           <line>1</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp</url>
-          <line>84</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
