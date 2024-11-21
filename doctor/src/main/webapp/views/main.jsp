@@ -33,8 +33,8 @@
     <!-- Template Stylesheet -->
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
 
-    <script>
-    </script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
 <body>
@@ -66,7 +66,7 @@
                         <a href="<c:url value="/element"/>" class="dropdown-item">Other Elements</a>
                     </div>
                 </div>
-                <a href="<c:url value="/widget"/>" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                <a href="<c:url value="/counseling"/>" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Counseling</a>
                 <a href="<c:url value="/form"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                 <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                 <a href="<c:url value="/chart"/>" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>

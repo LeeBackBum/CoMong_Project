@@ -122,4 +122,11 @@ public class MainController {
 
         return "/main";
     }
+
+    @RequestMapping("counseling")
+    public String counseling(Model model) {
+        model.addAttribute("serverUrl", serverUrl);
+        model.addAttribute("center", "Counseling/counseling");
+        return "main";
+    }
 }
