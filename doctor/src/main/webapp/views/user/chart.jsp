@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -81,7 +80,6 @@
     </div>
     <!-- Chart End -->
 
-
     <!-- Footer Start -->
     <div class="container-fluid pt-4 px-4">
       <div class="bg-light rounded-top p-4">
@@ -89,53 +87,109 @@
           <div class="col-12 col-sm-6 text-center text-sm-start">
             &copy; <a href="#">Your Site Name</a>, All Right Reserved.
           </div>
-          <div class="col-12 col-sm-6 text-center text-sm-end">
-            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-          </div>
         </div>
       </div>
     </div>
     <!-- Footer End -->
   </div>
-  <!-- Content End -->
-
-
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/chart/chart.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/tempusdominus/js/moment.min.js"></script>
-<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Template Javascript -->
 <script>
-  // Single Line Chart
-  var ctx3 = $("#line-chart").get(0).getContext("2d");
-  var myChart3 = new Chart(ctx3, {
-    type: "line",
-    data: {
-      labels: [40, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
-      datasets: [{
-        label: "Salse",
-        fill: false,
-        backgroundColor: "rgba(0, 156, 255, .3)",
-        data: [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15]
-      }]
+  let chart1 = {
+    chartInstance: null, // Chart.js 인스턴스를 저장할 변수
+    livedata: null, // 현재 데이터를 저장
+    init: function () {
+      this.getdata(); // 초기 데이터 가져오기
+      this.display2(); // 차트 초기화
+      setInterval(() => {
+        this.getdata(); // 5초마다 데이터 갱신
+      }, 5000);
     },
-    options: {
-      responsive: true
+    getdata: function () {
+      $.ajax({
+        url: '/iot/power/data',
+        success: (datas) => {
+          if (Array.isArray(datas)) {
+            this.livedata = datas; // 데이터 저장
+            this.display(datas); // 차트 업데이트
+          } else {
+            console.error("Received data is not an array:", datas);
+          }
+        },
+        error: (error) => {
+          console.error("Error fetching IoT data:", error);
+        }
+      });
+    },
+    display2: function () {
+      // 초기 차트 설정
+      const ctx = document.getElementById('line-chart').getContext('2d');
+      this.chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [], // 초기 라벨 값은 비어있음
+          datasets: [{
+            label: 'Power Consumption',
+            data: [],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false,
+            borderWidth: 2,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Time'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Power (Watts)'
+              }
+            }
+          }
+        }
+      });
+    },
+    display: function (datas) {
+      if (this.chartInstance) {
+        // 기존 데이터에 새로운 데이터를 추가
+        const label = `Time ${this.chartInstance.data.labels.length + 1}`; // JavaScript 내에서 계산
+
+        this.chartInstance.data.labels.push(label);
+        this.chartInstance.data.datasets[0].data.push(datas[datas.length - 1]);
+
+        // 만약 차트의 데이터 포인트가 너무 많으면 오래된 데이터를 삭제
+        if (this.chartInstance.data.labels.length > 10) { // 예: 최대 10개의 데이터만 유지
+          this.chartInstance.data.labels.shift();
+          this.chartInstance.data.datasets[0].data.shift();
+        }
+
+        this.chartInstance.update(); // 차트 업데이트
+      }
     }
+  };
+
+  $(function () {
+    chart1.init();
   });
 </script>
-</body>
 
+
+
+</body>
 </html>
