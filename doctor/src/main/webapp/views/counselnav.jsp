@@ -6,9 +6,9 @@
 <div class="col text-center ">
     <ul class="pagination justify-content-center">
         <c:choose>
-            <c:when test="${cpage.getPrePage() != 0}">
+            <c:when test="${counselpage.getPrePage() != 0}">
                 <li class="page-item">
-                    <a  class="page-link"  href="<c:url value="${target}?pageNo=${cpage.getPrePage()}&id=${param.id}" />">Previous</a>
+                    <a  class="page-link"  href="<c:url value="${target}?pageNo=${counselpage.getPrePage()}&id=${param.id}" />">Previous</a>
                 </li>
             </c:when>
             <c:otherwise>
@@ -18,9 +18,9 @@
             </c:otherwise>
         </c:choose>
 
-        <c:forEach begin="${cpage.getNavigateFirstPage() }" end="${cpage.getNavigateLastPage() }" var="page">
+        <c:forEach begin="${counselpage.getNavigateFirstPage() }" end="${counselpage.getNavigateLastPage() }" var="page">
             <c:choose>
-                <c:when test="${cpage.getPageNum() == page}">
+                <c:when test="${counselpage.getPageNum() == page}">
                     <li class="page-item active">
                         <a class="page-link"  href="<c:url value="${target}?pageNo=${page}&id=${param.id}" />">${page }</a>
                     </li>
@@ -34,9 +34,9 @@
 
         </c:forEach>
         <c:choose>
-            <c:when test="${cpage.getNextPage() != 0}">
+            <c:when test="${counselpage.getNextPage() != 0}">
                 <li class="page-item">
-                    <a class="page-link"  href="<c:url value="${target}?pageNo=${cpage.getNextPage()}&id=${param.id}" />">Next</a>
+                    <a class="page-link"  href="<c:url value="${target}?pageNo=${counselpage.getNextPage()}&id=${param.id}" />">Next</a>
                 </li>
             </c:when>
             <c:otherwise>

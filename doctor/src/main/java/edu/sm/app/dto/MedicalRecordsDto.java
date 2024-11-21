@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Builder
@@ -12,7 +13,7 @@ public class MedicalRecordsDto {
     private String content;
     private String result;
     private String subjectName;
-    private LocalDateTime date;
+    private Date date;
     private String img;
     private String treatmentDetail;
     private String userId;

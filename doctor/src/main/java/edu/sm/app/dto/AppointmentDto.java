@@ -7,6 +7,7 @@ import java.util.Date;
 @Builder
 @Data
 public class AppointmentDto {
+    private String userId;
     private String userName;
     private int userAge;
     private String userSex;

@@ -1,13 +1,12 @@
 package edu.sm.controller;
 
 import com.github.pagehelper.PageInfo;
-import edu.sm.app.dto.AppointmentDto;
-import edu.sm.app.dto.DoctorDto;
-import edu.sm.app.dto.UserDto;
+import edu.sm.app.dto.*;
 import edu.sm.app.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,28 +37,51 @@ public class UserController {
 
         // doctorDto에서 doctorId 가져오기
         String doctorId = doctorDto.getDoctorId();
-
         // doctorId를 사용해 해당 의사의 환자 목록 조회
         try {
-            List<AppointmentDto> appointments = userService.getAppointments(doctorId,pageNo);
-            model.addAttribute("appointments", appointments);
+            PageInfo<AppointmentDto> a;
+            a = new PageInfo<>(userService.getAppointments(pageNo,doctorId),5);
+            model.addAttribute("cpage", a);
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "Error fetching appointments.");
         }
-        model.addAttribute("target","/user");
+        model.addAttribute("target","/user/appointments");
         model.addAttribute("center",dir+"appointments");
 
 
         return "main"; // 예약 및 상담 정보를 출력할 JSP 페이지
     }
 
-    @RequestMapping("detail")
-    public String detail(Model model, HttpSession session) {
-        DoctorDto doctorDto = (DoctorDto) session.getAttribute("doctor");
-        if (doctorDto == null) {
+    @RequestMapping("/detail")
+    public String userDetail(@RequestParam("id")String userId, Model model) {
+
+        try {
+            // Medical Records 페이징 처리
+            PageInfo<MedicalRecordsDto> record;
+            record = new PageInfo<>(userService.getMedicalRecords(userId),3);
+            // Counsel 페이징 처리
+            PageInfo<CounselDto> counsel;
+            counsel = new PageInfo<>(userService.getCounsel(userId),3);
+            model.addAttribute("cpage", record);
+            model.addAttribute("counselpage", counsel);
+//            model.addAttribute("target","/user/detail");
+            model.addAttribute("center",dir+"detail");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return "detail";
+
+        return "main";
+
+        // 유저의 건강 차트 (예: 차트 데이터)
+//        List<HealthChart> healthCharts = userService.getHealthCharts(userId);
+//        model.addAttribute("healthCharts", healthCharts);
+    }
+
+    @RequestMapping("/chart")
+    public String chart(Model model) {
+        model.addAttribute("center", dir+"chart");
+        return "main";
     }
 
 }

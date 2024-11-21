@@ -32,40 +32,52 @@
     <!-- Template Stylesheet -->
     <link href="<c:url value='/css/style.css'/>" rel="stylesheet">
 
+    <script>
+        let user_chart = {
+            select:function(id){
+                let c = confirm('차트를 확인하시겠습니까?');
+                if(c == true){
+                    location.href = '<c:url value="/user/chart"/>?id='+id;
+                }
+            }
+        };
+    </script>
 </head>
 <body>
-<div class="col-12">
-    <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">${sessionScope.doctor.doctorName}의 환자 목록</h6>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">이름</th>
-                    <th scope="col">나이</th>
-                    <th scope="col">성별</th>
-                    <th scope="col">지병</th>
-                    <th scope="col">연락처</th>
-                    <th scope="col">예약 종류</th>
-                    <th scope="col">날짜</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="a" items="${appointments}">
-                    <tr>
-                        <td><a href="<c:url value="/user/detail"/>?id=${a.userName}">${a.userName}</a></td>
-                        <td>${a.userAge}</td>
-                        <td>${a.userSex}</td>
-                        <td>${a.diseaseStatus}</td>
-                        <td>${a.userNumber}</td>
-                        <td>${a.appointmentType}</td>
-                        <td><fmt:formatDate value="${a.date}" pattern="yyyy년 M월 d일 a h시 m분" /></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <jsp:include page="../nav.jsp"/>
+<div class="container-fluid pt-4 px-4">
+        <div class="col-sm12 col-xl-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">${sessionScope.doctor.doctorName}의 환자 목록</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">이름</th>
+                            <th scope="col">나이</th>
+                            <th scope="col">성별</th>
+                            <th scope="col">연락처</th>
+                            <th scope="col">마지막 예약 날짜</th>
+                            <th scope="col">차트</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="a" items="${cpage.getList()}">
+                            <tr>
+                                <td><a href="<c:url value="/user/detail"/>?id=${a.userId}">${a.userName}</a></td>
+                                <td>${a.userAge}</td>
+                                <td>${a.userSex}</td>
+                                <td>${a.userNumber}</td>
+                                <td><fmt:formatDate value="${a.date}" pattern="yyyy년 M월 d일 a h시 m분" /></td>
+                                <td>
+                                <button onclick="user_chart.select('${a.userId}')" type="button" class="btn btn-outline-success m-1">Chart</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    <jsp:include page="../nav.jsp"/>
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 </body>

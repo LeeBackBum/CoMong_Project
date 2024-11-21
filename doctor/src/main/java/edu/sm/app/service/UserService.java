@@ -1,13 +1,13 @@
 package edu.sm.app.service;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import edu.sm.app.dto.AppointmentDto;
+import edu.sm.app.dto.CounselDto;
+import edu.sm.app.dto.MedicalRecordsDto;
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.annotation.MergedAnnotations;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,22 +35,23 @@ public class UserService implements SMService<String, UserDto> {
 
     @Override
     public UserDto get(String s) throws Exception {
-        return null;
+        return userRepository.selectOne(s);
     }
 
     @Override
     public List<UserDto> get() throws Exception {
         return List.of();
     }
-    public Page<UserDto> getFindPage(int pageNo, MergedAnnotations.Search search) throws Exception {
-        PageHelper.startPage(pageNo, 3);// 3: 한화면에 출력되는 개수
-        return userRepository.getfindpage(search);
-    }
     // 예약 및 상담 정보 조회
-    public List<AppointmentDto> getAppointments(String doctorId,int pageNo) throws Exception {
-        PageHelper.startPage(pageNo, 5);
+    public List<AppointmentDto> getAppointments(int pageNo, String doctorId){
+        PageHelper.startPage(pageNo, 10);// 3: 한화면에 출력되는 개수
         return userRepository.selectAppointments(doctorId);
     }
 
-
+    public List<MedicalRecordsDto> getMedicalRecords(String userId){
+        return userRepository.getMedicalRecords(userId);
+    }
+    public List<CounselDto> getCounsel(String userId){
+        return userRepository.getCounsel(userId);
+    }
 }
