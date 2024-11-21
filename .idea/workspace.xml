@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.21 사용자,관리자 권한 분리">
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.21 master+hyun">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-21__2_24__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-21_오후_2_24_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-21_오후_2_24_[Changes]1/shelved.patch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/UserDto.java" afterDir="false" />
     </list>
@@ -200,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731998718993</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="2024.11.21 master+hyun">
+      <option name="closed" value="true" />
+      <created>1732167733780</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732167733780</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +222,8 @@
     <MESSAGE value="2024.11.19 15:28 center일단 적용 ,이상함." />
     <MESSAGE value="2024.11.19 15:44 공지 센터이동 및 작성자이름 출력" />
     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024.11.21 사용자,관리자 권한 분리" />
+    <MESSAGE value="2024.11.21 master+hyun" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024.11.21 master+hyun" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
