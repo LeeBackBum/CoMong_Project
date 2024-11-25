@@ -54,14 +54,14 @@
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Single Bar Chart</h6>
+            <h6 class="mb-4">우울증 수치</h6>
             <canvas id="bar-chart"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">Multiple Bar Chart</h6>
-            <canvas id="worldwide-sales"></canvas>
+            <canvas id="container2"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
@@ -106,6 +106,8 @@
       this.getdata(); // 초기 데이터 가져오기
       this.display2(); // 차트 초기화
       this.display4();
+      this.display5();
+      this.display6();
       setInterval(() => {
         this.getdata(); // 5초마다 데이터 갱신
       }, 5000);
@@ -169,6 +171,169 @@
         options: {
           responsive: true
         }
+      });
+    },
+
+    display5: function (){
+      // Single Bar Chart
+      var ctx4 = $("#bar-chart").get(0).getContext("2d");
+      var myChart4 = new Chart(ctx4, {
+        type: "bar",
+        data: {
+          labels: ["11월7일", "11월14일", "11월21일", "11월28일", "12월5일"],
+          datasets: [{
+            label:"우울증 점수",
+            backgroundColor: [
+              "rgba(0, 156, 255, .7)",
+              "rgba(0, 156, 255, .6)",
+              "rgba(0, 156, 255, .5)",
+              "rgba(0, 156, 255, .4)",
+              "rgba(0, 156, 255, .3)"
+            ],
+            data: [55, 49, 44, 24, 15]
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
+    },
+
+    display6:function(){
+      const onChartLoad = function () {
+        const chart = this,
+                series = chart.series[0];
+
+        setInterval(function () {
+          // const x = (new Date()).getTime(), // current time
+          //         y = Math.random();
+          //
+          // series.addPoint([x, y], true, true);
+          // console.log(x+'  :  '+y);
+
+          $.ajax({
+            url:'/charts/chart1',
+            success:(datas)=>{
+              console.log(new Date(datas.endtime).getTime()+'  :  '+datas.endline);
+              series.addPoint([new Date(datas.endtime).getTime(), datas.endline],
+                      true, true);
+            }
+          });
+        }, 1000);
+      };
+
+      // Create the initial data
+      const data = (function () {
+        const data = [];
+        const time = new Date().getTime();
+
+        for (let i = -19; i <= 0; i += 1) {
+          data.push({
+            x: time + i * 1000,
+            y: Math.random()
+          });
+        }
+        return data;
+      }());
+
+      // Plugin to add a pulsating marker on add point
+      Highcharts.addEvent(Highcharts.Series, 'addPoint', e => {
+        const point = e.point,
+                series = e.target;
+
+        if (!series.pulse) {
+          series.pulse = series.chart.renderer.circle()
+                  .add(series.markerGroup);
+        }
+
+        setTimeout(() => {
+          series.pulse
+                  .attr({
+                    x: series.xAxis.toPixels(point.x, true),
+                    y: series.yAxis.toPixels(point.y, true),
+                    r: series.options.marker.radius,
+                    opacity: 1,
+                    fill: series.color
+                  })
+                  .animate({
+                    r: 20,
+                    opacity: 0
+                  }, {
+                    duration: 1000
+                  });
+        }, 1);
+      });
+
+
+      Highcharts.chart('container2', {
+        chart: {
+          type: 'spline',
+          events: {
+            load: onChartLoad
+          }
+        },
+
+        time: {
+          useUTC: false
+        },
+
+        title: {
+          text: 'Live random data'
+        },
+
+        accessibility: {
+          announceNewData: {
+            enabled: true,
+            minAnnounceInterval: 15000,
+            announcementFormatter: function (allSeries, newSeries, newPoint) {
+              if (newPoint) {
+                return 'New point added. Value: ' + newPoint.y;
+              }
+              return false;
+            }
+          }
+        },
+
+        xAxis: {
+          type: 'datetime',
+          tickPixelInterval: 150,
+          maxPadding: 0.1
+        },
+
+        yAxis: {
+          title: {
+            text: 'Value'
+          },
+          plotLines: [
+            {
+              value: 0,
+              width: 1,
+              color: '#808080'
+            }
+          ]
+        },
+
+        tooltip: {
+          headerFormat: '<b>{series.name}</b><br/>',
+          pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+        },
+
+        legend: {
+          enabled: false
+        },
+
+        exporting: {
+          enabled: false
+        },
+
+        series: [
+          {
+            name: 'Random data',
+            lineWidth: 2,
+            color: Highcharts.getOptions().colors[2],
+            data
+          }
+        ]
       });
     }
   };
