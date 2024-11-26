@@ -97,7 +97,7 @@
                         <span class="d-none d-lg-inline-flex">${sessionScope.doctor.doctorName}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="<c:url value="/mypage"/>" class="dropdown-item">My page</a>
                         <a href="#" class="dropdown-item">Settings</a>
                         <a href="#" class="dropdown-item">Log Out</a>
                     </div>
@@ -121,7 +121,6 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
-
 
 
 

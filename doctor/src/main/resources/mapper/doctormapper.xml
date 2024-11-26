@@ -5,34 +5,40 @@
 <mapper namespace="edu.sm.app.repository.DoctorRepository">
 
     <!-- 특정 doctorId로 의사 정보 조회 -->
-    <select id="selectOne" parameterType="String" resultType="doctorDto">
-        SELECT * FROM doctor
-        WHERE doctor_id = #{doctorId}
+    <select id="selectOne" parameterType="java.lang.String" resultType="edu.sm.app.dto.DoctorDto">
+        SELECT * FROM doctor WHERE doctor_id = #{doctorId}
     </select>
 
     <!-- 모든 의사 정보 조회 -->
-    <select id="select" resultType="doctorDto">
+    <select id="select" resultType="edu.sm.app.dto.DoctorDto">
         SELECT * FROM doctor
     </select>
 
     <!-- 새로운 의사 정보 추가 -->
-    <insert id="insert" parameterType="doctorDto">
-        INSERT INTO doctor (doctorId, doctorPwd, doctorNumber, doctorName, doctorAge, doctorEmail, doctorImg, career, ancestry, society, subjectName)
+    <insert id="insert" parameterType="edu.sm.app.dto.DoctorDto">
+        INSERT INTO doctor (doctor_id, doctor_pwd, doctor_number, doctor_name, doctor_age, doctor_email, doctor_img, career, ancestry, society, subject_name)
         VALUES (#{doctorId}, #{doctorPwd}, #{doctorNumber}, #{doctorName}, #{doctorAge}, #{doctorEmail}, #{doctorImg}, #{career}, #{ancestry}, #{society}, #{subjectName})
     </insert>
 
     <!-- 기존 의사 정보 수정 -->
-    <update id="update" parameterType="doctorDto">
+    <update id="update" parameterType="edu.sm.app.dto.DoctorDto">
         UPDATE doctor
-        SET doctorPwd = #{doctorPwd}, doctorNumber = #{doctorNumber}, doctorName = #{doctorName}, doctorAge = #{doctorAge},
-            doctorEmail = #{doctorEmail}, doctorImg = #{doctorImg}, career = #{career}, ancestry = #{ancestry},
-            society = #{society}, subjectName = #{subjectName}
-        WHERE doctorId = #{doctorId}
+        SET doctor_pwd = #{doctorPwd},
+            doctor_number = #{doctorNumber},
+            doctor_name = #{doctorName},
+            doctor_age = #{doctorAge},
+            doctor_email = #{doctorEmail},
+            doctor_img = #{doctorImg},
+            career = #{career},
+            ancestry = #{ancestry},
+            society = #{society},
+            subject_name = #{subjectName}
+        WHERE doctor_id = #{doctorId}
     </update>
 
     <!-- 특정 doctorId로 의사 정보 삭제 -->
-    <delete id="delete" parameterType="doctorDto">
-        DELETE FROM doctor WHERE doctorId = #{doctorId}
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM doctor WHERE doctor_id = #{doctorId}
     </delete>
 
 </mapper>
