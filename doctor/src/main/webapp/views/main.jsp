@@ -64,28 +64,11 @@
             </div>
             <div class="navbar-nav w-100">
                 <a href="<c:url value="/main"/>" class="nav-item nav-link">
-                    <i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                    <div class="dropdown-menu bg-transparent border-0">
-                        <a href="<c:url value="/button"/>" class="dropdown-item">Buttons</a>
-                        <a href="<c:url value="/typography"/>" class="dropdown-item">Typography</a>
-                        <a href="<c:url value="/element"/>" class="dropdown-item">Other Elements</a>
-                    </div>
-                </div>
-                <a href="<c:url value="/widget"/>" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                <a href="<c:url value="/form"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <i class="fa fa-tachometer-alt me-2"></i>Main</a>
+                <a href="<c:url value="/chat"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chat</a>
+                <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>List</a>
                 <a href="<c:url value="/chart"/>" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                    <div class="dropdown-menu bg-transparent border-0">
-                        <a href="<c:url value="/signin"/>" class="dropdown-item">Sign In</a>
-                        <a href="<c:url value="/signup"/>" class="dropdown-item">Sign Up</a>
-                        <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Error</a>
-                        <a href="<c:url value="/blank"/>" class="dropdown-item">Blank Page</a>
-                    </div>
-                </div>
+                <a href="<c:url value="/blank"/>" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Pages</a>
             </div>
         </nav>
     </div>

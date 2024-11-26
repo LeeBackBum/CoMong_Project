@@ -8,10 +8,10 @@
     livedata: [], // 현재 데이터를 저장
     init: function () {
       this.getdata();
+      this.display1();
       this.display2();
+      this.display3();
       this.display4();
-      this.display5();
-      this.display6();
     },
     getdata:function(){
       $.ajax({
@@ -26,7 +26,7 @@
     },
 
 
-    display6: function () {
+    display4: function () {
       // On chart load, start an interval that fetches data from the server and animates the pulsating marker.
       const onChartLoad = function () {
         const chart = this,
@@ -155,18 +155,29 @@
     },
 
 
-    display2: function () {
-      // Single Line Chart
+    display1: function () {
+      // 특정 범위 내에서 랜덤 값을 생성하는 함수
+      const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+      // 랜덤 데이터 배열 생성
+      const generateRandomData = (length, min, max) => {
+        return Array.from({ length }, () => getRandomValue(min, max));
+      };
+
+      // 차트 데이터 생성
+      const randomData = generateRandomData(10, 100, 200); // 100~200 범위의 랜덤 값 10개 생성
+
+      // 차트 초기화
       var ctx3 = $("#line-chart").get(0).getContext("2d");
       this.chartInstance = new Chart(ctx3, {
         type: "line",
         data: {
-          labels: [1,2,3,4,5,6,7,8,9,10],
+          labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // x축 라벨
           datasets: [{
             label: "혈압 수치",
             fill: false,
             backgroundColor: "rgba(0, 156, 255, .3)",
-            data: [100,110,120,130,180,190,200,180,190,170]
+            data: randomData // 랜덤 데이터 사용
           }]
         },
         options: {
@@ -175,22 +186,38 @@
       });
     },
 
-    display4: function (){
-      // Salse & Revenue Chart
+    display2: function () {
+      // 특정 범위 내에서 랜덤 값을 생성하는 함수
+      const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+      // 복용 전/후 혈당 데이터를 생성하는 함수
+      const generateBloodSugarData = (length, minPre, maxPre, minPost, maxPost) => {
+        const preBloodSugar = Array.from({ length }, () => getRandomValue(minPre, maxPre));
+        const postBloodSugar = preBloodSugar.map(preValue =>
+                getRandomValue(minPost, Math.min(preValue - 1, maxPost)) // 복용 후는 항상 복용 전보다 낮게 설정
+        );
+        return { preBloodSugar, postBloodSugar };
+      };
+
+      // 랜덤 데이터 생성 (복용 전: 50~100, 복용 후: 10~99)
+      const { preBloodSugar, postBloodSugar } = generateBloodSugarData(10, 50, 100, 10, 99);
+
+      // 차트 초기화
       var ctx2 = $("#salse-revenue").get(0).getContext("2d");
       var myChart2 = new Chart(ctx2, {
         type: "line",
         data: {
-          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-          datasets: [{
-            label: "복용 전 혈당",
-            data: [55, 75, 65, 45, 70, 65, 85, 70, 65, 85],
-            backgroundColor: "rgba(0, 156, 255, .2)",
-            fill: true
-          },
+          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], // x축 라벨
+          datasets: [
+            {
+              label: "복용 전 혈당",
+              data: preBloodSugar, // 복용 전 랜덤 데이터
+              backgroundColor: "rgba(0, 156, 255, .2)",
+              fill: true
+            },
             {
               label: "복욕 후 혈당",
-              data: [20, 32, 44, 34, 36, 45, 38, 36, 45, 38],
+              data: postBloodSugar, // 복용 후 랜덤 데이터
               backgroundColor: "rgba(0, 156, 255, .5)",
               fill: true
             }
@@ -202,15 +229,26 @@
       });
     },
 
-    display5: function (){
-      // Single Bar Chart
+    display3: function () {
+      // 특정 범위 내에서 랜덤 값을 생성하는 함수
+      const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+      // 랜덤 데이터 배열 생성 함수
+      const generateRandomScores = (length, min, max) => {
+        return Array.from({ length }, () => getRandomValue(min, max));
+      };
+
+      // 랜덤 점수 생성 (10~60 범위)
+      const randomScores = generateRandomScores(5, 10, 60);
+
+      // 차트 초기화
       var ctx4 = $("#bar-chart").get(0).getContext("2d");
       var myChart4 = new Chart(ctx4, {
         type: "bar",
         data: {
-          labels: ["11월7일", "11월14일", "11월21일", "11월28일", "12월5일"],
+          labels: ["11월7일", "11월14일", "11월21일", "11월28일", "12월5일"], // x축 라벨
           datasets: [{
-            label:"우울증 점수",
+            label: "우울증 점수",
             backgroundColor: [
               "rgba(0, 156, 255, .7)",
               "rgba(0, 156, 255, .6)",
@@ -218,7 +256,7 @@
               "rgba(0, 156, 255, .4)",
               "rgba(0, 156, 255, .3)"
             ],
-            data: [55, 49, 44, 24, 15]
+            data: randomScores // 랜덤 점수 데이터 사용
           }]
         },
         options: {
@@ -226,7 +264,6 @@
         }
       });
     }
-
 
 
 
