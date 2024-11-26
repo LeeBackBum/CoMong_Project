@@ -1,0 +1,17 @@
+Index: user/src/main/java/edu/sm/app/dto/UserDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sm.app.dto;\r\n\r\nimport lombok.Builder;\r\nimport lombok.Data;\r\n\r\n@Data\r\n@Builder\r\n\r\npublic class UserDto {\r\n    private String userId;\r\n    private String userPwd;\r\n    private String userEmail;\r\n    private String userName;\r\n    private String userAddress;\r\n    private String userAge;\r\n    private String userSex;               // 성별 (1: 남자, 0: 여자)\r\n    private String diseaseStatus;       // 특이사항 (지병 정보 등)\r\n    private String userNumber;\r\n    private String role;\r\n\r\n    public String getUserSex() {\r\n        return userSex != null ? userSex.trim() : null;\r\n    }\r\n\r\n    public void setUserSex(String userSex) {\r\n\r\n        this.userSex = userSex;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/user/src/main/java/edu/sm/app/dto/UserDto.java b/user/src/main/java/edu/sm/app/dto/UserDto.java
+--- a/user/src/main/java/edu/sm/app/dto/UserDto.java	(revision e28df4a07a2b63fc64648470f5a3bc2ed8652439)
++++ b/user/src/main/java/edu/sm/app/dto/UserDto.java	(date 1732262325311)
+@@ -26,4 +26,5 @@
+ 
+         this.userSex = userSex;
+     }
++
+ }
+\ No newline at end of file
