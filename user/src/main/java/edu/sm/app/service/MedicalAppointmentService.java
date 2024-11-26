@@ -3,13 +3,23 @@ package edu.sm.app.service;
 import edu.sm.app.dto.DoctorDto;
 import edu.sm.app.dto.MedicalAppointmentDto;
 import edu.sm.app.frame.SMService;
+import edu.sm.app.repository.MedicalAppointmentRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
+@RequiredArgsConstructor
 public class MedicalAppointmentService implements SMService<String, MedicalAppointmentDto> {
+
+    private final MedicalAppointmentRepository medicalAppointmentrepository;
+
     @Override
     public void add(MedicalAppointmentDto medicalAppointmentDto) throws Exception {
-
+        System.out.println("Saving appointment: " + medicalAppointmentDto); // 디버깅
+        medicalAppointmentrepository.insert(medicalAppointmentDto);
     }
 
     @Override

@@ -1,62 +1,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title>게시판 - eLearning HTML Template</title>
+    <title>eLEARNING - eLearning HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="<c:url value='/img/favicon.ico'/>" rel="icon">
+    <link href="<c:url value="/img/favicon.ico"/>" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com/)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com/)" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="<c:url value='/lib/animate/animate.min.css'/>" rel="stylesheet">
-    <link href="<c:url value='/lib/owlcarousel/assets/owl.carousel.min.css'/>" rel="stylesheet">
 
+    <!-- Libraries Stylesheet -->
+    <link href="<c:url value="/lib/animate/animate.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
+
+    <%-- 틀--%>
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/css/contents.css"/>" rel="stylesheet">
     <!-- Template Stylesheet -->
-    <link href="<c:url value='/css/style.css'/>" rel="stylesheet">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
+    <%--틀 끝--%>
 </head>
 
-<body>
-
-<!-- Header Start -->
-<div class="container-fluid bg-primary py-5 mb-5 page-header">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 text-center">
-                <h1 class="display-3 text-white animated slideInDown">SM Korea</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Reservation</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Header End -->
-
-<!-- Board Start -->
 <body>
 
 
@@ -68,33 +47,10 @@
         table {border-collapse: collapse;}
         td {border: 1px solid gray; padding: 3px;}
         thead {background-color: #dde0e3; font-weight: bold; }
-        html, body {
-            margin:auto;
-            overflow-x: hidden;
-        }
-
-        /* 기본 리스트 스타일 */
-        #doctorList li {
-            list-style-type: none;
-            padding: 10px;
-            border: 1px solid transparent;  /* 기본 테두리 없음 */
-            margin: 5px;
-        }
-
-        /* 클릭된 항목에 테두리와 배경색 추가 */
-        #doctorList li a.selected {
-            border: 2px solid #007bff;  /* 파란색 테두리 */
-            background-color: #f0f8ff;  /* 선택된 배경색 */
-        }
-
-
 
     </style>
-
-
     <script>
 
-        // ---------------------------------진료과 별 의사정보---------------------------------------------------------
         function resetDoctor(id) {
             console.log("받은 id:", id);
 
@@ -119,7 +75,7 @@
                 return;
             }
 
-            const url = "/getDoctorList?subjectName=" + encodeURIComponent(subjectName);
+            const url = "/testdo2?subjectName=" + encodeURIComponent(subjectName);
             fetch(url, { method: "GET" })
                 .then(response => response.text())
                 .then(html => {
@@ -132,10 +88,7 @@
                 })
                 .catch(error => console.error("Error fetching the JSP content:", error));
         }
-        // ---------------------------------진료과 별 의사정보---------------------------------------------------------
 
-
-        // ---------------------------------시간정보---------------------------------------------------------
         function get_minutes() {
             // 시와 분 값을 가져오기
             var hour = document.getElementById("times1").value;
@@ -157,44 +110,29 @@
             // 예를 들어, div에 표시
             document.getElementById("selected_time").innerText = "선택한 시간: " + time;
         }
-        // ---------------------------------시간정보---------------------------------------------------------
 
-
-
-        // ---------------------------------예약정보전송---------------------------------------------------------
 
         function submitAction() {
-            /*const name = document.getElementById('reservName').value.trim();*/
+            const name = document.getElementById('reservName').value.trim();
             const hour = document.getElementById('times1').value;
             const minute = document.getElementById('times2').value;
-            const reservGubun = document.getElementById('selectedReservGubun').value
-            const comment = document.getElementById('comment').value;
-            const date = document.getElementById('date').value;
-            const doctorid = document.getElementById('doctorIdInput').value;
-            const userId = document.getElementById('hiddenId').value;
+            const reservGubun_1 = document.getElementById('reservGubun_1').value;
+            const reservGubun_2 = document.getElementById('reservGubun_2').value;
 
-
-            if (!hour || !minute) {
+            if (!name || !hour || !minute || !reservGubun_1 || !reservGubun_2) {
                 alert("모든 필수 정보를 입력해주세요.");
                 return;
             }
 
-            // 날짜 및 시간 조합
+            // 날짜 계산
             const today = new Date().toISOString().split('T')[0];
-            const appointmentDate = + today + `T` + hour+ `:` +minute+ `:` +100; // ISO 형식으로 조합
 
-            // 요청 데이터
             const data = {
-                appointmentDate: date + `T` + hour + `:` +minute,
-                appointmentContent: comment,
-                appointmentStatus: "진료",
-                userId: userId,  // 실제 사용자 ID로 대체
-                doctorId: doctorid, // 실제 의사 ID로 대체
-                type: reservGubun,
-                subType: null,
+                name: name,
+                time: `${hour}:${minute}`,
+                reservGubun: { reservGubun_1, reservGubun_2 },
+                appointment_date: today, // 서버에 전송할 날짜
             };
-
-            console.log("Sending data:", data); // 디버깅용 로그
 
             fetch('/submitReservation', {
                 method: 'POST',
@@ -207,99 +145,15 @@
                         alert("예약이 성공적으로 접수되었습니다.");
                     } else {
                         alert("예약 접수 중 문제가 발생했습니다.");
-                        console.log(data);
                     }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
                     alert("서버와의 통신 중 문제가 발생했습니다.");
+                    console.log(data);
                 });
         }
 
-        // ---------------------------------예약정보전송---------------------------------------------------------
-
-        // ---------------------------------달력---------------------------------------------------------
-
-        $(document).ready(function() {
-            $.ajax({
-                url: '/calendar',  // calendar.jsp 파일을 서버에서 가져올 URL
-                type: 'GET',
-                success: function(data) {
-                    // 서버에서 가져온 데이터(HTML)를 schdule-information-area에 삽입
-                    $('.schdule-information-area').html(data);
-                },
-                error: function(error) {
-                    console.log('달력을 불러오는 데 실패했습니다.', error);
-                }
-
-            });
-        });
-        // ---------------------------------달력---------------------------------------------------------
-        // ----------------------------------달력테스트-------------------------------------------------------
-        $(document).ready(function() {
-            const selectedDate = sessionStorage.getItem('selectedDate');
-
-            // 날짜 값이 있으면 input 필드에 채워주기
-            if (selectedDate) {
-                document.getElementById('date').value = selectedDate;
-            }
-        });
-
-        // ----------------------------------달력테스트-------------------------------------------------------
-
-
-        // ----------------------------------진료&예약 구분------------------------------------------------------
-        document.addEventListener('DOMContentLoaded', () => {
-            // 선택된 라디오 버튼 값을 저장할 변수
-            let selectedReservGubun = '';
-
-            // 모든 라디오 버튼 선택
-            const radioButtons = document.querySelectorAll('input[name="reservGubun"]');
-
-            // 선택된 값을 표시할 hidden input 요소 선택 (또는 생성)
-            const hiddenInput = document.getElementById('selectedReservGubun');
-
-            // 각 라디오 버튼에 change 이벤트 리스너 추가
-            radioButtons.forEach(radio => {
-                radio.addEventListener('change', (event) => {
-                    selectedReservGubun = event.target.value; // 선택된 라디오 버튼의 값 저장
-                    console.log('선택된 예약 구분:', selectedReservGubun); // 콘솔 출력
-
-                    // hidden input 요소에 값 반영
-                    if (hiddenInput) {
-                        hiddenInput.value = selectedReservGubun;
-                    }
-                });
-            });
-        });
-        // ----------------------------------진료&예약 구분------------------------------------------------------
-
-
-
-
-        // ----------------------------------의사ID 제어------------------------------------------------------
-
-        function handleDoctorClick(doctorId, clickedElement) {
-            // 모든 항목에서 selected 클래스를 제거
-            const doctorItems = document.querySelectorAll('li a');
-            doctorItems.forEach(item => item.classList.remove('selected'));
-
-            // 클릭된 항목에 selected 클래스를 추가
-            clickedElement.classList.add('selected');
-
-            // doctorId 값을 hidden input에 설정
-            const doctorIdInput = document.getElementById("doctorIdInput");
-            if (doctorIdInput) {
-                doctorIdInput.value = doctorId;
-                console.log("Doctor ID set to input:" + doctorId );
-            } else {
-                console.error("Hidden input field not found.");
-            }
-        }
-        // ----------------------------------의사ID 제어------------------------------------------------------
-
-
-        // ----------------------------------유저ID 제어------------------------------------------------------
 
 
 
@@ -308,12 +162,6 @@
 </head>
 
 <body>
-
-<!-- 아이디 값 전달 -->
-<input type="hidden" id="hiddenId" name="id" value="${userId}">
-<!-- 아이디 값 전달 -->
-
-
 <div class="reservation-area01 mgt10">
     <div class="reservation-box choise01">
         <h2>01. 진료과 선택</h2>
@@ -460,18 +308,11 @@
         <div class="doctor-list-wrapper mCustomScrollbar _mCS_2 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;">
             <div id="mCSB_2" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;">
                 <div id="mCSB_2_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                    <div class="doctor-list-area">
+                        <div class="doctor-list-area">
 
-                        <%--------------------.의사 정보 추가--------------------%>
-
-                            <form id="doctorForm" action="your_destination_page" method="post">
-                                <input type="hidden" id="doctorIdInput" name="doctorId" value="">
-                            </form>
-
-                    </div>
-
-
-                </div>
+<%--                            ------------------.의사 정보 추가--------------------%>
+                        </div>
+        </div>
             </div>
             <div id="mCSB_2_scrollbar_vertical" class="mCSB_scrollTools mCSB_2_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;">
                 <div class="mCSB_draggerContainer"><div id="mCSB_2_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;">
@@ -484,24 +325,80 @@
 
     <div class="reservation-box choise03">
         <h2>03. 예약 날짜/시간 선택</h2>
-        <div class="schdule-information-area">
 
+        <div class="schdule-information-area">
+            <div id="datepicker" style="margin-bottom:10px;" class="hasDatepicker">
+                <div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;">
+                    <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
+                        <a class="ui-datepicker-prev ui-corner-all ui-state-disabled" title="이전달">
+                        <span class="ui-icon ui-icon-circle-triangle-w">이전달</span></a>
+                        <a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="다음달">
+                        <span class="ui-icon ui-icon-circle-triangle-e">다음달</span></a>
+                        <div class="ui-datepicker-title">
+                        <span class="ui-datepicker-year">2024</span>년&nbsp;<span class="ui-datepicker-month">11월</span>
+                    </div>
+                    </div>
+                    <table class="ui-datepicker-calendar">
+                        <thead><tr>
+                            <th class="ui-datepicker-week-end">
+                                <span title="일">일</span>
+                            </th>
+                            <th><span title="월">월</span>
+                            </th>
+                            <th><span title="화">화</span></th><th><span title="수">수</span>
+                            </th>
+                            <th><span title="목">목</span></th><th><span title="금">금</span>
+                        </th><th class="ui-datepicker-week-end"><span title="토">토</span>
+                        </th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;
+                    </td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;
+                    </td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;
+                    </td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;
+                    </td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;
+                    </td><td class=" ui-datepicker-unselectable ui-state-disabled event"><span class="ui-state-default">1</span>
+                    </td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">2</span>
+                    </td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">3</span>
+                    </td><td class=" ui-datepicker-unselectable ui-state-disabled event"><span class="ui-state-default">4</span>
+                    </td><td class=" ui-datepicker-unselectable ui-state-disabled event"><span class="ui-state-default">5</span>
+                    </td><td class=" ui-datepicker-days-cell-over ui-datepicker-unselectable ui-state-disabled  ui-datepicker-current-day ui-datepicker-today">
+                        <span class="ui-state-default">6</span>
+                    </td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">7</span>
+                    </td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">8</span>
+                    </td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">9</span>
+                    </td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">10</span>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">11</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">12</a>
+                        </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">13</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">14</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">15</a>
+                    </td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">16</span>
+                    </td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">17</span>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">18</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">19</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">20</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">21</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">22</a>
+                    </td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">23</span>
+                    </td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">24</span>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">25</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">26</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">27</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">28</a>
+                    </td><td class=" event" data-handler="selectDay" data-event="click" data-month="10" data-year="2024"><a class="ui-state-default" href="#">29</a>
+                    </td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">30</span></td></tr></tbody></table>
+                </div></div>
             <ul class="schdule-information">
                 <li><img src="../images/common/icon_reservation_ok.gif" alt="">예약가능일</li>
                 <li><img src="../images/common/icon_today.gif" alt="">오늘날짜</li>
             </ul>
         </div><!-- //schdule-information-area -->
-        <dt>선택하신 일자입니다.</dt>
-        <input type="text" id="date" name="date" readonly />
 
-        <!-- 예약구분 (진료예약 / 상담예약) -->
+
+        <!-- 예약구분 (재진료예약 / 첫진료예약) (강안병원만) -->
         <!-- <input type="hidden" name="reservGubun" id="reservGubun" value="record"> -->
         <dl class="choice-reservation-gubun">
             <dd>
-                <input type="radio" name="reservGubun" id="reservGubun_1" value="진료예약"><label for="reservGubun_1" style="line-height:24px;">진료예약</label>
-                <input type="radio" name="reservGubun" id="reservGubun_2" value="상담예약"><label for="reservGubun_2" style="line-height:24px;">채팅상담</label>
-                <input type="radio" name="reservGubun" id="reservGubun_3" value="상담예약"><label for="reservGubun_2" style="line-height:24px;">화상상담</label>
-                <input type="hidden" id="selectedReservGubun">
+                <input type="radio" name="reservGubun" id="reservGubun_1" value="record"><label for="reservGubun_1" style="line-height:24px;">진료예약</label>
+                <input type="radio" name="reservGubun" id="reservGubun_2" value="first"><label for="reservGubun_2" style="line-height:24px;">상담예약</label>
             </dd>
         </dl>
         <dl class="cohise-reservation">
@@ -536,33 +433,29 @@
 
         <div id="selected_time"></div>
 
-<%--        <dl class="phone-reservation">--%>
-<%--            <dt>예약요청 제목</dt>--%>
-<%--            <dd>--%>
-<%--                <label for="reservName" class="blind"></label>--%>
-<%--                <input type="text" id="reservName" name="reservName" style="width: 217px">--%>
-<%--            </dd>--%>
-<%--        </dl>--%>
+        <dl class="phone-reservation">
+            <dt>예약자 이름</dt>
+            <dd>
+                <label for="reservName" class="blind">예약자 이름</label>
+                <input type="text" id="reservName" name="reservName" style="width: 217px">
+            </dd>
+        </dl>
 
         <dl class="phone-reservation">
             <dt>
-                예약요청 내용(<span class="point02">요청하신 상담에대 작성해주세요</span>)
+                보호자이름 (<span class="point02">소아청소년과 예약시 입력</span>)
             </dt>
             <dd>
-                <div class="form-group">
-                    <label for="comment"></label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                </div>
+                <label for="guardianName" class="blind">보호자이름</label>
+                <input type="text" id="guardianName" name="guardianName" style="width:100%;">
             </dd>
         </dl>
         <!--  //예약-->
         <div class="btnCenter mgt60" style="height:500px">
-            <a href="javascript:void(0);" onclick="submitAction();" class="btn btn-primary">예약접수하기</a>
+            <a href="javascript:void(0);" onclick="submitAction();" class="btnTypeJ">예약접수하기</a>
         </div>
+
     </div>
-
-
-
 </div>
 </body>
 </html>
@@ -572,18 +465,10 @@
 
 
 
-<!-- Board End -->
 
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<c:url value='/lib/wow/wow.min.js'/>"></script>
-<script src="<c:url value='/lib/easing/easing.min.js'/>"></script>
-<script src="<c:url value='/lib/waypoints/waypoints.min.js'/>"></script>
-<script src="<c:url value='/lib/owlcarousel/owl.carousel.min.js'/>"></script>
 
-<!-- Template Javascript -->
-<script src="<c:url value='/js/main.js'/>"></script>
+
+
+</body>
+</html>

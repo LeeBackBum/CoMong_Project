@@ -61,9 +61,10 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
-      <a href="<c:url value="/testdo"/>" class="nav-item nav-link">About</a>
+      <a href="<c:url value="/calendar"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
-      <a href="<c:url value="/reservation2"/>" class="nav-item nav-link">Reservation</a>
+      <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
+      <a href="<c:url value="/testdoORG"/>" class="nav-item nav-link">TEST</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
         <div class="dropdown-menu fade-down m-0">

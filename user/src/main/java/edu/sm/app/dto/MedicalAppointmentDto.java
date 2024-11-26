@@ -1,7 +1,9 @@
 package edu.sm.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +11,9 @@ import java.time.LocalDateTime;
 @Builder
 public class MedicalAppointmentDto {
     private int appointmentId;
-    private LocalDateTime appointmentDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private String  appointmentDate;
     private String appointmentContent;
     private String appointmentStatus;   // '진료' 또는 '상담'
     private String userId;

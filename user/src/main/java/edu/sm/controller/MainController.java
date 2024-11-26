@@ -2,15 +2,21 @@ package edu.sm.controller;
 
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -33,6 +39,12 @@ public class MainController {
         model.addAttribute("center", "login");
         return "index";
     }
+
+
+
+
+
+
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("center", "register");
@@ -41,13 +53,13 @@ public class MainController {
 
     @RequestMapping("/contact")
     public String contact(Model model) {
-        model.addAttribute("center", "contact");
+        model.addAttribute("center", "calendar");
         return "index";
     }
 
     @RequestMapping("/about")
     public String about(Model model) {
-        model.addAttribute("center", "about");
+        model.addAttribute("center", "calendar");
         return "index";
     }
 
@@ -57,11 +69,37 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/reservation2")
-    public String reservations(Model model) {
-        model.addAttribute("center", "reservation2");
-        return "reservation2";
+
+//    @RequestMapping("/reservation")
+//    public String reservations(Model model) {
+//        model.addAttribute("center","reservation");
+//        return "index";
+//    }
+
+    @RequestMapping("/reservation")
+    public String reservations(HttpSession session, Model model) throws Exception {
+        UserDto userDto = (UserDto) session.getAttribute("loginid");
+
+        if (userDto == null) {
+            System.out.println("세션에 로그인된 사용자 정보 없음");
+            model.addAttribute("message", "Please log in first.");
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
+
+        String userId = userDto.getUserId();
+        System.out.println("로그인된 사용자 ID: " + userId);
+
+
+        model.addAttribute("userId",userId);
+
+        model.addAttribute("center","reservation");
+
+
+        return "index";
     }
+
+
+
 
 
     @RequestMapping("/team")
@@ -112,6 +150,10 @@ public class MainController {
         model.addAttribute("center", "mypage");
         return "index";
     }
+
+
+
+
 
 
 }
