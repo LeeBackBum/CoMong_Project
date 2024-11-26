@@ -37,7 +37,7 @@ app:
   url:
     server_url: http://210.119.34.220:81
   dir:
-    imgdir: file:///c:/springsm/imgs/
+    imgdir: C:/CoMong_Project/doctor/src/main/resources/static/img
     uploadimgdir: c:/springsm/imgs/
     # logdir: /root/users/project/logs
     logdir: file:///c:/springsm/logs/
