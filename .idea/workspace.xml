@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="Counseling_record_1129">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.21 master+hyun">
+      <change afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/mypage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/doctor.test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/DoctorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/DoctorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +30,6 @@
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/doctor">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/doctor_iot">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/user">
@@ -54,6 +63,21 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="user" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="user" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="user" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -65,13 +89,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Bum" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,51 +118,48 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2p38BPaiVqiU5uAqNPK0VLSU4lF" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/webapp/views/notice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build doctor.executor": "Run",
+    "Gradle.doctor [bootRun].executor": "Run",
+    "Gradle.user [bootRun].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DoctorApplication.executor": "Run",
+    "git-widget-placeholder": "hyun",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CoMong_Project/doctor/src/main/webapp/views",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\doctor\src\main\webapp\views" />
+      <recent name="C:\CoMong_Project\doctor\src\main\webapp\views\user" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\doctor\src\main\webapp\views" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="edu.sm" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
-      <module name="doctor_iot.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.sm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.doctor [bootRun]">
     <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -182,19 +204,32 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="DoctorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="DoctorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="doctor.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="edu.sm.DoctorApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.sm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.sm.UserApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.doctor [bootRun]" />
-        <item itemvalue="Gradle.user [bootRun]" />
+        <item itemvalue="Spring Boot.DoctorApplication" />
         <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
       </list>
@@ -221,6 +256,8 @@
       <workItem from="1732151216633" duration="1199000" />
       <workItem from="1732153049903" duration="1679000" />
       <workItem from="1732163119469" duration="2628000" />
+      <workItem from="1732582362383" duration="5035000" />
+      <workItem from="1732587570077" duration="13397000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -262,30 +299,11 @@
       <option name="project" value="LOCAL" />
       <updated>1732167733780</updated>
     </task>
-    <task id="LOCAL-00006" summary="2024.11.29">
-      <option name="closed" value="true" />
-      <created>1732861766865</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1732861766865</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2024.11.19 14:26 작업 댓글오류수정완료" />
@@ -293,8 +311,7 @@
     <MESSAGE value="2024.11.19 15:44 공지 센터이동 및 작성자이름 출력" />
     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
     <MESSAGE value="2024.11.21 master+hyun" />
-    <MESSAGE value="Counseling_record_1129" />
-    <option name="LAST_COMMIT_MESSAGE" value="Counseling_record_1129" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024.11.21 master+hyun" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
