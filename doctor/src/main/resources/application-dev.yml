@@ -37,11 +37,11 @@ app:
   url:
     server_url: http://210.119.34.220:81
   dir:
-    imgdir: file:///c:/springsm/imgs/
-    uploadimgdir: c:/springsm/imgs/
+    imgdir: file:///c:/CoMong_Project/imgs/
+    uploadimgdir: c:/CoMong_Project/imgs/
     # logdir: /root/users/project/logs
-    logdir: file:///c:/springsm/logs/
-    readlogdir: c:/springsm/logs/
+    logdir: file:///c:/CoMong_Project/logs/
+    readlogdir: c:/CoMong_Project/logs/
   key:
     algo: PBEWithMD5AndDES
     skey: mykey
