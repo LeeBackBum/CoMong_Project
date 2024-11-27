@@ -18,8 +18,9 @@
     <select id="select" resultType="userDto">
         SELECT * FROM user
     </select>
-    <insert id="insert" parameterType="userDto">
-        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber})
+    <insert id="insert" parameterType="edu.sm.app.dto.UserDto">
+        INSERT INTO user (user_id, user_pwd, user_email, user_name, user_address, user_age, user_sex, disease_status, user_number, role)
+        VALUES (#{userId}, #{userPwd}, #{userEmail}, #{userName}, #{userAddress}, #{userAge}, #{userSex}, #{diseaseStatus}, #{userNumber}, '0')
     </insert>
     <update id="update" parameterType="userDto">
         UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}

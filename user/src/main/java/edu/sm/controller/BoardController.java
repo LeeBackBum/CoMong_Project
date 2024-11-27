@@ -185,13 +185,26 @@ public class BoardController {
     @PostMapping("/edit/{boardId}")
     public String updateBoard(@PathVariable("boardId") Integer boardId, @ModelAttribute BoardDto boardDto) {
         try {
-            boardDto.setBoardId(boardId);
-            boardService.modify(boardDto);
+            // 기존 데이터 불러오기
+            BoardDto existingBoard = boardService.get(boardId);
+            if (existingBoard == null) {
+                log.warn("존재하지 않는 게시글: boardId={}", boardId);
+                return "redirect:/board?error=not_found";
+            }
+
+            // 기존 데이터에 수정된 값만 업데이트
+            existingBoard.setBoardTitle(boardDto.getBoardTitle());
+            existingBoard.setBoardContent(boardDto.getBoardContent());
+
+            // 저장
+            boardService.modify(existingBoard);
         } catch (Exception e) {
             log.error("게시글 수정 실패", e);
+            return "redirect:/board?error=exception";
         }
         return "redirect:/board/" + boardId;
     }
+
 
     @PostMapping("/delete/{boardId}")
     public String deleteBoard(@PathVariable("boardId") Integer boardId, HttpSession session) throws Exception {

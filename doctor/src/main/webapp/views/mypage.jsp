@@ -48,7 +48,7 @@
 
                 <!-- Profile Picture -->
                 <div class="text-center mb-4">
-                    <img src="<c:url value='/127.0.0.1:81/img/${doctor.doctorImg != null ? doctor.doctorImg : "default-profile.png"}'/>"
+                    <img src="<c:url value='/img/${doctor.doctorImg != null ? doctor.doctorImg : "default-profile.png"}'/>"
                          alt="Profile Picture" class="rounded-circle"
                          style="width: 150px; height: 150px; object-fit: cover;">
                 </div>

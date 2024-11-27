@@ -30,18 +30,29 @@ public class MainController {
     String serverUrl;
 
     @RequestMapping("/")
-    public String index(Model model) {
-        model.addAttribute("center", "center");
-        log.info("Start Index ,,,,,,");
-        return "index";
-    }
-
-
-    @RequestMapping("/main")
     public String main(Model model) {
         log.info("Start Main ,,,,,,");
+//        model.addAttribute("center", "center");
         return "main";
     }
+
+    @RequestMapping("/main")
+    public String main1(Model model) {
+        log.info("Start Main ,,,,,,");
+        model.addAttribute("center", "center");
+        return "main";
+    }
+
+
+    @RequestMapping("/index")
+    public String index(Model model) {
+        model.addAttribute("center", "index");
+        log.info("Start 로그인페이지 ,,,,,,");
+        return "main";
+    }
+
+
+
 
     @RequestMapping("blank")
     public String blank(Model model) {
@@ -73,11 +84,7 @@ public class MainController {
         model.addAttribute("center", "center");
         return "form";
     }
-    @RequestMapping("signin")
-    public String signin(Model model) {
-        model.addAttribute("center", "center");
-        return "signin";
-    }
+
 
     @RequestMapping("signup")
     public String signup(Model model) {
@@ -85,23 +92,13 @@ public class MainController {
         return "signup";
     }
 
-    @RequestMapping("table")
-    public String table(Model model) {
-        model.addAttribute("center", "center");
-        return "table";
+    @RequestMapping("signin")
+    public String signin(Model model) {
+        model.addAttribute("center", "signin");
+        return "main";
     }
 
-    @RequestMapping("typography")
-    public String typography(Model model) {
-        model.addAttribute("center", "center");
-        return "typography";
-    }
 
-    @RequestMapping("widget")
-    public String widget(Model model) {
-        model.addAttribute("center", "center");
-        return "widget";
-    }
 
     @RequestMapping("/loginimpl")
     public String loginimpl(
@@ -123,7 +120,7 @@ public class MainController {
             return "/";
         }
 
-        return "/main";
+        return "redirect:/main";
     }
 
     @GetMapping("/mypage")

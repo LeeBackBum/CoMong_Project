@@ -42,7 +42,7 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
-            <a href="<c:url value="/"/>" class="navbar-brand mx-4 mb-3">
+            <a href="<c:url value="/index"/>" class="navbar-brand mx-4 mb-3">
                 <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Sign In</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">

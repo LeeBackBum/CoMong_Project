@@ -76,18 +76,13 @@
         <div class="card-footer text-end">
             <a href="<c:url value='/board' />" class="btn btn-secondary">목록으로</a>
 
-            <!-- 자신의 게시글이거나 관리자인 경우 수정/삭제 버튼 표시 -->
-<%--            <c:if test="${user.role == '1' || user.userId == board.userId}">--%>
-<%--                <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-primary">수정</a>--%>
-<%--            </c:if>--%>
-
-            <!-- 관리자 또는 게시글 작성자인 경우 삭제 버튼 표시 -->
-            <c:if test="${user.role == '1' || user.userId == board.userId}">
+            <!-- 자신의 게시글이거나 관리자인 경우 수정 및 삭제 버튼 표시 -->
+            <c:if test="${sessionScope.loginid != null && (sessionScope.loginid.role == '1' || sessionScope.loginid.userId == board.userId)}">
+                <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-primary">수정</a>
                 <form action="<c:url value='/board/delete/${board.boardId}' />" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-danger">게시글 삭제</button>
+                    <button type="submit" class="btn btn-danger">삭제</button>
                 </form>
             </c:if>
-        </div>
     </div>
     <!-- 댓글 작성 폼 -->
     <div class="comment-form mb-4">
