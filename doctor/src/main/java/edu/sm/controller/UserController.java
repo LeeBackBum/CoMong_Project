@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,5 +81,24 @@ public class UserController {
         model.addAttribute("center", dir+"chart");
         return "main";
     }
+    @RequestMapping("/getPatients")
+    public ResponseEntity<List<AppointmentDto>> dateAppointments(HttpSession session, @RequestParam String date) {
+        // 세션에서 doctorDto 가져오기
+        DoctorDto doctorDto = (DoctorDto) session.getAttribute("doctor");
 
+        // doctorDto가 없는 경우 401 Unauthorized 반환
+        if (doctorDto == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        // doctorId 가져오기
+        String doctorId = doctorDto.getDoctorId();
+
+        // 날짜와 의사 ID를 기반으로 예약 및 상담 데이터 조회
+        List<AppointmentDto> appointments = userService.dateAppointments(doctorId, date);
+
+        // 결과 반환 (JSON 형식)
+        return ResponseEntity.ok(appointments);
+    }
 }
+

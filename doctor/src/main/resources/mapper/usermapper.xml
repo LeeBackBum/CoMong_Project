@@ -46,6 +46,65 @@
         WHERE user_recent = 1
         ORDER BY date DESC
     </select>
+    <!-- 날짜와 의사ID 기반으로 예약 또는 상담내역 조회 -->
+    <select id="dateAppointments" parameterType="String" resultType="appointmentDto">
+        WITH CombinedRecords AS (
+            SELECT
+                u.user_id,
+                u.user_name,
+                u.user_age,
+                u.user_sex,
+                u.disease_status,
+                u.user_number,
+                '예약' AS appointment_type,
+                ma.appointment_date AS date,
+            ROW_NUMBER() OVER (PARTITION BY u.user_name ORDER BY ma.appointment_date DESC) AS rn
+        FROM medical_appointment AS ma
+            JOIN user AS u ON ma.user_id = u.user_id
+        WHERE ma.doctor_id = #{doctorId} AND DATE(ma.appointment_date) = #{date}
+
+        UNION ALL
+
+        SELECT
+            u.user_id,
+            u.user_name,
+            u.user_age,
+            u.user_sex,
+            u.disease_status,
+            u.user_number,
+            '상담' AS appointment_type,
+            c.counsel_date AS date,
+            ROW_NUMBER() OVER (PARTITION BY u.user_name ORDER BY c.counsel_date DESC) AS rn
+        FROM counsel AS c
+            JOIN user AS u ON c.user_id = u.user_id
+        WHERE c.doctor_id = #{doctorId} AND DATE(c.counsel_date) = #{date}
+            ),
+            LatestRecords AS (
+        SELECT
+            user_id,
+            user_name,
+            user_age,
+            user_sex,
+            disease_status,
+            user_number,
+            appointment_type,
+            date,
+            ROW_NUMBER() OVER (PARTITION BY user_name ORDER BY date DESC) AS user_recent
+        FROM CombinedRecords
+            )
+        SELECT
+            user_id,
+            user_name,
+            user_age,
+            user_sex,
+            disease_status,
+            user_number,
+            appointment_type,
+            date
+        FROM LatestRecords
+        WHERE user_recent = 1
+        ORDER BY date
+    </select>
 
 
     <!-- 유저 ID를 기반으로 진료 및 상담 기록 조회 -->
@@ -92,4 +151,7 @@
         FROM CombinedRecords
         ORDER BY date DESC
     </select>
+
+
+
 </mapper>

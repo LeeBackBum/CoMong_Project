@@ -70,8 +70,6 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // 로그 읽기
     implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
-
-
 }
 
 tasks.named('test') {
