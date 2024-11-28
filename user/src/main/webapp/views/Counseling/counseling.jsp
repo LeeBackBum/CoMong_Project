@@ -47,6 +47,8 @@
   <!-- Template Stylesheet -->
   <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
   <%--틀 끝--%>
+  <link href="<c:url value="/css/chat.css"/> " rel="stylesheet">
+
 </head>
 
 
@@ -75,70 +77,64 @@
 <!-- Counseling Start -->
 
 
-<style>
-  #all {
-    width: 400px;
-    height: 200px;
-    overflow: auto;
-    border: 2px solid black;
-  }
-</style>
 
 <script>
   let websocket = {
-    id:'',
-    stompClient:null,
-    init:function(){
-      this.id = $('#adm_id').text();
-      $('#connect').click(()=>{
+    id: '', // 사용자 ID (로그인한 사용자 이름)
+    stompClient: null,
+    reconnectAttempts: 0,
+    maxReconnectAttempts: 10,
+    init: function () {
+      this.id = '${userName}'; // JSP에서 전달된 사용자 이름 사용
+      console.log("Initialized WebSocket for user:", this.id);
+
+      $('#connect').click(() => {
         this.connect();
       });
-      $('#disconnect').click(()=>{
+      $('#disconnect').click(() => {
         this.disconnect();
       });
-      $('#sendall').click(()=>{
+      $('#sendall').click(() => {
         let msg = JSON.stringify({
-          'sendid' : this.id,
-          'content1' : $("#alltext").val()
+          'sendid': this.id, // 로그인한 사용자 이름 포함
+          'content1': $("#alltext").val()
         });
         this.stompClient.send("/receiveall", {}, msg);
+
+        $("#alltext").val('');
       });
+
+      // 페이지 로드 시 자동으로 connect 호출
+      this.connect();
     },
-    connect:function(){
+    connect: function () {
       let sid = this.id;
-      let socket = new SockJS('${serverurl}/ws');
+      let socket = new SockJS('${serverurl}/ws'); // JSP에서 전달된 서버 URL 사용
       this.stompClient = Stomp.over(socket);
 
-      this.stompClient.connect({}, function(frame) {
+      this.stompClient.connect({}, function (frame) {
         websocket.setConnected(true);
-        console.log('Connected: ' + frame);
-        this.subscribe('/send', function(msg) {
-          $("#all").prepend(
-                  "<h4>" + JSON.parse(msg.body).sendid +":"+
-                  JSON.parse(msg.body).content1
-                  + "</h4>");
-        });
-        this.subscribe('/send/'+sid, function(msg) {
-          $("#me").prepend(
-                  "<h4>" + JSON.parse(msg.body).sendid +":"+
-                  JSON.parse(msg.body).content1+ "</h4>");
-        });
-        this.subscribe('/send/to/'+sid, function(msg) {
-          $("#to").prepend(
-                  "<h4>" + JSON.parse(msg.body).sendid +":"+
-                  JSON.parse(msg.body).content1
-                  + "</h4>");
+        console.log('WebSocket Connected: ' + frame);
+
+        // /send 경로 구독
+        this.subscribe('/send', function (msg) {
+          const parsedMsg = JSON.parse(msg.body);
+          $("#all").append(
+                  "<h5>" + parsedMsg.sendid + "</h5>" +
+                  "<p>" + parsedMsg.content1 + "</p>" +
+                  "<hr>"
+          );
         });
       });
     },
-    disconnect:function(){
+    disconnect: function () {
       if (this.stompClient !== null) {
         this.stompClient.disconnect();
       }
-      websocket.setConnected(false);
-      console.log("Disconnected");
+      this.setConnected(false);
+      console.log("WebSocket Disconnected");
     },
-    setConnected:function(connected){
+    setConnected: function (connected) {
       if (connected) {
         $("#status").text("Connected");
       } else {
@@ -146,30 +142,57 @@
       }
     }
   };
-  $(function(){
-    websocket.init();
+
+  $(function () {
+    websocket.init(); // 페이지 로드 시 WebSocket 초기화
   });
 </script>
 
-<div class="container-fluid">
-  <div class="card shadow mb-4">
-    <div class="card-body">
-      <div class="table-responsive">
-        <div class="col-sm-5">
-          <h1 id="adm_id">${sessionScope.loginid.userId}</h1>
-          <H1 id="status">Status</H1>
-          <button id="connect">Connect</button>
-          <button id="disconnect">Disconnect</button>
+<style>
+  #all h5 {
+    margin-top: 5px;
+  }
+  #all hr {
+    margin: 2px 0; /* 위아래 간격을 2px로 설정 */
+    border: none; /* 기본 테두리 제거 */
+    border-top: 1px solid #ccc; /* 얇은 구분선 */
+  }
+  #all p {
+    margin: 2px 0;
+    border: none;
+    margin-left: 5px;
+  }
+</style>
 
-          <h3>All</h3>
-          <input type="text" id="alltext"><button id="sendall">Send</button>
-          <div id="all"></div>
-
-        </div>
-      </div>
+<div id="chat-page">
+  <div class="chat-container">
+    <!-- 헤더 -->
+    <div class="chat-header">
+      <h2 id="chat-text">Chat</h2>
     </div>
+
+    <!-- 메시지 리스트 -->
+    <ul id="all" class="list-group message-list"></ul>
+
+    <!-- 메시지 입력 -->
+    <form id="messageForm" name="messageForm" class="form-group">
+      <div class="input-group clearfix">
+        <input
+                type="text"
+                id="alltext"
+                placeholder="Enter your message here"
+                autocomplete="off"
+                class="form-control"
+        />
+        <button id="sendall" type="button" class="btn btn-primary">Send</button>
+      </div>
+    </form>
   </div>
 </div>
+
+
+
+
 
 
 <!-- Back to Top -->
