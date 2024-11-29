@@ -69,7 +69,6 @@
                     <i class="fa fa-tachometer-alt me-2"></i>Main</a>
                 <a href="<c:url value="/chat"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chat</a>
                 <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>List</a>
-                <a href="<c:url value="/chart"/>" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                 <a href="<c:url value="/blank"/>" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Pages</a>
             </div>
         </nav>
