@@ -26,7 +26,6 @@ public class MainController {
     public String index(Model model) {
         model.addAttribute("center", "center");
         log.info("Start Index ,,,,,,");
-        return "index";
     }
 
     @RequestMapping("/main")
@@ -41,65 +40,6 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("button")
-    public String button(Model model) {
-        model.addAttribute("center", "center");
-        return "button";
-    }
-
-    @RequestMapping("/chart")
-    public String chart(Model model) {
-        model.addAttribute("center", "chart");
-        return "main";
-    }
-
-    @RequestMapping("element")
-    public String element(Model model) {
-        model.addAttribute("center", "center");
-        return "element";
-    }
-
-    @RequestMapping("errorpage")
-    public String errorpage(Model model) {
-        model.addAttribute("center", "center");
-        return "errorpage";
-    }
-
-    @RequestMapping("form")
-    public String form(Model model) {
-        model.addAttribute("center", "center");
-        return "form";
-    }
-
-    @RequestMapping("signin")
-    public String signin(Model model) {
-        model.addAttribute("center", "center");
-        return "signin";
-    }
-
-    @RequestMapping("signup")
-    public String signup(Model model) {
-        model.addAttribute("center", "center");
-        return "signup";
-    }
-
-    @RequestMapping("table")
-    public String table(Model model) {
-        model.addAttribute("center", "center");
-        return "table";
-    }
-
-    @RequestMapping("typography")
-    public String typography(Model model) {
-        model.addAttribute("center", "center");
-        return "typography";
-    }
-
-    @RequestMapping("widget")
-    public String widget(Model model) {
-        model.addAttribute("center", "center");
-        return "widget";
-    }
 
     @RequestMapping("/loginimpl")
     public String loginimpl(
