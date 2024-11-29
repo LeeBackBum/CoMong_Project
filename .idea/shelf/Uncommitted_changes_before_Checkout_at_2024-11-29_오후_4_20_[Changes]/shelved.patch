@@ -1,0 +1,1263 @@
+Index: user/src/main/java/edu/sm/controller/BoardController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sm.controller;\r\n\r\nimport edu.sm.app.dto.AnswerDto;\r\nimport edu.sm.app.dto.BoardDto;\r\nimport edu.sm.app.dto.NoticeDto;\r\nimport edu.sm.app.dto.UserDto;\r\nimport edu.sm.app.service.AnswerService;\r\nimport edu.sm.app.service.BoardService;\r\nimport edu.sm.app.service.NoticeService;\r\nimport jakarta.servlet.http.Cookie;\r\nimport jakarta.servlet.http.HttpServletRequest;\r\nimport jakarta.servlet.http.HttpServletResponse;\r\nimport jakarta.servlet.http.HttpSession;\r\nimport lombok.RequiredArgsConstructor;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.util.LinkedList;\r\nimport java.util.List;\r\n\r\n@Controller\r\n@Slf4j\r\n@RequestMapping(\"/board\")\r\n@RequiredArgsConstructor\r\npublic class BoardController {\r\n\r\n    private final BoardService boardService;\r\n    private final NoticeService noticeService;\r\n    private final AnswerService answerService;\r\n    private final String dir = \"board/\";\r\n\r\n    @GetMapping(\"\")\r\n    public String boardMain(Model model, HttpSession session,\r\n                            @RequestParam(value = \"page\", defaultValue = \"1\") int page,\r\n                            @RequestParam(value = \"size\", defaultValue = \"10\") int pageSize,\r\n                            @RequestParam(value = \"keyword\", required = false) String keyword) {\r\n        try {\r\n            List<NoticeDto> notices = noticeService.getAllNotices();\r\n            model.addAttribute(\"notices\", notices);\r\n\r\n            List<BoardDto> boards;\r\n            int totalPages;\r\n\r\n            if (keyword != null && !keyword.trim().isEmpty()) {\r\n                boards = boardService.searchBoards(keyword, page, pageSize);\r\n                int totalResults = boardService.getSearchResultCount(keyword);\r\n                totalPages = (int) Math.ceil((double) totalResults / pageSize);\r\n\r\n                LinkedList<String> searchHistory = (LinkedList<String>) session.getAttribute(\"searchHistory\");\r\n                if (searchHistory == null) {\r\n                    searchHistory = new LinkedList<>();\r\n                    session.setAttribute(\"searchHistory\", searchHistory);\r\n                }\r\n                if (!searchHistory.contains(keyword)) {\r\n                    searchHistory.addFirst(keyword);\r\n                    if (searchHistory.size() > 10) {\r\n                        searchHistory.removeLast();\r\n                    }\r\n                }\r\n            } else {\r\n                boards = boardService.getBoardsWithPagination(page, pageSize);\r\n                int totalBoardCount = boardService.getTotalBoardCount();\r\n                totalPages = (int) Math.ceil((double) totalBoardCount / pageSize);\r\n            }\r\n\r\n            model.addAttribute(\"boards\", boards);\r\n            model.addAttribute(\"currentPage\", page);\r\n            model.addAttribute(\"totalPages\", totalPages);\r\n            model.addAttribute(\"pageSize\", pageSize);\r\n            model.addAttribute(\"keyword\", keyword);\r\n            model.addAttribute(\"searchHistory\", session.getAttribute(\"searchHistory\"));\r\n\r\n        } catch (Exception e) {\r\n            log.error(\"게시판 데이터 로딩 실패\", e);\r\n        }\r\n\r\n        model.addAttribute(\"center\", dir + \"board\");\r\n        return \"index\";\r\n    }\r\n\r\n    @GetMapping(\"/{boardId}\")\r\n    public String detail(Model model, @PathVariable(\"boardId\") Integer boardId,\r\n                         HttpServletRequest request, HttpServletResponse response, HttpSession session) {\r\n        try {\r\n            boolean isViewed = false;\r\n            if (request.getCookies() != null) {\r\n                for (Cookie cookie : request.getCookies()) {\r\n                    if (cookie.getName().equals(\"viewed_\" + boardId)) {\r\n                        isViewed = true;\r\n                        break;\r\n                    }\r\n                }\r\n            }\r\n\r\n            if (!isViewed) {\r\n                boardService.increaseHits(boardId);\r\n                Cookie newCookie = new Cookie(\"viewed_\" + boardId, \"true\");\r\n                newCookie.setMaxAge(24 * 60 * 60);\r\n                response.addCookie(newCookie);\r\n            }\r\n\r\n            BoardDto board = boardService.get(boardId);\r\n            if (board == null) {\r\n                log.warn(\"존재하지 않는 게시글: boardId={}\", boardId);\r\n                return \"redirect:/board?error=not_found\";\r\n            }\r\n\r\n            List<AnswerDto> answers = answerService.getAnswersByBoardId(boardId);\r\n\r\n            // 현재 로그인된 사용자 정보를 추가로 JSP로 전달\r\n            UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n            model.addAttribute(\"user\", user);\r\n\r\n            model.addAttribute(\"board\", board);\r\n            model.addAttribute(\"answers\", answers);\r\n        } catch (Exception e) {\r\n            log.error(\"게시글 상세 조회 중 오류 발생\", e);\r\n            return \"redirect:/board?error=exception\";\r\n        }\r\n        model.addAttribute(\"center\", dir + \"detail\");\r\n        return \"index\";\r\n    }\r\n\r\n    @GetMapping(\"/write\")\r\n    public String writeForm(HttpSession session, Model model) {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n\r\n        if (user == null) {\r\n            log.warn(\"로그인되지 않은 사용자: 글쓰기 페이지 접근\");\r\n            model.addAttribute(\"center\", \"login\");\r\n            return \"index\";\r\n        }\r\n\r\n        model.addAttribute(\"userName\", user.getUserName());\r\n        model.addAttribute(\"boardDto\", new BoardDto());\r\n        model.addAttribute(\"center\", dir + \"write\");\r\n        return \"index\";\r\n    }\r\n\r\n    @PostMapping(\"/write\")\r\n    public String saveBoard(@ModelAttribute BoardDto boardDto, HttpSession session, Model model) {\r\n        try {\r\n            UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n\r\n            if (user == null) {\r\n                log.warn(\"로그인 정보 없음: 글 저장 불가\");\r\n                return \"redirect:/login?error=not_logged_in\";\r\n            }\r\n\r\n            boardDto.setUserId(user.getUserId());\r\n            boardDto.setUserName(user.getUserName());\r\n            boardService.add(boardDto);\r\n\r\n            log.info(\"게시글 저장 성공: {} (작성자: {})\", boardDto.getBoardTitle(), user.getUserName());\r\n        } catch (Exception e) {\r\n            log.error(\"글 저장 실패\", e);\r\n            model.addAttribute(\"center\", dir + \"write\");\r\n            model.addAttribute(\"errorMessage\", \"게시글 저장 중 문제가 발생했습니다.\");\r\n            return \"index\";\r\n        }\r\n        return \"redirect:/board\";\r\n    }\r\n\r\n    @GetMapping(\"/edit/{boardId}\")\r\n    public String editForm(@PathVariable(\"boardId\") Integer boardId, HttpSession session, Model model) throws Exception {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        if (user == null) {\r\n            log.warn(\"로그인되지 않은 사용자: 수정 페이지 접근\");\r\n            return \"redirect:/login?error=not_logged_in\";\r\n        }\r\n\r\n        BoardDto board = boardService.get(boardId);\r\n        if (board == null || (!user.getUserId().equals(board.getUserId()) && !\"1\".equals(user.getRole()))) {\r\n            log.warn(\"수정 권한 없음: 사용자 ID={}, 게시글 작성자 ID={}\", user.getUserId(), board.getUserId());\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n\r\n        model.addAttribute(\"boardDto\", board);\r\n        model.addAttribute(\"center\", dir + \"edit\");\r\n        return \"index\";\r\n    }\r\n\r\n    @PostMapping(\"/edit/{boardId}\")\r\n    public String updateBoard(@PathVariable(\"boardId\") Integer boardId, @ModelAttribute BoardDto boardDto) {\r\n        try {\r\n            // 기존 데이터 불러오기\r\n            BoardDto existingBoard = boardService.get(boardId);\r\n            if (existingBoard == null) {\r\n                log.warn(\"존재하지 않는 게시글: boardId={}\", boardId);\r\n                return \"redirect:/board?error=not_found\";\r\n            }\r\n\r\n            // 기존 데이터에 수정된 값만 업데이트\r\n            existingBoard.setBoardTitle(boardDto.getBoardTitle());\r\n            existingBoard.setBoardContent(boardDto.getBoardContent());\r\n\r\n            // 저장\r\n            boardService.modify(existingBoard);\r\n        } catch (Exception e) {\r\n            log.error(\"게시글 수정 실패\", e);\r\n            return \"redirect:/board?error=exception\";\r\n        }\r\n        return \"redirect:/board/\" + boardId;\r\n    }\r\n\r\n\r\n    @PostMapping(\"/delete/{boardId}\")\r\n    public String deleteBoard(@PathVariable(\"boardId\") Integer boardId, HttpSession session) throws Exception {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        BoardDto board = boardService.get(boardId);\r\n\r\n        if (user == null || board == null) {\r\n            log.warn(\"삭제 권한 없음: 사용자 또는 게시글 존재하지 않음\");\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n\r\n        // 작성자와 관리자 권한 확인\r\n        if (!user.getUserId().equals(board.getUserId()) && !\"1\".equals(user.getRole())) {\r\n            log.warn(\"삭제 권한 없음: 사용자 ID={}, 게시글 작성자 ID={}\", user.getUserId(), board.getUserId());\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n\r\n        try {\r\n            boardService.del(boardId);\r\n            log.info(\"게시글 삭제 성공: boardId={}\", boardId);\r\n        } catch (Exception e) {\r\n            log.error(\"게시글 삭제 실패\", e);\r\n            return \"redirect:/board?error=true\";\r\n        }\r\n        return \"redirect:/board\";\r\n    }\r\n\r\n   \r\n\r\n}\r\n
+===================================================================
+diff --git a/user/src/main/java/edu/sm/controller/BoardController.java b/user/src/main/java/edu/sm/controller/BoardController.java
+--- a/user/src/main/java/edu/sm/controller/BoardController.java	(revision 5ab7f992810c5153b07015ad2e9fad4ee259d9b3)
++++ b/user/src/main/java/edu/sm/controller/BoardController.java	(date 1732847213847)
+@@ -17,8 +17,10 @@
+ import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.*;
+ 
++import java.util.HashMap;
+ import java.util.LinkedList;
+ import java.util.List;
++import java.util.Map;
+ 
+ @Controller
+ @Slf4j
+@@ -26,212 +28,24 @@
+ @RequiredArgsConstructor
+ public class BoardController {
+ 
+-    private final BoardService boardService;
+-    private final NoticeService noticeService;
+-    private final AnswerService answerService;
+-    private final String dir = "board/";
+-
+     @GetMapping("")
+-    public String boardMain(Model model, HttpSession session,
+-                            @RequestParam(value = "page", defaultValue = "1") int page,
+-                            @RequestParam(value = "size", defaultValue = "10") int pageSize,
+-                            @RequestParam(value = "keyword", required = false) String keyword) {
+-        try {
+-            List<NoticeDto> notices = noticeService.getAllNotices();
+-            model.addAttribute("notices", notices);
+-
+-            List<BoardDto> boards;
+-            int totalPages;
+-
+-            if (keyword != null && !keyword.trim().isEmpty()) {
+-                boards = boardService.searchBoards(keyword, page, pageSize);
+-                int totalResults = boardService.getSearchResultCount(keyword);
+-                totalPages = (int) Math.ceil((double) totalResults / pageSize);
+-
+-                LinkedList<String> searchHistory = (LinkedList<String>) session.getAttribute("searchHistory");
+-                if (searchHistory == null) {
+-                    searchHistory = new LinkedList<>();
+-                    session.setAttribute("searchHistory", searchHistory);
+-                }
+-                if (!searchHistory.contains(keyword)) {
+-                    searchHistory.addFirst(keyword);
+-                    if (searchHistory.size() > 10) {
+-                        searchHistory.removeLast();
+-                    }
+-                }
+-            } else {
+-                boards = boardService.getBoardsWithPagination(page, pageSize);
+-                int totalBoardCount = boardService.getTotalBoardCount();
+-                totalPages = (int) Math.ceil((double) totalBoardCount / pageSize);
+-            }
+-
+-            model.addAttribute("boards", boards);
+-            model.addAttribute("currentPage", page);
+-            model.addAttribute("totalPages", totalPages);
+-            model.addAttribute("pageSize", pageSize);
+-            model.addAttribute("keyword", keyword);
+-            model.addAttribute("searchHistory", session.getAttribute("searchHistory"));
+-
+-        } catch (Exception e) {
+-            log.error("게시판 데이터 로딩 실패", e);
+-        }
+-
+-        model.addAttribute("center", dir + "board");
+-        return "index";
++    public String boardMain(Model model) {
++        model.addAttribute("center", "board/board");
++        return "index"; // 메인 템플릿에 "board/board" 뷰를 렌더링
+     }
+ 
+     @GetMapping("/{boardId}")
+-    public String detail(Model model, @PathVariable("boardId") Integer boardId,
+-                         HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+-        try {
+-            boolean isViewed = false;
+-            if (request.getCookies() != null) {
+-                for (Cookie cookie : request.getCookies()) {
+-                    if (cookie.getName().equals("viewed_" + boardId)) {
+-                        isViewed = true;
+-                        break;
+-                    }
+-                }
+-            }
+-
+-            if (!isViewed) {
+-                boardService.increaseHits(boardId);
+-                Cookie newCookie = new Cookie("viewed_" + boardId, "true");
+-                newCookie.setMaxAge(24 * 60 * 60);
+-                response.addCookie(newCookie);
+-            }
+-
+-            BoardDto board = boardService.get(boardId);
+-            if (board == null) {
+-                log.warn("존재하지 않는 게시글: boardId={}", boardId);
+-                return "redirect:/board?error=not_found";
+-            }
+-
+-            List<AnswerDto> answers = answerService.getAnswersByBoardId(boardId);
+-
+-            // 현재 로그인된 사용자 정보를 추가로 JSP로 전달
+-            UserDto user = (UserDto) session.getAttribute("loginid");
+-            model.addAttribute("user", user);
+-
+-            model.addAttribute("board", board);
+-            model.addAttribute("answers", answers);
+-        } catch (Exception e) {
+-            log.error("게시글 상세 조회 중 오류 발생", e);
+-            return "redirect:/board?error=exception";
+-        }
+-        model.addAttribute("center", dir + "detail");
+-        return "index";
++    public String detail(@PathVariable("boardId") Integer boardId, Model model) {
++        model.addAttribute("center", "board/detail");
++        return "index"; // 게시글 상세 페이지 템플릿 반환
+     }
+ 
+     @GetMapping("/write")
+     public String writeForm(HttpSession session, Model model) {
+         UserDto user = (UserDto) session.getAttribute("loginid");
+-
+-        if (user == null) {
+-            log.warn("로그인되지 않은 사용자: 글쓰기 페이지 접근");
+-            model.addAttribute("center", "login");
+-            return "index";
+-        }
+-
+-        model.addAttribute("userName", user.getUserName());
+-        model.addAttribute("boardDto", new BoardDto());
+-        model.addAttribute("center", dir + "write");
+-        return "index";
+-    }
+-
+-    @PostMapping("/write")
+-    public String saveBoard(@ModelAttribute BoardDto boardDto, HttpSession session, Model model) {
+-        try {
+-            UserDto user = (UserDto) session.getAttribute("loginid");
+-
+-            if (user == null) {
+-                log.warn("로그인 정보 없음: 글 저장 불가");
+-                return "redirect:/login?error=not_logged_in";
+-            }
+-
+-            boardDto.setUserId(user.getUserId());
+-            boardDto.setUserName(user.getUserName());
+-            boardService.add(boardDto);
+-
+-            log.info("게시글 저장 성공: {} (작성자: {})", boardDto.getBoardTitle(), user.getUserName());
+-        } catch (Exception e) {
+-            log.error("글 저장 실패", e);
+-            model.addAttribute("center", dir + "write");
+-            model.addAttribute("errorMessage", "게시글 저장 중 문제가 발생했습니다.");
+-            return "index";
+-        }
+-        return "redirect:/board";
+-    }
+-
+-    @GetMapping("/edit/{boardId}")
+-    public String editForm(@PathVariable("boardId") Integer boardId, HttpSession session, Model model) throws Exception {
+-        UserDto user = (UserDto) session.getAttribute("loginid");
+-        if (user == null) {
+-            log.warn("로그인되지 않은 사용자: 수정 페이지 접근");
+-            return "redirect:/login?error=not_logged_in";
+-        }
+-
+-        BoardDto board = boardService.get(boardId);
+-        if (board == null || (!user.getUserId().equals(board.getUserId()) && !"1".equals(user.getRole()))) {
+-            log.warn("수정 권한 없음: 사용자 ID={}, 게시글 작성자 ID={}", user.getUserId(), board.getUserId());
+-            return "redirect:/board?error=unauthorized";
+-        }
+-
+-        model.addAttribute("boardDto", board);
+-        model.addAttribute("center", dir + "edit");
+-        return "index";
+-    }
++        if (user == null) return "redirect:/login?error=not_logged_in"; // 로그인 확인
+ 
+-    @PostMapping("/edit/{boardId}")
+-    public String updateBoard(@PathVariable("boardId") Integer boardId, @ModelAttribute BoardDto boardDto) {
+-        try {
+-            // 기존 데이터 불러오기
+-            BoardDto existingBoard = boardService.get(boardId);
+-            if (existingBoard == null) {
+-                log.warn("존재하지 않는 게시글: boardId={}", boardId);
+-                return "redirect:/board?error=not_found";
+-            }
+-
+-            // 기존 데이터에 수정된 값만 업데이트
+-            existingBoard.setBoardTitle(boardDto.getBoardTitle());
+-            existingBoard.setBoardContent(boardDto.getBoardContent());
+-
+-            // 저장
+-            boardService.modify(existingBoard);
+-        } catch (Exception e) {
+-            log.error("게시글 수정 실패", e);
+-            return "redirect:/board?error=exception";
+-        }
+-        return "redirect:/board/" + boardId;
++        model.addAttribute("center", "board/write");
++        return "index"; // 글쓰기 페이지 템플릿 반환
+     }
+-
+-
+-    @PostMapping("/delete/{boardId}")
+-    public String deleteBoard(@PathVariable("boardId") Integer boardId, HttpSession session) throws Exception {
+-        UserDto user = (UserDto) session.getAttribute("loginid");
+-        BoardDto board = boardService.get(boardId);
+-
+-        if (user == null || board == null) {
+-            log.warn("삭제 권한 없음: 사용자 또는 게시글 존재하지 않음");
+-            return "redirect:/board?error=unauthorized";
+-        }
+-
+-        // 작성자와 관리자 권한 확인
+-        if (!user.getUserId().equals(board.getUserId()) && !"1".equals(user.getRole())) {
+-            log.warn("삭제 권한 없음: 사용자 ID={}, 게시글 작성자 ID={}", user.getUserId(), board.getUserId());
+-            return "redirect:/board?error=unauthorized";
+-        }
+-
+-        try {
+-            boardService.del(boardId);
+-            log.info("게시글 삭제 성공: boardId={}", boardId);
+-        } catch (Exception e) {
+-            log.error("게시글 삭제 실패", e);
+-            return "redirect:/board?error=true";
+-        }
+-        return "redirect:/board";
+-    }
+-
+-   
+-
+ }
+Index: user/src/main/java/edu/sm/controller/NoticeController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sm.controller;\r\n\r\nimport edu.sm.app.dto.NoticeDto;\r\nimport edu.sm.app.dto.UserDto;\r\nimport edu.sm.app.service.NoticeService;\r\nimport jakarta.servlet.http.HttpSession;\r\nimport lombok.RequiredArgsConstructor;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.time.LocalDateTime;\r\nimport java.time.format.DateTimeFormatter;\r\n\r\n@Controller\r\n@Slf4j\r\n@RequestMapping(\"/notice\")\r\n@RequiredArgsConstructor\r\npublic class NoticeController {\r\n\r\n    private final NoticeService noticeService;\r\n\r\n    private final String dir = \"notice/\"; // JSP 파일 경로 기본 설정\r\n\r\n    /**\r\n     * 공지사항 상세 페이지\r\n     */\r\n    @GetMapping(\"/{noticeId}\")\r\n    public String detail(Model model, @PathVariable(\"noticeId\") Integer noticeId) {\r\n        try {\r\n            NoticeDto notice = noticeService.get(noticeId);\r\n            if (notice == null) {\r\n                log.warn(\"존재하지 않는 공지사항: noticeId={}\", noticeId);\r\n                return \"redirect:/board?error=not_found\";\r\n            }\r\n            String formattedDate = notice.getNoticeDate().format(DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm\"));\r\n            model.addAttribute(\"notice\", notice);\r\n            model.addAttribute(\"formattedDate\", formattedDate);\r\n        } catch (Exception e) {\r\n            log.error(\"공지사항 상세 조회 실패: {}\", e.getMessage(), e);\r\n            return \"redirect:/board?error=exception\";\r\n        }\r\n\r\n        model.addAttribute(\"center\", dir + \"detail\");\r\n        return \"index\";\r\n    }\r\n\r\n    @GetMapping(\"/write\")\r\n    public String noticeWriteForm(HttpSession session, Model model) {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        if (user == null || !\"1\".equals(user.getRole())) {\r\n            log.warn(\"공지사항 작성 권한 없음\");\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n        model.addAttribute(\"center\", dir + \"write\");\r\n        return \"index\";\r\n    }\r\n\r\n    @PostMapping(\"/write\")\r\n    public String saveNotice(@ModelAttribute NoticeDto noticeDto, HttpSession session, Model model) {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        if (user == null || !\"1\".equals(user.getRole())) {\r\n            log.warn(\"공지사항 작성 권한 없음\");\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n        try {\r\n            noticeDto.setUserId(user.getUserId());\r\n            noticeDto.setUserName(user.getUserName());\r\n            noticeDto.setNoticeDate(LocalDateTime.now()); // 현재 시간을 작성일로 설정\r\n            noticeService.add(noticeDto);\r\n            log.info(\"공지사항 작성 성공: {}\", noticeDto.getNoticeTitle());\r\n        } catch (Exception e) {\r\n            log.error(\"공지사항 작성 실패: {}\", e.getMessage());\r\n            model.addAttribute(\"errorMessage\", \"공지사항 작성 중 오류가 발생했습니다. 다시 시도해주세요.\");\r\n            model.addAttribute(\"center\", dir + \"write\");\r\n            return \"index\";\r\n        }\r\n        return \"redirect:/board\";\r\n    }\r\n    @PostMapping(\"/delete/{noticeId}\")\r\n    public String deleteNotice(@PathVariable Integer noticeId, HttpSession session) {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        if (user == null || !\"1\".equals(user.getRole())) {\r\n            log.warn(\"공지사항 삭제 권한 없음\");\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n        try {\r\n            noticeService.del(noticeId);\r\n            log.info(\"공지사항 삭제 성공: noticeId={}\", noticeId);\r\n        } catch (Exception e) {\r\n            log.error(\"공지사항 삭제 실패: {}\", e.getMessage());\r\n            return \"redirect:/board?error=exception\";\r\n        }\r\n        return \"redirect:/board\";\r\n    }\r\n\r\n    // 수정 페이지 이동 (GET)\r\n    @GetMapping(\"/edit/{noticeId}\")\r\n    public String editNoticeForm(@PathVariable Integer noticeId, HttpSession session, Model model) {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        if (user == null || !\"1\".equals(user.getRole())) {\r\n            log.warn(\"공지사항 수정 권한 없음\");\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n\r\n        try {\r\n            NoticeDto notice = noticeService.get(noticeId);\r\n            if (notice == null) {\r\n                log.warn(\"존재하지 않는 공지사항: noticeId={}\", noticeId);\r\n                return \"redirect:/board?error=not_found\";\r\n            }\r\n            model.addAttribute(\"notice\", notice);\r\n            model.addAttribute(\"center\", dir + \"edit\"); // 수정 페이지 JSP 설정\r\n        } catch (Exception e) {\r\n            log.error(\"공지사항 수정 페이지 로딩 실패: {}\", e.getMessage());\r\n            return \"redirect:/board?error=exception\";\r\n        }\r\n        return \"index\";\r\n    }\r\n\r\n    // 수정 처리 (POST)\r\n    @PostMapping(\"/edit/{noticeId}\")\r\n    public String updateNotice(@PathVariable Integer noticeId, @ModelAttribute NoticeDto noticeDto, HttpSession session) {\r\n        UserDto user = (UserDto) session.getAttribute(\"loginid\");\r\n        if (user == null || !\"1\".equals(user.getRole())) {\r\n            log.warn(\"공지사항 수정 권한 없음\");\r\n            return \"redirect:/board?error=unauthorized\";\r\n        }\r\n\r\n        try {\r\n            // 기존 공지사항 가져오기\r\n            NoticeDto existingNotice = noticeService.get(noticeId);\r\n            if (existingNotice == null) {\r\n                log.warn(\"존재하지 않는 공지사항: noticeId={}\", noticeId);\r\n                return \"redirect:/board?error=not_found\";\r\n            }\r\n\r\n            // 기존 작성자와 작성시간 유지\r\n            noticeDto.setUserId(existingNotice.getUserId());\r\n            noticeDto.setUserName(existingNotice.getUserName());\r\n            noticeDto.setNoticeDate(existingNotice.getNoticeDate());\r\n            noticeDto.setNoticeId(noticeId); // 수정할 공지 ID 설정\r\n\r\n            // 수정 처리\r\n            noticeService.modify(noticeDto);\r\n            log.info(\"공지사항 수정 성공: {}\", noticeDto.getNoticeTitle());\r\n        } catch (Exception e) {\r\n            log.error(\"공지사항 수정 실패: {}\", e.getMessage());\r\n            return \"redirect:/board?error=exception\";\r\n        }\r\n        return \"redirect:/notice/\" + noticeId; // 수정 완료 후 상세 페이지로 리다이렉트\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/user/src/main/java/edu/sm/controller/NoticeController.java b/user/src/main/java/edu/sm/controller/NoticeController.java
+--- a/user/src/main/java/edu/sm/controller/NoticeController.java	(revision 5ab7f992810c5153b07015ad2e9fad4ee259d9b3)
++++ b/user/src/main/java/edu/sm/controller/NoticeController.java	(date 1732862849371)
+@@ -6,150 +6,96 @@
+ import jakarta.servlet.http.HttpSession;
+ import lombok.RequiredArgsConstructor;
+ import lombok.extern.slf4j.Slf4j;
+-import org.springframework.stereotype.Controller;
+-import org.springframework.ui.Model;
++import org.springframework.http.ResponseEntity;
+ import org.springframework.web.bind.annotation.*;
+ 
+ import java.time.LocalDateTime;
+-import java.time.format.DateTimeFormatter;
++import java.util.List;
+ 
+-@Controller
++@RestController
+ @Slf4j
+-@RequestMapping("/notice")
++@RequestMapping("/api/notice")
+ @RequiredArgsConstructor
+ public class NoticeController {
+ 
+     private final NoticeService noticeService;
+ 
+-    private final String dir = "notice/"; // JSP 파일 경로 기본 설정
+-
+-    /**
+-     * 공지사항 상세 페이지
+-     */
++    // 공지사항 상세 조회
+     @GetMapping("/{noticeId}")
+-    public String detail(Model model, @PathVariable("noticeId") Integer noticeId) {
++    public ResponseEntity<NoticeDto> getNotice(@PathVariable("noticeId") Integer noticeId) {
+         try {
+             NoticeDto notice = noticeService.get(noticeId);
+             if (notice == null) {
+-                log.warn("존재하지 않는 공지사항: noticeId={}", noticeId);
+-                return "redirect:/board?error=not_found";
++                return ResponseEntity.notFound().build();
+             }
+-            String formattedDate = notice.getNoticeDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+-            model.addAttribute("notice", notice);
+-            model.addAttribute("formattedDate", formattedDate);
++            return ResponseEntity.ok(notice);
+         } catch (Exception e) {
+-            log.error("공지사항 상세 조회 실패: {}", e.getMessage(), e);
+-            return "redirect:/board?error=exception";
++            log.error("공지사항 조회 실패: {}", e.getMessage(), e);
++            return ResponseEntity.internalServerError().build();
+         }
+-
+-        model.addAttribute("center", dir + "detail");
+-        return "index";
+     }
+ 
+-    @GetMapping("/write")
+-    public String noticeWriteForm(HttpSession session, Model model) {
+-        UserDto user = (UserDto) session.getAttribute("loginid");
+-        if (user == null || !"1".equals(user.getRole())) {
+-            log.warn("공지사항 작성 권한 없음");
+-            return "redirect:/board?error=unauthorized";
++    // 공지사항 리스트 조회
++    @GetMapping
++    public ResponseEntity<List<NoticeDto>> getAllNotices() {
++        try {
++            List<NoticeDto> notices = noticeService.getAllNotices();
++            return ResponseEntity.ok(notices);
++        } catch (Exception e) {
++            log.error("공지사항 리스트 조회 실패: {}", e.getMessage(), e);
++            return ResponseEntity.internalServerError().build();
+         }
+-        model.addAttribute("center", dir + "write");
+-        return "index";
+     }
+ 
+-    @PostMapping("/write")
+-    public String saveNotice(@ModelAttribute NoticeDto noticeDto, HttpSession session, Model model) {
++    // 공지사항 작성
++    @PostMapping
++    public ResponseEntity<Void> createNotice(@RequestBody NoticeDto noticeDto, HttpSession session) {
+         UserDto user = (UserDto) session.getAttribute("loginid");
+         if (user == null || !"1".equals(user.getRole())) {
+-            log.warn("공지사항 작성 권한 없음");
+-            return "redirect:/board?error=unauthorized";
++            return ResponseEntity.status(403).build();
+         }
+         try {
+             noticeDto.setUserId(user.getUserId());
+             noticeDto.setUserName(user.getUserName());
+-            noticeDto.setNoticeDate(LocalDateTime.now()); // 현재 시간을 작성일로 설정
++            noticeDto.setNoticeDate(LocalDateTime.now());
+             noticeService.add(noticeDto);
+-            log.info("공지사항 작성 성공: {}", noticeDto.getNoticeTitle());
+-        } catch (Exception e) {
+-            log.error("공지사항 작성 실패: {}", e.getMessage());
+-            model.addAttribute("errorMessage", "공지사항 작성 중 오류가 발생했습니다. 다시 시도해주세요.");
+-            model.addAttribute("center", dir + "write");
+-            return "index";
+-        }
+-        return "redirect:/board";
+-    }
+-    @PostMapping("/delete/{noticeId}")
+-    public String deleteNotice(@PathVariable Integer noticeId, HttpSession session) {
+-        UserDto user = (UserDto) session.getAttribute("loginid");
+-        if (user == null || !"1".equals(user.getRole())) {
+-            log.warn("공지사항 삭제 권한 없음");
+-            return "redirect:/board?error=unauthorized";
+-        }
+-        try {
+-            noticeService.del(noticeId);
+-            log.info("공지사항 삭제 성공: noticeId={}", noticeId);
++            return ResponseEntity.ok().build();
+         } catch (Exception e) {
+-            log.error("공지사항 삭제 실패: {}", e.getMessage());
+-            return "redirect:/board?error=exception";
++            log.error("공지사항 작성 실패: {}", e.getMessage(), e);
++            return ResponseEntity.internalServerError().build();
+         }
+-        return "redirect:/board";
+     }
+ 
+-    // 수정 페이지 이동 (GET)
+-    @GetMapping("/edit/{noticeId}")
+-    public String editNoticeForm(@PathVariable Integer noticeId, HttpSession session, Model model) {
++    // 공지사항 수정
++    @PutMapping("/{noticeId}")
++    public ResponseEntity<Void> updateNotice(@PathVariable Integer noticeId, @RequestBody NoticeDto noticeDto, HttpSession session) {
+         UserDto user = (UserDto) session.getAttribute("loginid");
+         if (user == null || !"1".equals(user.getRole())) {
+-            log.warn("공지사항 수정 권한 없음");
+-            return "redirect:/board?error=unauthorized";
++            return ResponseEntity.status(403).build();
+         }
+-
+         try {
+-            NoticeDto notice = noticeService.get(noticeId);
+-            if (notice == null) {
+-                log.warn("존재하지 않는 공지사항: noticeId={}", noticeId);
+-                return "redirect:/board?error=not_found";
+-            }
+-            model.addAttribute("notice", notice);
+-            model.addAttribute("center", dir + "edit"); // 수정 페이지 JSP 설정
++            noticeDto.setNoticeId(noticeId);
++            noticeService.modify(noticeDto);
++            return ResponseEntity.ok().build();
+         } catch (Exception e) {
+-            log.error("공지사항 수정 페이지 로딩 실패: {}", e.getMessage());
+-            return "redirect:/board?error=exception";
++            log.error("공지사항 수정 실패: {}", e.getMessage(), e);
++            return ResponseEntity.internalServerError().build();
+         }
+-        return "index";
+     }
+ 
+-    // 수정 처리 (POST)
+-    @PostMapping("/edit/{noticeId}")
+-    public String updateNotice(@PathVariable Integer noticeId, @ModelAttribute NoticeDto noticeDto, HttpSession session) {
++    // 공지사항 삭제
++    @DeleteMapping("/{noticeId}")
++    public ResponseEntity<Void> deleteNotice(@PathVariable Integer noticeId, HttpSession session) {
+         UserDto user = (UserDto) session.getAttribute("loginid");
+         if (user == null || !"1".equals(user.getRole())) {
+-            log.warn("공지사항 수정 권한 없음");
+-            return "redirect:/board?error=unauthorized";
++            return ResponseEntity.status(403).build();
+         }
+-
+         try {
+-            // 기존 공지사항 가져오기
+-            NoticeDto existingNotice = noticeService.get(noticeId);
+-            if (existingNotice == null) {
+-                log.warn("존재하지 않는 공지사항: noticeId={}", noticeId);
+-                return "redirect:/board?error=not_found";
+-            }
+-
+-            // 기존 작성자와 작성시간 유지
+-            noticeDto.setUserId(existingNotice.getUserId());
+-            noticeDto.setUserName(existingNotice.getUserName());
+-            noticeDto.setNoticeDate(existingNotice.getNoticeDate());
+-            noticeDto.setNoticeId(noticeId); // 수정할 공지 ID 설정
+-
+-            // 수정 처리
+-            noticeService.modify(noticeDto);
+-            log.info("공지사항 수정 성공: {}", noticeDto.getNoticeTitle());
++            noticeService.del(noticeId);
++            return ResponseEntity.ok().build();
+         } catch (Exception e) {
+-            log.error("공지사항 수정 실패: {}", e.getMessage());
+-            return "redirect:/board?error=exception";
++            log.error("공지사항 삭제 실패: {}", e.getMessage(), e);
++            return ResponseEntity.internalServerError().build();
+         }
+-        return "redirect:/notice/" + noticeId; // 수정 완료 후 상세 페이지로 리다이렉트
+     }
+-
+ }
+Index: user/src/main/webapp/views/board/board.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"utf-8\">\r\n  <title>게시판 - eLearning HTML Template</title>\r\n  <meta content=\"width=device-width, initial-scale=1.0\" name=\"viewport\">\r\n  <meta content=\"\" name=\"keywords\">\r\n  <meta content=\"\" name=\"description\">\r\n\r\n  <!-- Favicon -->\r\n  <link href=\"<c:url value='/img/favicon.ico'/>\" rel=\"icon\">\r\n\r\n  <!-- Google Web Fonts -->\r\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n  <link href=\"https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap\" rel=\"stylesheet\">\r\n\r\n  <!-- Icon Font Stylesheet -->\r\n  <link href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css\" rel=\"stylesheet\">\r\n  <link href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css\" rel=\"stylesheet\">\r\n\r\n  <!-- Libraries Stylesheet -->\r\n  <link href=\"<c:url value='/lib/animate/animate.min.css'/>\" rel=\"stylesheet\">\r\n  <link href=\"<c:url value='/lib/owlcarousel/assets/owl.carousel.min.css'/>\" rel=\"stylesheet\">\r\n\r\n  <!-- Customized Bootstrap Stylesheet -->\r\n  <link href=\"<c:url value='/css/bootstrap.min.css'/>\" rel=\"stylesheet\">\r\n\r\n  <!-- Template Stylesheet -->\r\n  <link href=\"<c:url value='/css/style.css'/>\" rel=\"stylesheet\">\r\n</head>\r\n\r\n<body>\r\n\r\n<!-- Header Start -->\r\n<div class=\"container-fluid bg-primary py-5 mb-5 page-header\">\r\n  <div class=\"container py-5\">\r\n    <div class=\"row justify-content-center\">\r\n      <div class=\"col-lg-10 text-center\">\r\n        <h1 class=\"display-3 text-white animated slideInDown\">SM Korea</h1>\r\n        <nav aria-label=\"breadcrumb\">\r\n          <ol class=\"breadcrumb justify-content-center\">\r\n            <li class=\"breadcrumb-item\"><a class=\"text-white\" href=\"#\">Home</a></li>\r\n            <li class=\"breadcrumb-item text-white active\" aria-current=\"page\">Board</li>\r\n          </ol>\r\n        </nav>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- Header End -->\r\n\r\n<!-- Board Start -->\r\n<div class=\"container mt-5\">\r\n  <h3 class=\"ui dividing header\">게시판</h3>\r\n\r\n  <!-- 공지 작성 버튼 (role이 1인 사용자만 표시) -->\r\n  <c:if test=\"${sessionScope.loginid != null && sessionScope.loginid.role == '1'}\">\r\n    <a href=\"<c:url value='/notice/write' />\" class=\"btn btn-success\">공지 작성</a>\r\n  </c:if>\r\n\r\n  <!-- 글쓰기 버튼 (role이 0 또는 1인 사용자 표시) -->\r\n<%--  <c:if test=\"${user.role == '1' || user.role == '0'}\">--%>\r\n    <a href=\"<c:url value='/board/write' />\" class=\"btn btn-primary\">글쓰기</a>\r\n<%--  </c:if>--%>\r\n\r\n  <!-- 검색 폼 -->\r\n  <form action=\"<c:url value='/board' />\" method=\"get\" class=\"d-flex mb-3\">\r\n    <input type=\"text\" name=\"keyword\" class=\"form-control me-2\" placeholder=\"제목 또는 내용 검색\" value=\"${keyword}\">\r\n    <button type=\"submit\" class=\"btn btn-primary\">검색</button>\r\n  </form>\r\n\r\n  <table class=\"table\">\r\n    <thead>\r\n    <tr>\r\n      <th>번호</th>\r\n      <th>제목</th>\r\n      <th>작성자</th>\r\n      <th>작성일</th>\r\n      <th>조회수</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <!-- 공지사항 출력 -->\r\n    <c:forEach var=\"notice\" items=\"${notices}\">\r\n      <tr>\r\n        <td>${notice.noticeId}</td>\r\n        <td><strong>[공지]</strong> <a href=\"<c:url value='/notice/${notice.noticeId}' />\">${notice.noticeTitle}</a></td>\r\n        <td>${notice.userName}</td>\r\n        <td>${notice.noticeDate}</td>\r\n        <td>${notice.noticeHits}</td>\r\n      </tr>\r\n    </c:forEach>\r\n    <!-- 일반 게시글 출력 -->\r\n    <c:forEach var=\"board\" items=\"${boards}\">\r\n      <tr>\r\n        <td>${board.boardId}</td>\r\n        <td><a href=\"<c:url value='/board/${board.boardId}' />\">${board.boardTitle}</a></td>\r\n        <td>${board.userName}</td>\r\n        <td>${board.boardDate}</td>\r\n        <td>${board.boardHits}</td>\r\n      </tr>\r\n    </c:forEach>\r\n    </tbody>\r\n  </table>\r\n\r\n  <!-- 글쓰기 버튼 및 Pagination -->\r\n  <div class=\"d-flex justify-content-between align-items-center mt-4\">\r\n    <!-- Pagination -->\r\n    <div class=\"pagination d-flex justify-content-center\">\r\n      <c:if test=\"${currentPage > 1}\">\r\n        <a href=\"?page=${currentPage - 1}&size=${pageSize}&keyword=${keyword}\" class=\"btn btn-secondary mx-1\">이전</a>\r\n      </c:if>\r\n\r\n      <c:forEach var=\"i\" begin=\"1\" end=\"${totalPages}\">\r\n        <a href=\"?page=${i}&size=${pageSize}&keyword=${keyword}\" class=\"btn mx-1 ${i == currentPage ? 'btn-primary' : 'btn-light'}\">${i}</a>\r\n      </c:forEach>\r\n\r\n      <c:if test=\"${currentPage < totalPages}\">\r\n        <a href=\"?page=${currentPage + 1}&size=${pageSize}&keyword=${keyword}\" class=\"btn btn-secondary mx-1\">다음</a>\r\n      </c:if>\r\n    </div>\r\n  </div>\r\n</div>\r\n<!-- Board End -->\r\n\r\n\r\n\r\n<!-- Back to Top -->\r\n<a href=\"#\" class=\"btn btn-lg btn-primary btn-lg-square back-to-top\"><i class=\"bi bi-arrow-up\"></i></a>\r\n\r\n<!-- JavaScript Libraries -->\r\n<script src=\"https://code.jquery.com/jquery-3.4.1.min.js\"></script>\r\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js\"></script>\r\n<script src=\"<c:url value='/lib/wow/wow.min.js'/>\"></script>\r\n<script src=\"<c:url value='/lib/easing/easing.min.js'/>\"></script>\r\n<script src=\"<c:url value='/lib/waypoints/waypoints.min.js'/>\"></script>\r\n<script src=\"<c:url value='/lib/owlcarousel/owl.carousel.min.js'/>\"></script>\r\n\r\n<!-- Template Javascript -->\r\n<script src=\"<c:url value='/js/main.js'/>\"></script>\r\n</body>\r\n</html>\r\n
+===================================================================
+diff --git a/user/src/main/webapp/views/board/board.jsp b/user/src/main/webapp/views/board/board.jsp
+--- a/user/src/main/webapp/views/board/board.jsp	(revision 5ab7f992810c5153b07015ad2e9fad4ee259d9b3)
++++ b/user/src/main/webapp/views/board/board.jsp	(date 1732862929360)
+@@ -1,37 +1,18 @@
++<%@ page import="edu.sm.app.dto.BoardDto" %>
++<%@ page import="java.util.List" %>
+ <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="utf-8">
+-  <title>게시판 - eLearning HTML Template</title>
++  <title>게시판</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+-  <meta content="" name="keywords">
+-  <meta content="" name="description">
+ 
+   <!-- Favicon -->
+-  <link href="<c:url value='/img/favicon.ico'/>" rel="icon">
+-
+-  <!-- Google Web Fonts -->
+-  <link rel="preconnect" href="https://fonts.googleapis.com">
+-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+-
+-  <!-- Icon Font Stylesheet -->
+-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+-
+-  <!-- Libraries Stylesheet -->
+-  <link href="<c:url value='/lib/animate/animate.min.css'/>" rel="stylesheet">
+-  <link href="<c:url value='/lib/owlcarousel/assets/owl.carousel.min.css'/>" rel="stylesheet">
+-
+-  <!-- Customized Bootstrap Stylesheet -->
+-  <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+-
+-  <!-- Template Stylesheet -->
+-  <link href="<c:url value='/css/style.css'/>" rel="stylesheet">
++  <link href="/img/favicon.ico" rel="icon">
++  <link href="/css/bootstrap.min.css" rel="stylesheet">
++  <link href="/css/style.css" rel="stylesheet">
+ </head>
+-
+ <body>
+ 
+ <!-- Header Start -->
+@@ -39,10 +20,10 @@
+   <div class="container py-5">
+     <div class="row justify-content-center">
+       <div class="col-lg-10 text-center">
+-        <h1 class="display-3 text-white animated slideInDown">SM Korea</h1>
++        <h1 class="display-3 text-white">게시판</h1>
+         <nav aria-label="breadcrumb">
+           <ol class="breadcrumb justify-content-center">
+-            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
++            <li class="breadcrumb-item"><a class="text-white" href="/">Home</a></li>
+             <li class="breadcrumb-item text-white active" aria-current="page">Board</li>
+           </ol>
+         </nav>
+@@ -54,24 +35,18 @@
+ 
+ <!-- Board Start -->
+ <div class="container mt-5">
+-  <h3 class="ui dividing header">게시판</h3>
+-
+-  <!-- 공지 작성 버튼 (role이 1인 사용자만 표시) -->
+-  <c:if test="${sessionScope.loginid != null && sessionScope.loginid.role == '1'}">
+-    <a href="<c:url value='/notice/write' />" class="btn btn-success">공지 작성</a>
+-  </c:if>
+-
+-  <!-- 글쓰기 버튼 (role이 0 또는 1인 사용자 표시) -->
+-<%--  <c:if test="${user.role == '1' || user.role == '0'}">--%>
+-    <a href="<c:url value='/board/write' />" class="btn btn-primary">글쓰기</a>
+-<%--  </c:if>--%>
++  <h3 class="mb-3">게시판</h3>
+ 
+   <!-- 검색 폼 -->
+-  <form action="<c:url value='/board' />" method="get" class="d-flex mb-3">
+-    <input type="text" name="keyword" class="form-control me-2" placeholder="제목 또는 내용 검색" value="${keyword}">
++  <form id="searchForm" class="d-flex mb-3">
++    <input type="text" id="searchKeyword" class="form-control me-2" placeholder="제목 또는 내용 검색">
+     <button type="submit" class="btn btn-primary">검색</button>
+   </form>
+ 
++  <!-- 글쓰기 버튼 -->
++  <button id="writeBtn" class="btn btn-success mb-3">글쓰기</button>
++
++  <!-- 게시글 테이블 -->
+   <table class="table">
+     <thead>
+     <tr>
+@@ -80,66 +55,214 @@
+       <th>작성자</th>
+       <th>작성일</th>
+       <th>조회수</th>
++      <th>공지 여부</th>
+     </tr>
+     </thead>
+-    <tbody>
+-    <!-- 공지사항 출력 -->
+-    <c:forEach var="notice" items="${notices}">
+-      <tr>
+-        <td>${notice.noticeId}</td>
+-        <td><strong>[공지]</strong> <a href="<c:url value='/notice/${notice.noticeId}' />">${notice.noticeTitle}</a></td>
+-        <td>${notice.userName}</td>
+-        <td>${notice.noticeDate}</td>
+-        <td>${notice.noticeHits}</td>
+-      </tr>
+-    </c:forEach>
+-    <!-- 일반 게시글 출력 -->
+-    <c:forEach var="board" items="${boards}">
+-      <tr>
+-        <td>${board.boardId}</td>
+-        <td><a href="<c:url value='/board/${board.boardId}' />">${board.boardTitle}</a></td>
+-        <td>${board.userName}</td>
+-        <td>${board.boardDate}</td>
+-        <td>${board.boardHits}</td>
+-      </tr>
+-    </c:forEach>
++    <tbody id="boardTableBody">
++    <%
++      List<BoardDto> boards = (List<BoardDto>) request.getAttribute("boards");
++      if (boards != null && !boards.isEmpty()) {
++        for (BoardDto board : boards) {
++    %>
++    <tr>
++      <td><%= board.getBoardId() %></td>
++      <td><a href="/board/<%= board.getBoardId() %>"><%= board.getBoardTitle() %></a></td>
++      <td><%= board.getUserName() %></td>
++      <td><%= board.getBoardDate() %></td>
++      <td><%= board.getBoardHits() %></td>
++      <td>
++        <% if ("notice".equals(board.getIsNotice())) { %>
++        <span class="badge bg-success">공지</span>
++        <% } else { %>
++        <span class="badge bg-secondary">일반</span>
++        <% } %>
++      </td>
++    </tr>
++    <%
++      }
++    } else {
++    %>
++    <tr>
++      <td colspan="6">게시글이 없습니다.</td>
++    </tr>
++    <% } %>
+     </tbody>
+   </table>
+ 
+-  <!-- 글쓰기 버튼 및 Pagination -->
+-  <div class="d-flex justify-content-between align-items-center mt-4">
+-    <!-- Pagination -->
+-    <div class="pagination d-flex justify-content-center">
+-      <c:if test="${currentPage > 1}">
+-        <a href="?page=${currentPage - 1}&size=${pageSize}&keyword=${keyword}" class="btn btn-secondary mx-1">이전</a>
+-      </c:if>
+-
+-      <c:forEach var="i" begin="1" end="${totalPages}">
+-        <a href="?page=${i}&size=${pageSize}&keyword=${keyword}" class="btn mx-1 ${i == currentPage ? 'btn-primary' : 'btn-light'}">${i}</a>
+-      </c:forEach>
+-
+-      <c:if test="${currentPage < totalPages}">
+-        <a href="?page=${currentPage + 1}&size=${pageSize}&keyword=${keyword}" class="btn btn-secondary mx-1">다음</a>
+-      </c:if>
+-    </div>
+-  </div>
++  <!-- 페이지네이션 -->
++  <div id="paginationContainer" class="d-flex justify-content-center"></div>
+ </div>
+ <!-- Board End -->
+ 
+-
+-
+-<!-- Back to Top -->
+-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+-
+ <!-- JavaScript Libraries -->
+-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
++<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+-<script src="<c:url value='/lib/wow/wow.min.js'/>"></script>
+-<script src="<c:url value='/lib/easing/easing.min.js'/>"></script>
+-<script src="<c:url value='/lib/waypoints/waypoints.min.js'/>"></script>
+-<script src="<c:url value='/lib/owlcarousel/owl.carousel.min.js'/>"></script>
++
++<!-- Board JavaScript -->
++<script>
++  $(document).ready(function () {
++    loadBoardData();
++    $("#writeBtn").click(function () {
++      location.href = "/board/write";
++    });
++    $("#searchForm").submit(function (event) {
++      event.preventDefault();
++      const keyword = $("#searchKeyword").val().trim();
++      loadBoardData(keyword, 1);
++    });
++  });
++
++  function loadBoardData(keyword = '', page = 1) {
++    $.ajax({
++      url: "/api/board/list",
++      method: "GET",
++      data: { keyword, page, size: 10 },
++      success: function (response) {
++        renderBoardTable(response.boards);
++        renderPagination(response.currentPage, response.totalPages, keyword);
++      },
++      error: function (xhr) {
++        alert("게시글 데이터를 불러오는 데 실패했습니다.");
++      }
++    });
++  }
++
++  function renderBoardTable(boards) {
++    const tableBody = $("#boardTableBody");
++    tableBody.empty();
++
++    if (!boards || boards.length == 0) {
++      tableBody.append("<tr><td colspan='6'>게시글이 없습니다.</td></tr>");
++      return;
++    }
++
++    boards.forEach(board => {
++      const boardDate = board.boardDate ? new Date(board.boardDate).toLocaleString() : "N/A";
++      const isNoticeBadge = board.isNotice == 'notice'
++              ? '<span class="badge bg-success">공지</span>'
++              : '<span class="badge bg-secondary">일반</span>';
++      tableBody.append(`
++        <tr>
++          <td>${board.boardId || "N/A"}</td>
++          <td><a href="/board/${board.boardId}">${board.boardTitle || "제목 없음"}</a></td>
++          <td>${board.userName || "익명"}</td>
++          <td>${boardDate}</td>
++          <td>${board.boardHits || 0}</td>
++          <td>${isNoticeBadge}</td>
++        </tr>
++      `);
++    });
++  }
++
++  function renderPagination(currentPage, totalPages, keyword) {
++    const container = $("#paginationContainer");
++    container.empty();
++    if (totalPages == 0) return;
++    if (currentPage > 1) {
++      container.append(`<button class="btn btn-secondary mx-1" onclick="loadBoardData('${keyword}', ${currentPage - 1})">이전</button>`);
++    }
++    for (let i = 1; i <= totalPages; i++) {
++      container.append(`<button class="btn mx-1 ${i == currentPage ? 'btn-primary' : 'btn-light'}" onclick="loadBoardData('${keyword}', ${i})">${i}</button>`);
++    }
++    if (currentPage < totalPages) {
++      container.append(`<button class="btn btn-secondary mx-1" onclick="loadBoardData('${keyword}', ${currentPage + 1})">다음</button>`);
++    }
++  }
++
+ 
+-<!-- Template Javascript -->
+-<script src="<c:url value='/js/main.js'/>"></script>
++
++
++  // 공지사항 리스트 불러오기
++  function loadNotices() {
++    $.ajax({
++      url: "/api/notice",
++      method: "GET",
++      success: function (notices) {
++        const tbody = $("#noticeTableBody");
++        tbody.empty();
++
++        if (notices.length === 0) {
++          tbody.append("<tr><td colspan='5'>공지사항이 없습니다.</td></tr>");
++        } else {
++          notices.forEach((notice) => {
++            tbody.append(`
++              <tr>
++                <td>${notice.noticeId}</td>
++                <td><a href="#" onclick="viewNotice(${notice.noticeId})">${notice.noticeTitle}</a></td>
++                <td>${notice.userName}</td>
++                <td>${new Date(notice.noticeDate).toLocaleString()}</td>
++                <td>${notice.noticeHits}</td>
++              </tr>
++            `);
++          });
++        }
++      },
++      error: function () {
++        alert("공지사항 데이터를 불러오는 데 실패했습니다.");
++      },
++    });
++  }
++
++  // 공지사항 상세 조회
++  function viewNotice(noticeId) {
++    $.ajax({
++      url: `/api/notice/${noticeId}`,
++      method: "GET",
++      success: function (notice) {
++        $("#noticeTitle").text(notice.noticeTitle);
++        $("#noticeContent").text(notice.noticeContent);
++        $("#noticeDate").text(new Date(notice.noticeDate).toLocaleString());
++        $("#noticeModal").modal("show");
++      },
++      error: function () {
++        alert("공지사항 데이터를 불러오는 데 실패했습니다.");
++      },
++    });
++  }
++
++  // 공지사항 작성
++  function createNotice() {
++    const data = {
++      noticeTitle: $("#newNoticeTitle").val(),
++      noticeContent: $("#newNoticeContent").val(),
++    };
++
++    $.ajax({
++      url: "/api/notice",
++      method: "POST",
++      contentType: "application/json",
++      data: JSON.stringify(data),
++      success: function () {
++        alert("공지사항이 등록되었습니다.");
++        loadNotices();
++      },
++      error: function () {
++        alert("공지사항 등록 중 오류가 발생했습니다.");
++      },
++    });
++  }
++
++  // 공지사항 삭제
++  function deleteNotice(noticeId) {
++    if (confirm("정말 삭제하시겠습니까?")) {
++      $.ajax({
++        url: `/api/notice/${noticeId}`,
++        method: "DELETE",
++        success: function () {
++          alert("공지사항이 삭제되었습니다.");
++          loadNotices();
++        },
++        error: function () {
++          alert("공지사항 삭제 중 오류가 발생했습니다.");
++        },
++      });
++    }
++  }
++
++  // 페이지 로드 시 공지사항 불러오기
++  $(document).ready(function () {
++    loadNotices();
++  });
++</script>
+ </body>
+ </html>
+Index: user/src/main/resources/mapper/boardMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<!DOCTYPE mapper\r\n        PUBLIC \"-//mybatis.org/DTD Mapper 3.0//EN\"\r\n        \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\"edu.sm.app.repository.BoardRepository\">\r\n\r\n    <!-- 단일 게시글 조회 -->\r\n    <select id=\"selectOne\" parameterType=\"int\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n        board_title AS boardTitle,\r\n        board_content AS boardContent,\r\n        board_date AS boardDate,\r\n        board_update AS boardUpdate,\r\n        board_hits AS boardHits,\r\n        board_answer_num AS boardAnswerNum,\r\n        user_id AS userId,\r\n        user_name AS userName, <!-- 작성자 이름 -->\r\n        is_notice AS isNotice\r\n        FROM board\r\n        WHERE board_id = #{boardId};\r\n    </select>\r\n\r\n    <!-- 모든 게시글 조회 (공지 포함) -->\r\n    <select id=\"select\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n        board_title AS boardTitle,\r\n        board_content AS boardContent,\r\n        board_date AS boardDate,\r\n        board_update AS boardUpdate,\r\n        board_hits AS boardHits,\r\n        board_answer_num AS boardAnswerNum,\r\n        user_id AS userId,\r\n        user_name AS userName, <!-- 작성자 이름 -->\r\n        is_notice AS isNotice\r\n        FROM board\r\n        ORDER BY is_notice DESC, board_date DESC;\r\n    </select>\r\n\r\n    <!-- 페이징을 위한 게시글 조회 -->\r\n    <select id=\"selectBoardsWithPagination\" parameterType=\"map\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n        board_title AS boardTitle,\r\n        board_content AS boardContent,\r\n        board_date AS boardDate,\r\n        board_update AS boardUpdate,\r\n        board_hits AS boardHits,\r\n        board_answer_num AS boardAnswerNum,\r\n        user_id AS userId,\r\n        user_name AS userName, <!-- 작성자 이름 -->\r\n        is_notice AS isNotice\r\n        FROM board\r\n        ORDER BY is_notice DESC, board_date DESC\r\n        LIMIT #{offset}, #{pageSize};\r\n    </select>\r\n\r\n    <!-- 총 게시글 수 조회 -->\r\n    <select id=\"countTotalBoards\" resultType=\"int\">\r\n        SELECT COUNT(*) FROM board;\r\n    </select>\r\n\r\n    <!-- 게시글 삽입 -->\r\n    <insert id=\"insert\" parameterType=\"edu.sm.app.dto.BoardDto\">\r\n        INSERT INTO board (board_title, board_content, board_date, board_hits, user_id, user_name)\r\n        VALUES (#{boardTitle}, #{boardContent}, NOW(), 0, #{userId}, #{userName});\r\n    </insert>\r\n\r\n    <!-- 게시글 수정 -->\r\n    <update id=\"update\" parameterType=\"edu.sm.app.dto.BoardDto\">\r\n        UPDATE board\r\n        SET board_title = #{boardTitle},\r\n        board_content = #{boardContent},\r\n        board_update = #{boardUpdate},\r\n        board_hits = #{boardHits},\r\n        board_answer_num = #{boardAnswerNum},\r\n        user_id = #{userId},\r\n        user_name = #{userName}, <!-- 작성자 이름 -->\r\n        is_notice = #{isNotice}\r\n        WHERE board_id = #{boardId};\r\n    </update>\r\n\r\n    <!-- 조회수 증가 -->\r\n    <update id=\"increaseHits\" parameterType=\"int\">\r\n        UPDATE board\r\n        SET board_hits = board_hits + 1\r\n        WHERE board_id = #{boardId};\r\n    </update>\r\n\r\n    <!-- 게시글 삭제 -->\r\n    <delete id=\"delete\" parameterType=\"int\">\r\n        DELETE FROM board WHERE board_id = #{boardId};\r\n    </delete>\r\n\r\n    <!-- 공지사항만 가져오기 -->\r\n    <select id=\"selectNotices\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n        board_title AS boardTitle,\r\n        board_content AS boardContent,\r\n        board_date AS boardDate,\r\n        board_update AS boardUpdate,\r\n        board_hits AS boardHits,\r\n        board_answer_num AS boardAnswerNum,\r\n        user_id AS userId,\r\n        user_name AS userName, <!-- 작성자 이름 -->\r\n        is_notice AS isNotice\r\n        FROM board\r\n        WHERE is_notice = 1\r\n        ORDER BY board_date DESC;\r\n    </select>\r\n\r\n    <!-- 일반 게시글만 가져오기 -->\r\n    <select id=\"selectGeneralBoards\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n        board_title AS boardTitle,\r\n        board_content AS boardContent,\r\n        board_date AS boardDate,\r\n        board_update AS boardUpdate,\r\n        board_hits AS boardHits,\r\n        board_answer_num AS boardAnswerNum,\r\n        user_id AS userId,\r\n        user_name AS userName, <!-- 작성자 이름 -->\r\n        is_notice AS isNotice\r\n        FROM board\r\n        WHERE is_notice = 0\r\n        ORDER BY board_date DESC;\r\n    </select>\r\n\r\n    <!-- 제목 또는 내용으로 게시글 검색 -->\r\n    <select id=\"searchBoards\" parameterType=\"map\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n        board_title AS boardTitle,\r\n        board_content AS boardContent,\r\n        board_date AS boardDate,\r\n        board_hits AS boardHits,\r\n        user_id AS userId,\r\n        user_name AS userName <!-- 작성자 이름 -->\r\n        FROM board\r\n        WHERE board_title LIKE CONCAT('%', #{keyword}, '%')\r\n        OR board_content LIKE CONCAT('%', #{keyword}, '%')\r\n        ORDER BY board_date DESC\r\n        LIMIT #{offset}, #{pageSize};\r\n    </select>\r\n\r\n    <!-- 검색 결과 총 개수 조회 -->\r\n    <select id=\"countSearchResults\" parameterType=\"string\" resultType=\"int\">\r\n        SELECT COUNT(*)\r\n        FROM board\r\n        WHERE board_title LIKE CONCAT('%', #{keyword}, '%')\r\n           OR board_content LIKE CONCAT('%', #{keyword}, '%');\r\n    </select>\r\n</mapper>\r\n
+===================================================================
+diff --git a/user/src/main/resources/mapper/boardMapper.xml b/user/src/main/resources/mapper/boardMapper.xml
+--- a/user/src/main/resources/mapper/boardMapper.xml	(revision 5ab7f992810c5153b07015ad2e9fad4ee259d9b3)
++++ b/user/src/main/resources/mapper/boardMapper.xml	(date 1732861847295)
+@@ -6,51 +6,54 @@
+ 
+     <!-- 단일 게시글 조회 -->
+     <select id="selectOne" parameterType="int" resultType="edu.sm.app.dto.BoardDto">
+-        SELECT board_id AS boardId,
+-        board_title AS boardTitle,
+-        board_content AS boardContent,
+-        board_date AS boardDate,
+-        board_update AS boardUpdate,
+-        board_hits AS boardHits,
+-        board_answer_num AS boardAnswerNum,
+-        user_id AS userId,
+-        user_name AS userName, <!-- 작성자 이름 -->
+-        is_notice AS isNotice
++        SELECT
++            board_id AS boardId,
++            board_title AS boardTitle,
++            board_content AS boardContent,
++            board_date AS boardDate,
++            board_update AS boardUpdate,
++            board_hits AS boardHits,
++            board_answer_num AS boardAnswerNum,
++            user_id AS userId,
++            user_name AS userName,
++            is_notice AS isNotice
+         FROM board
+         WHERE board_id = #{boardId};
+     </select>
+ 
+     <!-- 모든 게시글 조회 (공지 포함) -->
+     <select id="select" resultType="edu.sm.app.dto.BoardDto">
+-        SELECT board_id AS boardId,
+-        board_title AS boardTitle,
+-        board_content AS boardContent,
+-        board_date AS boardDate,
+-        board_update AS boardUpdate,
+-        board_hits AS boardHits,
+-        board_answer_num AS boardAnswerNum,
+-        user_id AS userId,
+-        user_name AS userName, <!-- 작성자 이름 -->
+-        is_notice AS isNotice
++        SELECT
++            board_id AS boardId,
++            board_title AS boardTitle,
++            board_content AS boardContent,
++            board_date AS boardDate,
++            board_update AS boardUpdate,
++            board_hits AS boardHits,
++            board_answer_num AS boardAnswerNum,
++            user_id AS userId,
++            user_name AS userName,
++            is_notice AS isNotice
+         FROM board
+         ORDER BY is_notice DESC, board_date DESC;
+     </select>
+ 
+     <!-- 페이징을 위한 게시글 조회 -->
+     <select id="selectBoardsWithPagination" parameterType="map" resultType="edu.sm.app.dto.BoardDto">
+-        SELECT board_id AS boardId,
+-        board_title AS boardTitle,
+-        board_content AS boardContent,
+-        board_date AS boardDate,
+-        board_update AS boardUpdate,
+-        board_hits AS boardHits,
+-        board_answer_num AS boardAnswerNum,
+-        user_id AS userId,
+-        user_name AS userName, <!-- 작성자 이름 -->
+-        is_notice AS isNotice
++        SELECT
++            board_id AS boardId,
++            board_title AS boardTitle,
++            board_content AS boardContent,
++            board_date AS boardDate,
++            board_update AS boardUpdate,
++            board_hits AS boardHits,
++            board_answer_num AS boardAnswerNum,
++            user_id AS userId,
++            user_name AS userName,
++            is_notice AS isNotice
+         FROM board
+         ORDER BY is_notice DESC, board_date DESC
+-        LIMIT #{offset}, #{pageSize};
++            LIMIT #{offset}, #{pageSize};
+     </select>
+ 
+     <!-- 총 게시글 수 조회 -->
+@@ -60,21 +63,25 @@
+ 
+     <!-- 게시글 삽입 -->
+     <insert id="insert" parameterType="edu.sm.app.dto.BoardDto">
+-        INSERT INTO board (board_title, board_content, board_date, board_hits, user_id, user_name)
+-        VALUES (#{boardTitle}, #{boardContent}, NOW(), 0, #{userId}, #{userName});
++        INSERT INTO board (
++            board_title, board_content, board_date, board_hits, user_id, user_name, is_notice
++        ) VALUES (
++                     #{boardTitle}, #{boardContent}, NOW(), 0, #{userId}, #{userName}, #{isNotice}
++                 );
+     </insert>
+ 
+     <!-- 게시글 수정 -->
+     <update id="update" parameterType="edu.sm.app.dto.BoardDto">
+         UPDATE board
+-        SET board_title = #{boardTitle},
+-        board_content = #{boardContent},
+-        board_update = #{boardUpdate},
+-        board_hits = #{boardHits},
+-        board_answer_num = #{boardAnswerNum},
+-        user_id = #{userId},
+-        user_name = #{userName}, <!-- 작성자 이름 -->
+-        is_notice = #{isNotice}
++        SET
++            board_title = #{boardTitle},
++            board_content = #{boardContent},
++            board_update = NOW(),
++            board_hits = #{boardHits},
++            board_answer_num = #{boardAnswerNum},
++            user_id = #{userId},
++            user_name = #{userName},
++            is_notice = #{isNotice}
+         WHERE board_id = #{boardId};
+     </update>
+ 
+@@ -92,52 +99,56 @@
+ 
+     <!-- 공지사항만 가져오기 -->
+     <select id="selectNotices" resultType="edu.sm.app.dto.BoardDto">
+-        SELECT board_id AS boardId,
+-        board_title AS boardTitle,
+-        board_content AS boardContent,
+-        board_date AS boardDate,
+-        board_update AS boardUpdate,
+-        board_hits AS boardHits,
+-        board_answer_num AS boardAnswerNum,
+-        user_id AS userId,
+-        user_name AS userName, <!-- 작성자 이름 -->
+-        is_notice AS isNotice
++        SELECT
++            board_id AS boardId,
++            board_title AS boardTitle,
++            board_content AS boardContent,
++            board_date AS boardDate,
++            board_update AS boardUpdate,
++            board_hits AS boardHits,
++            board_answer_num AS boardAnswerNum,
++            user_id AS userId,
++            user_name AS userName,
++            is_notice AS isNotice
+         FROM board
+-        WHERE is_notice = 1
++        WHERE is_notice = 'notice'
+         ORDER BY board_date DESC;
+     </select>
+ 
+     <!-- 일반 게시글만 가져오기 -->
+     <select id="selectGeneralBoards" resultType="edu.sm.app.dto.BoardDto">
+-        SELECT board_id AS boardId,
+-        board_title AS boardTitle,
+-        board_content AS boardContent,
+-        board_date AS boardDate,
+-        board_update AS boardUpdate,
+-        board_hits AS boardHits,
+-        board_answer_num AS boardAnswerNum,
+-        user_id AS userId,
+-        user_name AS userName, <!-- 작성자 이름 -->
+-        is_notice AS isNotice
++        SELECT
++            board_id AS boardId,
++            board_title AS boardTitle,
++            board_content AS boardContent,
++            board_date AS boardDate,
++            board_update AS boardUpdate,
++            board_hits AS boardHits,
++            board_answer_num AS boardAnswerNum,
++            user_id AS userId,
++            user_name AS userName,
++            is_notice AS isNotice
+         FROM board
+-        WHERE is_notice = 0
++        WHERE is_notice = 'tice'
+         ORDER BY board_date DESC;
+     </select>
+ 
+     <!-- 제목 또는 내용으로 게시글 검색 -->
+     <select id="searchBoards" parameterType="map" resultType="edu.sm.app.dto.BoardDto">
+-        SELECT board_id AS boardId,
+-        board_title AS boardTitle,
+-        board_content AS boardContent,
+-        board_date AS boardDate,
+-        board_hits AS boardHits,
+-        user_id AS userId,
+-        user_name AS userName <!-- 작성자 이름 -->
++        SELECT
++            board_id AS boardId,
++            board_title AS boardTitle,
++            board_content AS boardContent,
++            board_date AS boardDate,
++            board_hits AS boardHits,
++            user_id AS userId,
++            user_name AS userName,
++            is_notice AS isNotice
+         FROM board
+         WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+-        OR board_content LIKE CONCAT('%', #{keyword}, '%')
++           OR board_content LIKE CONCAT('%', #{keyword}, '%')
+         ORDER BY board_date DESC
+-        LIMIT #{offset}, #{pageSize};
++            LIMIT #{offset}, #{pageSize};
+     </select>
+ 
+     <!-- 검색 결과 총 개수 조회 -->
+@@ -147,4 +158,5 @@
+         WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+            OR board_content LIKE CONCAT('%', #{keyword}, '%');
+     </select>
++
+ </mapper>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0e6d21f1-92f4-4a60-be64-2d8fda23877f\" name=\"Changes\" comment=\"2024 11 26 게시판 수정 오류 해결\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/BoardRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/BoardRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/BoardService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/BoardService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$/doctor\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/user\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/user\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$/doctor\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"doctor\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"doctor\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"doctor\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"application\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"application\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Jsp File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mococoland&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,\r\n    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2p38BPaiVqiU5uAqNPK0VLSU4lF\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Gradle.Build doctor.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.DoctorApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;hyun&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/doctor/src/main/webapp/views&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\CoMong_Project\\doctor\\src\\main\\webapp\\views\" />\r\n      <recent name=\"C:\\CoMong_Project\\doctor\\src\\main\\webapp\\views\\user\" />\r\n      <recent name=\"C:\\CoMong_Project\\user\\src\\main\\webapp\\views\\notice\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\CoMong_Project\\doctor\\src\\main\\webapp\\views\" />\r\n      <recent name=\"C:\\CoMong_Project\\user\\src\\main\\webapp\\views\\board\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"edu.sm\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Gradle.user [bootRun]\">\r\n    <configuration name=\"doctor [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/doctor\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"user [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/user\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"DoctorApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"doctor.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"edu.sm.DoctorApplication\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"edu.sm.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"user.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"edu.sm.UserApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n        <item itemvalue=\"Gradle.doctor [bootRun]\" />\r\n        <item itemvalue=\"Spring Boot.DoctorApplication\" />\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0e6d21f1-92f4-4a60-be64-2d8fda23877f\" name=\"Changes\" comment=\"\" />\r\n      <created>1731983263742</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1731983263742</updated>\r\n      <workItem from=\"1731983264956\" duration=\"18486000\" />\r\n      <workItem from=\"1732064413075\" duration=\"5863000\" />\r\n      <workItem from=\"1732151216633\" duration=\"1199000\" />\r\n      <workItem from=\"1732153049903\" duration=\"1679000\" />\r\n      <workItem from=\"1732163119469\" duration=\"2628000\" />\r\n      <workItem from=\"1732582362383\" duration=\"5035000\" />\r\n      <workItem from=\"1732587570077\" duration=\"19221000\" />\r\n      <workItem from=\"1732669645810\" duration=\"6029000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"2024.11.19 14:26 작업 댓글오류수정완료\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731994040358</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731994040358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"2024.11.19 14:26 작업 댓글오류수정완료\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731994510417</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731994510417</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"2024.11.19 15:28 center일단 적용 ,이상함.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731997761957</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731997761957</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"2024.11.19 15:44 공지 센터이동 및 작성자이름 출력\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731998718993</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731998718993</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"2024.11.21 master+hyun\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732167733780</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732167733780</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"2024 11 26\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732604083031</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732604083031</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"2024 11 26\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732604106894</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732604106894</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"2024 11 26 의사 마이 페이지\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732604135704</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732604135704</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"2024 11 26 의사 마이 페이지\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732604146815</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732604146815</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"2024 11 26 게시판 수정 오류 해결\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732683904898</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732683904898</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"2024.11.19 14:26 작업 댓글오류수정완료\" />\r\n    <MESSAGE value=\"2024.11.19 15:28 center일단 적용 ,이상함.\" />\r\n    <MESSAGE value=\"2024.11.19 15:44 공지 센터이동 및 작성자이름 출력\" />\r\n    <MESSAGE value=\"2024.11.21 사용자,관리자 권한 분리\" />\r\n    <MESSAGE value=\"2024.11.21 master+hyun\" />\r\n    <MESSAGE value=\"2024 11 26\" />\r\n    <MESSAGE value=\"2024 11 26 의사 마이 페이지\" />\r\n    <MESSAGE value=\"2024 11 26 게시판 수정 오류 해결\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"2024 11 26 게시판 수정 오류 해결\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp</url>\r\n          <line>1</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5ab7f992810c5153b07015ad2e9fad4ee259d9b3)
++++ b/.idea/workspace.xml	(date 1732864638032)
+@@ -4,16 +4,21 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024 11 26 게시판 수정 오류 해결">
++    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="주석처리">
++      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardRestController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20__2_43__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20_오후_2_43_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-20__2_44__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-20_오후_2_44_[Changes]/shelved.patch" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/BoardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/BoardRepository.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/BoardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/BoardDto.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/NoticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/NoticeDto.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/BoardService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/NoticeController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/boardMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/boardMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -251,6 +256,9 @@
+       <workItem from="1732582362383" duration="5035000" />
+       <workItem from="1732587570077" duration="19221000" />
+       <workItem from="1732669645810" duration="6029000" />
++      <workItem from="1732848187710" duration="5608000" />
++      <workItem from="1732858432151" duration="2332000" />
++      <workItem from="1732861098586" duration="2530000" />
+     </task>
+     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
+       <option name="closed" value="true" />
+@@ -349,15 +357,4 @@
+     <MESSAGE value="2024 11 26 게시판 수정 오류 해결" />
+     <option name="LAST_COMMIT_MESSAGE" value="2024 11 26 게시판 수정 오류 해결" />
+   </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp</url>
+-          <line>1</line>
+-          <option name="timeStamp" value="1" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+-  </component>
+ </project>
+\ No newline at end of file
+Index: user/src/main/java/edu/sm/app/service/BoardService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sm.app.service;\r\n\r\nimport edu.sm.app.dto.BoardDto;\r\nimport edu.sm.app.repository.BoardRepository;\r\nimport edu.sm.app.frame.SMService;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.transaction.annotation.Transactional;\r\n\r\nimport java.util.List;\r\n\r\n@Service\r\npublic class BoardService implements SMService<Integer, BoardDto> {\r\n    private final BoardRepository boardRepository;\r\n\r\n    public BoardService(BoardRepository boardRepository) {\r\n        this.boardRepository = boardRepository;\r\n    }\r\n\r\n//    // 공지사항만 가져오기\r\n//    public List<BoardDto> getNotices() {\r\n//        return boardRepository.selectNotices();\r\n//    }\r\n//\r\n//    // 일반 게시글만 가져오기\r\n//    public List<BoardDto> getGeneralBoards() {\r\n//        return boardRepository.selectGeneralBoards();\r\n//    }\r\n//\r\n//    // 공지사항 포함한 모든 게시글 가져오기\r\n//    public List<BoardDto> getAllBoards() {\r\n//        return boardRepository.selectAllBoards();\r\n//    }\r\n\r\n    // 게시글 추가\r\n    @Override\r\n    @Transactional\r\n    public void add(BoardDto boardDto) throws Exception {\r\n        boardRepository.insert(boardDto);\r\n    }\r\n\r\n    // 게시글 수정\r\n    @Override\r\n    @Transactional\r\n    public void modify(BoardDto boardDto) throws Exception {\r\n        boardRepository.update(boardDto);\r\n    }\r\n\r\n    // 게시글 삭제\r\n    @Override\r\n    @Transactional\r\n    public void del(Integer boardId) throws Exception {\r\n        boardRepository.delete(boardId);\r\n    }\r\n\r\n    // 단일 게시글 조회\r\n    @Override\r\n    public BoardDto get(Integer boardId) throws Exception {\r\n        return boardRepository.selectOne(boardId);\r\n    }\r\n\r\n    // 모든 게시글 조회 (공지사항 포함)\r\n    @Override\r\n    public List<BoardDto> get() throws Exception {\r\n        return boardRepository.select();\r\n    }\r\n\r\n    /**\r\n     * 조회수 증가\r\n     * @param boardId - 조회수를 증가시킬 게시글 ID\r\n     */\r\n    @Transactional\r\n    public void increaseHits(Integer boardId) {\r\n        boardRepository.increaseHits(boardId);\r\n    }\r\n\r\n    public List<BoardDto> getBoardsWithPagination(int page, int pageSize) {\r\n        int offset = (page - 1) * pageSize;\r\n        return boardRepository.selectBoardsWithPagination(offset, pageSize);\r\n    }\r\n\r\n    public int getTotalBoardCount() {\r\n        return boardRepository.countTotalBoards();\r\n    }\r\n\r\n    public List<BoardDto> searchBoards(String keyword, int page, int pageSize) {\r\n        int offset = (page - 1) * pageSize;\r\n        return boardRepository.searchBoards(keyword, offset, pageSize);\r\n    }\r\n\r\n    public int getSearchResultCount(String keyword) {\r\n        return boardRepository.countSearchResults(keyword);\r\n    }\r\n}\r\n\r\n\r\n
+===================================================================
+diff --git a/user/src/main/java/edu/sm/app/service/BoardService.java b/user/src/main/java/edu/sm/app/service/BoardService.java
+--- a/user/src/main/java/edu/sm/app/service/BoardService.java	(revision 5ab7f992810c5153b07015ad2e9fad4ee259d9b3)
++++ b/user/src/main/java/edu/sm/app/service/BoardService.java	(date 1732847901676)
+@@ -3,93 +3,102 @@
+ import edu.sm.app.dto.BoardDto;
+ import edu.sm.app.repository.BoardRepository;
+ import edu.sm.app.frame.SMService;
++import lombok.RequiredArgsConstructor;
++import lombok.extern.slf4j.Slf4j;
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+ 
++import java.util.HashMap;
+ import java.util.List;
++import java.util.Map;
+ 
+ @Service
++@RequiredArgsConstructor
++@Slf4j
+ public class BoardService implements SMService<Integer, BoardDto> {
++
+     private final BoardRepository boardRepository;
+ 
+-    public BoardService(BoardRepository boardRepository) {
+-        this.boardRepository = boardRepository;
+-    }
+-
+-//    // 공지사항만 가져오기
+-//    public List<BoardDto> getNotices() {
+-//        return boardRepository.selectNotices();
+-//    }
+-//
+-//    // 일반 게시글만 가져오기
+-//    public List<BoardDto> getGeneralBoards() {
+-//        return boardRepository.selectGeneralBoards();
+-//    }
+-//
+-//    // 공지사항 포함한 모든 게시글 가져오기
+-//    public List<BoardDto> getAllBoards() {
+-//        return boardRepository.selectAllBoards();
+-//    }
+-
+-    // 게시글 추가
+-    @Override
+     @Transactional
+-    public void add(BoardDto boardDto) throws Exception {
+-        boardRepository.insert(boardDto);
++    public void add(BoardDto boardDto) {
++        try {
++            boardRepository.insert(boardDto);
++        } catch (Exception e) {
++            throw new RuntimeException("게시글 추가 중 오류 발생", e);
++        }
+     }
+ 
+-    // 게시글 수정
+-    @Override
+     @Transactional
+-    public void modify(BoardDto boardDto) throws Exception {
+-        boardRepository.update(boardDto);
++    public void modify(BoardDto boardDto) {
++        try {
++            boardRepository.update(boardDto);
++        } catch (Exception e) {
++            throw new RuntimeException("게시글 수정 중 오류 발생", e);
++        }
+     }
+ 
+-    // 게시글 삭제
+-    @Override
+     @Transactional
+-    public void del(Integer boardId) throws Exception {
+-        boardRepository.delete(boardId);
++    public void del(Integer boardId) {
++        try {
++            boardRepository.delete(boardId);
++        } catch (Exception e) {
++            throw new RuntimeException("게시글 삭제 중 오류 발생", e);
++        }
+     }
+ 
+-    // 단일 게시글 조회
+-    @Override
++    @Transactional(readOnly = true)
+     public BoardDto get(Integer boardId) throws Exception {
+-        return boardRepository.selectOne(boardId);
++        BoardDto board = boardRepository.selectOne(boardId);
++        if (board == null) {
++            throw new IllegalArgumentException("존재하지 않는 게시글 ID입니다: " + boardId);
++        }
++        return board;
+     }
+ 
+-    // 모든 게시글 조회 (공지사항 포함)
+     @Override
++    @Transactional(readOnly = true)
+     public List<BoardDto> get() throws Exception {
+         return boardRepository.select();
+     }
+ 
+-    /**
+-     * 조회수 증가
+-     * @param boardId - 조회수를 증가시킬 게시글 ID
+-     */
+-    @Transactional
+-    public void increaseHits(Integer boardId) {
+-        boardRepository.increaseHits(boardId);
+-    }
+-
+-    public List<BoardDto> getBoardsWithPagination(int page, int pageSize) {
++    @Transactional(readOnly = true)
++    public List<BoardDto> getBoards(String keyword, int page, int pageSize) {
+         int offset = (page - 1) * pageSize;
++        log.info("게시판 데이터 요청: keyword={}, page={}, pageSize={}", keyword, page, pageSize);
++
++        if (keyword != null && !keyword.trim().isEmpty()) {
++            return boardRepository.searchBoards(keyword, offset, pageSize);
++        }
+         return boardRepository.selectBoardsWithPagination(offset, pageSize);
+     }
+ 
+-    public int getTotalBoardCount() {
+-        return boardRepository.countTotalBoards();
+-    }
+-
+-    public List<BoardDto> searchBoards(String keyword, int page, int pageSize) {
+-        int offset = (page - 1) * pageSize;
+-        return boardRepository.searchBoards(keyword, offset, pageSize);
+-    }
+-
+-    public int getSearchResultCount(String keyword) {
+-        return boardRepository.countSearchResults(keyword);
++    @Transactional(readOnly = true)
++    public int getTotalBoardCount(String keyword) {
++        if (keyword != null && !keyword.trim().isEmpty()) {
++            return boardRepository.countSearchResults(keyword);
++        }
++        return boardRepository.countTotalBoards();
+     }
+-}
++
++    @Transactional
++    public void increaseHits(Integer boardId) throws Exception {
++        BoardDto board = boardRepository.selectOne(boardId);
++        if (board == null) {
++            throw new IllegalArgumentException("존재하지 않는 게시글 ID입니다: " + boardId);
++        }
++        boardRepository.increaseHits(boardId);
++    }
++    public Map<String, Object> getBoardList(String keyword, int page, int size) {
++        List<BoardDto> boards = getBoards(keyword, page, size);
++        int totalCount = getTotalBoardCount(keyword);
++        int totalPages = (int) Math.ceil((double) totalCount / size);
++
++        Map<String, Object> result = new HashMap<>();
++        result.put("boards", boards);
++        result.put("currentPage", page);
++        result.put("totalPages", totalPages);
+ 
++        return result;
++    }
+ 
++}
