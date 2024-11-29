@@ -37,11 +37,11 @@ app:
   url:
     server_url: http://210.119.34.218:81
   dir:
-    imgdir: file:///c:/CoMong_Project/imgs/
-    uploadimgdir: c:/CoMong_Project/imgs/
+    imgdir: file:///c:/CoMong/imgs/
+    uploadimgdir: c:/CoMong/imgs/
     # logdir: /root/users/project/logs
-    logdir: file:///c:/CoMong_Project/logs/
-    readlogdir: c:/CoMong_Project/logs/
+    logdir: file:///c:/CoMong/logs/
+    readlogdir: c:/CoMong/logs/
   key:
     algo: PBEWithMD5AndDES
     skey: mykey
