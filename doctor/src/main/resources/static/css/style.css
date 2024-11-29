@@ -131,7 +131,6 @@
     outline: none;
 }
 
-
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
     color: var(--primary);
@@ -196,7 +195,6 @@
     background: #FFFFFF;
     border-radius: 40px;
 }
-
 
 .content .navbar .dropdown-toggle::after {
     margin-left: 6px;

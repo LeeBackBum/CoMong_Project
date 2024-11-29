@@ -1,6 +1,7 @@
 package edu.sm.controller;
 
 import edu.sm.app.dto.DoctorDto;
+import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.DoctorService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,83 +22,32 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MainController {
 
-    @Value("${app.dir.imgdir}")
+    @Value("${app.dir.imgdir}")//수정예정 -승현
     private String imgDir;
 
     private final DoctorService doctorService;
 
     @Value("${app.url.server-url}")
-    String serverUrl;
+    String serverurl;
 
     @RequestMapping("/")
-    public String main(Model model) {
-        log.info("Start Main ,,,,,,");
-//        model.addAttribute("center", "center");
-        return "main";
+    public String index(Model model) {
+        model.addAttribute("center", "center");
+        log.info("Start Index ,,,,,,");
+        return "index";
     }
 
     @RequestMapping("/main")
-    public String main1(Model model) {
+    public String main(Model model) {
         log.info("Start Main ,,,,,,");
-        model.addAttribute("center", "center");
         return "main";
     }
-
-
-    @RequestMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("center", "index");
-        log.info("Start 로그인페이지 ,,,,,,");
-        return "main";
-    }
-
-
-
 
     @RequestMapping("blank")
     public String blank(Model model) {
         model.addAttribute("center", "blank");
         return "main";
     }
-
-    @RequestMapping("button")
-    public String button(Model model) {
-        model.addAttribute("center", "center");
-        return "button";
-    }
-
-
-    @RequestMapping("element")
-    public String element(Model model) {
-        model.addAttribute("center", "center");
-        return "element";
-    }
-
-    @RequestMapping("errorpage")
-    public String errorpage(Model model) {
-        model.addAttribute("center", "center");
-        return "errorpage";
-    }
-
-    @RequestMapping("form")
-    public String form(Model model) {
-        model.addAttribute("center", "center");
-        return "form";
-    }
-
-
-    @RequestMapping("signup")
-    public String signup(Model model) {
-        model.addAttribute("center", "center");
-        return "signup";
-    }
-
-    @RequestMapping("signin")
-    public String signin(Model model) {
-        model.addAttribute("center", "signin");
-        return "main";
-    }
-
 
 
     @RequestMapping("/loginimpl")
@@ -116,11 +66,12 @@ public class MainController {
                 throw new Exception();
             }
             httpSession.setAttribute("doctor",doctorDto);
+            httpSession.setAttribute("doctorid", doctorDto);
         } catch (Exception e) {
             return "/";
         }
 
-        return "redirect:/main";
+        return  "redirect:/main";
     }
 
     @GetMapping("/mypage")
