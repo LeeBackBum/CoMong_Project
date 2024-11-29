@@ -14,13 +14,14 @@ spring:
       suffix: .jsp
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8
     #driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
+    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
+    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
     username: smuser
     password: 111111
 
-# 3. Mybatis Setting
+#3. MyBatis Setting
 mybatis:
   type-aliases-package: edu.sm.app.dto
   mapper-locations: classpath:/mapper/*.xml
@@ -37,6 +38,7 @@ app:
   url:
     server_url: http://210.119.34.218:81
   dir:
+    imgdirs: C:/CoMong_Project/doctor/src/main/resources/static/img
     imgdir: file:///c:/springsm/imgs/
     uploadimgdir: c:/springsm/imgs/
     # logdir: /root/users/project/logs
@@ -45,3 +47,5 @@ app:
   key:
     algo: PBEWithMD5AndDES
     skey: mykey
+  #  error > info > debug
+

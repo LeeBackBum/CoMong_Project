@@ -61,7 +61,7 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
   <a href="<c:url value="/"/> " class="navbar-brand d-flex align-items-center px-4 px-lg-5">
     <h2 class="m-0 text-primary">
-      <img class="img-logo" src="img/logo2.jpg" alt="" style="width: 140px; height: auto;">
+      <img class="img-logo" src="<c:url value='/img/logo2.jpg'/>"  alt="" style="width: 140px; height: auto;">
     </h2>
   </a>
   <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -82,7 +82,7 @@
           <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
         </div>
       </div>
-      <a href="<c:url value="/contact"/>" class="nav-item nav-link">Contact</a>
+      <a href="<c:url value="/board"/>" class="nav-item nav-link">게시판</a>
     </div>
     <ul class="nav justify-content-end">
       <c:choose>
@@ -159,22 +159,22 @@
         <h4 class="text-white mb-3">Gallery</h4>
         <div class="row g-2 pt-2">
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src=<c:url value="/img/course-1.jpg" /> alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-3.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
           </div>
         </div>
       </div>

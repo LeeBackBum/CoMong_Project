@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.CounselRepository">
+
+    <select id="selectOne" parameterType="String" resultType="counselDto">
+        SELECT * FROM counsel
+        WHERE doctor_id = #{doctorId}
+    </select>
+
+    <select id="select" resultType="counselDto">
+        SELECT * FROM counsel
+    </select>
+
+
+    <delete id="delete" parameterType="counselDto">
+        DELETE FROM counsel WHERE counsel_id = #{counselId}
+    </delete>
+
+</mapper>

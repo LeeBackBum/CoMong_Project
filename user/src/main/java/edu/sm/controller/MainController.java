@@ -2,6 +2,11 @@ package edu.sm.controller;
 
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import edu.sm.app.dto.UserDto;
+import edu.sm.app.service.UserService;
 import edu.sm.utill.HpDate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -45,16 +50,35 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("center", "login");
-        return "index";
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        log.info("로그인 페이지 로드");
+        model.addAttribute("center", "login"); // center에 "login" 설정
+        return "index"; // 메인 레이아웃 페이지로 이동
     }
 
-
-
-
-
+    // 로그인 처리 요청(POST)
+    @PostMapping("/login")
+    public String login(String username, String password, HttpSession session, Model model) {
+        try {
+            log.info("로그인 시도: username={}", username);
+            UserDto user = userService.authenticate(username, password);
+            if (user != null) {
+                // 세션에 UserDto 저장
+                session.setAttribute("user", user);
+                log.info("로그인 성공: userId={}, userName={}", user.getUserId(), user.getUserName());
+                return "redirect:/board"; // 로그인 성공 시 게시판 메인으로 이동
+            } else {
+                model.addAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
+                log.warn("로그인 실패: 아이디 또는 비밀번호 오류");
+                return "login";
+            }
+        } catch (Exception e) {
+            log.error("로그인 처리 중 오류 발생", e);
+            model.addAttribute("errorMessage", "로그인 처리 중 오류가 발생했습니다.");
+            return "login";
+        }
+    }
 
     @RequestMapping("/register")
     public String register(Model model) {
@@ -232,4 +256,9 @@ public class MainController {
 
 
 
+    @RequestMapping("/forgot")
+    public String forgot(Model model) {
+        model.addAttribute("center", "forgot");
+        return "index";
+    }
 }
