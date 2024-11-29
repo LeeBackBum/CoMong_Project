@@ -26,7 +26,7 @@ public class MainController {
     public String index(Model model) {
         model.addAttribute("center", "center");
         log.info("Start Index ,,,,,,");
-        return "main";
+        return "index";
     }
 
     @RequestMapping("/main")
