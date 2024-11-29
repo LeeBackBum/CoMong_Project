@@ -44,6 +44,10 @@
   <!-- Template Stylesheet -->
   <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
   <%--틀 끝--%>
+
+  <%-- web socket --%>
+  <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+  <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
 <body>
@@ -82,7 +86,7 @@
           <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
         </div>
       </div>
-      <a href="<c:url value="/contact"/>" class="nav-item nav-link">Contact</a>
+      <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
     </div>
     <ul class="nav justify-content-end">
       <c:choose>

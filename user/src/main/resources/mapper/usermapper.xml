@@ -19,14 +19,23 @@
         SELECT * FROM user
     </select>
     <insert id="insert" parameterType="userDto">
-        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber})
+        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber},CASE WHEN #{role} IS NULL OR #{role} = '' THEN '0' ELSE #{role} END)
     </insert>
     <update id="update" parameterType="userDto">
         UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}
     </update>
     <delete id="delete" parameterType="String">
-        DELETE FROM user WHERE user_id=#{id}
+        DELETE FROM user WHERE user_id=#{userId}
     </delete>
 
+    <!-- 사용자 인증: 사용자명과 비밀번호로 사용자 조회 추가 -->
+    <select id="findByUsernameAndPassword" parameterType="map" resultType="edu.sm.app.dto.UserDto">
+        SELECT user_id AS userId,
+               user_name AS userName,
+               user_pwd AS userPwd
+        FROM user
+        WHERE user_id = #{username}
+          AND user_pwd = #{password}
+    </select>
 
 </mapper>
