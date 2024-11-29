@@ -64,10 +64,10 @@
             } else {
                 patients.forEach(function (patient) {
                     console.log("환자 추가:", patient); // 각 환자 데이터를 출력
-                    console.log("ID:", patient.userId, "이름:", patient.userName);
                     console.log("날짜 원본 데이터:", patient.date);
                     let formattedDate = moment(patient.date).format('YYYY-MM-DD HH:mm:ss');
                     console.log("포맷된 날짜:", formattedDate);
+                    console.log(patient.userName);
                     let row = `
                 <tr>
                     <td>${patient.userName}</td>
