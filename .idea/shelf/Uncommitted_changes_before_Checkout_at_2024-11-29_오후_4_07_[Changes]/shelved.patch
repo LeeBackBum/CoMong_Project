@@ -1,0 +1,425 @@
+Index: doctor/src/main/java/edu/sm/controller/MainController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.sm.controller;\r\n\r\nimport edu.sm.app.dto.DoctorDto;\r\nimport edu.sm.app.dto.UserDto;\r\nimport edu.sm.app.service.DoctorService;\r\nimport jakarta.servlet.http.HttpSession;\r\nimport lombok.RequiredArgsConstructor;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.beans.factory.annotation.Value;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\n\r\n@Controller\r\n@Slf4j\r\n@RequiredArgsConstructor\r\npublic class MainController {\r\n\r\n    private final DoctorService doctorService;\r\n\r\n    @Value(\"${app.url.server-url}\")\r\n    String serverurl;\r\n\r\n    @RequestMapping(\"/\")\r\n    public String index(Model model) {\r\n        model.addAttribute(\"center\", \"center\");\r\n        log.info(\"Start Index ,,,,,,\");\r\n        return \"index\";\r\n    }\r\n\r\n    @RequestMapping(\"/main\")\r\n    public String main(Model model) {\r\n        log.info(\"Start Main ,,,,,,\");\r\n        return \"main\";\r\n    }\r\n\r\n    @RequestMapping(\"blank\")\r\n    public String blank(Model model) {\r\n        model.addAttribute(\"center\", \"blank\");\r\n        return \"main\";\r\n    }\r\n\r\n\r\n    @RequestMapping(\"/loginimpl\")\r\n    public String loginimpl(\r\n            @RequestParam(\"id\") String id,\r\n            @RequestParam(\"pwd\") String pwd,\r\n            HttpSession httpSession){\r\n        DoctorDto doctorDto = null;\r\n\r\n        try {\r\n            doctorDto = doctorService.get(id);\r\n            if(doctorDto == null){\r\n                throw new Exception();\r\n            }\r\n            if(!doctorDto.getDoctorPwd().equals(pwd)){\r\n                throw new Exception();\r\n            }\r\n            httpSession.setAttribute(\"doctor\",doctorDto);\r\n            httpSession.setAttribute(\"doctorid\", doctorDto);\r\n        } catch (Exception e) {\r\n            return \"/\";\r\n        }\r\n\r\n        return  \"redirect:/main\";\r\n    }\r\n\r\n    @RequestMapping(\"/counseling\")\r\n    public String counseling(HttpSession session, Model model) {\r\n        // 세션에서 로그인된 사용자 정보 가져오기\r\n        Object loginid = session.getAttribute(\"doctorid\");\r\n\r\n        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)\r\n        String doctorName = ((DoctorDto) loginid).getDoctorName();\r\n\r\n        // JSP에 데이터 전달\r\n        model.addAttribute(\"serverurl\", serverurl);\r\n        model.addAttribute(\"doctorName\", doctorName);\r\n        model.addAttribute(\"center\", \"Counseling/counseling\");\r\n\r\n        System.out.println(\"Server URL: \" + serverurl);\r\n        System.out.println(\"User Name: \" + doctorName);\r\n\r\n        return \"/main\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/doctor/src/main/java/edu/sm/controller/MainController.java b/doctor/src/main/java/edu/sm/controller/MainController.java
+--- a/doctor/src/main/java/edu/sm/controller/MainController.java	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
++++ b/doctor/src/main/java/edu/sm/controller/MainController.java	(date 1732863681982)
+@@ -26,7 +26,7 @@
+     public String index(Model model) {
+         model.addAttribute("center", "center");
+         log.info("Start Index ,,,,,,");
+-        return "index";
++        return "main";
+     }
+ 
+     @RequestMapping("/main")
+@@ -65,23 +65,4 @@
+ 
+         return  "redirect:/main";
+     }
+-
+-    @RequestMapping("/counseling")
+-    public String counseling(HttpSession session, Model model) {
+-        // 세션에서 로그인된 사용자 정보 가져오기
+-        Object loginid = session.getAttribute("doctorid");
+-
+-        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
+-        String doctorName = ((DoctorDto) loginid).getDoctorName();
+-
+-        // JSP에 데이터 전달
+-        model.addAttribute("serverurl", serverurl);
+-        model.addAttribute("doctorName", doctorName);
+-        model.addAttribute("center", "Counseling/counseling");
+-
+-        System.out.println("Server URL: " + serverurl);
+-        System.out.println("User Name: " + doctorName);
+-
+-        return "/main";
+-    }
+ }
+Index: doctor/src/main/resources/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># 1. Tomcat Server Setting\r\nserver:\r\n  port: 81\r\n  servlet:\r\n    encoding:\r\n      charset: UTF-8\r\n      force: true\r\n\r\n# 2. SpringBoot Environment Setting\r\nspring:\r\n  mvc:\r\n    view:\r\n      prefix: /views/\r\n      suffix: .jsp\r\n  datasource:\r\n    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy\r\n    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8\r\n    #driver-class-name: com.mysql.cj.jdbc.Driver\r\n    #url: jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8\r\n    username: smuser\r\n    password: 111111\r\n\r\n# 3. Mybatis Setting\r\nmybatis:\r\n  type-aliases-package: edu.sm.app.dto\r\n  mapper-locations: classpath:/mapper/*.xml\r\n  configuration:\r\n    map-underscore-to-camel-case: true\r\n# 4. Logging Setting\r\nlogging:\r\n  level:\r\n    root: info\r\n  #  error > info > debug\r\n\r\n# 5. Application Environment Setting\r\napp:\r\n  url:\r\n    server_url: http://210.119.34.218:81\r\n  dir:\r\n    imgdir: file:///c:/CoMong_Project/imgs/\r\n    uploadimgdir: c:/CoMong_Project/imgs/\r\n    # logdir: /root/users/project/logs\r\n    logdir: file:///c:/CoMong_Project/logs/\r\n    readlogdir: c:/CoMong_Project/logs/\r\n  key:\r\n    algo: PBEWithMD5AndDES\r\n    skey: mykey
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/doctor/src/main/resources/application-dev.yml b/doctor/src/main/resources/application-dev.yml
+--- a/doctor/src/main/resources/application-dev.yml	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
++++ b/doctor/src/main/resources/application-dev.yml	(date 1732863755314)
+@@ -14,7 +14,7 @@
+       suffix: .jsp
+   datasource:
+     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
++    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8
+     #driver-class-name: com.mysql.cj.jdbc.Driver
+     #url: jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
+     username: smuser
+Index: doctor/src/main/java/edu/sm/controller/MsgController.java
+===================================================================
+diff --git a/doctor/src/main/java/edu/sm/controller/MsgController.java b/doctor/src/main/java/edu/sm/controller/MsgController.java
+deleted file mode 100644
+--- a/doctor/src/main/java/edu/sm/controller/MsgController.java	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
++++ /dev/null	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
+@@ -1,38 +0,0 @@
+-package edu.sm.controller;
+-
+-import edu.sm.app.dto.Msg;
+-import lombok.extern.slf4j.Slf4j;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.messaging.handler.annotation.MessageMapping;
+-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+-import org.springframework.messaging.simp.SimpMessagingTemplate;
+-import org.springframework.stereotype.Controller;
+-
+-@Slf4j
+-@Controller
+-public class MsgController {
+-    @Autowired
+-    SimpMessagingTemplate template;
+-
+-    @MessageMapping("/receiveall") // 모두에게 전송
+-    public void receiveall(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
+-        System.out.println(msg);
+-        template.convertAndSend("/send",msg);
+-    }
+-    @MessageMapping("/receiveme") // 나에게만 전송 ex)Chatbot
+-    public void receiveme(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
+-        System.out.println(msg);
+-
+-        String id = msg.getSendid();
+-        template.convertAndSend("/send/"+id,msg);
+-    }
+-    @MessageMapping("/receiveto") // 특정 Id에게 전송
+-    public void receiveto(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
+-        String id = msg.getSendid();
+-        String target = msg.getReceiveid();
+-        log.info("-------------------------");
+-        log.info(target);
+-
+-        template.convertAndSend("/send/to/"+target,msg);
+-    }
+-}
+\ No newline at end of file
+Index: doctor/src/main/webapp/views/Counseling/counseling.jsp
+===================================================================
+diff --git a/doctor/src/main/webapp/views/Counseling/counseling.jsp b/doctor/src/main/webapp/views/Counseling/counseling.jsp
+deleted file mode 100644
+--- a/doctor/src/main/webapp/views/Counseling/counseling.jsp	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
++++ /dev/null	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
+@@ -1,194 +0,0 @@
+-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+-<!DOCTYPE html>
+-<html lang="en">
+-<style>
+-  .custom-register-btn:hover {
+-    border-radius: 50px !important;
+-    background-color: #ECEBFF; /* 진한 파란색으로 hover 효과 */
+-    color: #000;
+-  }
+-  .custom-forgot-btn:hover {
+-    border-radius: 50px !important;
+-    background-color: #ECEBFF; /* 진한 파란색으로 hover 효과 */
+-    color: #000;
+-  }
+-
+-</style>
+-
+-<head>
+-  <meta charset="utf-8">
+-  <title>eLEARNING - eLearning HTML Template</title>
+-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+-  <meta content="" name="keywords">
+-  <meta content="" name="description">
+-
+-  <!-- Favicon -->
+-  <link href="<c:url value="/img/favicon.ico"/>" rel="icon">
+-
+-  <!-- Google Web Fonts -->
+-  <link rel="preconnect" href="https://fonts.googleapis.com">
+-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+-
+-  <!-- Icon Font Stylesheet -->
+-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+-
+-
+-  <!-- Libraries Stylesheet -->
+-  <link href="<c:url value="/lib/animate/animate.min.css"/>" rel="stylesheet">
+-  <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
+-
+-  <%-- 틀--%>
+-  <!-- Customized Bootstrap Stylesheet -->
+-  <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
+-
+-  <!-- Template Stylesheet -->
+-  <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
+-  <%--틀 끝--%>
+-  <link href="<c:url value="/css/chat.css"/> " rel="stylesheet">
+-</head>
+-
+-
+-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+-
+-
+-<body>
+-<!-- Counseling Start -->
+-
+-<script>
+-  let websocket = {
+-    id: '', // 사용자 ID (로그인한 사용자 이름)
+-    stompClient: null,
+-    reconnectAttempts: 0,
+-    maxReconnectAttempts: 10,
+-    init: function () {
+-      this.id = '${doctorName}'; // JSP에서 전달된 사용자 이름 사용
+-      console.log("Initialized WebSocket for user:", this.id);
+-
+-      $('#connect').click(() => {
+-        this.connect();
+-      });
+-      $('#disconnect').click(() => {
+-        this.disconnect();
+-      });
+-      $('#sendall').click(() => {
+-        let msg = JSON.stringify({
+-          'sendid': this.id, // 로그인한 사용자 이름 포함
+-          'content1': $("#alltext").val()
+-        });
+-        this.stompClient.send("/receiveall", {}, msg);
+-
+-        $("#alltext").val('');
+-      });
+-
+-      // 페이지 로드 시 자동으로 connect 호출
+-      this.connect();
+-    },
+-    connect: function () {
+-      let sid = this.id;
+-      let socket = new SockJS('${serverurl}/ws'); // JSP에서 전달된 서버 URL 사용
+-      this.stompClient = Stomp.over(socket);
+-
+-      this.stompClient.connect({}, function (frame) {
+-        websocket.setConnected(true);
+-        console.log('WebSocket Connected: ' + frame);
+-
+-        // /send 경로 구독
+-        this.subscribe('/send', function (msg) {
+-          const parsedMsg = JSON.parse(msg.body);
+-          $("#all").append(
+-                  "<h5>" + parsedMsg.sendid + "</h5>" +
+-                  "<p>" + parsedMsg.content1 + "</p>" +
+-                  "<hr>"
+-          );
+-        });
+-      });
+-    },
+-    disconnect: function () {
+-      if (this.stompClient !== null) {
+-        this.stompClient.disconnect();
+-      }
+-      this.setConnected(false);
+-      console.log("WebSocket Disconnected");
+-    },
+-    setConnected: function (connected) {
+-      if (connected) {
+-        $("#status").text("Connected");
+-      } else {
+-        $("#status").text("Disconnected");
+-      }
+-    }
+-  };
+-
+-  $(function () {
+-    websocket.init(); // 페이지 로드 시 WebSocket 초기화
+-  });
+-</script>
+-
+-<style>
+-  #all h5 {
+-    margin-top: 5px;
+-  }
+-  #all hr {
+-    margin: 2px 0; /* 위아래 간격을 2px로 설정 */
+-    border: none; /* 기본 테두리 제거 */
+-    border-top: 1px solid #ccc; /* 얇은 구분선 */
+-  }
+-  #all p {
+-    margin: 2px 0;
+-    border: none;
+-    margin-left: 5px;
+-  }
+-</style>
+-
+-<div id="chat-page">
+-  <div class="chat-container">
+-    <!-- 헤더 -->
+-    <div class="chat-header">
+-      <h2 id="chat-text">Chat</h2>
+-    </div>
+-
+-    <!-- 메시지 리스트 -->
+-    <ul id="all" class="list-group message-list"></ul>
+-
+-    <!-- 메시지 입력 -->
+-    <form id="messageForm" name="messageForm" class="form-group">
+-      <div class="input-group clearfix">
+-        <input
+-                type="text"
+-                id="alltext"
+-                placeholder="Enter your message here"
+-                autocomplete="off"
+-                class="form-control"
+-        />
+-        <button id="sendall" type="button" class="btn btn-primary">Send</button>
+-      </div>
+-    </form>
+-  </div>
+-  <div class="record-container">
+-    <div class="record-header">
+-      <h2 id="record-text">Record</h2>
+-    </div>
+-  </div>
+-</div>
+-
+-
+-<!-- Back to Top -->
+-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+-
+-
+-<!-- JavaScript Libraries -->
+-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+-<script src="lib/wow/wow.min.js"></script>
+-<script src="lib/easing/easing.min.js"></script>
+-<script src="lib/waypoints/waypoints.min.js"></script>
+-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+-
+-<!-- Template Javascript -->
+-<script src="js/main.js"></script>
+-</body>
+-
+-</html>
+\ No newline at end of file
+Index: logs/power.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>2024-11-25 17:53:57, 34.208275\r\n2024-11-25 17:53:59, 24.71394\r\n2024-11-25 17:54:01, 44.640583\r\n2024-11-25 17:54:03, 14.519602\r\n2024-11-25 17:54:05, 53.22841\r\n2024-11-25 17:54:07, 60.202007\r\n2024-11-25 17:54:09, 92.851326\r\n2024-11-25 17:54:11, 44.125313\r\n2024-11-25 17:54:13, 0.718385\r\n2024-11-25 17:54:15, 80.425934\r\n2024-11-25 17:54:17, 78.41858\r\n2024-11-25 17:54:19, 25.071877\r\n2024-11-25 17:54:21, 69.03053\r\n2024-11-25 17:54:24, 5.150652\r\n2024-11-25 17:54:26, 73.9497\r\n2024-11-25 17:54:28, 99.83182\r\n2024-11-25 17:54:30, 66.72778\r\n2024-11-25 17:54:32, 3.944248\r\n2024-11-25 17:54:34, 64.57065\r\n2024-11-25 17:54:36, 50.9475\r\n2024-11-25 17:54:38, 21.236813\r\n2024-11-25 17:54:40, 68.18419\r\n2024-11-25 17:54:42, 2.8356552\r\n2024-11-25 17:54:44, 73.24822\r\n2024-11-25 17:54:46, 52.24414\r\n2024-11-25 17:54:48, 6.109124\r\n2024-11-25 17:54:50, 90.27882\r\n2024-11-25 17:54:52, 21.873491\r\n2024-11-25 17:54:54, 17.219877\r\n2024-11-25 17:54:56, 95.83758\r\n2024-11-25 17:54:58, 26.244062\r\n2024-11-25 17:55:00, 51.336445\r\n2024-11-25 17:55:02, 76.01879\r\n2024-11-25 17:55:04, 44.5014\r\n2024-11-25 17:55:06, 94.42665\r\n2024-11-25 17:55:08, 10.016084\r\n2024-11-25 17:55:10, 28.431356\r\n2024-11-25 17:55:12, 99.8359\r\n2024-11-25 17:55:14, 8.137793\r\n2024-11-25 17:55:16, 40.78673\r\n2024-11-25 17:55:18, 70.76536\r\n2024-11-25 17:55:20, 1.6390979\r\n2024-11-25 17:55:22, 68.87226\r\n2024-11-25 17:55:24, 92.542885\r\n2024-11-25 17:55:26, 76.76902\r\n2024-11-25 17:55:28, 3.9337695\r\n2024-11-25 17:55:30, 41.836063\r\n2024-11-25 17:55:32, 63.787495\r\n2024-11-25 17:55:34, 99.01046\r\n2024-11-25 17:55:36, 30.471397\r\n2024-11-25 17:55:38, 44.50958\r\n2024-11-25 17:55:40, 61.912304\r\n2024-11-25 17:55:42, 81.56904\r\n2024-11-25 17:55:44, 84.00583\r\n2024-11-25 17:55:46, 28.22532\r\n2024-11-25 17:55:48, 68.06458\r\n2024-11-25 17:55:50, 78.74728\r\n2024-11-25 17:55:52, 27.695639\r\n2024-11-25 17:55:54, 1.5862226\r\n2024-11-25 17:55:56, 84.38159\r\n2024-11-25 17:55:58, 50.466286\r\n2024-11-25 17:56:01, 10.790944\r\n2024-11-25 17:56:03, 62.10878\r\n2024-11-25 17:56:05, 8.761233\r\n2024-11-25 17:56:07, 98.86304\r\n2024-11-25 17:56:09, 62.707947\r\n2024-11-25 17:56:11, 27.828365\r\n2024-11-25 17:56:13, 22.166311\r\n2024-11-25 17:56:15, 75.978615\r\n2024-11-25 17:56:17, 23.540014\r\n2024-11-25 17:56:19, 73.14564\r\n2024-11-25 17:56:21, 88.734215\r\n2024-11-25 17:56:23, 15.737677\r\n2024-11-25 17:56:25, 85.40831\r\n2024-11-25 17:56:27, 97.630135\r\n2024-11-25 17:56:29, 2.7502716\r\n2024-11-25 17:56:31, 68.909584\r\n2024-11-25 17:56:33, 59.790356\r\n2024-11-25 17:56:35, 87.85008\r\n2024-11-25 17:56:37, 75.97017\r\n2024-11-25 17:56:39, 74.46156\r\n2024-11-25 17:56:41, 59.616123\r\n2024-11-25 17:56:43, 60.896893\r\n2024-11-25 17:56:45, 40.036564\r\n2024-11-25 17:56:47, 19.527256\r\n2024-11-25 17:56:49, 41.587006\r\n2024-11-25 17:56:51, 14.765138\r\n2024-11-25 17:56:53, 52.08046\r\n2024-11-25 17:56:55, 90.79576\r\n2024-11-25 17:56:57, 20.512295\r\n2024-11-25 17:56:59, 11.089015\r\n2024-11-25 17:57:01, 86.34658\r\n2024-11-25 17:57:03, 100.0\r\n2024-11-25 18:07:46, 로그 파일에서 93개의 데이터를 로드했습니다.\r\n2024-11-25 18:08:16, 6.3727617\r\n2024-11-25 18:08:18, 37.725536\r\n2024-11-25 18:08:20, 48.21466\r\n2024-11-25 18:08:22, 61.133396\r\n2024-11-25 18:08:24, 63.90217\r\n2024-11-25 18:08:26, 17.585993\r\n2024-11-25 18:08:28, 16.685974\r\n2024-11-25 18:08:30, 95.77524\r\n2024-11-25 18:08:32, 2.7416766\r\n2024-11-25 18:08:34, 74.84053\r\n2024-11-25 18:08:36, 89.77111\r\n2024-11-25 18:08:38, 87.44056\r\n2024-11-25 18:08:40, 10.200554\r\n2024-11-25 18:08:42, 82.18722\r\n2024-11-25 18:08:44, 96.72082\r\n2024-11-25 18:08:46, 61.777367\r\n2024-11-25 18:08:48, 17.623169\r\n2024-11-25 18:08:50, 62.03432\r\n2024-11-25 18:08:52, 90.0418\r\n2024-11-25 18:08:54, 2.2850215\r\n2024-11-25 18:08:56, 22.212278\r\n2024-11-25 18:08:58, 16.367186\r\n2024-11-25 18:09:00, 73.11648\r\n2024-11-25 18:09:02, 17.895895\r\n2024-11-25 18:09:04, 91.989746\r\n2024-11-25 18:09:06, 40.370876\r\n2024-11-25 18:09:08, 35.933537\r\n2024-11-25 18:09:10, 29.21487\r\n2024-11-25 18:09:12, 7.7365756\r\n2024-11-25 18:09:14, 43.446453\r\n2024-11-26 10:31:15, 잘못된 로그 데이터 형식: 2024-11-25 18:07:46, 로그 파일에서 93개의 데이터를 로드했습니다.\r\n2024-11-26 10:31:15, 로그 파일에서 123개의 데이터를 로드했습니다.\r\n2024-11-26 10:34:14, 19.168568\r\n2024-11-26 10:34:16, 41.86148\r\n2024-11-26 10:34:18, 53.261154\r\n2024-11-26 10:34:20, 64.01135\r\n2024-11-26 10:34:22, 4.3771625\r\n2024-11-26 10:34:24, 5.6463423\r\n2024-11-26 10:34:26, 63.51046\r\n2024-11-26 10:34:28, 80.272675\r\n2024-11-26 10:34:30, 47.666126\r\n2024-11-26 10:34:32, 42.372215\r\n2024-11-26 10:34:34, 45.94506\r\n2024-11-26 10:34:36, 66.14512\r\n2024-11-26 10:34:38, 27.126677\r\n2024-11-26 10:34:40, 2.6975214\r\n2024-11-26 10:34:42, 80.86846\r\n2024-11-26 10:34:44, 4.9063025\r\n2024-11-26 10:34:46, 44.893353\r\n2024-11-26 10:34:48, 12.304604\r\n2024-11-26 10:34:50, 51.822144\r\n2024-11-26 10:34:52, 1.784718\r\n2024-11-26 10:34:54, 42.05601\r\n2024-11-26 10:34:56, 60.153316\r\n2024-11-26 10:34:58, 20.968002\r\n2024-11-26 10:35:00, 90.67871\r\n2024-11-26 10:35:02, 63.69105\r\n2024-11-26 10:35:04, 32.2191\r\n2024-11-26 10:35:06, 81.66956\r\n2024-11-26 10:35:08, 78.60027\r\n2024-11-26 10:35:10, 43.082737\r\n2024-11-26 10:35:12, 79.23912\r\n2024-11-26 10:35:14, 12.060279\r\n2024-11-26 10:35:16, 93.75295\r\n2024-11-26 10:35:18, 50.914867\r\n2024-11-26 10:35:20, 15.772253\r\n2024-11-26 10:35:22, 83.84719\r\n2024-11-26 10:35:24, 6.688273\r\n2024-11-26 10:35:26, 31.049437\r\n2024-11-26 10:35:28, 70.899734\r\n2024-11-26 10:35:30, 85.03891\r\n2024-11-26 10:35:32, 45.79439\r\n2024-11-26 10:35:34, 78.94566\r\n2024-11-26 10:35:36, 80.673775\r\n2024-11-26 10:35:38, 88.337135\r\n2024-11-26 10:35:40, 93.00198\r\n2024-11-26 10:35:42, 97.84381\r\n2024-11-26 10:35:44, 56.792877\r\n2024-11-26 10:35:46, 22.282297\r\n2024-11-26 10:35:48, 95.41182\r\n2024-11-26 10:35:50, 29.142565\r\n2024-11-26 10:43:06, 24.760664\r\n2024-11-26 10:43:08, 41.19407\r\n2024-11-26 10:43:10, 44.359756\r\n2024-11-26 10:43:12, 96.68553\r\n2024-11-26 10:43:14, 95.08398\r\n2024-11-26 10:43:16, 68.262726\r\n2024-11-26 10:43:18, 91.84343\r\n2024-11-26 10:43:20, 63.20202\r\n2024-11-26 10:43:22, 38.27382\r\n2024-11-26 10:43:24, 52.41359\r\n2024-11-26 10:43:26, 49.606537\r\n2024-11-26 10:43:28, 88.18438\r\n2024-11-26 10:43:30, 80.278175\r\n2024-11-26 10:59:20, 로그 파일에서 185개의 데이터를 로드했습니다.\r\n2024-11-26 11:01:54, 로그 파일에서 185개의 데이터를 로드했습니다.\r\n2024-11-26 11:07:55, 로그 파일에서 185개의 데이터를 로드했습니다.\r\n2024-11-26 11:10:45, 로그 파일에서 185개의 데이터를 로드했습니다.\r\nTue Nov 26 11:10:46 KST 2024, 77.12793\r\n2024-11-26 11:10:46, Saved value: 77.12793\r\nTue Nov 26 11:10:48 KST 2024, 71.71346\r\n2024-11-26 11:10:48, Saved value: 71.71346\r\nTue Nov 26 11:10:50 KST 2024, 24.495178\r\n2024-11-26 11:10:50, Saved value: 24.495178\r\nTue Nov 26 11:10:52 KST 2024, 15.571892\r\n2024-11-26 11:10:52, Saved value: 15.571892\r\nTue Nov 26 11:10:55 KST 2024, 59.040348\r\n2024-11-26 11:10:55, Saved value: 59.040348\r\nTue Nov 26 11:10:57 KST 2024, 35.04251\r\n2024-11-26 11:10:57, Saved value: 35.04251\r\nTue Nov 26 11:10:59 KST 2024, 7.517749\r\n2024-11-26 11:10:59, Saved value: 7.517749\r\nTue Nov 26 11:11:01 KST 2024, 36.673515\r\n2024-11-26 11:11:01, Saved value: 36.673515\r\nTue Nov 26 11:11:03 KST 2024, 27.510416\r\n2024-11-26 11:11:03, Saved value: 27.510416\r\nTue Nov 26 11:11:05 KST 2024, 71.847275\r\n2024-11-26 11:11:05, Saved value: 71.847275\r\nTue Nov 26 11:11:07 KST 2024, 45.21618\r\n2024-11-26 11:11:07, Saved value: 45.21618\r\nTue Nov 26 11:11:09 KST 2024, 96.32484\r\n2024-11-26 11:11:09, Saved value: 96.32484\r\nTue Nov 26 11:11:11 KST 2024, 0.5985439\r\n2024-11-26 11:11:11, Saved value: 0.5985439\r\nTue Nov 26 11:11:13 KST 2024, 95.10522\r\n2024-11-26 11:11:13, Saved value: 95.10522\r\nTue Nov 26 11:11:15 KST 2024, 50.883846\r\n2024-11-26 11:11:15, Saved value: 50.883846\r\nTue Nov 26 11:11:17 KST 2024, 97.340996\r\n2024-11-26 11:11:17, Saved value: 97.340996\r\nTue Nov 26 11:11:19 KST 2024, 18.233227\r\n2024-11-26 11:11:19, Saved value: 18.233227\r\nTue Nov 26 11:11:21 KST 2024, 88.51088\r\n2024-11-26 11:11:21, Saved value: 88.51088\r\nTue Nov 26 11:11:23 KST 2024, 5.9565663\r\n2024-11-26 11:11:23, Saved value: 5.9565663\r\nTue Nov 26 11:11:25 KST 2024, 15.83097\r\n2024-11-26 11:11:25, Saved value: 15.83097\r\n2024-11-26 11:14:08, 로그 파일에서 205개의 데이터를 로드했습니다.\r\n2024-11-26 11:14:41, 로그 파일에서 205개의 데이터를 로드했습니다.\r\nTue Nov 26 11:14:41 KST 2024, 61.08338\r\n2024-11-26 11:14:41, Saved value: 61.08338\r\nTue Nov 26 11:14:43 KST 2024, 93.65793\r\n2024-11-26 11:14:43, Saved value: 93.65793\r\nTue Nov 26 11:14:45 KST 2024, 66.524666\r\n2024-11-26 11:14:45, Saved value: 66.524666\r\nTue Nov 26 11:14:47 KST 2024, 69.81134\r\n2024-11-26 11:14:47, Saved value: 69.81134\r\n2024-11-26 11:14:51, 로그 파일에서 209개의 데이터를 로드했습니다.\r\nTue Nov 26 11:14:53 KST 2024, 79.9615\r\nTue Nov 26 11:14:55 KST 2024, 18.181688\r\nTue Nov 26 11:14:57 KST 2024, 84.93868\r\nTue Nov 26 11:14:59 KST 2024, 35.227478\r\nTue Nov 26 11:15:01 KST 2024, 50.792526\r\nTue Nov 26 11:15:03 KST 2024, 65.90958\r\nTue Nov 26 11:15:06 KST 2024, 38.913036\r\nTue Nov 26 11:15:08 KST 2024, 14.876472\r\nTue Nov 26 11:15:10 KST 2024, 54.849953\r\nTue Nov 26 11:15:12 KST 2024, 2.7267396\r\nTue Nov 26 11:15:14 KST 2024, 19.235962\r\nTue Nov 26 11:15:16 KST 2024, 5.6961\r\nTue Nov 26 11:15:18 KST 2024, 44.866837\r\nTue Nov 26 11:15:20 KST 2024, 42.47219\r\nTue Nov 26 11:15:22 KST 2024, 52.670753\r\nTue Nov 26 11:15:24 KST 2024, 18.46326\r\nTue Nov 26 11:15:26 KST 2024, 17.055094\r\nTue Nov 26 11:15:28 KST 2024, 76.15508\r\nTue Nov 26 11:15:30 KST 2024, 84.93787\r\nTue Nov 26 11:15:32 KST 2024, 37.906487\r\nTue Nov 26 11:15:34 KST 2024, 50.26368\r\nTue Nov 26 11:15:36 KST 2024, 63.509674\r\nTue Nov 26 11:15:38 KST 2024, 67.50949\r\nTue Nov 26 11:15:40 KST 2024, 16.263496\r\nTue Nov 26 11:15:42 KST 2024, 92.167435\r\nTue Nov 26 11:15:44 KST 2024, 43.32174\r\nTue Nov 26 11:15:46 KST 2024, 15.533042\r\nTue Nov 26 11:15:48 KST 2024, 40.04951\r\nTue Nov 26 11:15:50 KST 2024, 13.461513\r\nTue Nov 26 11:15:52 KST 2024, 72.3676\r\nTue Nov 26 11:15:54 KST 2024, 85.114746\r\nTue Nov 26 11:15:56 KST 2024, 46.018196\r\nTue Nov 26 11:15:58 KST 2024, 16.072887\r\nTue Nov 26 11:16:00 KST 2024, 34.546684\r\nTue Nov 26 11:16:02 KST 2024, 40.179695\r\nTue Nov 26 11:16:04 KST 2024, 49.899643\r\nTue Nov 26 11:16:06 KST 2024, 72.07726\r\nTue Nov 26 11:16:08 KST 2024, 22.758717\r\nTue Nov 26 11:16:10 KST 2024, 34.026314\r\nTue Nov 26 11:16:12 KST 2024, 36.349815\r\nTue Nov 26 11:16:14 KST 2024, 82.51982\r\n2024-11-26 11:18:17, 로그 파일에서 250개의 데이터를 로드했습니다.\r\n2024-11-26 11:18:25, 33.992188\r\n2024-11-26 11:18:25, Saved value: 33.992188\r\n2024-11-26 11:18:27, 73.77101\r\n2024-11-26 11:18:27, Saved value: 73.77101\r\n2024-11-26 11:18:29, 39.282787\r\n2024-11-26 11:18:29, Saved value: 39.282787\r\n2024-11-26 11:18:31, 22.634851\r\n2024-11-26 11:18:31, Saved value: 22.634851\r\n2024-11-26 11:20:04, 43.39298\r\n2024-11-26 11:20:04, Saved value: 43.39298\r\n2024-11-26 11:20:06, 90.54951\r\n2024-11-26 11:20:06, Saved value: 90.54951\r\n2024-11-26 11:20:08, 87.435875\r\n2024-11-26 11:20:08, Saved value: 87.435875\r\n2024-11-26 11:20:14, 로그 파일에서 257개의 데이터를 로드했습니다.\r\n2024-11-26 11:20:16, 22.46328\r\n2024-11-26 11:20:18, 93.07141\r\n2024-11-26 11:20:20, 86.16697\r\n2024-11-26 11:20:22, 32.04901\r\n2024-11-26 11:20:24, 2.6419282\r\n2024-11-26 11:20:26, 42.617123\r\n2024-11-26 11:20:28, 0.24724603\r\n2024-11-26 11:20:30, 18.845076\r\n2024-11-26 11:20:32, 58.58854\r\n2024-11-26 11:20:34, 37.07253\r\n2024-11-26 11:20:36, 82.082085\r\n2024-11-26 11:20:38, 7.7715874\r\n2024-11-26 11:20:40, 82.706406\r\n2024-11-26 11:20:42, 74.88002\r\n2024-11-26 11:20:44, 6.165278\r\n2024-11-26 11:20:46, 53.3234\r\n2024-11-26 11:20:48, 92.144485\r\n2024-11-26 11:20:50, 22.06372\r\n2024-11-26 11:20:52, 55.395794\r\n2024-11-26 11:20:54, 78.33484\r\n2024-11-26 11:20:56, 60.251587\r\n2024-11-26 11:20:58, 60.86698\r\n2024-11-26 11:21:00, 88.95382\r\n2024-11-26 11:21:02, 55.291748\r\n2024-11-26 11:21:04, 97.218124\r\n2024-11-26 11:21:06, 28.273499\r\n2024-11-26 11:21:08, 30.019575\r\n2024-11-26 11:21:11, 74.24148\r\n2024-11-26 11:21:13, 21.454216\r\n2024-11-26 11:21:15, 60.037483\r\n2024-11-26 11:21:17, 49.744667\r\n2024-11-26 11:21:19, 89.26017\r\n2024-11-26 11:21:21, 73.95675\r\n2024-11-26 11:21:26, 55.683716\r\n2024-11-26 11:21:31, 83.70663\r\n2024-11-26 11:21:36, 98.72401\r\n2024-11-26 11:21:41, 20.111328\r\n2024-11-26 11:21:47, 95.082016\r\n2024-11-26 11:21:52, 51.14547\r\n2024-11-26 11:21:57, 16.702192\r\n2024-11-26 11:22:02, 64.82464\r\n2024-11-26 11:22:07, 40.61656\r\n2024-11-26 11:22:12, 81.85014\r\n2024-11-26 11:22:17, 91.89784\r\n2024-11-26 11:22:22, 97.41112\r\n2024-11-26 11:22:27, 81.53297\r\n2024-11-26 11:22:32, 70.84122\r\n2024-11-26 11:22:37, 74.24645\r\n2024-11-26 11:22:42, 91.06381\r\n2024-11-26 11:22:47, 97.11672\r\n2024-11-26 11:22:52, 20.163494\r\n2024-11-26 11:22:57, 15.5168\r\n2024-11-26 11:23:02, 39.449413\r\n2024-11-26 11:23:07, 58.299183\r\n2024-11-26 11:23:12, 34.005272\r\n2024-11-26 11:23:17, 6.9278297\r\n2024-11-26 11:23:22, 29.856188\r\n2024-11-26 11:23:27, 26.616114\r\n2024-11-26 11:23:32, 86.627655\r\n2024-11-26 11:23:37, 33.180885\r\n2024-11-26 11:23:42, 89.41901\r\n2024-11-26 11:23:47, 46.734955\r\n2024-11-26 11:23:52, 50.161575\r\n2024-11-26 11:23:57, 8.894354\r\n2024-11-26 11:24:02, 63.2178\r\n2024-11-26 11:24:07, 38.262726\r\n2024-11-26 11:24:12, 24.503357\r\n2024-11-26 11:24:17, 70.070305\r\n2024-11-26 11:24:22, 19.386555\r\n2024-11-26 11:24:27, 94.89555\r\n2024-11-26 11:24:32, 59.541153\r\n2024-11-26 11:24:37, 52.532707\r\n2024-11-26 11:24:42, 0.31425953\r\n2024-11-26 11:24:47, 59.503883\r\n2024-11-26 11:24:52, 71.96579\r\n2024-11-26 11:24:57, 11.116875\r\n2024-11-26 11:25:02, 75.66534\r\n2024-11-26 11:25:07, 48.110687\r\n2024-11-26 11:25:12, 20.214485\r\n2024-11-26 11:25:17, 60.43635\r\n2024-11-26 11:25:22, 3.9542913\r\n2024-11-26 11:25:27, 74.869026\r\n2024-11-26 11:25:32, 35.980995\r\n2024-11-26 11:25:37, 50.794918\r\n2024-11-26 11:25:42, 78.00128\r\n2024-11-26 11:25:47, 85.35049\r\n2024-11-26 11:25:52, 7.579744\r\n2024-11-26 11:25:57, 14.547539\r\n2024-11-26 11:26:02, 45.556164\r\n2024-11-26 11:26:07, 33.29922\r\n2024-11-26 11:26:13, 46.71584\r\n2024-11-26 11:26:18, 20.059467\r\n2024-11-26 11:26:23, 41.056747\r\n2024-11-26 11:26:28, 53.381737\r\n2024-11-26 11:26:33, 37.391674\r\n2024-11-26 11:26:38, 76.29233\r\n2024-11-26 11:26:43, 95.7924\r\n2024-11-26 11:26:48, 51.57777\r\n2024-11-26 11:26:53, 94.340294\r\n2024-11-26 11:26:58, 22.698133\r\n2024-11-26 11:27:03, 71.149185\r\n2024-11-26 11:27:08, 88.23159\r\n2024-11-26 11:27:13, 43.144615\r\n2024-11-26 11:27:18, 81.07818\r\n2024-11-26 11:27:23, 69.15296\r\n2024-11-26 11:27:28, 94.24831\r\n2024-11-26 11:27:33, 58.771824\r\n2024-11-26 11:27:38, 10.726118\r\n2024-11-26 11:27:43, 53.799637\r\n2024-11-26 11:27:48, 86.62047\r\n2024-11-26 11:27:53, 61.377247\r\n2024-11-26 11:27:58, 0.6997824\r\n2024-11-26 11:28:03, 79.82759\r\n2024-11-26 11:28:08, 28.863663\r\n2024-11-26 11:28:13, 4.72824\r\n2024-11-26 11:28:18, 16.442144\r\n2024-11-26 11:28:23, 88.36828\r\n2024-11-26 11:28:28, 78.79538\r\n2024-11-26 11:28:33, 4.345453\r\n2024-11-26 11:28:38, 37.999374\r\n2024-11-26 11:28:43, 33.59279\r\n2024-11-26 11:28:48, 39.491016\r\n2024-11-26 11:28:53, 29.396797\r\n2024-11-26 11:28:58, 37.376427\r\n2024-11-26 11:29:03, 44.90241\r\n2024-11-26 11:29:08, 58.589607\r\n2024-11-26 11:29:13, 28.513563\r\n2024-11-26 11:29:18, 29.553652\r\n2024-11-26 11:29:23, 75.79942\r\n2024-11-26 11:29:28, 31.105732\r\n2024-11-26 11:29:33, 18.093603\r\n2024-11-26 11:29:38, 39.59999\r\n2024-11-26 11:29:43, 100.0\r\n2024-11-26 11:35:34, 89.846535\r\n2024-11-26 11:35:39, 64.897316\r\n2024-11-26 11:35:44, 36.61471\r\n2024-11-26 11:35:49, 30.921906\r\n2024-11-26 11:35:54, 60.873978\r\n2024-11-26 11:35:59, 20.225471\r\n2024-11-26 11:36:04, 4.8903284\r\n2024-11-26 11:36:09, 32.20195\r\n2024-11-26 11:36:14, 19.785738\r\n2024-11-26 11:36:19, 31.969536\r\n2024-11-26 11:36:24, 7.2412014\r\n2024-11-26 11:36:29, 60.53008\r\n2024-11-26 11:36:34, 40.641617\r\n2024-11-26 11:36:39, 74.46331\r\n2024-11-26 11:36:44, 44.593834\r\n2024-11-26 11:36:49, 18.608772\r\n2024-11-26 11:36:54, 28.146744\r\n2024-11-26 11:36:59, 59.671997\r\n2024-11-26 11:37:04, 75.94957\r\n2024-11-26 11:37:09, 79.75424\r\n2024-11-26 11:37:14, 23.616611\r\n2024-11-26 11:37:19, 8.13452\r\n2024-11-26 11:37:24, 18.984676\r\n2024-11-26 11:37:29, 53.57119\r\n2024-11-26 11:37:34, 93.74616\r\n2024-11-26 11:37:39, 43.92202\r\n2024-11-26 11:37:44, 32.722084\r\n2024-11-26 11:37:49, 76.82646\r\n2024-11-26 11:37:54, 24.959314\r\n2024-11-26 11:37:59, 41.593407\r\n2024-11-26 11:38:05, 31.479061\r\n2024-11-26 11:38:10, 48.174973\r\n2024-11-26 11:38:15, 2.2314906\r\n2024-11-26 11:38:20, 85.994896\r\n2024-11-26 11:38:25, 28.712225\r\n2024-11-26 11:38:30, 14.0463295\r\n2024-11-26 11:38:35, 48.90375\r\n2024-11-26 11:38:40, 72.58291\r\n2024-11-26 11:38:45, 82.97513\r\n2024-11-26 11:38:50, 21.218317\r\n2024-11-26 11:38:55, 30.741066\r\n2024-11-26 11:39:00, 74.89272\r\n2024-11-26 11:39:05, 63.72687\r\n2024-11-26 11:39:10, 34.55788\r\n2024-11-26 11:39:15, 47.488678\r\n2024-11-26 11:39:20, 80.28567\r\n2024-11-26 11:39:25, 59.000217\r\n2024-11-26 11:39:30, 89.09093\r\n2024-11-26 11:39:35, 14.172679\r\n2024-11-26 11:39:40, 58.955563\r\n2024-11-26 11:39:45, 60.832424\r\n2024-11-26 11:39:50, 99.76959\r\n2024-11-26 11:39:55, 64.6587\r\n2024-11-26 11:40:00, 93.44193\r\n2024-11-26 11:40:05, 27.824015\r\n2024-11-26 11:40:10, 93.652596\r\n2024-11-26 11:40:15, 35.373463\r\n2024-11-26 11:40:20, 85.97814\r\n2024-11-26 11:40:25, 91.22272\r\n2024-11-26 11:40:30, 94.127205\r\n2024-11-26 11:40:35, 28.018587\r\n2024-11-26 11:40:40, 53.604145\r\n2024-11-26 11:40:45, 34.599094\r\n2024-11-26 11:40:50, 69.51806\r\n2024-11-26 11:40:55, 28.53641\r\n2024-11-26 11:41:00, 61.114956\r\n2024-11-26 11:41:05, 94.61547\r\n2024-11-26 11:41:10, 35.999615\r\n2024-11-26 11:41:15, 24.059492\r\n2024-11-26 11:41:20, 69.93026\r\n2024-11-26 11:41:25, 47.78206\r\n2024-11-26 11:41:30, 62.018307\r\n2024-11-26 11:41:35, 10.186357\r\n2024-11-26 11:41:40, 57.50116\r\n2024-11-26 11:41:45, 25.697826\r\n2024-11-26 11:41:50, 76.11418\r\n2024-11-26 11:41:55, 94.33543\r\n2024-11-26 11:42:00, 92.87484\r\n2024-11-26 11:42:05, 38.404583\r\n2024-11-26 11:42:10, 7.596737\r\n2024-11-26 11:42:15, 55.361103\r\n2024-11-26 11:42:21, 15.786189\r\n2024-11-26 11:42:26, 45.520603\r\n2024-11-26 11:42:31, 48.278202\r\n2024-11-26 11:42:36, 19.854069\r\n2024-11-26 11:42:41, 30.718798\r\n2024-11-26 11:42:46, 50.205376\r\n2024-11-26 11:42:51, 79.511894\r\n2024-11-26 11:42:56, 17.940866\r\n2024-11-26 11:43:01, 85.671364\r\n2024-11-26 11:43:06, 68.24464\r\n2024-11-26 11:43:11, 61.049347\r\n2024-11-26 11:43:16, 18.855679\r\n2024-11-26 11:43:21, 95.0861\r\n2024-11-26 13:47:10, 58.399742\r\n2024-11-26 13:47:15, 30.37349\r\n2024-11-26 13:47:20, 25.812458\r\n2024-11-26 13:47:25, 25.78407\r\n2024-11-26 13:47:30, 34.522335\r\n2024-11-26 13:47:35, 92.67036\r\n2024-11-26 13:47:40, 19.024063\r\n2024-11-26 13:47:45, 92.55972\r\n2024-11-26 13:47:50, 39.08786\r\n2024-11-26 13:47:55, 72.78871\r\n2024-11-26 13:48:00, 71.67774\r\n2024-11-26 13:48:05, 79.007614\r\n2024-11-26 13:48:10, 21.679651\r\n2024-11-26 13:48:15, 1.2172103\r\n2024-11-26 13:48:20, 32.890057\r\n2024-11-26 13:48:25, 15.583592\r\n2024-11-26 13:48:30, 88.93775\r\n2024-11-26 13:48:35, 90.275986\r\n2024-11-26 13:48:40, 66.81146\r\n2024-11-26 13:48:45, 81.861855\r\n2024-11-26 13:48:50, 83.23876\r\n2024-11-26 13:48:55, 37.661736\r\n2024-11-26 13:49:01, 16.129572\r\n2024-11-26 13:49:06, 74.35349\r\n2024-11-26 13:49:11, 11.697555\r\n2024-11-26 13:49:16, 75.09615\r\n2024-11-26 13:49:21, 32.912434\r\n2024-11-26 13:49:26, 46.51332\r\n2024-11-26 13:49:31, 70.72337\r\n2024-11-26 13:49:36, 45.767826\r\n2024-11-26 13:49:41, 71.17842\r\n2024-11-26 13:49:46, 5.292243\r\n2024-11-26 13:49:51, 56.16897\r\n2024-11-26 13:49:56, 72.479324\r\n2024-11-26 13:50:01, 44.341064\r\n2024-11-26 13:50:06, 8.921451\r\n2024-11-26 13:50:11, 99.78331\r\n2024-11-26 13:50:16, 55.34492\r\n2024-11-26 13:50:21, 90.93963\r\n2024-11-26 13:50:26, 38.84521\r\n2024-11-26 13:50:31, 71.50063\r\n2024-11-26 13:50:36, 72.61204\r\n2024-11-26 13:50:41, 53.770035\r\n2024-11-26 13:50:46, 68.464905\r\n2024-11-26 13:50:51, 27.919542\r\n2024-11-26 13:50:56, 30.096363\r\n2024-11-26 13:51:01, 64.68006\r\n2024-11-26 13:51:06, 9.042865\r\n2024-11-26 13:51:11, 40.554745\r\n2024-11-26 13:51:16, 38.5327\r\n2024-11-26 13:51:21, 82.95423\r\n2024-11-26 13:51:26, 22.980022\r\n2024-11-26 13:51:31, 75.05444\r\n2024-11-26 13:51:36, 88.871346\r\n2024-11-26 13:51:41, 66.51618\r\n2024-11-26 13:51:46, 83.776085\r\n2024-11-26 13:51:51, 13.102854\r\n2024-11-26 13:51:56, 33.524696\r\n2024-11-26 13:52:01, 58.310444\r\n2024-11-26 13:52:06, 65.1691\r\n2024-11-26 13:52:11, 62.267693\r\n2024-11-26 13:52:16, 77.435455\r\n2024-11-26 13:52:21, 55.446922\r\n2024-11-26 13:52:26, 26.90782\r\n2024-11-26 13:52:31, 12.267017\r\n2024-11-26 13:52:36, 92.55373\r\n2024-11-26 13:52:41, 45.31389\r\n2024-11-26 13:52:46, 56.82432\r\n2024-11-26 13:52:51, 97.241035\r\n2024-11-26 13:52:56, 19.14401\r\n2024-11-26 13:53:01, 54.27085\r\n2024-11-26 13:53:06, 36.645687\r\n2024-11-26 13:53:12, 67.40757\r\n2024-11-26 13:53:17, 28.877861\r\n2024-11-26 13:53:22, 63.159855\r\n2024-11-26 13:53:27, 38.42676\r\n2024-11-26 13:53:32, 66.30252\r\n2024-11-26 13:53:37, 39.797356\r\n2024-11-26 13:53:42, 16.228426\r\n2024-11-26 13:53:47, 78.52556\r\n2024-11-26 13:53:52, 34.568996\r\n2024-11-26 13:53:57, 79.165955\r\n2024-11-26 13:54:02, 41.70526\r\n2024-11-26 13:54:07, 63.417645\r\n2024-11-26 13:54:12, 2.433616\r\n2024-11-26 13:54:17, 44.476414\r\n2024-11-26 13:54:22, 32.839287\r\n2024-11-26 13:54:27, 45.9073\r\n2024-11-26 13:54:32, 1.6304076\r\n2024-11-26 13:54:37, 68.29195\r\n2024-11-26 13:54:42, 16.396326\r\n2024-11-26 13:54:47, 68.80285\r\n2024-11-26 13:54:52, 86.20041\r\n2024-11-26 13:54:57, 22.301506\r\n2024-11-26 13:55:02, 84.15835\r\n2024-11-26 13:55:07, 36.059307\r\n2024-11-26 13:55:12, 39.467587\r\n2024-11-26 13:55:17, 18.429762\r\n2024-11-26 13:55:22, 43.70485\r\n2024-11-26 13:55:27, 6.739706\r\n2024-11-26 13:55:32, 100.0\r\n2024-11-26 14:09:43, 61.276127\r\n2024-11-26 14:09:48, 98.350296\r\n2024-11-26 14:09:53, 61.00323\r\n2024-11-26 14:09:58, 89.90103\r\n2024-11-26 14:10:03, 3.1681955\r\n2024-11-26 14:10:08, 47.46152\r\n2024-11-26 14:10:13, 64.617905\r\n2024-11-26 14:10:18, 93.419495\r\n2024-11-26 14:10:23, 20.148642\r\n2024-11-26 14:10:28, 84.28501\r\n2024-11-26 14:10:33, 89.06083\r\n2024-11-26 14:10:38, 69.10628\r\n2024-11-26 14:10:43, 21.949398\r\n2024-11-26 14:10:48, 49.636124\r\n2024-11-26 14:10:53, 98.9374\r\n2024-11-26 14:10:58, 16.287792\r\n2024-11-26 14:11:03, 50.859787\r\n2024-11-26 14:11:08, 98.6536\r\n2024-11-26 14:11:13, 21.971523\r\n2024-11-26 14:11:18, 10.780543\r\n2024-11-26 14:11:23, 11.64369\r\n2024-11-26 14:11:28, 52.482056\r\n2024-11-26 14:11:33, 32.0229\r\n2024-11-26 14:11:38, 93.42522\r\n2024-11-26 14:11:43, 51.96136\r\n2024-11-26 14:11:48, 63.294674\r\n2024-11-26 14:11:53, 36.212967\r\n2024-11-26 14:11:58, 31.764704\r\n2024-11-26 14:12:03, 77.30876\r\n2024-11-26 14:12:08, 4.7979774\r\n2024-11-26 14:12:13, 10.829085\r\n2024-11-26 14:12:18, 63.588886\r\n2024-11-26 14:12:24, 93.82633\r\n2024-11-26 14:12:29, 84.496735\r\n2024-11-26 14:12:34, 18.472183\r\n2024-11-26 14:12:39, 53.025215\r\n2024-11-26 14:12:44, 49.740166\r\n2024-11-26 14:12:49, 87.4113\r\n2024-11-26 14:12:54, 39.948647\r\n2024-11-26 14:12:59, 39.184696\r\n2024-11-26 14:13:04, 4.2799892\r\n2024-11-26 14:13:09, 26.777124\r\n2024-11-26 14:13:14, 41.43415\r\n2024-11-26 14:13:19, 14.253396\r\n2024-11-26 14:13:24, 80.83038\r\n2024-11-26 14:13:29, 63.97385\r\n2024-11-26 14:13:34, 82.27353\r\n2024-11-26 14:13:39, 70.338524\r\n2024-11-26 14:13:44, 49.53602\r\n2024-11-26 14:13:49, 6.298727\r\n2024-11-26 14:13:54, 27.304745\r\n2024-11-26 14:13:59, 23.136198\r\n2024-11-26 14:14:04, 50.884808\r\n2024-11-26 14:14:09, 31.297844\r\n2024-11-26 14:14:14, 24.74795\r\n2024-11-26 14:14:19, 84.19827\r\n2024-11-26 14:14:24, 84.781555\r\n2024-11-26 14:14:29, 74.594025\r\n2024-11-26 14:14:34, 25.486994\r\n2024-11-26 14:14:39, 73.66432\r\n2024-11-26 14:14:44, 94.7091\r\n2024-11-26 14:14:49, 54.208607\r\n2024-11-26 14:14:54, 70.05613\r\n2024-11-26 14:14:59, 61.0299\r\n2024-11-26 14:15:04, 20.727413\r\n2024-11-26 14:15:09, 58.285515\r\n2024-11-26 14:15:14, 37.95879\r\n2024-11-26 14:15:19, 94.894264\r\n2024-11-26 14:15:24, 51.817818\r\n2024-11-26 14:15:29, 60.222054\r\n2024-11-26 14:15:34, 11.27904\r\n2024-11-26 14:15:39, 43.533886\r\n2024-11-26 14:15:44, 2.538067\r\n2024-11-26 14:15:49, 31.136244\r\n2024-11-26 14:15:54, 36.15372\r\n2024-11-26 14:15:59, 59.25679\r\n2024-11-26 14:16:04, 72.77407\r\n2024-11-26 14:16:09, 25.312311\r\n2024-11-26 14:16:14, 95.87081\r\n2024-11-26 14:16:19, 1.296711\r\n2024-11-26 14:16:24, 25.77784\r\n2024-11-26 14:16:29, 21.033442\r\n2024-11-26 14:16:34, 26.526064\r\n2024-11-26 14:16:39, 87.80493\r\n2024-11-26 14:16:44, 68.455345\r\n2024-11-26 14:16:49, 3.6167383\r\n2024-11-26 14:16:55, 87.747\r\n2024-11-26 14:17:00, 88.405365\r\n2024-11-26 14:17:05, 20.358109\r\n2024-11-26 14:17:10, 96.40311\r\n2024-11-26 14:17:15, 38.484364\r\n2024-11-26 14:17:20, 38.720554\r\n2024-11-26 14:17:25, 71.95057\r\n2024-11-26 14:17:30, 41.132664\r\n2024-11-26 14:17:35, 91.84321\r\n2024-11-26 14:17:40, 38.991093\r\n2024-11-26 14:17:45, 17.942493\r\n2024-11-26 14:17:50, 34.07259\r\n2024-11-26 14:17:55, 28.007423\r\n2024-11-26 14:18:00, 54.949154\r\n2024-11-26 14:18:05, 100.0\r\n2024-11-26 16:06:24, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-26 16:06:24, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-26 16:06:27, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-26 16:17:18, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-26 16:17:20, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-26 16:17:21, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:32:38, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:32:40, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:33:33, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:33:55, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:36:58, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:38:41, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:39:37, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:41:35, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:43:00, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:48:16, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:52:42, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:53:21, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:56:04, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:56:57, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 10:58:33, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:05:59, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:06:38, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:08:38, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:09:43, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:10:19, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:10:58, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 11:11:34, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:19:50, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:22:08, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:23:02, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:23:10, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:27:55, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:37:52, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 13:49:06, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-27 14:12:24, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-29 09:33:00, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-29 15:07:14, 로그 파일에서 686개의 데이터를 로드했습니다.\r\n2024-11-29 15:09:58, 83.56014\r\n2024-11-29 15:10:03, 1.6453266\r\n2024-11-29 15:10:08, 87.40321\r\n2024-11-29 15:10:13, 30.190742\r\n2024-11-29 15:10:18, 1.4617383\r\n2024-11-29 15:10:23, 18.50393\r\n2024-11-29 15:10:28, 98.98777\r\n2024-11-29 15:10:33, 13.921827\r\n2024-11-29 15:10:38, 1.4477551\r\n2024-11-29 15:48:40, 로그 파일에서 695개의 데이터를 로드했습니다.\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logs/power.log b/logs/power.log
+--- a/logs/power.log	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
++++ b/logs/power.log	(date 1732863760579)
+@@ -775,3 +775,7 @@
+ 2024-11-29 15:10:33, 13.921827
+ 2024-11-29 15:10:38, 1.4477551
+ 2024-11-29 15:48:40, 로그 파일에서 695개의 데이터를 로드했습니다.
++2024-11-29 15:55:00, 로그 파일에서 695개의 데이터를 로드했습니다.
++2024-11-29 15:56:12, 로그 파일에서 695개의 데이터를 로드했습니다.
++2024-11-29 16:01:29, 로그 파일에서 695개의 데이터를 로드했습니다.
++2024-11-29 16:02:40, 로그 파일에서 695개의 데이터를 로드했습니다.
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0e6d21f1-92f4-4a60-be64-2d8fda23877f\" name=\"Changes\" comment=\"2024.11.21 master+hyun\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$/doctor\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/user\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/user\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$/doctor\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"doctor\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"doctor\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"doctor\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"application\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Jsp File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mococoland&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,\r\n    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2p38BPaiVqiU5uAqNPK0VLSU4lF\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Gradle.user [bootRun].executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"NewJunHee\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/CoMong_Project/user/src/main/webapp/views/notice\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\CoMong_Project\\user\\src\\main\\webapp\\views\\notice\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\CoMong_Project\\user\\src\\main\\webapp\\views\\board\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"user [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/user\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0e6d21f1-92f4-4a60-be64-2d8fda23877f\" name=\"Changes\" comment=\"\" />\r\n      <created>1731983263742</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1731983263742</updated>\r\n      <workItem from=\"1731983264956\" duration=\"18486000\" />\r\n      <workItem from=\"1732064413075\" duration=\"5863000\" />\r\n      <workItem from=\"1732151216633\" duration=\"1199000\" />\r\n      <workItem from=\"1732153049903\" duration=\"1679000\" />\r\n      <workItem from=\"1732163119469\" duration=\"2628000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"2024.11.19 14:26 작업 댓글오류수정완료\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731994040358</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731994040358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"2024.11.19 14:26 작업 댓글오류수정완료\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731994510417</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731994510417</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"2024.11.19 15:28 center일단 적용 ,이상함.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731997761957</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731997761957</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"2024.11.19 15:44 공지 센터이동 및 작성자이름 출력\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731998718993</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731998718993</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"2024.11.21 master+hyun\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732167733780</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732167733780</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"2024.11.29 리셋\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732863085263</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732863085263</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"2024.11.19 14:26 작업 댓글오류수정완료\" />\r\n    <MESSAGE value=\"2024.11.19 15:28 center일단 적용 ,이상함.\" />\r\n    <MESSAGE value=\"2024.11.19 15:44 공지 센터이동 및 작성자이름 출력\" />\r\n    <MESSAGE value=\"2024.11.21 사용자,관리자 권한 분리\" />\r\n    <MESSAGE value=\"2024.11.21 master+hyun\" />\r\n    <MESSAGE value=\"2024.11.29 리셋\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"2024.11.29 리셋\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp</url>\r\n          <line>1</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9a3522bf39425cca191b789143f0fdf2c21e92cc)
++++ b/.idea/workspace.xml	(date 1732863514180)
+@@ -4,7 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.21 master+hyun" />
++    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.29 리셋">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -93,6 +99,7 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Gradle.doctor [bootRun].executor": "Run",
+     "Gradle.user [bootRun].executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+@@ -115,7 +122,29 @@
+       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Gradle.doctor [bootRun]">
++    <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
++      <ExternalSystemSettings>
++        <option name="executionName" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$/doctor" />
++        <option name="externalSystemIdString" value="GRADLE" />
++        <option name="scriptParameters" />
++        <option name="taskDescriptions">
++          <list />
++        </option>
++        <option name="taskNames">
++          <list>
++            <option value="bootRun" />
++          </list>
++        </option>
++        <option name="vmOptions" />
++      </ExternalSystemSettings>
++      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
++      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
++      <DebugAllEnabled>false</DebugAllEnabled>
++      <RunAsTest>false</RunAsTest>
++      <method v="2" />
++    </configuration>
+     <configuration name="user [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+@@ -140,6 +169,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Gradle.doctor [bootRun]" />
+         <item itemvalue="Gradle.user [bootRun]" />
+         <item itemvalue="Gradle.user [bootRun]" />
+       </list>
+@@ -215,7 +245,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1732863085263</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="2024.11.29 리셋">
++      <option name="closed" value="true" />
++      <created>1732863170448</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1732863170448</updated>
++    </task>
++    <task id="LOCAL-00008" summary="2024.11.29 리셋">
++      <option name="closed" value="true" />
++      <created>1732863213948</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1732863213948</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
