@@ -2,38 +2,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>게시판 - eLearning HTML Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
 
-    <!-- Favicon -->
-    <link href="<c:url value='/img/favicon.ico'/>" rel="icon">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com/)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com/)" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="<c:url value='/lib/animate/animate.min.css'/>" rel="stylesheet">
-    <link href="<c:url value='/lib/owlcarousel/assets/owl.carousel.min.css'/>" rel="stylesheet">
+        /* 기본 리스트 스타일 */
+        #doctorList li {
+            list-style-type: none;
+            padding: 10px;
+            /*border: 1px solid transparent;  !* 기본 테두리 없음 *!*/
+            margin: 5px;
+            border: 2px solid black;
+        }
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
-    <link href="<c:url value="/css/contents.css"/>" rel="stylesheet">
-    <!-- Template Stylesheet -->
-    <link href="<c:url value='/css/style.css'/>" rel="stylesheet">
+        /* 클릭된 항목에 테두리와 배경색 추가 */
+        /*#doctorList li a.selected {*/
+        /*    border: 2px solid #007bff;  !* 파란색 테두리 *!*/
+            /*background-color: #f0f8ff;  !* 선택된 배경색 *!*/
+        /*}
+
+
+
+    </style>
+
+
+
+
 </head>
 
 <body>
@@ -57,41 +61,9 @@
 <!-- Header End -->
 
 <!-- Board Start -->
-<body>
 
 
-<html>
-<head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Title</title>
-    <style>
-        table {border-collapse: collapse;}
-        td {border: 1px solid gray; padding: 3px;}
-        thead {background-color: #dde0e3; font-weight: bold; }
-        html, body {
-            margin:auto;
-            overflow-x: hidden;
-        }
-
-        /* 기본 리스트 스타일 */
-        #doctorList li {
-            list-style-type: none;
-            padding: 10px;
-            border: 1px solid transparent;  /* 기본 테두리 없음 */
-            margin: 5px;
-        }
-
-        /* 클릭된 항목에 테두리와 배경색 추가 */
-        #doctorList li a.selected {
-            border: 2px solid #007bff;  /* 파란색 테두리 */
-            background-color: #f0f8ff;  /* 선택된 배경색 */
-        }
-
-
-
-    </style>
-
-
     <script>
 
         // ---------------------------------진료과 별 의사정보---------------------------------------------------------
@@ -305,9 +277,8 @@
 
 
     </script>
-</head>
 
-<body>
+
 
 <!-- 아이디 값 전달 -->
 <input type="hidden" id="hiddenId" name="id" value="${userId}">
@@ -491,11 +462,11 @@
                 <li><img src="../images/common/icon_today.gif" alt="">오늘날짜</li>
             </ul>
         </div><!-- //schdule-information-area -->
-        <dt>선택하신 일자입니다.</dt>
-        <input type="text" id="date" name="date" readonly />
+
+        <%--        <dt>선택하신 일자입니다.</dt>--%>
+<%--        <input type="text" id="date" name="date" readonly />--%>
 
         <!-- 예약구분 (진료예약 / 상담예약) -->
-        <!-- <input type="hidden" name="reservGubun" id="reservGubun" value="record"> -->
         <dl class="choice-reservation-gubun">
             <dd>
                 <input type="radio" name="reservGubun" id="reservGubun_1" value="진료예약"><label for="reservGubun_1" style="line-height:24px;">진료예약</label>
@@ -569,21 +540,3 @@
 
 
 
-
-
-
-<!-- Board End -->
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<c:url value='/lib/wow/wow.min.js'/>"></script>
-<script src="<c:url value='/lib/easing/easing.min.js'/>"></script>
-<script src="<c:url value='/lib/waypoints/waypoints.min.js'/>"></script>
-<script src="<c:url value='/lib/owlcarousel/owl.carousel.min.js'/>"></script>
-
-<!-- Template Javascript -->
-<script src="<c:url value='/js/main.js'/>"></script>

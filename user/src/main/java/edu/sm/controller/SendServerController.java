@@ -1,6 +1,7 @@
 package edu.sm.controller;
 
 
+import edu.sm.app.dto.Marker;
 import edu.sm.app.dto.MedicalAppointmentDto;
 import edu.sm.app.service.MedicalAppointmentService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,26 @@ import java.util.Map;
 public class SendServerController {
 
     private final MedicalAppointmentService appointmentService;
+
+    @RequestMapping("/getmarkers")
+    public Object getmarkers(@RequestParam("target") int target){
+        log.info("Tager"+target);
+        List<Marker> markers = new ArrayList<Marker>();
+        if(target == 100){
+            markers.add(new Marker(37.564472,126.990841,"순대국1","ss1.jpg", 101));
+            markers.add(new Marker(37.544472,126.970841,"순대국2","ss2.jpg", 102));
+            markers.add(new Marker(37.564472,126.970841,"순대국3","ss3.jpg", 103));
+        }else if(target == 200){
+
+        }else{
+
+        }
+        log.info("Size"+markers.size());
+
+        return markers;
+    }
+
+
 
 
     @PostMapping("/saveAppointment")

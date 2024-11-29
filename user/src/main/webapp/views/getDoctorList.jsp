@@ -7,6 +7,13 @@
     #item_img{
         width:80px;
     }
+    /* 클릭된 항목에 테두리와 배경색 추가 */
+    a.selected {
+        border: 2px solid black; /* 파란색 테두리 */
+        background-color: #f0f8ff; /* 선택된 배경색 */
+    }
+
+
 </style>
 
 

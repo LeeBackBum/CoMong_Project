@@ -2,9 +2,12 @@ package edu.sm.controller;
 
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
+import edu.sm.utill.HpDate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +26,12 @@ import java.util.Map;
 @Controller
 @Slf4j
 public class MainController {
+
+    @Value("${app.key.apikey}")
+    String apikey;
+
+
+
 
     private final UserService userService;
 
@@ -53,13 +64,13 @@ public class MainController {
 
     @RequestMapping("/contact")
     public String contact(Model model) {
-        model.addAttribute("center", "calendar");
+        model.addAttribute("center", "contact");
         return "index";
     }
 
     @RequestMapping("/about")
     public String about(Model model) {
-        model.addAttribute("center", "calendar");
+        model.addAttribute("center", "about");
         return "index";
     }
 
@@ -68,6 +79,37 @@ public class MainController {
         model.addAttribute("center", "courses");
         return "index";
     }
+
+    @RequestMapping("/Test")
+    public String test(Model model) {
+        model.addAttribute("center", "gethp");
+        return "index";
+    }
+
+    @RequestMapping("/gethp")
+    public String gethp(Model model) {
+        model.addAttribute("center", "gethp");
+        return "index";
+    }
+
+    @RequestMapping("/apiTest")
+    public String apiTest(Model model) {
+        model.addAttribute("center", "apiTest");
+        return "index";
+    }
+
+    @RequestMapping("/map")
+    public String map(Model model) {
+        model.addAttribute("center", "map");
+        return "index";
+    }
+
+
+
+
+
+
+
 
 
 //    @RequestMapping("/reservation")
@@ -97,6 +139,31 @@ public class MainController {
 
         return "index";
     }
+
+    @RequestMapping("/mapTest")
+    public String map(HttpSession session, Model model) throws Exception {
+        UserDto userDto = (UserDto) session.getAttribute("loginid");
+
+        if (userDto == null) {
+            System.out.println("세션에 로그인된 사용자 정보 없음");
+            model.addAttribute("message", "Please log in first.");
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
+
+        String userAddress = userDto.getUserAddress();
+        System.out.println("로그인된 사용자 Address: " + userAddress);
+
+
+        model.addAttribute("userAddress",userAddress);
+
+        model.addAttribute("center","mapTest");
+
+
+        return "index";
+    }
+
+
+
 
 
 
@@ -151,6 +218,15 @@ public class MainController {
         return "index";
     }
 
+
+
+
+    @RequestMapping("/hpdataload")
+    @ResponseBody
+    public Object hpdataload(Model model) throws IOException, ParseException {
+
+        return HpDate.getHpAddress(apikey);
+    }
 
 
 

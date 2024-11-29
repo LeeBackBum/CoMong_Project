@@ -1,6 +1,5 @@
 /*진료예약*/
 .reservation-area01 {
-    /* height: 700px; */
     margin-bottom: 20px;
     background: #fff;
     border: 1px solid #dbdde0;
@@ -11,29 +10,29 @@
 }
 .reservation-area01 .reservation-box.choise01 {
     float:left;
-    width: 500px;
+    width: 33.33%;
     height: 1000px;
     padding: 35px 30px;
     border-right: 1px solid #dbdde0;
 }
 .reservation-area01 .reservation-box.choise02 {
     float:left;
-    width: 500px;
+    width: 33.33%;
     height: 1000px;
     padding: 35px 30px;
     border-right: 1px solid #dbdde0;
 }
 .reservation-area01 .reservation-box.choise03 {
     float:left;
-    width: 500px;
+    width: 33.33%;
     height: 1000px;
     padding: 35px 30px;
 }
-.reservation-area01 .reservation-box.choise03.ex {
-    height: 340px;
-    border-bottom: 1px solid #dbdde0;
-    overflow: hidden
-}
+/*.reservation-area01 .reservation-box.choise03.ex {*/
+/*    height: 340px;*/
+/*    border-bottom: 1px solid #dbdde0;*/
+/*    overflow: hidden*/
+/*}*/
 .reservation-area01 .reservation-box.choise04 {
     float: left;
     width: 230px;

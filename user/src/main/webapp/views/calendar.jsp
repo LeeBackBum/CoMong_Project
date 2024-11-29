@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Heebo, sans-serif;
         }
         .calendar-container {
             width: 100%;
             max-width: 700px;
             margin: 0 auto;
+            border: 2px solid lightgray;
         }
         .calendar-header {
             display: flex;
@@ -30,6 +31,7 @@
             width: 100%;
             border-collapse: collapse;
             text-align: center;
+
         }
         .calendar-table th,
         .calendar-table td {
@@ -38,17 +40,22 @@
         }
         .event {
             cursor: pointer;
-            background-color: lightblue;
+            background-color: lightskyblue;
         }
         .event:hover {
             background-color: #8BC34A;
         }
         .selected {
-            background-color: lightgreen;
+            background-color: floralwhite;
             color: white;
         }
         .disabled {
             color: #d3d3d3;
+        }
+
+        .event.selected {
+            background-color: floralwhite;
+            color: white;
         }
     </style>
 </head>

@@ -11,6 +11,13 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+
+  <!-- map -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e84461afa8078822e18c5b6af6752df6&libraries=services"></script>
+
+
+
+
   <!-- Favicon -->
   <link href="<c:url value="/img/icon.ico"/>" rel="icon">
 
@@ -29,6 +36,8 @@
   <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
 
   <%-- 틀--%>
+  <%-- reservation css--%>
+  <link href="<c:url value="/css/contents.css"/>" rel="stylesheet">
   <!-- Customized Bootstrap Stylesheet -->
   <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 
@@ -61,10 +70,10 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
-      <a href="<c:url value="/calendar"/>" class="nav-item nav-link">About</a>
+      <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
       <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
-      <a href="<c:url value="/testdoORG"/>" class="nav-item nav-link">TEST</a>
+      <a href="<c:url value="/mapTest"/>" class="nav-item nav-link">Map</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
         <div class="dropdown-menu fade-down m-0">
@@ -105,7 +114,7 @@
 
 <!-- Navbar End -->
 <div class="container-fluid" style="margin-top:0px">
-  <div class="row">
+  <div class="row" >
     <c:choose>
       <c:when test="${center == null}">
         <jsp:include page="center.jsp"/>

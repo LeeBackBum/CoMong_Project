@@ -36,6 +36,7 @@ logging:
 app:
   key:
     wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
-    wkey: ENC(ujwPmKR/3xWocLs+cOHIm9Y5f7G7ikkqj7wocy9AnqTbkKDUlFvshjAY8YiiLSuLPsQ0JKbH8vjMvlHNvdx9o8Jen73An7Q5EABcGWGbztDmPHvgmcz+jeIq195lx2pVlw43E3WtEmMNIonUSMNp6g==)
+    wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)
     algo: PBEWithMD5AndDES
     skey: mykey
+    apikey: ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D
