@@ -292,6 +292,7 @@
             userSex: document.querySelector('input[name="userSex"]:checked')?.value,
             diseaseStatus: document.getElementById("special-notes").value,
             userNumber: document.getElementById("phone").value,
+            role: 0
         };
 
         // 서버에 폼 데이터를 POST 요청으로 전송

@@ -4,6 +4,7 @@ import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ import java.util.List;
 public class MainController {
 
     private final UserService userService;
+
+    @Value("${app.url.server_url}")
+    String serverurl;
 
     public MainController(UserService userService) {
         this.userService = userService;
@@ -109,6 +113,30 @@ public class MainController {
     @RequestMapping("/forgot")
     public String forgot(Model model) {
         model.addAttribute("center", "forgot");
+        return "index";
+    }
+
+    @RequestMapping("/counseling")
+    public String counseling(HttpSession session, Model model) {
+        // 세션에서 로그인된 사용자 정보 가져오기
+        Object loginid = session.getAttribute("loginid");
+
+        // 세션에 로그인 정보가 없는 경우 로그인 페이지로 리다이렉트
+        if (loginid == null) {
+            return "redirect:/login"; // 로그인 페이지로 이동
+        }
+
+        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
+        String userName = ((UserDto) loginid).getUserName();
+
+        // JSP에 데이터 전달
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("userName", userName);
+        model.addAttribute("center", "Counseling/counseling");
+
+        System.out.println("Server URL: " + serverurl);
+        System.out.println("User Name: " + userName);
+
         return "index";
     }
 }

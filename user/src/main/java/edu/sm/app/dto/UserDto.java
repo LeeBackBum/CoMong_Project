@@ -16,6 +16,7 @@ public class UserDto {
     private String userSex;
     private String diseaseStatus;
     private String userNumber;
+    private String role;
 
     public String getUserSex() {
         return userSex != null ? userSex.trim() : null;
