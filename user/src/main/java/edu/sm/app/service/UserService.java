@@ -50,4 +50,7 @@ public class UserService implements SMService<String, UserDto> {
         return userRepository.findById(userId);
     }
 
+    public UserDto authenticate(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
 }
