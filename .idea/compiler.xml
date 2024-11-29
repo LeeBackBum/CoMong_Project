@@ -7,6 +7,7 @@
       <module name="edu.sm.CoMong.test" target="17" />
       <module name="edu.sm.doctor.main" target="17" />
       <module name="edu.sm.doctor.test" target="17" />
+      <module name="user" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
