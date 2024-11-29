@@ -26,7 +26,7 @@ public class MainController {
     public String index(Model model) {
         model.addAttribute("center", "center");
         log.info("Start Index ,,,,,,");
-        return "index";
+        return "main";
     }
 
     @RequestMapping("/main")
@@ -64,24 +64,5 @@ public class MainController {
         }
 
         return  "redirect:/main";
-    }
-
-    @RequestMapping("/counseling")
-    public String counseling(HttpSession session, Model model) {
-        // 세션에서 로그인된 사용자 정보 가져오기
-        Object loginid = session.getAttribute("doctorid");
-
-        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
-        String doctorName = ((DoctorDto) loginid).getDoctorName();
-
-        // JSP에 데이터 전달
-        model.addAttribute("serverurl", serverurl);
-        model.addAttribute("doctorName", doctorName);
-        model.addAttribute("center", "Counseling/counseling");
-
-        System.out.println("Server URL: " + serverurl);
-        System.out.println("User Name: " + doctorName);
-
-        return "/main";
     }
 }
