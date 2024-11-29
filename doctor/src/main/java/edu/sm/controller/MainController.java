@@ -41,6 +41,65 @@ public class MainController {
         return "main";
     }
 
+    @RequestMapping("button")
+    public String button(Model model) {
+        model.addAttribute("center", "center");
+        return "button";
+    }
+
+    @RequestMapping("/chart")
+    public String chart(Model model) {
+        model.addAttribute("center", "chart");
+        return "main";
+    }
+
+    @RequestMapping("element")
+    public String element(Model model) {
+        model.addAttribute("center", "center");
+        return "element";
+    }
+
+    @RequestMapping("errorpage")
+    public String errorpage(Model model) {
+        model.addAttribute("center", "center");
+        return "errorpage";
+    }
+
+    @RequestMapping("form")
+    public String form(Model model) {
+        model.addAttribute("center", "center");
+        return "form";
+    }
+
+    @RequestMapping("signin")
+    public String signin(Model model) {
+        model.addAttribute("center", "center");
+        return "signin";
+    }
+
+    @RequestMapping("signup")
+    public String signup(Model model) {
+        model.addAttribute("center", "center");
+        return "signup";
+    }
+
+    @RequestMapping("table")
+    public String table(Model model) {
+        model.addAttribute("center", "center");
+        return "table";
+    }
+
+    @RequestMapping("typography")
+    public String typography(Model model) {
+        model.addAttribute("center", "center");
+        return "typography";
+    }
+
+    @RequestMapping("widget")
+    public String widget(Model model) {
+        model.addAttribute("center", "center");
+        return "widget";
+    }
 
     @RequestMapping("/loginimpl")
     public String loginimpl(
@@ -63,6 +122,25 @@ public class MainController {
             return "/";
         }
 
-        return  "redirect:/main";
+        return "/main";
+    }
+
+    @RequestMapping("/counseling")
+    public String counseling(HttpSession session, Model model) {
+        // 세션에서 로그인된 사용자 정보 가져오기
+        Object loginid = session.getAttribute("doctorid");
+
+        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
+        String doctorName = ((DoctorDto) loginid).getDoctorName();
+
+        // JSP에 데이터 전달
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("doctorName", doctorName);
+        model.addAttribute("center", "Counseling/counseling");
+
+        System.out.println("Server URL: " + serverurl);
+        System.out.println("User Name: " + doctorName);
+
+        return "/main";
     }
 }
