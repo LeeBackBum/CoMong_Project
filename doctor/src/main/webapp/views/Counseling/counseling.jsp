@@ -167,6 +167,11 @@
       </div>
     </form>
   </div>
+  <div class="record-container">
+    <div class="record-header">
+      <h2 id="record-text">Record</h2>
+    </div>
+  </div>
 </div>
 
 
