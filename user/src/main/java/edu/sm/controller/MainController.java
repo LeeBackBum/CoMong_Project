@@ -50,7 +50,7 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @RequestMapping("/login")
     public String loginForm(Model model) {
         log.info("로그인 페이지 로드");
         model.addAttribute("center", "login"); // center에 "login" 설정
