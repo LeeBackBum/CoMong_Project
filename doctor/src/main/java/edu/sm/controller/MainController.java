@@ -30,24 +30,15 @@ public class MainController {
     String serverurl;
 
     @RequestMapping("/")
-    public String main(Model model) {
-        log.info("Start Main ,,,,,,");
-//        model.addAttribute("center", "center");
-        return "main";
+    public String index(Model model) {
+        model.addAttribute("center", "center");
+        log.info("Start Index ,,,,,,");
+        return "index";
     }
 
     @RequestMapping("/main")
-    public String main1(Model model) {
+    public String main(Model model) {
         log.info("Start Main ,,,,,,");
-        model.addAttribute("center", "center");
-        return "main";
-    }
-
-
-    @RequestMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("center", "index");
-        log.info("Start 로그인페이지 ,,,,,,");
         return "main";
     }
 
@@ -63,6 +54,11 @@ public class MainController {
         return "button";
     }
 
+    @RequestMapping("/chart")
+    public String chart(Model model) {
+        model.addAttribute("center", "chart");
+        return "main";
+    }
 
     @RequestMapping("element")
     public String element(Model model) {
@@ -82,6 +78,11 @@ public class MainController {
         return "form";
     }
 
+    @RequestMapping("signin")
+    public String signin(Model model) {
+        model.addAttribute("center", "center");
+        return "signin";
+    }
 
     @RequestMapping("signup")
     public String signup(Model model) {
@@ -89,30 +90,40 @@ public class MainController {
         return "signup";
     }
 
-    @RequestMapping("signin")
-    public String signin(Model model) {
-        model.addAttribute("center", "signin");
-        return "main";
+    @RequestMapping("table")
+    public String table(Model model) {
+        model.addAttribute("center", "center");
+        return "table";
     }
 
+    @RequestMapping("typography")
+    public String typography(Model model) {
+        model.addAttribute("center", "center");
+        return "typography";
+    }
 
+    @RequestMapping("widget")
+    public String widget(Model model) {
+        model.addAttribute("center", "widget");
+        return "index";
+    }
 
     @RequestMapping("/loginimpl")
     public String loginimpl(
             @RequestParam("id") String id,
             @RequestParam("pwd") String pwd,
-            HttpSession httpSession){
+            HttpSession httpSession) {
         DoctorDto doctorDto = null;
 
         try {
             doctorDto = doctorService.get(id);
-            if(doctorDto == null){
+            if (doctorDto == null) {
                 throw new Exception();
             }
-            if(!doctorDto.getDoctorPwd().equals(pwd)){
+            if (!doctorDto.getDoctorPwd().equals(pwd)) {
                 throw new Exception();
             }
-            httpSession.setAttribute("doctor",doctorDto);
+            httpSession.setAttribute("doctor", doctorDto);
             httpSession.setAttribute("doctorid", doctorDto);
         } catch (Exception e) {
             return "/";

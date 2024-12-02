@@ -1,0 +1,41 @@
+#1.
+server:
+  port: 80
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+#2.
+spring:
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://211.188.48.121:3306/smhs?characterEncoding=utf8
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
+    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
+    username: smuser
+    password: 111111
+
+#3. MyBatis Setting
+mybatis:
+  type-aliases-package: edu.sm.app.dto
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+#4.
+logging:
+  level:
+    root: info
+
+app:
+  key:
+    wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
+    wkey: ENC(ujwPmKR/3xWocLs+cOHIm9Y5f7G7ikkqj7wocy9AnqTbkKDUlFvshjAY8YiiLSuLPsQ0JKbH8vjMvlHNvdx9o8Jen73An7Q5EABcGWGbztDmPHvgmcz+jeIq195lx2pVlw43E3WtEmMNIonUSMNp6g==)
+    algo: PBEWithMD5AndDES
+    skey: mykey
