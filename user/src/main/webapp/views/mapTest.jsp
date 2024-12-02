@@ -4,7 +4,6 @@
 <html lang="ko">
 <head>
 <%--    <meta charset="utf-8">--%>
-<%--    <title>주소로 장소 표시하기</title>--%>
 <style>
     html, body {
         width: 100%;
@@ -23,14 +22,6 @@
 </head>
 <body>
 
-
-
-
-
-
-
-
-
 <!-- Header Start -->
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
     <div class="container py-5">
@@ -47,26 +38,10 @@
         </div>
     </div>
 </div>
-<!-- Header End -->
-
-
-
-
 
 <div id="map" style="width:100%;height:800px;"></div>
-<%--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e84461afa8078822e18c5b6af6752df6&libraries=services"></script>--%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-//    $.ajax({
-//        url:'/getmarkers',
-//        data:{target:target},
-//        async:false,
-//        success:function (results){
-//            // alert(results);
-//            datas  = results;
-//        }
-//    })
-
 
 
     var address = '${userAddress}'

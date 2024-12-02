@@ -112,18 +112,18 @@ public class MainController {
     public String loginimpl(
             @RequestParam("id") String id,
             @RequestParam("pwd") String pwd,
-            HttpSession httpSession){
+            HttpSession httpSession) {
         DoctorDto doctorDto = null;
 
         try {
             doctorDto = doctorService.get(id);
-            if(doctorDto == null){
+            if (doctorDto == null) {
                 throw new Exception();
             }
-            if(!doctorDto.getDoctorPwd().equals(pwd)){
+            if (!doctorDto.getDoctorPwd().equals(pwd)) {
                 throw new Exception();
             }
-            httpSession.setAttribute("doctor",doctorDto);
+            httpSession.setAttribute("doctor", doctorDto);
             httpSession.setAttribute("doctorid", doctorDto);
         } catch (Exception e) {
             return "/";
