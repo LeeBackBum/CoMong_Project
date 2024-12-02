@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,9 @@ public class MainController {
 
     private final UserService userService;
 
+    @Value("${app.url.server_url}")
+    String serverurl;
+
     public MainController(UserService userService) {
         this.userService = userService;
     }
@@ -50,34 +54,32 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String loginForm(Model model) {
-        log.info("로그인 페이지 로드");
-        model.addAttribute("center", "login"); // center에 "login" 설정
-        return "index"; // 메인 레이아웃 페이지로 이동
-    }
+//    @PostMapping("/login")
+//    public String login(String username, String password, HttpSession session, Model model) {
+//        try {
+//            log.info("로그인 시도: username={}", username);
+//            UserDto user = userService.authenticate(username, password);
+//            if (user != null) {
+//                // 세션에 UserDto 저장
+//                session.setAttribute("user", user);
+//                log.info("로그인 성공: userId={}, userName={}", user.getUserId(), user.getUserName());
+//                return "redirect:/board"; // 로그인 성공 시 게시판 메인으로 이동
+//            } else {
+//                model.addAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
+//                log.warn("로그인 실패: 아이디 또는 비밀번호 오류");
+//                return "login";
+//            }
+//        } catch (Exception e) {
+//            log.error("로그인 처리 중 오류 발생", e);
+//            model.addAttribute("errorMessage", "로그인 처리 중 오류가 발생했습니다.");
+//            return "login";
+//        }
+//    }
 
-    // 로그인 처리 요청(POST)
-    @PostMapping("/login")
-    public String login(String username, String password, HttpSession session, Model model) {
-        try {
-            log.info("로그인 시도: username={}", username);
-            UserDto user = userService.authenticate(username, password);
-            if (user != null) {
-                // 세션에 UserDto 저장
-                session.setAttribute("user", user);
-                log.info("로그인 성공: userId={}, userName={}", user.getUserId(), user.getUserName());
-                return "redirect:/board"; // 로그인 성공 시 게시판 메인으로 이동
-            } else {
-                model.addAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
-                log.warn("로그인 실패: 아이디 또는 비밀번호 오류");
-                return "login";
-            }
-        } catch (Exception e) {
-            log.error("로그인 처리 중 오류 발생", e);
-            model.addAttribute("errorMessage", "로그인 처리 중 오류가 발생했습니다.");
-            return "login";
-        }
+    @RequestMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("center", "login");
+        return "index";
     }
 
     @RequestMapping("/register")
@@ -128,20 +130,6 @@ public class MainController {
         return "index";
     }
 
-
-
-
-
-
-
-
-
-//    @RequestMapping("/reservation")
-//    public String reservations(Model model) {
-//        model.addAttribute("center","reservation");
-//        return "index";
-//    }
-
     @RequestMapping("/reservation")
     public String reservations(HttpSession session, Model model) throws Exception {
         UserDto userDto = (UserDto) session.getAttribute("loginid");
@@ -185,12 +173,6 @@ public class MainController {
 
         return "index";
     }
-
-
-
-
-
-
 
 
     @RequestMapping("/team")
@@ -242,23 +224,40 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/forgot")
+    public String forgot(Model model) {
+        model.addAttribute("center", "forgot");
+        return "index";
+    }
 
+    @RequestMapping("/counseling")
+    public String counseling(HttpSession session, Model model) {
+        // 세션에서 로그인된 사용자 정보 가져오기
+        Object loginid = session.getAttribute("loginid");
 
+        // 세션에 로그인 정보가 없는 경우 로그인 페이지로 리다이렉트
+        if (loginid == null) {
+            return "redirect:/login"; // 로그인 페이지로 이동
+        }
+
+        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
+        String userName = ((UserDto) loginid).getUserName();
+
+        // JSP에 데이터 전달
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("userName", userName);
+        model.addAttribute("center", "Counseling/counseling");
+
+        System.out.println("Server URL: " + serverurl);
+        System.out.println("User Name: " + userName);
+
+        return "index";
+    }
 
     @RequestMapping("/hpdataload")
     @ResponseBody
     public Object hpdataload(Model model) throws IOException, ParseException {
 
         return HpDate.getHpAddress(apikey);
-    }
-
-
-
-
-
-    @RequestMapping("/forgot")
-    public String forgot(Model model) {
-        model.addAttribute("center", "forgot");
-        return "index";
     }
 }

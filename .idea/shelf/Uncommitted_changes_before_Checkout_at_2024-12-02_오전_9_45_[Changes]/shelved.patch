@@ -1,0 +1,39 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"FrameworkDetectionExcludesConfiguration\">\r\n    <file type=\"web\" url=\"file://$PROJECT_DIR$/doctor\" />\r\n    <file type=\"web\" url=\"file://$PROJECT_DIR$/doctor\" />\r\n    <file type=\"web\" url=\"file://$PROJECT_DIR$/user\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 98a2a2492013442ba3664ab781106093ecba880c)
++++ b/.idea/misc.xml	(date 1733100253228)
+@@ -3,7 +3,6 @@
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="FrameworkDetectionExcludesConfiguration">
+     <file type="web" url="file://$PROJECT_DIR$/doctor" />
+-    <file type="web" url="file://$PROJECT_DIR$/doctor" />
+     <file type="web" url="file://$PROJECT_DIR$/user" />
+   </component>
+   <component name="ProjectRootManager">
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectModuleManager\">\r\n    <modules>\r\n      <module fileurl=\"file://$PROJECT_DIR$/CoMong.iml\" filepath=\"$PROJECT_DIR$/CoMong.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/doctor.main.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/doctor.main.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/user.main.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/user.main.iml\" />\r\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/modules/user.test.iml\" filepath=\"$PROJECT_DIR$/.idea/modules/user.test.iml\" />\r\n    </modules>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+--- a/.idea/modules.xml	(revision 98a2a2492013442ba3664ab781106093ecba880c)
++++ b/.idea/modules.xml	(date 1733100262550)
+@@ -3,9 +3,6 @@
+   <component name="ProjectModuleManager">
+     <modules>
+       <module fileurl="file://$PROJECT_DIR$/CoMong.iml" filepath="$PROJECT_DIR$/CoMong.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doctor.main.iml" filepath="$PROJECT_DIR$/.idea/modules/doctor.main.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user.main.iml" />
+-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user.test.iml" filepath="$PROJECT_DIR$/.idea/modules/user.test.iml" />
+     </modules>
+   </component>
+ </project>
+\ No newline at end of file
