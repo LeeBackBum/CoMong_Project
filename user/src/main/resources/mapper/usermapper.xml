@@ -22,7 +22,7 @@
         INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber},CASE WHEN #{role} IS NULL OR #{role} = '' THEN '0' ELSE #{role} END)
     </insert>
     <update id="update" parameterType="userDto">
-        UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}
+        UPDATE user SET user_email=#{userEmail},user_number=#{userNumber}, user_address=#{userAddress} WHERE user_id=#{userId}
     </update>
     <delete id="delete" parameterType="String">
         DELETE FROM user WHERE user_id=#{id}

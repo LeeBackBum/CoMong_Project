@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="commit">
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="Edit Profile">
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/renew.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20__2_43__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-20__2_44__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/reservationTEST.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebsocketConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ChatController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/usermapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/usermapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/mypage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +30,9 @@
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/doctor">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/doctor_iot">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/user">
@@ -83,7 +98,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Bum" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -97,7 +112,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,
-    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;
+    &quot;accountId&quot;: &quot;379c5a3c-6fb4-49d3-9c29-33059c50308e&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -112,23 +127,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.doctor [bootRun].executor": "Run",
-    "Gradle.user [bootRun].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Bum",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/CoMong_Project/user/src/main/webapp/views/notice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Bum&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/webapp/views/notice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
@@ -182,8 +197,18 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.sm.UserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.user [bootRun]" />
+        <item itemvalue="Gradle.doctor [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
@@ -258,6 +283,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2024.11.19 14:26 작업 댓글오류수정완료" />
     <MESSAGE value="2024.11.19 15:28 center일단 적용 ,이상함." />
@@ -265,7 +301,8 @@
     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
     <MESSAGE value="2024.11.21 master+hyun" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="Edit Profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit Profile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

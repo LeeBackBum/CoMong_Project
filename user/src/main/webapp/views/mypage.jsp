@@ -170,7 +170,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a href="<c:url value='/register'/>" class="btn btn-info">Edit</a>
+                                        <a href="<c:url value='/renew'/>" class="btn btn-info">Edit</a>
                                     </div>
                                 </div>
                             </div>
