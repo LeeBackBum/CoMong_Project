@@ -22,8 +22,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MainController {
 
-    @Value("${app.dir.imgdir}")//수정예정 -승현
-    private String imgDir;
+    @Value("${app.dir.imgmypage}")
+    private String imgmypage;
+
+
 
     private final DoctorService doctorService;
 
@@ -101,7 +103,7 @@ public class MainController {
 
             // 파일 업로드 처리
             if (doctorImg != null && !doctorImg.isEmpty()) {
-                File destDir = new File(imgDir);
+                File destDir = new File(imgmypage);
 
                 if (!destDir.exists()) {
                     destDir.mkdirs();

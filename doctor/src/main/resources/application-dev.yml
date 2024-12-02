@@ -35,10 +35,10 @@ logging:
 # 5. Application Environment Setting
 app:
   url:
-    server_url: http://210.119.34.218:81
+    server_url:
   dir:
     imgdir: file:///c:/CoMong_Project/imgs/
-#    imgdir: C:/CoMong_Project/doctor/src/main/resources/static/img
+    imgmypage: C:/CoMong_Project/doctor/src/main/resources/static/img
     uploadimgdir: c:/CoMong_Project/imgs/
 
     # logdir: /root/users/project/logs

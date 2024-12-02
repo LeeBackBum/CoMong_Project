@@ -15,7 +15,7 @@
         board_answer_num AS boardAnswerNum,
         user_id AS userId,
         user_name AS userName, <!-- 작성자 이름 -->
-        is_notice AS isNotice
+
         FROM board
         WHERE board_id = #{boardId};
     </select>
@@ -31,7 +31,8 @@
         board_answer_num AS boardAnswerNum,
         user_id AS userId,
         user_name AS userName, <!-- 작성자 이름 -->
-        is_notice AS isNotice
+
+
         FROM board
         ORDER BY is_notice DESC, board_date DESC;
     </select>
@@ -47,7 +48,7 @@
         board_answer_num AS boardAnswerNum,
         user_id AS userId,
         user_name AS userName, <!-- 작성자 이름 -->
-        is_notice AS isNotice
+
         FROM board
         ORDER BY is_notice DESC, board_date DESC
         LIMIT #{offset}, #{pageSize};
@@ -74,7 +75,7 @@
         board_answer_num = #{boardAnswerNum},
         user_id = #{userId},
         user_name = #{userName}, <!-- 작성자 이름 -->
-        is_notice = #{isNotice}
+
         WHERE board_id = #{boardId};
     </update>
 
@@ -101,7 +102,7 @@
         board_answer_num AS boardAnswerNum,
         user_id AS userId,
         user_name AS userName, <!-- 작성자 이름 -->
-        is_notice AS isNotice
+
         FROM board
         WHERE is_notice = 1
         ORDER BY board_date DESC;
@@ -118,7 +119,7 @@
         board_answer_num AS boardAnswerNum,
         user_id AS userId,
         user_name AS userName, <!-- 작성자 이름 -->
-        is_notice AS isNotice
+
         FROM board
         WHERE is_notice = 0
         ORDER BY board_date DESC;
