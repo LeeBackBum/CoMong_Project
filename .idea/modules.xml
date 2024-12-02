@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CoMong.iml" filepath="$PROJECT_DIR$/CoMong.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/CoMong_Project.iml" filepath="$PROJECT_DIR$/.idea/CoMong_Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/doctor.main.iml" filepath="$PROJECT_DIR$/.idea/modules/doctor.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doctor.test.iml" filepath="$PROJECT_DIR$/.idea/modules/doctor.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/user.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user.main.iml" />
     </modules>
   </component>
