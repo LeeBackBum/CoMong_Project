@@ -24,6 +24,7 @@ public class UserService implements SMService<String, UserDto> {
 
     @Override
     public void modify(UserDto userDto) throws Exception {
+        System.out.println("Modifying User: " + userDto);
         userRepository.update(userDto);
     }
 

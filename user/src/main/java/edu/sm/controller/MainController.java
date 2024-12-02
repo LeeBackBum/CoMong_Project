@@ -230,6 +230,12 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/renew")
+    public String renew(Model model) {
+        model.addAttribute("center", "renew");
+        return "index";
+    }
+
     @RequestMapping("/counseling")
     public String counseling(HttpSession session, Model model) {
         // 세션에서 로그인된 사용자 정보 가져오기
@@ -259,5 +265,24 @@ public class MainController {
     public Object hpdataload(Model model) throws IOException, ParseException {
 
         return HpDate.getHpAddress(apikey);
+    }
+
+    @RequestMapping("/updateimpl")
+    public String updateimpl(HttpSession session,  UserDto userDto
+    ) throws Exception {
+        UserDto loggedInUser = (UserDto) session.getAttribute("loginid");
+
+        if (loggedInUser == null) {
+            // 로그인되지 않은 사용자 처리
+            return "redirect:/login";
+        }
+
+        // 세션에서 가져온 사용자 ID를 업데이트할 UserDto에 설정
+        userDto.setUserId(loggedInUser.getUserId());
+
+        System.out.println("Received UserDto: " + userDto);
+
+        userService.modify(userDto);
+        return "redirect:/mypage";
     }
 }

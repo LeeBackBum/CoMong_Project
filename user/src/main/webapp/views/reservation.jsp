@@ -464,7 +464,7 @@
         </div><!-- //schdule-information-area -->
 
         <%--        <dt>선택하신 일자입니다.</dt>--%>
-<%--        <input type="text" id="date" name="date" readonly />--%>
+        <input type="hidden" id="date" name="date" readonly />
 
         <!-- 예약구분 (진료예약 / 상담예약) -->
         <dl class="choice-reservation-gubun">
