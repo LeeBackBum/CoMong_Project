@@ -42,7 +42,7 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
-            <a href="<c:url value="/"/>" class="navbar-brand mx-4 mb-3">
+            <a href="<c:url value="/index"/>" class="navbar-brand mx-4 mb-3">
                 <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Sign In</h3>
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
@@ -106,7 +106,7 @@
                         <span class="d-none d-lg-inline-flex">${sessionScope.doctor.doctorName}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
+                        <a href="<c:url value="/mypage"/>" class="dropdown-item">My page</a>
                         <a href="#" class="dropdown-item">Settings</a>
                         <a href="#" class="dropdown-item">Log Out</a>
                     </div>
@@ -134,7 +134,6 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
 
 <!-- Template Javascript -->
 </body>

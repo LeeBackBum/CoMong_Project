@@ -28,5 +28,14 @@
         DELETE FROM user WHERE user_id=#{id}
     </delete>
 
+    <!-- 사용자 인증: 사용자명과 비밀번호로 사용자 조회 추가 -->
+    <select id="findByUsernameAndPassword" parameterType="map" resultType="edu.sm.app.dto.UserDto">
+        SELECT user_id AS userId,
+               user_name AS userName,
+               user_pwd AS userPwd
+        FROM user
+        WHERE user_id = #{username}
+          AND user_pwd = #{password}
+    </select>
 
 </mapper>

@@ -42,13 +42,13 @@
       <div class="row g-4">
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">일별 혈압</h6>
+            <h6 class="mb-4">Single Line Chart</h6>
             <canvas id="line-chart"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">일별 혈당</h6>
+            <h6 class="mb-4">Multiple Line Chart</h6>
             <canvas id="salse-revenue"></canvas>
           </div>
         </div>
@@ -105,7 +105,6 @@
     init: function () {
       this.getdata(); // 초기 데이터 가져오기
       this.display2(); // 차트 초기화
-      this.display4();
       setInterval(() => {
         this.getdata(); // 5초마다 데이터 갱신
       }, 5000);
@@ -127,52 +126,63 @@
       });
     },
     display2: function () {
-      // Single Line Chart
-      var ctx3 = $("#line-chart").get(0).getContext("2d");
-      this.chartInstance = new Chart(ctx3, {
-        type: "line",
+      // 초기 차트 설정
+      const ctx = document.getElementById('line-chart').getContext('2d');
+      this.chartInstance = new Chart(ctx, {
+        type: 'line',
         data: {
-          labels: [1,2,3,4,5,6,7,8,9,10],
+          labels: [], // 초기 라벨 값은 비어있음
           datasets: [{
-            label: "혈압 수치",
+            label: 'Power Consumption',
+            data: [],
+            borderColor: 'rgba(75, 192, 192, 1)',
             fill: false,
-            backgroundColor: "rgba(0, 156, 255, .3)",
-            data: [100,110,120,130,180,190,200,180,190,170]
+            borderWidth: 2,
+            pointRadius: 3
           }]
         },
         options: {
-          responsive: true
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Time'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Power (Watts)'
+              }
+            }
+          }
         }
       });
     },
-    display4: function (){
-      // Salse & Revenue Chart
-      var ctx2 = $("#salse-revenue").get(0).getContext("2d");
-      var myChart2 = new Chart(ctx2, {
-        type: "line",
-        data: {
-          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-          datasets: [{
-            label: "복용 전 혈당",
-            data: [55, 75, 65, 45, 70, 65, 85, 70, 65, 85],
-            backgroundColor: "rgba(0, 156, 255, .2)",
-            fill: true
-          },
-            {
-              label: "복욕 후 혈당",
-              data: [20, 32, 44, 34, 36, 45, 38, 36, 45, 38],
-              backgroundColor: "rgba(0, 156, 255, .5)",
-              fill: true
-            }
-          ]
-        },
-        options: {
-          responsive: true
+    display: function (datas) {
+      if (this.chartInstance) {
+        // 기존 데이터에 새로운 데이터를 추가
+        const label = `Time ${this.chartInstance.data.labels.length + 1}`; // JavaScript 내에서 계산
+
+        this.chartInstance.data.labels.push(label);
+        this.chartInstance.data.datasets[0].data.push(datas[datas.length - 1]);
+
+        // 만약 차트의 데이터 포인트가 너무 많으면 오래된 데이터를 삭제
+        if (this.chartInstance.data.labels.length > 10) { // 예: 최대 10개의 데이터만 유지
+          this.chartInstance.data.labels.shift();
+          this.chartInstance.data.datasets[0].data.shift();
         }
-      });
+
+        this.chartInstance.update(); // 차트 업데이트
+      }
     }
   };
-
 
   $(function () {
     chart1.init();

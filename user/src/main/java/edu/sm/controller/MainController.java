@@ -2,20 +2,42 @@ package edu.sm.controller;
 
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import edu.sm.app.dto.UserDto;
+import edu.sm.app.service.UserService;
+import edu.sm.utill.HpDate;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
 public class MainController {
+
+    @Value("${app.key.apikey}")
+    String apikey;
+
+
+
 
     private final UserService userService;
 
@@ -32,11 +54,28 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("center", "login");
-        return "index";
+    @PostMapping("/login")
+    public String login(String username, String password, HttpSession session, Model model) {
+        try {
+            log.info("로그인 시도: username={}", username);
+            UserDto user = userService.authenticate(username, password);
+            if (user != null) {
+                // 세션에 UserDto 저장
+                session.setAttribute("user", user);
+                log.info("로그인 성공: userId={}, userName={}", user.getUserId(), user.getUserName());
+                return "redirect:/board"; // 로그인 성공 시 게시판 메인으로 이동
+            } else {
+                model.addAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
+                log.warn("로그인 실패: 아이디 또는 비밀번호 오류");
+                return "login";
+            }
+        } catch (Exception e) {
+            log.error("로그인 처리 중 오류 발생", e);
+            model.addAttribute("errorMessage", "로그인 처리 중 오류가 발생했습니다.");
+            return "login";
+        }
     }
+
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("center", "register");
@@ -60,6 +99,81 @@ public class MainController {
         model.addAttribute("center", "courses");
         return "index";
     }
+
+    @RequestMapping("/Test")
+    public String test(Model model) {
+        model.addAttribute("center", "gethp");
+        return "index";
+    }
+
+    @RequestMapping("/gethp")
+    public String gethp(Model model) {
+        model.addAttribute("center", "gethp");
+        return "index";
+    }
+
+    @RequestMapping("/apiTest")
+    public String apiTest(Model model) {
+        model.addAttribute("center", "apiTest");
+        return "index";
+    }
+
+    @RequestMapping("/map")
+    public String map(Model model) {
+        model.addAttribute("center", "map");
+        return "index";
+    }
+
+    @RequestMapping("/reservation")
+    public String reservations(HttpSession session, Model model) throws Exception {
+        UserDto userDto = (UserDto) session.getAttribute("loginid");
+
+        if (userDto == null) {
+            System.out.println("세션에 로그인된 사용자 정보 없음");
+            model.addAttribute("message", "Please log in first.");
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
+
+        String userId = userDto.getUserId();
+        System.out.println("로그인된 사용자 ID: " + userId);
+
+
+        model.addAttribute("userId",userId);
+
+        model.addAttribute("center","reservation");
+
+
+        return "index";
+    }
+
+    @RequestMapping("/mapTest")
+    public String map(HttpSession session, Model model) throws Exception {
+        UserDto userDto = (UserDto) session.getAttribute("loginid");
+
+        if (userDto == null) {
+            System.out.println("세션에 로그인된 사용자 정보 없음");
+            model.addAttribute("message", "Please log in first.");
+            return "redirect:/login"; // 로그인 페이지로 리다이렉트
+        }
+
+        String userAddress = userDto.getUserAddress();
+        System.out.println("로그인된 사용자 Address: " + userAddress);
+
+
+        model.addAttribute("userAddress",userAddress);
+
+        model.addAttribute("center","mapTest");
+
+
+        return "index";
+    }
+
+
+
+
+
+
+
 
     @RequestMapping("/team")
     public String team(Model model) {
@@ -138,5 +252,12 @@ public class MainController {
         System.out.println("User Name: " + userName);
 
         return "index";
+    }
+
+    @RequestMapping("/hpdataload")
+    @ResponseBody
+    public Object hpdataload(Model model) throws IOException, ParseException {
+
+        return HpDate.getHpAddress(apikey);
     }
 }

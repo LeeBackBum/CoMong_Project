@@ -11,6 +11,13 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+
+  <!-- map -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e84461afa8078822e18c5b6af6752df6&libraries=services"></script>
+
+
+
+
   <!-- Favicon -->
   <link href="<c:url value="/img/icon.ico"/>" rel="icon">
 
@@ -29,6 +36,8 @@
   <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
 
   <%-- 틀--%>
+  <%-- reservation css--%>
+  <link href="<c:url value="/css/contents.css"/>" rel="stylesheet">
   <!-- Customized Bootstrap Stylesheet -->
   <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 
@@ -56,7 +65,7 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
   <a href="<c:url value="/"/> " class="navbar-brand d-flex align-items-center px-4 px-lg-5">
     <h2 class="m-0 text-primary">
-      <img class="img-logo" src="img/logo2.jpg" alt="" style="width: 140px; height: auto;">
+      <img class="img-logo" src="<c:url value='/img/logo2.jpg'/>"  alt="" style="width: 140px; height: auto;">
     </h2>
   </a>
   <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -67,6 +76,8 @@
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
+      <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
+      <a href="<c:url value="/mapTest"/>" class="nav-item nav-link">Map</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
         <div class="dropdown-menu fade-down m-0">
@@ -76,6 +87,7 @@
         </div>
       </div>
       <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
+      <a href="<c:url value="/board"/>" class="nav-item nav-link">게시판</a>
     </div>
     <ul class="nav justify-content-end">
       <c:choose>
@@ -152,22 +164,22 @@
         <h4 class="text-white mb-3">Gallery</h4>
         <div class="row g-2 pt-2">
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src=<c:url value="/img/course-1.jpg" /> alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-3.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
           </div>
         </div>
       </div>
