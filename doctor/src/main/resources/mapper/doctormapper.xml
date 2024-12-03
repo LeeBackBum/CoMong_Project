@@ -22,12 +22,19 @@
     </insert>
 
     <!-- 기존 의사 정보 수정 -->
-    <update id="update" parameterType="doctorDto">
+    <update id="update" parameterType="edu.sm.app.dto.DoctorDto">
         UPDATE doctor
-        SET doctorPwd = #{doctorPwd}, doctorNumber = #{doctorNumber}, doctorName = #{doctorName}, doctorAge = #{doctorAge},
-            doctorEmail = #{doctorEmail}, doctorImg = #{doctorImg}, career = #{career}, ancestry = #{ancestry},
-            society = #{society}, subjectName = #{subjectName}
-        WHERE doctorId = #{doctorId}
+        SET doctor_pwd = #{doctorPwd},
+            doctor_number = #{doctorNumber},
+            doctor_name = #{doctorName},
+            doctor_age = #{doctorAge},
+            doctor_email = #{doctorEmail},
+            doctor_img = #{doctorImg},
+            career = #{career},
+            ancestry = #{ancestry},
+            society = #{society},
+            subject_name = #{subjectName}
+        WHERE doctor_id = #{doctorId}
     </update>
 
     <!-- 특정 doctorId로 의사 정보 삭제 -->

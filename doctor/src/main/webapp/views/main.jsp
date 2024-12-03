@@ -67,7 +67,7 @@
             <div class="navbar-nav w-100">
                 <a href="<c:url value="/main"/>" class="nav-item nav-link">
                     <i class="fa fa-tachometer-alt me-2"></i>Main</a>
-                <a href="<c:url value="/chat"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chat</a>
+                <a href="<c:url value="/counseling"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chat</a>
                 <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>List</a>
                 <a href="<c:url value="/blank"/>" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Pages</a>
             </div>
@@ -97,8 +97,7 @@
                         <span class="d-none d-lg-inline-flex">${sessionScope.doctor.doctorName}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                        <a href="#" class="dropdown-item">My Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="<c:url value="/mypage"/> " class="dropdown-item">My Page</a>
                         <a href="#" class="dropdown-item">Log Out</a>
                     </div>
                 </div>

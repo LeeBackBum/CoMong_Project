@@ -18,35 +18,65 @@ import java.util.*;
 @RequestMapping("/iot")
 public class IOTRestController {
 
-    private static final String LOG_FILE_PATH = "c:/CoMong_Project/logs/power.log";
+    private static final String POWER_LOG_FILE_PATH = "c:/CoMong_Project/logs/power.log";
+    private static final String BLOOD_PRESSURE_LOG_FILE_PATH = "c:/CoMong_Project/logs/blood_pressure.log";
+    private static final String BLOOD_SUGAR_LOG_FILE_PATH = "c:/CoMong_Project/logs/blood_sugar.log";
+    private static final String DEPRESSION_SCORE_LOG_FILE_PATH = "c:/CoMong_Project/logs/depression_score.log";
 
-    private List<Double> powerDataList = new ArrayList<>();
+    private final List<Double> powerDataList = new ArrayList<>();
+    private final List<Double> bloodPressureDataList = new ArrayList<>();
+    private final List<Double> bloodSugarDataList = new ArrayList<>();
+    private final List<Double> depressionScoreDataList = new ArrayList<>();
 
     @PostConstruct
-    public void loadPowerDataFromLogFile() {
-        powerDataList.clear(); // 기존 데이터를 초기화
+    public void loadDataFromLogFiles() {
+        loadDataFromFile(POWER_LOG_FILE_PATH, powerDataList);
+        loadDataFromFile(BLOOD_PRESSURE_LOG_FILE_PATH, bloodPressureDataList);
+        loadDataFromFile(BLOOD_SUGAR_LOG_FILE_PATH, bloodSugarDataList);
+        loadDataFromFile(DEPRESSION_SCORE_LOG_FILE_PATH, depressionScoreDataList);
+    }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(LOG_FILE_PATH))) {
+    private void loadDataFromFile(String filePath, List<Double> dataList) {
+        dataList.clear();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(", ");
                 if (parts.length == 2) {
                     try {
                         double value = Double.parseDouble(parts[1].trim());
-                        powerDataList.add(value);
+                        dataList.add(value);
                     } catch (NumberFormatException e) {
                         // 잘못된 데이터 무시
                     }
                 }
             }
-            log.info("로그 파일에서 {}개의 데이터를 로드했습니다.", powerDataList.size());
         } catch (IOException e) {
-            log.error("로그 파일 읽기 실패: {}", e.getMessage());
+            log.error("{} 읽기 실패: {}", filePath, e.getMessage());
         }
     }
 
     @RequestMapping("/power")
     public Object power(@RequestBody String data) {
+        return processData(data, POWER_LOG_FILE_PATH, powerDataList);
+    }
+
+    @RequestMapping("/bloodPressure")
+    public Object bloodPressure(@RequestBody String data) {
+        return processData(data, BLOOD_PRESSURE_LOG_FILE_PATH, bloodPressureDataList);
+    }
+
+    @RequestMapping("/bloodSugar")
+    public Object bloodSugar(@RequestBody String data) {
+        return processData(data, BLOOD_SUGAR_LOG_FILE_PATH, bloodSugarDataList);
+    }
+
+    @RequestMapping("/depressionScore")
+    public Object depressionScore(@RequestBody String data) {
+        return processData(data, DEPRESSION_SCORE_LOG_FILE_PATH, depressionScoreDataList);
+    }
+
+    private Object processData(String data, String logFilePath, List<Double> dataList) {
         String[] parts = data.split(", ");
         if (parts.length == 1) { // 숫자 값만 전송된 경우
             // 현재 시간을 yyyy-MM-dd HH:mm:ss 형식으로 추가
@@ -58,8 +88,8 @@ public class IOTRestController {
         if (parts.length > 1) {
             try {
                 double value = Double.parseDouble(parts[1].trim());
-                powerDataList.add(value);
-                appendToLogFile(data);
+                dataList.add(value);
+                appendToLogFile(data, logFilePath);
             } catch (NumberFormatException e) {
                 return "Invalid number format";
             }
@@ -67,21 +97,39 @@ public class IOTRestController {
         return "Success";
     }
 
-    private void appendToLogFile(String data) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(LOG_FILE_PATH, true))) {
+    private void appendToLogFile(String data, String filePath) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
             bw.write(data);
             bw.newLine();
         } catch (IOException e) {
-            log.error("로그 파일에 데이터를 기록하는 중 오류 발생: {}", e.getMessage());
+            log.error("{}에 데이터를 기록하는 중 오류 발생: {}", filePath, e.getMessage());
         }
     }
 
-    @SuppressWarnings("unchecked")
     @GetMapping("/power/data")
     public JSONArray getPowerData() {
+        return getDataFromLog(POWER_LOG_FILE_PATH);
+    }
+
+    @GetMapping("/bloodPressure/data")
+    public JSONArray getBloodPressureData() {
+        return getDataFromLog(BLOOD_PRESSURE_LOG_FILE_PATH);
+    }
+
+    @GetMapping("/bloodSugar/data")
+    public JSONArray getBloodSugarData() {
+        return getDataFromLog(BLOOD_SUGAR_LOG_FILE_PATH);
+    }
+
+    @GetMapping("/depressionScore/data")
+    public JSONArray getDepressionScoreData() {
+        return getDataFromLog(DEPRESSION_SCORE_LOG_FILE_PATH);
+    }
+
+    private JSONArray getDataFromLog(String filePath) {
         JSONArray jsonArray = new JSONArray();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(LOG_FILE_PATH))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             LinkedList<String> lines = new LinkedList<>();
             String line;
 
@@ -108,7 +156,7 @@ public class IOTRestController {
                 }
             }
         } catch (IOException e) {
-            log.error("로그 파일 읽기 실패: {}", e.getMessage());
+            log.error("{} 읽기 실패: {}", filePath, e.getMessage());
         }
 
         return jsonArray;

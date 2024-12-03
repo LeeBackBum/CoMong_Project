@@ -38,6 +38,7 @@ app:
     server_url: http://210.119.34.218:81
   dir:
     imgdir: file:///c:/CoMong_Project/imgs/
+    imgmypage: C:/CoMong_Project/doctor/src/main/resources/static/img
     uploadimgdir: c:/CoMong_Project/imgs/
     # logdir: /root/users/project/logs
     logdir: file:///c:/CoMong_Project/logs/

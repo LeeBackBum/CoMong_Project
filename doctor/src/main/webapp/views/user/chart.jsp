@@ -7,6 +7,9 @@
     chartInstance : null,
     livedata: [], // 현재 데이터를 저장
     init: function () {
+      this.getBloodPressure();
+      this.getBloodSugar();
+      this.getDepressionScore();
       this.getdata();
       this.display1();
       this.display2();
@@ -17,7 +20,40 @@
       $.ajax({
         url:'/iot/power/data',
         success: (datas) => {
-          this.display6(datas); // 화살표 함수로 this 고정
+          this.display4(datas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
+    getBloodPressure:function(){
+      $.ajax({
+        url:'/iot/bloodPressure/data',
+        success: (bloodPressuredatas) => {
+          this.display1(bloodPressuredatas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
+    getBloodSugar:function(){
+      $.ajax({
+        url:'/iot/bloodSugar/data',
+        success: (bloodSugardatas) => {
+          this.display2(bloodSugardatas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
+    getDepressionScore:function(){
+      $.ajax({
+        url:'/iot/depressionScore/data',
+        success: (depressionScoredatas) => {
+          this.display3(depressionScoredatas); // 화살표 함수로 this 고정
         },
         error: (xhr, status, error) => {
           console.error('AJAX 요청 실패:', status, error);
@@ -106,7 +142,7 @@
 
         time: { useUTC: false },
 
-        title: { text: 'Live IoT Data with Animation' },
+        title: { text: 'HealthCare Live Data' },
 
         accessibility: {
           announceNewData: {
@@ -155,29 +191,29 @@
     },
 
 
-    display1: function () {
-      // 특정 범위 내에서 랜덤 값을 생성하는 함수
-      const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    display1: function(data) {
+      const normalRange = { min: 80, max: 139 }; // 예시 정상 범위
+      const processedData = data.map(item => item.value);
+      const pointBackgroundColors = processedData.map(value =>
+              (value < normalRange.min || value > normalRange.max) ? "red" : "rgba(0, 156, 255, .3)"
+      );
 
-      // 랜덤 데이터 배열 생성
-      const generateRandomData = (length, min, max) => {
-        return Array.from({ length }, () => getRandomValue(min, max));
-      };
+      // 날짜와 혈압 수치를 추출
+      const labels = data.map(item => {
+        const date = new Date(item.timestamp);
+        return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
+      });
 
-      // 차트 데이터 생성
-      const randomData = generateRandomData(10, 100, 200); // 100~200 범위의 랜덤 값 10개 생성
-
-      // 차트 초기화
       var ctx3 = $("#line-chart").get(0).getContext("2d");
       this.chartInstance = new Chart(ctx3, {
         type: "line",
         data: {
-          labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // x축 라벨
+          labels: labels, // 변환된 라벨 사용
           datasets: [{
-            label: "혈압 수치",
+            label: "위험 수치",
             fill: false,
-            backgroundColor: "rgba(0, 156, 255, .3)",
-            data: randomData // 랜덤 데이터 사용
+            backgroundColor: pointBackgroundColors,
+            data: processedData
           }]
         },
         options: {
@@ -186,67 +222,63 @@
       });
     },
 
-    display2: function () {
-      // 특정 범위 내에서 랜덤 값을 생성하는 함수
-      const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    display2: function(data) {
+      // 데이터 처리
+      const processedData = data.map(item => item.value);
 
-      // 복용 전/후 혈당 데이터를 생성하는 함수
-      const generateBloodSugarData = (length, minPre, maxPre, minPost, maxPost) => {
-        const preBloodSugar = Array.from({ length }, () => getRandomValue(minPre, maxPre));
-        const postBloodSugar = preBloodSugar.map(preValue =>
-                getRandomValue(minPost, Math.min(preValue - 1, maxPost)) // 복용 후는 항상 복용 전보다 낮게 설정
-        );
-        return { preBloodSugar, postBloodSugar };
-      };
+      // 날짜와 혈당 수치를 추출하여 라벨 형식 지정
+      const labels = data.map(item => {
+        const date = new Date(item.timestamp);
+        return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
+      });
 
-      // 랜덤 데이터 생성 (복용 전: 50~100, 복용 후: 10~99)
-      const { preBloodSugar, postBloodSugar } = generateBloodSugarData(10, 50, 100, 10, 99);
+      // 혈당 수치의 위험 범위 설정
+      const pointBackgroundColors = processedData.map(value =>
+              (value < 70 || value > 140) ? "red" : "rgba(0, 156, 255, .6)"
+      );
 
-      // 차트 초기화
-      var ctx2 = $("#salse-revenue").get(0).getContext("2d");
-      var myChart2 = new Chart(ctx2, {
+      var ctx2 = $("#line-chart2").get(0).getContext("2d");
+      this.chartInstance = new Chart(ctx2, {
         type: "line",
         data: {
-          labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], // x축 라벨
-          datasets: [
-            {
-              label: "복용 전 혈당",
-              data: preBloodSugar, // 복용 전 랜덤 데이터
-              backgroundColor: "rgba(0, 156, 255, .2)",
-              fill: true
-            },
-            {
-              label: "복욕 후 혈당",
-              data: postBloodSugar, // 복용 후 랜덤 데이터
-              backgroundColor: "rgba(0, 156, 255, .5)",
-              fill: true
-            }
-          ]
+          labels: labels,
+          datasets: [{
+            label: "위험 수치",
+            fill: false,
+            backgroundColor: pointBackgroundColors,
+            data: processedData
+          }]
         },
         options: {
-          responsive: true
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
         }
       });
     },
 
-    display3: function () {
-      // 특정 범위 내에서 랜덤 값을 생성하는 함수
-      const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    display3: function(data) {
+      // 최근 5개의 데이터만 가져오기
+      const recentData = data.slice(-5); // 배열의 마지막 5개 요소를 선택
 
-      // 랜덤 데이터 배열 생성 함수
-      const generateRandomScores = (length, min, max) => {
-        return Array.from({ length }, () => getRandomValue(min, max));
-      };
+      // 날짜와 우울증 점수를 추출
+      const labels = recentData.map(item => {
+        const date = new Date(item.timestamp);
+        return (date.getMonth() + 1)+'월' +(date.getDate())+'일'; // "12월 1일" 형식으로 변환
+      });
+      const depressionScores = recentData.map(item => item.value); // 우울증 점수 추출
 
-      // 랜덤 점수 생성 (10~60 범위)
-      const randomScores = generateRandomScores(5, 10, 60);
-
-      // 차트 초기화
       var ctx4 = $("#bar-chart").get(0).getContext("2d");
-      var myChart4 = new Chart(ctx4, {
+      if (this.charts && this.charts.depressionChart) {
+        this.charts.depressionChart.destroy(); // 기존 차트 인스턴스 제거
+      }
+      this.charts.depressionChart = new Chart(ctx4, {
         type: "bar",
         data: {
-          labels: ["11월7일", "11월14일", "11월21일", "11월28일", "12월5일"], // x축 라벨
+          labels: labels, // x축 라벨 설정
           datasets: [{
             label: "우울증 점수",
             backgroundColor: [
@@ -256,14 +288,14 @@
               "rgba(0, 156, 255, .4)",
               "rgba(0, 156, 255, .3)"
             ],
-            data: randomScores // 랜덤 점수 데이터 사용
+            data: depressionScores // y축 데이터 설정
           }]
         },
         options: {
           responsive: true
         }
       });
-    }
+    },
 
 
 
@@ -284,14 +316,18 @@
       <div class="row g-4">
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">일별 혈압</h6>
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h6 class="mb-0">일별 혈압</h6>
+            </div>
             <canvas id="line-chart"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">일별 혈당</h6>
-            <canvas id="salse-revenue"></canvas>
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h6 class="mb-0">일별 혈당</h6>
+            </div>
+            <canvas id="line-chart2"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
@@ -304,18 +340,6 @@
           <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">특이사항에 관한 실시간 데이터</h6>
             <div id="container" style="width: 100%; height: 300px;"></div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-          <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Pie Chart</h6>
-            <canvas id="pie-chart"></canvas>
-          </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-          <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Doughnut Chart</h6>
-            <canvas id="doughnut-chart"></canvas>
           </div>
         </div>
       </div>

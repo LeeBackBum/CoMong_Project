@@ -55,6 +55,52 @@
         </rollingPolicy>
     </appender>
 
+    <!-- 혈압 관련 로그를 저장할 파일 설정 -->
+    <appender name="BLOOD_PRESSURE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_DIR}/blood_pressure.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_DIR}/blood_pressure.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 혈당 관련 로그를 저장할 파일 설정 -->
+    <appender name="BLOOD_SUGAR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_DIR}/blood_sugar.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_DIR}/blood_sugar.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 우울증 점수 관련 로그를 저장할 파일 설정 -->
+    <appender name="DEPRESSION_SCORE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_DIR}/depression_score.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}, %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_DIR}/depression_score.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
     <!-- Logger 설정: JS 관련 로그 -->
     <logger name="edu.sm.controller.JsController" level="INFO">
         <appender-ref ref="FILE2" />
@@ -63,6 +109,21 @@
     <!-- Logger 설정: 차트 관련 로그 (FILE3으로 설정 변경) -->
     <logger name="edu.sm.controller.IOTRestController" level="INFO">
         <appender-ref ref="FILE3" />
+    </logger>
+
+    <!-- Logger 설정: 혈압 관련 로그 -->
+    <logger name="edu.sm.controller.IOTRestController" level="INFO">
+        <appender-ref ref="BLOOD_PRESSURE_FILE" />
+    </logger>
+
+    <!-- Logger 설정: 혈당 관련 로그 -->
+    <logger name="edu.sm.controller.IOTRestController" level="INFO">
+        <appender-ref ref="BLOOD_SUGAR_FILE" />
+    </logger>
+
+    <!-- Logger 설정: 우울증 점수 관련 로그 -->
+    <logger name="edu.sm.controller.IOTRestController" level="INFO">
+        <appender-ref ref="DEPRESSION_SCORE_FILE" />
     </logger>
 
     <!-- 루트 로거 설정: 콘솔에 출력 -->
