@@ -1,19 +1,25 @@
 package edu.sm.controller;
 
+import edu.sm.app.dto.CounselDto;
 import edu.sm.app.dto.DoctorDto;
+import edu.sm.app.service.CounselService;
 import edu.sm.app.service.DoctorService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Controller
@@ -25,6 +31,7 @@ public class MainController {
     private String imgDir;
 
     private final DoctorService doctorService;
+    private final CounselService counselService;
 
     @Value("${app.url.server-url}")
     String serverurl;
@@ -161,6 +168,47 @@ public class MainController {
 
         return "/main";
     }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+    @PostMapping("/recordimpl")
+    public String recordImpl(@ModelAttribute CounselDto counselDto, Model model) {
+        System.out.println("받은 CounselDto: " + counselDto);
+
+        try {
+            // Counsel 데이터 저장
+            counselService.add(counselDto);
+            System.out.println("Counsel 데이터 삽입 성공: " + counselDto);
+
+            // 성공 메시지 설정
+            model.addAttribute("message", "상담 기록이 성공적으로 저장되었습니다.");
+            return "forward:/counseling"; // 성공 시 메시지와 함께 원래 페이지로 이동
+        } catch (Exception e) {
+            // 에러 처리
+            String errorMessage = "알 수 없는 오류가 발생했습니다.";
+
+            // 외래 키 제약 조건 위반 에러 처리
+            if (e.getCause() instanceof java.sql.SQLIntegrityConstraintViolationException) {
+                if (e.getMessage().contains("FOREIGN KEY (`doctor_id`)")) {
+                    errorMessage = "존재하지 않는 의사 ID입니다.";
+                } else if (e.getMessage().contains("FOREIGN KEY (`user_id`)")) {
+                    errorMessage = "존재하지 않는 환자 ID입니다.";
+                }
+            }
+
+            System.err.println("Counsel 데이터 삽입 실패: " + errorMessage);
+            model.addAttribute("error", errorMessage);
+
+            // 에러 페이지 대신 원래 페이지로 리턴
+            return "forward:/counseling";
+        }
+    }
+
 
     @PostMapping("/mypage/update")
     public String updateDoctorInfo(

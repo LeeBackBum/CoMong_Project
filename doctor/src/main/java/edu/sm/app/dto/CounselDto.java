@@ -19,4 +19,18 @@ public class CounselDto {
     private String counselType;      // 상담 종류 ('화상' 또는 '채팅')
     private String doctorId;
     private String userId;
+
+    @Override
+    public String toString() {
+        return "CounselDto{" +
+                "counselDate='" + counselDate + '\'' +
+                ", counselContent='" + counselContent + '\'' +
+                ", counselType='" + counselType + '\'' +
+                ", doctorId='" + doctorId + '\'' +
+                ", userId='" + userId + '\'' +
+                '}';
+    }
+
 }
+
+

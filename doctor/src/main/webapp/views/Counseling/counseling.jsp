@@ -48,6 +48,21 @@
   <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
   <%--틀 끝--%>
   <link href="<c:url value="/css/chat.css"/> " rel="stylesheet">
+  <script>
+    // 서버에서 전달된 메시지 처리
+    const error = "${error}";
+    const message = "${message}";
+
+    // 에러 메시지 처리
+    if (error) {
+      alert(error);
+    }
+
+    // 성공 메시지 처리
+    if (message) {
+      alert(message);
+    }
+  </script>
 </head>
 
 
@@ -56,6 +71,142 @@
 
 <body>
 <!-- Counseling Start -->
+
+<style>
+  #all h5 {
+    margin-top: 5px;
+  }
+  #all hr {
+    margin: 2px 0; /* 위아래 간격을 2px로 설정 */
+    border: none; /* 기본 테두리 제거 */
+    border-top: 1px solid #ccc; /* 얇은 구분선 */
+  }
+  #all p {
+    margin: 2px 0;
+    border: none;
+    margin-left: 5px;
+  }
+
+  .record-container {
+    display: inline-block;
+    width: 48%; /* 적절한 너비 설정 */
+    vertical-align: top; /* 상단 정렬 */
+    max-width: 700px;
+    margin-left: 60px;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    margin-top: 70px;
+    height: 650px;
+    max-height: 900px;
+    position: relative;
+  }
+
+  .record-header {
+    display: flex; /* 플렉스 컨테이너로 설정 */
+    justify-content: space-between; /* 자식 요소를 양쪽 끝으로 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
+    padding: 10px; /* 내부 여백 추가 */
+  }
+
+  #record-text,
+  #record-text2 {
+    margin: 0; /* 기본 여백 제거 */
+    font-weight: 300;
+  }
+
+  #contentRecord{
+    height: 60%;
+  }
+
+</style>
+
+<div id="chat-page">
+  <div class="chat-container">
+    <!-- 헤더 -->
+    <div class="chat-header">
+      <h2 id="chat-text">Chat</h2>
+    </div>
+
+    <!-- 메시지 리스트 -->
+    <ul id="all" class="list-group message-list"></ul>
+
+    <!-- 메시지 입력 -->
+    <form id="messageForm" name="messageForm" class="form-group">
+      <div class="input-group clearfix">
+        <input
+                type="text"
+                id="alltext"
+                placeholder="Enter your message here"
+                autocomplete="off"
+                class="form-control"
+        />
+        <button id="sendall" type="button" class="btn btn-primary">Send</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="record-container">
+    <div class="record-header">
+      <h2 id="record-text">Record</h2>
+      <h2 id="record-text2">채팅상담</h2>
+    </div>
+
+    <form id="recordForm" name="recordForm" class="form-group" method="post" action="/recordimpl">
+      <!-- 날짜와 시간 입력 -->
+      <div class="form-group">
+        <label for="datetime">날짜 및 시간</label>
+        <input
+                type="datetime-local"
+                class="form-control"
+                id="datetime"
+                name="counselDate"
+                required="required"
+        />
+      </div>
+
+      <!-- 내용 입력 -->
+      <div class="form-group">
+        <label for="content">내용</label>
+        <textarea
+                class="form-control"
+                rows="11"
+                id="content"
+                name="counselContent"
+                placeholder="내용 작성"
+        ></textarea>
+      </div>
+
+      <!-- 의사 ID와 환자 이름 입력 -->
+      <div class="form-group">
+        <label for="doctorId">의사 ID</label>
+        <input
+                type="text"
+                class="form-control"
+                id="doctorId"
+                name="doctorId"
+                placeholder="의사 ID 입력"
+                required="required"
+        />
+      </div>
+      <div class="form-group">
+        <label for="userId">환자 ID</label>
+        <input
+                type="text"
+                class="form-control"
+                id="userId"
+                name="userId"
+                placeholder="환자 이름 입력"
+                required="required"
+        />
+      </div>
+
+      <input type="hidden" name="counselType" value="채팅상담" />
+
+      <button type="submit" class="btn btn-primary">등록</button>
+    </form>
+  </div>
+</div>
 
 <script>
   let websocket = {
@@ -119,60 +270,27 @@
       } else {
         $("#status").text("Disconnected");
       }
-    }
+    },
+    send: function () {
+      const formData = {
+        counselDate: $("#datetime").val(),
+        counselContent: $("#content").val(),
+        doctorId: $("#doctorId").val(),
+        userId: $("#userId").val(),
+        counselType: $("input[name='counselType']").val(),
+      };
+
+      console.log("폼 데이터:", formData);
+
+      $("#recordForm").submit();
+    },
   };
 
   $(function () {
-    websocket.init(); // 페이지 로드 시 WebSocket 초기화
+    // WebSocket 초기화
+    websocket.init();
   });
 </script>
-
-<style>
-  #all h5 {
-    margin-top: 5px;
-  }
-  #all hr {
-    margin: 2px 0; /* 위아래 간격을 2px로 설정 */
-    border: none; /* 기본 테두리 제거 */
-    border-top: 1px solid #ccc; /* 얇은 구분선 */
-  }
-  #all p {
-    margin: 2px 0;
-    border: none;
-    margin-left: 5px;
-  }
-</style>
-
-<div id="chat-page">
-  <div class="chat-container">
-    <!-- 헤더 -->
-    <div class="chat-header">
-      <h2 id="chat-text">Chat</h2>
-    </div>
-
-    <!-- 메시지 리스트 -->
-    <ul id="all" class="list-group message-list"></ul>
-
-    <!-- 메시지 입력 -->
-    <form id="messageForm" name="messageForm" class="form-group">
-      <div class="input-group clearfix">
-        <input
-                type="text"
-                id="alltext"
-                placeholder="Enter your message here"
-                autocomplete="off"
-                class="form-control"
-        />
-        <button id="sendall" type="button" class="btn btn-primary">Send</button>
-      </div>
-    </form>
-  </div>
-  <div class="record-container">
-    <div class="record-header">
-      <h2 id="record-text">Record</h2>
-    </div>
-  </div>
-</div>
 
 
 <!-- Back to Top -->

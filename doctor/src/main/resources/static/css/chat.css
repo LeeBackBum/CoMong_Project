@@ -138,11 +138,15 @@ button.accent {
 }
 
 #chat-page {
+
     position: relative;
     height: 100%;
 }
 
 .chat-container {
+    display: inline-block;
+    width: 48%; /* 적절한 너비 설정 */
+    vertical-align: top; /* 상단 정렬 */
     max-width: 700px;
     margin-left: 100px;
     margin-right: auto;

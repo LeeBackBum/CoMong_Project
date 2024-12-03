@@ -13,9 +13,17 @@
         SELECT * FROM counsel
     </select>
 
+    <insert id="insert" parameterType="counselDto">
+        INSERT INTO counsel (counsel_date, counsel_content, counsel_type, doctor_id, user_id)
+        VALUES (#{counselDate}, #{counselContent}, #{counselType}, #{doctorId}, #{userId})
+    </insert>
 
     <delete id="delete" parameterType="counselDto">
         DELETE FROM counsel WHERE counsel_id = #{counselId}
     </delete>
+
+    <select id="findUserIdByUserName" parameterType="string" resultType="string">
+        SELECT userId FROM user WHERE userName = #{userName}
+    </select>
 
 </mapper>
