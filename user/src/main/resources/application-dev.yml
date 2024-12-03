@@ -35,7 +35,7 @@ logging:
 
 app:
   url:
-    server_url: http://210.119.34.219:81
+    server_url: http://210.119.34.218:81
   key:
     wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
     wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)
