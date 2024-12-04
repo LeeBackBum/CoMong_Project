@@ -285,4 +285,13 @@ public class MainController {
         userService.modify(userDto);
         return "redirect:/mypage";
     }
+
+    @RequestMapping("/webrtc")
+    public String webrtc(Model model){
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("roomId", "1");
+        model.addAttribute("center", "Counseling/webrtc");
+
+        return "index";
+    }
 }
