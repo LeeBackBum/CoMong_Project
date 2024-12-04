@@ -13,6 +13,7 @@ public class DoctorDto {
         private String doctorId;
         private String doctorPwd;
         private String doctorNumber;
+        private String imgName;
         private String doctorName;
         private String doctorAge;
         private String doctorEmail;

@@ -28,7 +28,7 @@
         /* 클릭된 항목에 테두리와 배경색 추가 */
         /*#doctorList li a.selected {*/
         /*    border: 2px solid #007bff;  !* 파란색 테두리 *!*/
-            /*background-color: #f0f8ff;  !* 선택된 배경색 *!*/
+        /*background-color: #f0f8ff;  !* 선택된 배경색 *!*/
         /*}
 
 
@@ -63,220 +63,221 @@
 <!-- Board Start -->
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 
-        // ---------------------------------진료과 별 의사정보---------------------------------------------------------
-        function resetDoctor(id) {
-            console.log("받은 id:", id);
+    // ---------------------------------진료과 별 의사정보---------------------------------------------------------
+    function resetDoctor(id) {
+        console.log("받은 id:", id);
 
-            // 먼저 input 요소를 찾고, 그 후 부모 요소로부터 label을 찾습니다.
-            const inputElement = document.getElementById(id);
-            if (!inputElement) {
-                console.error(`input 요소를 찾을 수 없습니다. id="${id}"`);
-                return;
-            }
-
-            // input과 연관된 label 찾기
-            const labelElement = inputElement.nextElementSibling; // input 뒤에 위치한 label을 찾아냄
-            if (!labelElement || labelElement.tagName !== "LABEL") {
-                console.error(`연관된 label을 찾을 수 없습니다.`);
-                return;
-            }
-
-            console.log("선택된 라벨:", labelElement);
-            const subjectName = labelElement.textContent.trim();
-            if (!subjectName) {
-                console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");
-                return;
-            }
-
-            const url = "/getDoctorList?subjectName=" + encodeURIComponent(subjectName);
-            fetch(url, { method: "GET" })
-                .then(response => response.text())
-                .then(html => {
-                    const doctorListArea = document.querySelector(".doctor-list-area");
-                    if (doctorListArea) {
-                        doctorListArea.innerHTML = html;
-                    } else {
-                        console.error("doctor-list-area를 찾을 수 없습니다.");
-                    }
-                })
-                .catch(error => console.error("Error fetching the JSP content:", error));
-        }
-        // ---------------------------------진료과 별 의사정보---------------------------------------------------------
-
-
-        // ---------------------------------시간정보---------------------------------------------------------
-        function get_minutes() {
-            // 시와 분 값을 가져오기
-            var hour = document.getElementById("times1").value;
-            var minute = document.getElementById("times2").value;
-
-            // 값이 없을 경우 (선택하지 않은 경우 처리)
-            if (hour === "" || minute === "") {
-                console.log("시 또는 분이 선택되지 않았습니다.");
-                return;
-            }
-
-            // 선택한 시와 분을 결합하여 출력
-            var time = hour + ":" + minute;
-
-            // 시간 정보를 콘솔에 출력 (여기서는 콘솔 출력 예시)
-            console.log("선택한 시간은: " + time);
-
-            // 선택된 시간 정보를 다른 곳에 표시하거나 다른 작업을 할 수 있습니다.
-            // 예를 들어, div에 표시
-            document.getElementById("selected_time").innerText = "선택한 시간: " + time;
-        }
-        // ---------------------------------시간정보---------------------------------------------------------
-
-
-
-        // ---------------------------------예약정보전송---------------------------------------------------------
-
-        function submitAction() {
-            /*const name = document.getElementById('reservName').value.trim();*/
-            const hour = document.getElementById('times1').value;
-            const minute = document.getElementById('times2').value;
-            const reservGubun = document.getElementById('selectedReservGubun').value
-            const comment = document.getElementById('comment').value;
-            const date = document.getElementById('date').value;
-            const doctorid = document.getElementById('doctorIdInput').value;
-            const userId = document.getElementById('hiddenId').value;
-
-
-            if (!hour || !minute) {
-                alert("모든 필수 정보를 입력해주세요.");
-                return;
-            }
-
-            // 날짜 및 시간 조합
-            const today = new Date().toISOString().split('T')[0];
-            const appointmentDate = + today + `T` + hour+ `:` +minute+ `:` +100; // ISO 형식으로 조합
-
-            // 요청 데이터
-            const data = {
-                appointmentDate: date + `T` + hour + `:` +minute,
-                appointmentContent: comment,
-                appointmentStatus: "진료",
-                userId: userId,  // 실제 사용자 ID로 대체
-                doctorId: doctorid, // 실제 의사 ID로 대체
-                type: reservGubun,
-                subType: null,
-            };
-
-            console.log("Sending data:", data); // 디버깅용 로그
-
-            fetch('/submitReservation', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            })
-                .then((response) => response.json())
-                .then((result) => {
-                    if (result.success) {
-                        alert("예약이 성공적으로 접수되었습니다.");
-                    } else {
-                        alert("예약 접수 중 문제가 발생했습니다.");
-                        console.log(data);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("서버와의 통신 중 문제가 발생했습니다.");
-                });
+        // 먼저 input 요소를 찾고, 그 후 부모 요소로부터 label을 찾습니다.
+        const inputElement = document.getElementById(id);
+        if (!inputElement) {
+            console.error(`input 요소를 찾을 수 없습니다. id="${id}"`);
+            return;
         }
 
-        // ---------------------------------예약정보전송---------------------------------------------------------
+        // input과 연관된 label 찾기
+        const labelElement = inputElement.nextElementSibling; // input 뒤에 위치한 label을 찾아냄
+        if (!labelElement || labelElement.tagName !== "LABEL") {
+            console.error(`연관된 label을 찾을 수 없습니다.`);
+            return;
+        }
 
-        // ---------------------------------달력---------------------------------------------------------
+        console.log("선택된 라벨:", labelElement);
+        const subjectName = labelElement.textContent.trim();
+        if (!subjectName) {
+            console.error("라벨에서 진료과 이름을 가져오지 못했습니다.");
+            return;
+        }
 
-        $(document).ready(function() {
-            $.ajax({
-                url: '/calendar',  // calendar.jsp 파일을 서버에서 가져올 URL
-                type: 'GET',
-                success: function(data) {
-                    // 서버에서 가져온 데이터(HTML)를 schdule-information-area에 삽입
-                    $('.schdule-information-area').html(data);
-                },
-                error: function(error) {
-                    console.log('달력을 불러오는 데 실패했습니다.', error);
+        const url = "/getDoctorList?subjectName=" + encodeURIComponent(subjectName);
+        fetch(url, { method: "GET" })
+            .then(response => response.text())
+            .then(html => {
+                const doctorListArea = document.querySelector(".doctor-list-area");
+                if (doctorListArea) {
+                    doctorListArea.innerHTML = html;
+                } else {
+                    console.error("doctor-list-area를 찾을 수 없습니다.");
                 }
-
-            });
-        });
-        // ---------------------------------달력---------------------------------------------------------
-        // ----------------------------------달력테스트-------------------------------------------------------
-        $(document).ready(function() {
-            const selectedDate = sessionStorage.getItem('selectedDate');
-
-            // 날짜 값이 있으면 input 필드에 채워주기
-            if (selectedDate) {
-                document.getElementById('date').value = selectedDate;
-            }
-        });
-
-        // ----------------------------------달력테스트-------------------------------------------------------
+            })
+            .catch(error => console.error("Error fetching the JSP content:", error));
+    }
+    // ---------------------------------진료과 별 의사정보---------------------------------------------------------
 
 
-        // ----------------------------------진료&예약 구분------------------------------------------------------
-        document.addEventListener('DOMContentLoaded', () => {
-            // 선택된 라디오 버튼 값을 저장할 변수
-            let selectedReservGubun = '';
+    // ---------------------------------시간정보---------------------------------------------------------
+    function get_minutes() {
+        // 시와 분 값을 가져오기
+        var hour = document.getElementById("times1").value;
+        var minute = document.getElementById("times2").value;
 
-            // 모든 라디오 버튼 선택
-            const radioButtons = document.querySelectorAll('input[name="reservGubun"]');
-
-            // 선택된 값을 표시할 hidden input 요소 선택 (또는 생성)
-            const hiddenInput = document.getElementById('selectedReservGubun');
-
-            // 각 라디오 버튼에 change 이벤트 리스너 추가
-            radioButtons.forEach(radio => {
-                radio.addEventListener('change', (event) => {
-                    selectedReservGubun = event.target.value; // 선택된 라디오 버튼의 값 저장
-                    console.log('선택된 예약 구분:', selectedReservGubun); // 콘솔 출력
-
-                    // hidden input 요소에 값 반영
-                    if (hiddenInput) {
-                        hiddenInput.value = selectedReservGubun;
-                    }
-                });
-            });
-        });
-        // ----------------------------------진료&예약 구분------------------------------------------------------
-
-
-
-
-        // ----------------------------------의사ID 제어------------------------------------------------------
-
-        function handleDoctorClick(doctorId, clickedElement) {
-            // 모든 항목에서 selected 클래스를 제거
-            const doctorItems = document.querySelectorAll('li a');
-            doctorItems.forEach(item => item.classList.remove('selected'));
-
-            // 클릭된 항목에 selected 클래스를 추가
-            clickedElement.classList.add('selected');
-
-            // doctorId 값을 hidden input에 설정
-            const doctorIdInput = document.getElementById("doctorIdInput");
-            if (doctorIdInput) {
-                doctorIdInput.value = doctorId;
-                console.log("Doctor ID set to input:" + doctorId );
-            } else {
-                console.error("Hidden input field not found.");
-            }
+        // 값이 없을 경우 (선택하지 않은 경우 처리)
+        if (hour === "" || minute === "") {
+            console.log("시 또는 분이 선택되지 않았습니다.");
+            return;
         }
-        // ----------------------------------의사ID 제어------------------------------------------------------
+
+        // 선택한 시와 분을 결합하여 출력
+        var time = hour + ":" + minute;
+
+        // 시간 정보를 콘솔에 출력 (여기서는 콘솔 출력 예시)
+        console.log("선택한 시간은: " + time);
+
+        // 선택된 시간 정보를 다른 곳에 표시하거나 다른 작업을 할 수 있습니다.
+        // 예를 들어, div에 표시
+        document.getElementById("selected_time").innerText = "선택한 시간: " + time;
+    }
+    // ---------------------------------시간정보---------------------------------------------------------
 
 
-        // ----------------------------------유저ID 제어------------------------------------------------------
+
+    // ---------------------------------예약정보전송---------------------------------------------------------
+
+    function submitAction() {
+        const hour = document.getElementById('times1').value;
+        const minute = document.getElementById('times2').value;
+        const reservGubun = document.getElementById('selectedReservGubun').value
+        const comment = document.getElementById('comment').value;
+        const date = document.getElementById('date').value;
+        const doctorid = document.getElementById('doctorIdInput').value;
+        const userId = document.getElementById('hiddenId').value;
+
+
+        if (!hour || !minute) {
+            alert("모든 필수 정보를 입력해주세요.");
+            return;
+        }
+
+        // 날짜 및 시간 조합
+        const today = new Date().toISOString().split('T')[0];
+        const appointmentDate = + today + `T` + hour+ `:` +minute+ `:` +100; // ISO 형식으로 조합
+
+        // 요청 데이터
+        const data = {
+            appointmentDate: date + `T` + hour + `:` +minute,
+            appointmentContent: comment,
+            appointmentStatus: "진료",
+            userId: userId,  // 실제 사용자 ID로 대체
+            doctorId: doctorid, // 실제 의사 ID로 대체
+            type: reservGubun,
+            subType: null,
+        };
+
+        console.log("Sending data:", data); // 디버깅용 로그
+
+        fetch('/submitReservation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                if (result.success) {
+                    alert("예약이 성공적으로 접수되었습니다.");
+                } else {
+                    alert("예약 접수 중 문제가 발생했습니다.");
+                    console.log(data);
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("서버와의 통신 중 문제가 발생했습니다.");
+            });
+    }
+
+    // ---------------------------------예약정보전송---------------------------------------------------------
+
+    // ---------------------------------달력---------------------------------------------------------
+
+    $(document).ready(function() {
+        $.ajax({
+            url: '/calendar',  // calendar.jsp 파일을 서버에서 가져올 URL
+            type: 'GET',
+            success: function(data) {
+                // 서버에서 가져온 데이터(HTML)를 schdule-information-area에 삽입
+                $('.schdule-information-area').html(data);
+            },
+            error: function(error) {
+                console.log('달력을 불러오는 데 실패했습니다.', error);
+            }
+
+        });
+    });
+    // ---------------------------------달력---------------------------------------------------------
+
+
+    // ----------------------------------달력테스트-------------------------------------------------------
+
+    $(document).ready(function() {
+        const selectedDate = sessionStorage.getItem('selectedDate');
+        // 날짜 값이 있으면 input 필드에 채워주기
+        if (selectedDate) {
+            document.getElementById('date').value = selectedDate;
+        }
+    });
+
+    // ----------------------------------달력테스트-------------------------------------------------------
+
+
+    // ----------------------------------진료&예약 구분------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+        // 선택된 라디오 버튼 값을 저장할 변수
+        let selectedReservGubun = '';
+
+        // 모든 라디오 버튼 선택
+        const radioButtons = document.querySelectorAll('input[name="reservGubun"]');
+
+        // 선택된 값을 표시할 hidden input 요소 선택 (또는 생성)
+        const hiddenInput = document.getElementById('selectedReservGubun');
+
+        // 각 라디오 버튼에 change 이벤트 리스너 추가
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', (event) => {
+                selectedReservGubun = event.target.value; // 선택된 라디오 버튼의 값 저장
+                console.log('선택된 예약 구분:', selectedReservGubun); // 콘솔 출력
+
+                // hidden input 요소에 값 반영
+                if (hiddenInput) {
+                    hiddenInput.value = selectedReservGubun;
+                }
+            });
+        });
+    });
+    // ----------------------------------진료&예약 구분------------------------------------------------------
 
 
 
 
-    </script>
+    // ----------------------------------의사ID 제어------------------------------------------------------
+
+    function handleDoctorClick(doctorId, clickedElement) {
+        // 모든 항목에서 selected 클래스를 제거
+        const doctorItems = document.querySelectorAll('li a');
+        doctorItems.forEach(item => item.classList.remove('selected'));
+
+        // 클릭된 항목에 selected 클래스를 추가
+        clickedElement.classList.add('selected');
+
+        // doctorId 값을 hidden input에 설정
+        const doctorIdInput = document.getElementById("doctorIdInput");
+        if (doctorIdInput) {
+            doctorIdInput.value = doctorId;
+            console.log("Doctor ID set to input:" + doctorId );
+        } else {
+            console.error("Hidden input field not found.");
+        }
+    }
+    // ----------------------------------의사ID 제어------------------------------------------------------
+
+
+    // ----------------------------------유저ID 제어------------------------------------------------------
+
+
+
+
+</script>
 
 
 
@@ -435,9 +436,9 @@
 
                         <%--------------------.의사 정보 추가--------------------%>
 
-                            <form id="doctorForm" action="your_destination_page" method="post">
-                                <input type="hidden" id="doctorIdInput" name="doctorId" value="">
-                            </form>
+                        <form id="doctorForm" action="your_destination_page" method="post">
+                            <input type="hidden" id="doctorIdInput" name="doctorId" value="">
+                        </form>
 
                     </div>
 
@@ -461,7 +462,7 @@
                 <li><img src="../images/common/icon_reservation_ok.gif" alt="">예약가능일</li>
                 <li><img src="../images/common/icon_today.gif" alt="">오늘날짜</li>
             </ul>
-        </div><!-- //schdule-information-area -->
+        </div>
 
         <%--        <dt>선택하신 일자입니다.</dt>--%>
         <input type="hidden" id="date" name="date" readonly />
@@ -470,8 +471,8 @@
         <dl class="choice-reservation-gubun">
             <dd>
                 <input type="radio" name="reservGubun" id="reservGubun_1" value="진료예약"><label for="reservGubun_1" style="line-height:24px;">진료예약</label>
-                <input type="radio" name="reservGubun" id="reservGubun_2" value="상담예약"><label for="reservGubun_2" style="line-height:24px;">채팅상담</label>
-                <input type="radio" name="reservGubun" id="reservGubun_3" value="상담예약"><label for="reservGubun_2" style="line-height:24px;">화상상담</label>
+                <input type="radio" name="reservGubun" id="reservGubun_2" value="채팅상담"><label for="reservGubun_2" style="line-height:24px;">채팅상담</label>
+                <input type="radio" name="reservGubun" id="reservGubun_3" value="화상상담"><label for="reservGubun_2" style="line-height:24px;">화상상담</label>
                 <input type="hidden" id="selectedReservGubun">
             </dd>
         </dl>
@@ -507,13 +508,6 @@
 
         <div id="selected_time"></div>
 
-<%--        <dl class="phone-reservation">--%>
-<%--            <dt>예약요청 제목</dt>--%>
-<%--            <dd>--%>
-<%--                <label for="reservName" class="blind"></label>--%>
-<%--                <input type="text" id="reservName" name="reservName" style="width: 217px">--%>
-<%--            </dd>--%>
-<%--        </dl>--%>
 
         <dl class="phone-reservation">
             <dt>

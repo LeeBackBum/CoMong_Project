@@ -12,15 +12,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
@@ -37,9 +40,8 @@ public class MainController {
     String apikey;
 
 
-
-
     private final UserService userService;
+
 
     @Value("${app.url.server_url}")
     String serverurl;
@@ -54,27 +56,8 @@ public class MainController {
         return "index";
     }
 
-//    @PostMapping("/login")
-//    public String login(String username, String password, HttpSession session, Model model) {
-//        try {
-//            log.info("로그인 시도: username={}", username);
-//            UserDto user = userService.authenticate(username, password);
-//            if (user != null) {
-//                // 세션에 UserDto 저장
-//                session.setAttribute("user", user);
-//                log.info("로그인 성공: userId={}, userName={}", user.getUserId(), user.getUserName());
-//                return "redirect:/board"; // 로그인 성공 시 게시판 메인으로 이동
-//            } else {
-//                model.addAttribute("errorMessage", "아이디 또는 비밀번호가 잘못되었습니다.");
-//                log.warn("로그인 실패: 아이디 또는 비밀번호 오류");
-//                return "login";
-//            }
-//        } catch (Exception e) {
-//            log.error("로그인 처리 중 오류 발생", e);
-//            model.addAttribute("errorMessage", "로그인 처리 중 오류가 발생했습니다.");
-//            return "login";
-//        }
-//    }
+
+
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -124,11 +107,6 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/map")
-    public String map(Model model) {
-        model.addAttribute("center", "map");
-        return "index";
-    }
 
     @RequestMapping("/reservation")
     public String reservations(HttpSession session, Model model) throws Exception {
@@ -152,7 +130,7 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/mapTest")
+    @RequestMapping("/map")
     public String map(HttpSession session, Model model) throws Exception {
         UserDto userDto = (UserDto) session.getAttribute("loginid");
 
@@ -168,7 +146,7 @@ public class MainController {
 
         model.addAttribute("userAddress",userAddress);
 
-        model.addAttribute("center","mapTest");
+        model.addAttribute("center","map");
 
 
         return "index";
