@@ -4,44 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.11.29 16:17">
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/StomWebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/icon1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/icon2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/icon3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/icon4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/mypage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20__2_43__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20_오후_2_43_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-20__2_44__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-20_오후_2_44_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.12.03 최신화">
+      <change afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/css/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/css/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/classes/java/main/edu/sm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/build/classes/java/main/edu/sm/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/compileTransaction/stash-dir/Main.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/compileTransaction/stash-dir/Main.class.uniqueId0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,24 +103,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.doctor [bootRun].executor": "Run",
-    "Gradle.doctor_iot [:edu.sm.Main.main()].executor": "Run",
-    "Gradle.user [bootRun].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "NewJunHee",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/CoMong_Project/doctor/src/main/resources/static/img",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.doctor_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;NewJunHee&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/doctor/src/main/resources/static/img&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\CoMong_Project\doctor\src\main\resources\static\img" />
@@ -259,6 +229,8 @@
       <workItem from="1732163119469" duration="2628000" />
       <workItem from="1733105731599" duration="21325000" />
       <workItem from="1733192574282" duration="11014000" />
+      <workItem from="1733224617568" duration="248000" />
+      <workItem from="1733276148654" duration="5643000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -324,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732863213948</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="2024.12.03 최신화">
+      <option name="closed" value="true" />
+      <created>1733224863426</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733224863426</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +328,8 @@
     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
     <MESSAGE value="2024.11.21 master+hyun" />
     <MESSAGE value="2024.11.29 리셋" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024.11.29 리셋" />
+    <MESSAGE value="2024.12.03 최신화" />
+    <option name="LAST_COMMIT_MESSAGE" value="2024.12.03 최신화" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -5,6 +5,7 @@ server:
     encoding:
       charset: UTF-8
       force: true
+  address: 0.0.0.0
 
 # 2. SpringBoot Environment Setting
 spring:
@@ -35,7 +36,7 @@ logging:
 # 5. Application Environment Setting
 app:
   url:
-    server_url: http://210.119.34.218:81
+    server_url: http://210.119.34.220:81
   dir:
     imgdir: file:///c:/CoMong_Project/imgs/
     imgmypage: C:/CoMong_Project/doctor/src/main/resources/static/img

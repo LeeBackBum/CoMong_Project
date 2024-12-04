@@ -44,6 +44,9 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script><!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <%-- websocket lib   --%>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
 <body>
@@ -68,6 +71,7 @@
                 <a href="<c:url value="/main"/>" class="nav-item nav-link">
                     <i class="fa fa-tachometer-alt me-2"></i>Main</a>
                 <a href="<c:url value="/counseling"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Chat</a>
+                <a href="<c:url value="/webrtc"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>test</a>
                 <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>List</a>
                 <a href="<c:url value="/blank"/>" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Pages</a>
             </div>

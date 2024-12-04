@@ -89,125 +89,118 @@
 
     .record-container {
         display: inline-block;
-        width: 48%; /* 적절한 너비 설정 */
+        width: 100%; /* 적절한 너비 설정 */
         vertical-align: top; /* 상단 정렬 */
         max-width: 700px;
-        margin-left: 60px;
+        margin-left: auto;
         margin-right: auto;
-        background-color: #fff;
-        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-        margin-top: 70px;
+        margin-top: auto;
         height: 650px;
         max-height: 900px;
         position: relative;
     }
 
-    .record-header {
-        display: flex; /* 플렉스 컨테이너로 설정 */
-        justify-content: space-between; /* 자식 요소를 양쪽 끝으로 정렬 */
-        align-items: center; /* 세로 가운데 정렬 */
-        padding: 10px; /* 내부 여백 추가 */
+    .record-title {
+        text-align: center;
     }
 
-    #record-text,
-    #record-text2 {
-        margin: 0; /* 기본 여백 제거 */
-        font-weight: 300;
-    }
-
-    #contentRecord{
-        height: 60%;
-    }
 
 </style>
+<div class="container-fluid position-relative bg-white d-flex p-0">
+    <div class="container-fluid pt-4 px-4">
+        <div id="chat-page">
+            <div class="row g-4">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-light rounded h-100 p-4">
+                        <div class="chat-container">
+                            <!-- 헤더 -->
+                            <div class="chat-header">
+                                <h2 class="mb-4" id="chat-text">Chat</h2>
+                            </div>
 
-<div id="chat-page">
-    <div class="chat-container">
-        <!-- 헤더 -->
-        <div class="chat-header">
-            <h2 id="chat-text">Chat</h2>
+                            <!-- 메시지 리스트 -->
+                            <ul id="all" class="list-group message-list"></ul>
+
+                            <!-- 메시지 입력 -->
+                            <form id="messageForm" name="messageForm" class="form-group">
+                                <div class="input-group clearfix">
+                                    <input
+                                            type="text"
+                                            id="alltext"
+                                            placeholder="Enter your message here"
+                                            autocomplete="off"
+                                            class="form-control"
+                                    />
+                                    <button id="sendall" type="button" class="btn btn-primary">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6">
+                    <div class="bg-light rounded h-100 p-4">
+                        <div class="record-container">
+                            <h2 class="mb-4 record-title">Record</h2>
+                            <form id="recordForm" name="recordForm" class="form-group" method="post" action="/recordimpl">
+                                <!-- 날짜와 시간 입력 -->
+                                <div class="form-group">
+                                    <label for="datetime">날짜 및 시간</label>
+                                    <input
+                                            type="datetime-local"
+                                            class="form-control"
+                                            id="datetime"
+                                            name="counselDate"
+                                            required="required"
+                                    />
+                                </div>
+
+                                <!-- 내용 입력 -->
+                                <div class="form-group">
+                                    <label for="content">내용</label>
+                                    <textarea
+                                            class="form-control"
+                                            rows="11"
+                                            id="content"
+                                            name="counselContent"
+                                            placeholder="내용 작성"
+                                    ></textarea>
+                                </div>
+
+                                <!-- 의사 ID와 환자 이름 입력 -->
+                                <div class="form-group">
+                                    <label for="doctorId">의사 ID</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="doctorId"
+                                            name="doctorId"
+                                            placeholder="의사 ID 입력"
+                                            required="required"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="userId">환자 이름</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="userId"
+                                            name="userId"
+                                            placeholder="환자 이름 입력"
+                                            required="required"
+                                    />
+                                </div>
+
+                                <input type="hidden" name="counselType" value="채팅상담" />
+
+                                <button type="submit" class="btn btn-primary">등록</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- 메시지 리스트 -->
-        <ul id="all" class="list-group message-list"></ul>
-
-        <!-- 메시지 입력 -->
-        <form id="messageForm" name="messageForm" class="form-group">
-            <div class="input-group clearfix">
-                <input
-                        type="text"
-                        id="alltext"
-                        placeholder="Enter your message here"
-                        autocomplete="off"
-                        class="form-control"
-                />
-                <button id="sendall" type="button" class="btn btn-primary">Send</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="record-container">
-        <div class="record-header">
-            <h2 id="record-text">Record</h2>
-            <h2 id="record-text2">채팅상담</h2>
-        </div>
-
-        <form id="recordForm" name="recordForm" class="form-group" method="post" action="/recordimpl">
-            <!-- 날짜와 시간 입력 -->
-            <div class="form-group">
-                <label for="datetime">날짜 및 시간</label>
-                <input
-                        type="datetime-local"
-                        class="form-control"
-                        id="datetime"
-                        name="counselDate"
-                        required="required"
-                />
-            </div>
-
-            <!-- 내용 입력 -->
-            <div class="form-group">
-                <label for="content">내용</label>
-                <textarea
-                        class="form-control"
-                        rows="11"
-                        id="content"
-                        name="counselContent"
-                        placeholder="내용 작성"
-                ></textarea>
-            </div>
-
-            <!-- 의사 ID와 환자 이름 입력 -->
-            <div class="form-group">
-                <label for="doctorId">의사 ID</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        id="doctorId"
-                        name="doctorId"
-                        placeholder="의사 ID 입력"
-                        required="required"
-                />
-            </div>
-            <div class="form-group">
-                <label for="userId">환자 ID</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        id="userId"
-                        name="userId"
-                        placeholder="환자 이름 입력"
-                        required="required"
-                />
-            </div>
-
-            <input type="hidden" name="counselType" value="채팅상담" />
-
-            <button type="submit" class="btn btn-primary">등록</button>
-        </form>
     </div>
 </div>
-
 <script>
     let websocket = {
         id: '', // 사용자 ID (로그인한 사용자 이름)
