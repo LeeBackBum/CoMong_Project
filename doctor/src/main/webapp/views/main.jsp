@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <a href="<c:url value="/counseling"/>" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Counseling</a>
-                <a href="<c:url value="/form"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
+                <a href="<c:url value="/webrtc"/>" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>WebRTC</a>
                 <a href="<c:url value="/user/appointments"/>" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                 <a href="<c:url value="/chart"/>" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                 <div class="nav-item dropdown">

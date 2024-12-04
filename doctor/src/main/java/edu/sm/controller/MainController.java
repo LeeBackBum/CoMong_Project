@@ -269,4 +269,11 @@ public class MainController {
             return "redirect:/mypage?error=update_failed";
         }
     }
+
+    @RequestMapping("/webrtc")
+    public String webrtc(Model model) {
+        model.addAttribute("roomId", "1");    // 하드코딩된 roomId
+        model.addAttribute("center", "Counseling/webrtc");
+        return "main";
+    }
 }
