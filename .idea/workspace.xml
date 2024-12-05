@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.04 채팅 ui 개선">
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/SignalMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebRTCSignalingHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/keystore.p12" afterDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.05 화상 50% 완료">
+      <change afterPath="$PROJECT_DIR$/doctor/src/test/java/edu/sm/DoctorSelectTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/StomWebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/StomWebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,24 +98,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.doctor_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;NewJunHee&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/doctor/src/main/resources/static/img&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.DoctorSelectTest.executor": "Run",
+    "Gradle.doctor [bootRun].executor": "Run",
+    "Gradle.doctor_iot [:edu.sm.Main.main()].executor": "Run",
+    "Gradle.user [bootRun].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "NewJunHee",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CoMong_Project/doctor/src/main/resources/static/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\CoMong_Project\doctor\src\main\resources\static\img" />
@@ -132,7 +127,7 @@
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.doctor [bootRun]">
+  <component name="RunManager" selected="Gradle.DoctorSelectTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
       <module name="doctor_iot.main" />
@@ -145,6 +140,30 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="DoctorSelectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/doctor" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;edu.sm.DoctorSelectTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -200,11 +219,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.DoctorSelectTest" />
         <item itemvalue="Gradle.doctor [bootRun]" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
-        <item itemvalue="Gradle.user [bootRun]" />
       </list>
     </recent_temporary>
   </component>
@@ -234,7 +253,7 @@
       <workItem from="1733224617568" duration="248000" />
       <workItem from="1733276148654" duration="5643000" />
       <workItem from="1733292989121" duration="6895000" />
-      <workItem from="1733372323582" duration="4779000" />
+      <workItem from="1733372323582" duration="5711000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -316,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733309968123</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat.jhKim 2024.12.05 화상 50% 완료">
+      <option name="closed" value="true" />
+      <created>1733380373131</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733380373132</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,7 +369,8 @@
     <MESSAGE value="2024.11.29 리셋" />
     <MESSAGE value="2024.12.03 최신화" />
     <MESSAGE value="feat.jhKim 2024.12.04 채팅 ui 개선" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.04 채팅 ui 개선" />
+    <MESSAGE value="feat.jhKim 2024.12.05 화상 50% 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.05 화상 50% 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

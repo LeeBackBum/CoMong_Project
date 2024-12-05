@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -43,7 +44,10 @@ public class MainController {
     }
 
     @RequestMapping("/main")
-    public String main(Model model) {
+    public String main(Model model) throws Exception {
+        List<DoctorDto> doctors = doctorService.get();
+
+        model.addAttribute("doctors",doctors);
         log.info("Start Main ,,,,,,");
         return "main";
     }

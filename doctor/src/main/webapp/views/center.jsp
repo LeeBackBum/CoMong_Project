@@ -183,15 +183,23 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Phone Number</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Country</th>
-                                        <th scope="col">ZIP</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Society</th>
+                                        <th scope="col">SubjectName</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="d" items="${doctors}">
+                                        <tr>
+                                            <td>${d.doctorName}</td>
+                                            <td>${d.carType}</td>
+                                            <td>${c.carPrice}</td> <!-- carPrice는 String이므로 그냥 출력 -->
+                                            <!-- carDate(LocalDateTime)는 형식을 지정해서 출력 -->
+                                            <td>${c.formattedCarDate}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
