@@ -1,39 +1,313 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <title>DASHMIN - Bootstrap Admin Template</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+<script>
+  let chart1 = {
+    chartInstance : null,
+    livedata: [], // 현재 데이터를 저장
+    init: function () {
+      this.getBloodPressure();
+      this.getBloodSugar();
+      this.getDepressionScore();
+      this.getdata();
+      this.display1();
+      this.display2();
+      this.display3();
+      this.display4();
+    },
+    getdata:function(){
+      $.ajax({
+        url:'/iot/power/data',
+        success: (datas) => {
+          this.display4(datas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
+    getBloodPressure:function(){
+      $.ajax({
+        url:'/iot/bloodPressure/data',
+        success: (bloodPressuredatas) => {
+          this.display1(bloodPressuredatas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
+    getBloodSugar:function(){
+      $.ajax({
+        url:'/iot/bloodSugar/data',
+        success: (bloodSugardatas) => {
+          this.display2(bloodSugardatas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
+    getDepressionScore:function(){
+      $.ajax({
+        url:'/iot/depressionScore/data',
+        success: (depressionScoredatas) => {
+          this.display3(depressionScoredatas); // 화살표 함수로 this 고정
+        },
+        error: (xhr, status, error) => {
+          console.error('AJAX 요청 실패:', status, error);
+        }
+      });
+    },
 
-  <!-- Favicon -->
-  <link href="<c:url value="/img/favicon.ico"/>" rel="icon">
 
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    display4: function () {
+      // On chart load, start an interval that fetches data from the server and animates the pulsating marker.
+      const onChartLoad = function () {
+        const chart = this,
+                series = chart.series[0];
 
-  <!-- Icon Font Stylesheet -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        // 실시간 데이터 업데이트 (3초 간격)
+        setInterval(() => {
+          $.ajax({
+            url: '/iot/power/data', // 서버에서 데이터를 가져옴
+            success: (datas) => {
+              datas.forEach((value) => {
+                const point = [new Date(value.timestamp).getTime(), value.value];
+                console.log('추가할 포인트:', point);
+                series.addPoint(point, true, series.data.length > 20); // 차트에 포인트 추가
+              });
+            },
+            error: (xhr, status, error) => {
+              console.error('AJAX 요청 실패:', status, error);
+            }
+          });
+        }, 5000);
+      };
 
-  <!-- Libraries Stylesheet -->
-  <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
-  <link href="<c:url value="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"/>" rel="stylesheet" />
+      // 초기 데이터를 서버에서 가져오기
+      const data = (function () {
+        let initialData = [];
+        $.ajax({
+          url: '/iot/power/data', // 최근 데이터 요청
+          async: false,
+          success: (datas) => {
+            initialData = datas.map((item) => ({
+              x: new Date(item.timestamp).getTime(), // 타임스탬프를 x축 값으로 변환
+              y: item.value // 값을 y축 값으로 설정
+            }));
+          },
+          error: (xhr, status, error) => {
+            console.error('초기 데이터 요청 실패:', status, error);
+          }
+        });
+        return initialData;
+      }());
 
-  <!-- Customized Bootstrap Stylesheet -->
-  <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
+      // Plugin to add a pulsating marker on add point
+      Highcharts.addEvent(Highcharts.Series, 'addPoint', e => {
+        const point = e.point,
+                series = e.target;
 
-  <!-- Template Stylesheet -->
-  <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
-</head>
+        if (!series.pulse) {
+          series.pulse = series.chart.renderer.circle()
+                  .add(series.markerGroup);
+        }
 
-<body>
+        setTimeout(() => {
+          series.pulse
+                  .attr({
+                    x: series.xAxis.toPixels(point.x, true),
+                    y: series.yAxis.toPixels(point.y, true),
+                    r: series.options.marker.radius,
+                    opacity: 1,
+                    fill: series.color
+                  })
+                  .animate({
+                    r: 20,
+                    opacity: 0
+                  }, {
+                    duration: 1000
+                  });
+        }, 1);
+      });
+
+      // Highcharts 차트 생성
+      Highcharts.chart('container', {
+        chart: {
+          type: 'spline',
+          events: { load: onChartLoad } // 차트 로드 시 이벤트 등록
+        },
+
+        time: { useUTC: false },
+
+        title: { text: 'HealthCare Live Data' },
+
+        accessibility: {
+          announceNewData: {
+            enabled: true,
+            minAnnounceInterval: 15000,
+            announcementFormatter: function (allSeries, newSeries, newPoint) {
+              if (newPoint) {
+                return 'New point added. Value: ' + newPoint.y;
+              }
+              return false;
+            }
+          }
+        },
+
+        xAxis: {
+          type: 'datetime',
+          tickPixelInterval: 150,
+          maxPadding: 0.1
+        },
+
+        yAxis: {
+          title: { text: 'Value' },
+          plotLines: [
+            { value: 0, width: 1, color: '#808080' }
+          ]
+        },
+
+        tooltip: {
+          headerFormat: '<b>{series.name}</b><br/>',
+          pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+        },
+
+        legend: { enabled: false },
+
+        exporting: { enabled: false },
+
+        series: [
+          {
+            name: 'IoT Data',
+            lineWidth: 2,
+            color: Highcharts.getOptions().colors[2],
+            data // 초기 데이터 설정
+          }
+        ]
+      });
+    },
+
+
+    display1: function(data) {
+      const normalRange = { min: 80, max: 139 }; // 예시 정상 범위
+      const processedData = data.map(item => item.value);
+      const pointBackgroundColors = processedData.map(value =>
+              (value < normalRange.min || value > normalRange.max) ? "red" : "rgba(0, 156, 255, .3)"
+      );
+
+      // 날짜와 혈압 수치를 추출
+      const labels = data.map(item => {
+        const date = new Date(item.timestamp);
+        return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
+      });
+
+      var ctx3 = $("#line-chart").get(0).getContext("2d");
+      this.chartInstance = new Chart(ctx3, {
+        type: "line",
+        data: {
+          labels: labels, // 변환된 라벨 사용
+          datasets: [{
+            label: "위험 수치",
+            fill: false,
+            backgroundColor: pointBackgroundColors,
+            data: processedData
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
+    },
+
+    display2: function(data) {
+      // 데이터 처리
+      const processedData = data.map(item => item.value);
+
+      // 날짜와 혈당 수치를 추출하여 라벨 형식 지정
+      const labels = data.map(item => {
+        const date = new Date(item.timestamp);
+        return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
+      });
+
+      // 혈당 수치의 위험 범위 설정
+      const pointBackgroundColors = processedData.map(value =>
+              (value < 70 || value > 140) ? "red" : "rgba(0, 156, 255, .6)"
+      );
+
+      var ctx2 = $("#line-chart2").get(0).getContext("2d");
+      this.chartInstance = new Chart(ctx2, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "위험 수치",
+            fill: false,
+            backgroundColor: pointBackgroundColors,
+            data: processedData
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    },
+
+    display3: function(data) {
+      // 최근 5개의 데이터만 가져오기
+      const recentData = data.slice(-5); // 배열의 마지막 5개 요소를 선택
+
+      // 날짜와 우울증 점수를 추출
+      const labels = recentData.map(item => {
+        const date = new Date(item.timestamp);
+        return (date.getMonth() + 1)+'월' +(date.getDate())+'일'; // "12월 1일" 형식으로 변환
+      });
+      const depressionScores = recentData.map(item => item.value); // 우울증 점수 추출
+
+      var ctx4 = $("#bar-chart").get(0).getContext("2d");
+      if (this.charts && this.charts.depressionChart) {
+        this.charts.depressionChart.destroy(); // 기존 차트 인스턴스 제거
+      }
+      this.charts.depressionChart = new Chart(ctx4, {
+        type: "bar",
+        data: {
+          labels: labels, // x축 라벨 설정
+          datasets: [{
+            label: "우울증 점수",
+            backgroundColor: [
+              "rgba(0, 156, 255, .7)",
+              "rgba(0, 156, 255, .6)",
+              "rgba(0, 156, 255, .5)",
+              "rgba(0, 156, 255, .4)",
+              "rgba(0, 156, 255, .3)"
+            ],
+            data: depressionScores // y축 데이터 설정
+          }]
+        },
+        options: {
+          responsive: true
+        }
+      });
+    },
+
+
+
+  }
+
+
+
+  $(function () {
+    chart1.init();
+  });
+</script>
+
 <div class="container-fluid position-relative bg-white d-flex p-0">
   <!-- Content Start -->
   <div>
@@ -42,38 +316,30 @@
       <div class="row g-4">
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Single Line Chart</h6>
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h6 class="mb-0">일별 혈압</h6>
+            </div>
             <canvas id="line-chart"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Multiple Line Chart</h6>
-            <canvas id="salse-revenue"></canvas>
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h6 class="mb-0">일별 혈당</h6>
+            </div>
+            <canvas id="line-chart2"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Single Bar Chart</h6>
+            <h6 class="mb-4">우울증 수치</h6>
             <canvas id="bar-chart"></canvas>
           </div>
         </div>
         <div class="col-sm-12 col-xl-6">
           <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Multiple Bar Chart</h6>
-            <canvas id="worldwide-sales"></canvas>
-          </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-          <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Pie Chart</h6>
-            <canvas id="pie-chart"></canvas>
-          </div>
-        </div>
-        <div class="col-sm-12 col-xl-6">
-          <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Doughnut Chart</h6>
-            <canvas id="doughnut-chart"></canvas>
+            <h6 class="mb-4">특이사항에 관한 실시간 데이터</h6>
+            <div id="container" style="width: 100%; height: 300px;"></div>
           </div>
         </div>
       </div>
@@ -94,102 +360,3 @@
   </div>
 </div>
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-  let chart1 = {
-    chartInstance: null, // Chart.js 인스턴스를 저장할 변수
-    livedata: null, // 현재 데이터를 저장
-    init: function () {
-      this.getdata(); // 초기 데이터 가져오기
-      this.display2(); // 차트 초기화
-      setInterval(() => {
-        this.getdata(); // 5초마다 데이터 갱신
-      }, 5000);
-    },
-    getdata: function () {
-      $.ajax({
-        url: '/iot/power/data',
-        success: (datas) => {
-          if (Array.isArray(datas)) {
-            this.livedata = datas; // 데이터 저장
-            this.display(datas); // 차트 업데이트
-          } else {
-            console.error("Received data is not an array:", datas);
-          }
-        },
-        error: (error) => {
-          console.error("Error fetching IoT data:", error);
-        }
-      });
-    },
-    display2: function () {
-      // 초기 차트 설정
-      const ctx = document.getElementById('line-chart').getContext('2d');
-      this.chartInstance = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: [], // 초기 라벨 값은 비어있음
-          datasets: [{
-            label: 'Power Consumption',
-            data: [],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            fill: false,
-            borderWidth: 2,
-            pointRadius: 3
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: true
-            }
-          },
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: 'Time'
-              }
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Power (Watts)'
-              }
-            }
-          }
-        }
-      });
-    },
-    display: function (datas) {
-      if (this.chartInstance) {
-        // 기존 데이터에 새로운 데이터를 추가
-        const label = `Time ${this.chartInstance.data.labels.length + 1}`; // JavaScript 내에서 계산
-
-        this.chartInstance.data.labels.push(label);
-        this.chartInstance.data.datasets[0].data.push(datas[datas.length - 1]);
-
-        // 만약 차트의 데이터 포인트가 너무 많으면 오래된 데이터를 삭제
-        if (this.chartInstance.data.labels.length > 10) { // 예: 최대 10개의 데이터만 유지
-          this.chartInstance.data.labels.shift();
-          this.chartInstance.data.datasets[0].data.shift();
-        }
-
-        this.chartInstance.update(); // 차트 업데이트
-      }
-    }
-  };
-
-  $(function () {
-    chart1.init();
-  });
-</script>
-
-
-
-</body>
-</html>

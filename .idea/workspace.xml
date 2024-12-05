@@ -4,132 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="commit">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto$DoctorDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto$DoctorDtoBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto$MedicalAppointmentDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto$MedicalAppointmentDtoBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application-pro.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/mapper/noticeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/mapper/noticeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/mapper/usermapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/mapper/usermapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/links.php" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/links.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/waypoints.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/waypoints.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_accordion.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_accordion.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_badge.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_badge.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_breadcrumb.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_breadcrumb.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_button-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_button-group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_buttons.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_card.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_carousel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_carousel.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_close.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_close.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_containers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_containers.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_dropdown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_dropdown.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_forms.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_functions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_functions.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_helpers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_helpers.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_images.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_images.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_list-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_list-group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_modal.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_nav.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_navbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_offcanvas.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_offcanvas.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_pagination.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_popover.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_popover.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_progress.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_progress.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_reboot.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_reboot.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_root.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_root.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_spinners.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_spinners.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_toasts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_toasts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tooltip.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tooltip.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_transitions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_transitions.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_type.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_type.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_utilities.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-reboot.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-reboot.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-utilities.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_floating-labels.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_floating-labels.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-check.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-check.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-control.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-control.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-range.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-range.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-select.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-select.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-text.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-text.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_input-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_input-group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_labels.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_labels.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_validation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_validation.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_clearfix.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_clearfix.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_colored-links.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_colored-links.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_position.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_position.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_ratio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_ratio.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_stretched-link.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_stretched-link.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_text-truncation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_text-truncation.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_visually-hidden.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_visually-hidden.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_alert.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_border-radius.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_border-radius.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_box-shadow.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_box-shadow.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_breakpoints.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_breakpoints.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_buttons.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_caret.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_caret.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_clearfix.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_clearfix.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_color-scheme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_color-scheme.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_container.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_container.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_deprecate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_deprecate.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_forms.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_gradients.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_gradients.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_grid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_image.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_image.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_list-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_list-group.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_lists.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_lists.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_pagination.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_reset-text.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_reset-text.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_resize.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_resize.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_table-variants.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_table-variants.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_text-truncate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_text-truncate.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_transition.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_transition.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_utilities.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_visually-hidden.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_visually-hidden.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/utilities/_api.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/utilities/_api.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/vendor/_rfs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/vendor/_rfs.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.05 15:53 최신화">
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +14,9 @@
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/doctor">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/doctor_iot">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/user">
@@ -158,23 +37,18 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
+                <item name="doctor" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
+                <item name="doctor" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
+                <item name="doctor" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -187,6 +61,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -207,7 +82,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,
-    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;
+    &quot;accountId&quot;: &quot;7d47f15d-1ae1-4a83-967b-c172d0a78733&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -222,32 +97,73 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;hyun&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/webapp/views/notice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.DoctorSelectTest.executor": "Run",
+    "Gradle.doctor [bootRun].executor": "Run",
+    "Gradle.doctor_iot [:edu.sm.Main.main()].executor": "Run",
+    "Gradle.user [bootRun].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "NewJunHee",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CoMong_Project/doctor/src/main/resources/static/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\doctor\src\main\resources\static\img" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\doctor\src\main\resources" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.user [bootRun]">
+  <component name="RunManager" selected="Gradle.doctor [bootRun]">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
+      <module name="doctor_iot.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.sm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DoctorSelectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/doctor" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;edu.sm.DoctorSelectTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -300,20 +216,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="user.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.sm.UserApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.user [bootRun]" />
+        <item itemvalue="Gradle.doctor [bootRun]" />
+        <item itemvalue="Gradle.DoctorSelectTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
-        <item itemvalue="Gradle.user [bootRun]" />
       </list>
     </recent_temporary>
   </component>
@@ -338,6 +247,12 @@
       <workItem from="1732151216633" duration="1199000" />
       <workItem from="1732153049903" duration="1679000" />
       <workItem from="1732163119469" duration="2628000" />
+      <workItem from="1733105731599" duration="21325000" />
+      <workItem from="1733192574282" duration="11014000" />
+      <workItem from="1733224617568" duration="248000" />
+      <workItem from="1733276148654" duration="5643000" />
+      <workItem from="1733292989121" duration="6895000" />
+      <workItem from="1733372323582" duration="6144000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -379,11 +294,78 @@
       <option name="project" value="LOCAL" />
       <updated>1732167733780</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="2024.11.29 리셋">
+      <option name="closed" value="true" />
+      <created>1732863085263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732863085263</updated>
+    </task>
+    <task id="LOCAL-00007" summary="2024.11.29 리셋">
+      <option name="closed" value="true" />
+      <created>1732863170448</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732863170448</updated>
+    </task>
+    <task id="LOCAL-00008" summary="2024.11.29 리셋">
+      <option name="closed" value="true" />
+      <created>1732863213948</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732863213948</updated>
+    </task>
+    <task id="LOCAL-00009" summary="2024.12.03 최신화">
+      <option name="closed" value="true" />
+      <created>1733224863426</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733224863426</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat.jhKim 2024.12.04 채팅 ui 개선">
+      <option name="closed" value="true" />
+      <created>1733309968122</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733309968123</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat.jhKim 2024.12.05 화상 50% 완료">
+      <option name="closed" value="true" />
+      <created>1733380373131</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733380373132</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat.jhKim 2024.12.05 15:53 최신화">
+      <option name="closed" value="true" />
+      <created>1733381591564</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733381591564</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2024.11.19 14:26 작업 댓글오류수정완료" />
@@ -391,8 +373,12 @@
     <MESSAGE value="2024.11.19 15:44 공지 센터이동 및 작성자이름 출력" />
     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
     <MESSAGE value="2024.11.21 master+hyun" />
-    <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="2024.11.29 리셋" />
+    <MESSAGE value="2024.12.03 최신화" />
+    <MESSAGE value="feat.jhKim 2024.12.04 채팅 ui 개선" />
+    <MESSAGE value="feat.jhKim 2024.12.05 화상 50% 완료" />
+    <MESSAGE value="feat.jhKim 2024.12.05 15:53 최신화" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.05 15:53 최신화" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

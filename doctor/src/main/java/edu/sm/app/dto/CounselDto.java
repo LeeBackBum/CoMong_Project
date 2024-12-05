@@ -13,10 +13,21 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CounselDto {
-    private int counselId;
+    private Integer counselId;
     private Date counselDate;
     private String counselContent;
     private String counselType;      // 상담 종류 ('화상' 또는 '채팅')
     private String doctorId;
     private String userId;
+
+    @Override
+    public String toString() {
+        return "CounselDto{" +
+                "counselDate='" + counselDate + '\'' +
+                ", counselContent='" + counselContent + '\'' +
+                ", counselType='" + counselType + '\'' +
+                ", doctorId='" + doctorId + '\'' +
+                ", userId='" + userId + '\'' +
+                '}';
+    }
 }

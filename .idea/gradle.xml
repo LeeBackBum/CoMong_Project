@@ -13,11 +13,12 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/user" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/doctor_iot" />
+        <option name="gradleHome" value="" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/user" />
+            <option value="$PROJECT_DIR$/doctor_iot" />
           </set>
         </option>
       </GradleProjectSettings>
