@@ -16,9 +16,9 @@ class SelectTest {
     DoctorService doctorService;
 
     @Test
-    void contextLoads(){
+    void contextLoads() {
         try {
-            doctorService.get();
+        doctorService.get();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

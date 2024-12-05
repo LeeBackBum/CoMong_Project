@@ -4,132 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="Edit Profile">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/d1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/d2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CoMong_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CoMong_Project.iml" afterDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="1204 병합">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/doctor_iot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/CounselRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/CounselService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/CounselController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MedicalAppointmentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/chart.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/getmedicalAppointment.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/test/java/edu/sm/ApointmentSelectTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/test/java/edu/sm/userSelectTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/user.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/user.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/doctor.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/user.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/user.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20__2_42__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20_오후_2_42_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-20_오후_2_42_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/css/kakaomarker.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-21__2_24__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-21_오후_2_24_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-21_오후_2_24_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-22__5_07__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-22__5_07__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-22_오후_5_07_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-25__1_41__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-25__1_41__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-25_오후_1_41_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_22__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_22__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_24__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_24__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_44__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__3_09__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_22_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_22_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_24_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_24_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_44_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_3_09_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_6_51_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-22__4_58__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-22__5_11__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_37_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_6_49_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-29__3_01__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-29__3_03__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-29_오후_3_01_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-29_오후_3_03_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AnswerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AnswerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AppointmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AppointmentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/BoardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/BoardDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/ManagerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/ManagerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/MedicalRecordsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/MedicalRecordsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/Msg.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/Msg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/NoticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/NoticeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/MedicalRecordsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/MedicalRecordsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/MedicalRecordsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/MedicalRecordsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/ChartsRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/ChartsRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/log4jdbc.log4j2" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/log4jdbc.log4j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/medicalrecordsmapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/medicalrecordsmapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/usermapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/usermapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/doctor.png" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/doctor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/img1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/img1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/counselnav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/counselnav.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/left.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/mypage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/nav.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/appointments.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/appointments.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/test/java/edu/sm/RecordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/test/java/edu/sm/RecordTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/MedicalAppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/MedicalAppointmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/MedicalAppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/MedicalAppointmentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/center.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/medicalAppointment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/medicalAppointment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/apiTest.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/mapTest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/center.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/mypage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/test/java/edu/sm/doctor/SelectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/test/java/edu/sm/doctor/SelectTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,38 +67,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="doctor" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="doctor" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="doctor" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="user" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -199,8 +77,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -221,7 +101,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,
-    &quot;accountId&quot;: &quot;379c5a3c-6fb4-49d3-9c29-33059c50308e&quot;
+    &quot;accountId&quot;: &quot;edd014aa-a8d1-4962-b55e-e27ecdd645ea&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -236,54 +116,105 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;YUN&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/resources/static/imgt&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Gradle.ApointmentSelectTest.executor": "Run",
+    "Gradle.SelectTest.executor": "Run",
+    "Gradle.doctor [bootRun].executor": "Run",
+    "Gradle.user [bootRun].executor": "Run",
+    "Gradle.userSelectTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "YUN",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CoMong_Project/doctor_iot",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\CoMong_Project\user\src\main\resources\static\imgt" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\user\src\main\webapp\views" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="edu.sm" />
+    </key>
   </component>
-  <component name="RunManager" selected="Gradle.doctor [bootRun]">
-    <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.user [bootRun]">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
+      <module name="doctor_iot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.sm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApointmentSelectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/doctor" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="bootRun" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;edu.sm.ApointmentSelectTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SelectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;edu.sm.doctor.SelectTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="user [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -308,6 +239,30 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="userSelectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;edu.sm.userSelectTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="DoctorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="doctor.main" />
@@ -326,11 +281,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.doctor [bootRun]" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.user [bootRun]" />
-        <item itemvalue="Gradle.user [bootRun]" />
-        <item itemvalue="Gradle.doctor [bootRun]" />
-        <item itemvalue="Gradle.user [bootRun]" />
+        <item itemvalue="Gradle.ApointmentSelectTest" />
+        <item itemvalue="Gradle.userSelectTest" />
+        <item itemvalue="Gradle.SelectTest" />
       </list>
     </recent_temporary>
   </component>
@@ -355,6 +310,11 @@
       <workItem from="1732151216633" duration="1199000" />
       <workItem from="1732153049903" duration="1679000" />
       <workItem from="1732163119469" duration="2628000" />
+      <workItem from="1733294158989" duration="248000" />
+      <workItem from="1733294417971" duration="3494000" />
+      <workItem from="1733302159836" duration="7470000" />
+      <workItem from="1733370065645" duration="8832000" />
+      <workItem from="1733381639813" duration="1769000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -396,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732167733780</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1204 병합">
+      <option name="closed" value="true" />
+      <created>1733294388949</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733294388949</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +389,8 @@
     <MESSAGE value="2024.11.21 master+hyun" />
     <MESSAGE value="commit" />
     <MESSAGE value="Edit Profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit Profile" />
+    <MESSAGE value="1204 병합" />
+    <option name="LAST_COMMIT_MESSAGE" value="1204 병합" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

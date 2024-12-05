@@ -34,6 +34,14 @@
   <!-- Libraries Stylesheet -->
   <link href="<c:url value="/lib/animate/animate.min.css"/>" rel="stylesheet">
   <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script><!-- JavaScript Libraries -->
 
   <%-- 틀--%>
   <%-- reservation css--%>
@@ -106,7 +114,7 @@
           </a>
           <div class="dropdown-menu fade-down m-0" style="right: 0; width: 10px;">
             <a href="<c:url value="/mypage"/>" class="dropdown-item">MyPage</a>
-            <a href="<c:url value="/recordpage"/>" class="dropdown-item">Record</a>
+            <a href="<c:url value="/chart"/>" class="dropdown-item">Chart</a>
             <a href="<c:url value="/logoutimpl"/>" class="dropdown-item">LogOut</a>
           </div>
         </div>

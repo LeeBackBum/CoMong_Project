@@ -6,6 +6,7 @@ import edu.sm.app.dto.UserDto;
 import edu.sm.app.repository.DoctorRepository;
 import edu.sm.app.repository.MedicalAppointmentRepository;
 import edu.sm.app.service.DoctorService;
+import edu.sm.app.service.MedicalAppointmentService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,6 @@ public class ReservationController {
 
 
 
-
 //    의사 정보 가져오는 컨트롤러
 
     @RequestMapping("/getDoctorList")
@@ -48,6 +48,20 @@ public class ReservationController {
         // JSP 파일 렌더링
         return "getDoctorList";
     }
+
+
+
+//    @RequestMapping("/getAppointmentList")
+//    public String getAppointmentList(Model model) throws Exception {
+//        // MedicalAppointment 데이터 가져오기
+//        List<MedicalAppointmentDto> getMedicalAppointmentDto = medicalAppointmentService.get();
+//
+//        // 데이터를 모델에 추가
+//        model.addAttribute("Appointmentlist", getMedicalAppointmentDto);
+//
+//        // JSP 파일 렌더링
+//        return "mypage";
+//    }
 
 
 

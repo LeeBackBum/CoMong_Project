@@ -1,6 +1,8 @@
 package edu.sm.controller;
 
+import edu.sm.app.dto.MedicalAppointmentDto;
 import edu.sm.app.dto.UserDto;
+import edu.sm.app.service.MedicalAppointmentService;
 import edu.sm.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -34,6 +36,7 @@ import java.util.Map;
 
 @Controller
 @Slf4j
+
 public class MainController {
 
     @Value("${app.key.apikey}")
@@ -43,12 +46,15 @@ public class MainController {
     private final UserService userService;
 
 
+
+
     @Value("${app.url.server_url}")
     String serverurl;
 
     public MainController(UserService userService) {
         this.userService = userService;
     }
+
 
     @RequestMapping("/")
     public String main(Model model) {
@@ -89,21 +95,9 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/Test")
-    public String test(Model model) {
-        model.addAttribute("center", "gethp");
-        return "index";
-    }
-
-    @RequestMapping("/gethp")
-    public String gethp(Model model) {
-        model.addAttribute("center", "gethp");
-        return "index";
-    }
-
-    @RequestMapping("/apiTest")
-    public String apiTest(Model model) {
-        model.addAttribute("center", "apiTest");
+    @RequestMapping("/chart")
+    public String chart(Model model) {
+        model.addAttribute("center", "chart");
         return "index";
     }
 
@@ -175,7 +169,6 @@ public class MainController {
     public String mypage(HttpSession session, Model model) throws Exception {
         // 세션에서 UserDto 가져오기
         UserDto userDto = (UserDto) session.getAttribute("loginid");
-
         // 세션에 로그인 정보가 없는 경우 처리
         if (userDto == null) {
             System.out.println("세션에 로그인된 사용자 정보 없음");
@@ -189,6 +182,8 @@ public class MainController {
 
         // userId로 사용자 정보 조회
         List<UserDto> users = userService.findById(userId);
+        // userId로 사용자 예약 정보 조회
+
 
         // 사용자 정보 모델에 추가
         if (users.isEmpty()) {
@@ -197,6 +192,7 @@ public class MainController {
         } else {
             model.addAttribute("user", users.get(0));
         }
+
 
         model.addAttribute("center", "mypage");
         return "index";
