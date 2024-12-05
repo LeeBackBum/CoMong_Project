@@ -11,6 +11,13 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
 
+
+  <!-- map -->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8848ba17cfa4393e77b560b938dc5a46&libraries=services"></script>
+
+
+
+
   <!-- Favicon -->
   <link href="<c:url value="/img/icon.ico"/>" rel="icon">
 
@@ -29,12 +36,18 @@
   <link href="<c:url value="/lib/owlcarousel/assets/owl.carousel.min.css"/>" rel="stylesheet">
 
   <%-- 틀--%>
+  <%-- reservation css--%>
+  <link href="<c:url value="/css/contents.css"/>" rel="stylesheet">
   <!-- Customized Bootstrap Stylesheet -->
   <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 
   <!-- Template Stylesheet -->
   <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
   <%--틀 끝--%>
+
+  <%-- web socket --%>
+  <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+  <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
 
 <body>
@@ -63,6 +76,8 @@
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
+      <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
+      <a href="<c:url value="/mapTest"/>" class="nav-item nav-link">Map</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
         <div class="dropdown-menu fade-down m-0">
@@ -71,6 +86,7 @@
           <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
         </div>
       </div>
+      <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
       <a href="<c:url value="/board"/>" class="nav-item nav-link">게시판</a>
     </div>
     <ul class="nav justify-content-end">

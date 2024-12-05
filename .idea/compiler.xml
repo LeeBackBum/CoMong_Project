@@ -11,11 +11,5 @@
         <module name="user.test" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="edu.sm.CoMong" target="17" />
-      <module name="edu.sm.CoMong.main" target="17" />
-      <module name="edu.sm.CoMong.test" target="17" />
-      <module name="edu.sm.doctor.main" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

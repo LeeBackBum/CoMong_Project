@@ -1,6 +1,6 @@
 # 1. Tomcat Server Setting
 server:
-  port: 82
+  port: 81
   servlet:
     encoding:
       charset: UTF-8
@@ -35,15 +35,14 @@ logging:
 # 5. Application Environment Setting
 app:
   url:
-    server_url:
+    server_url: http://210.119.34.219:81
   dir:
-    imgdir: file:///c:/CoMong_Project/imgs/
-    imgmypage: C:/CoMong_Project/doctor/src/main/resources/static/img
-    uploadimgdir: c:/CoMong_Project/imgs/
-
+    imgdirs: C:/CoMong_Project/doctor/src/main/resources/static/img
+    imgdir: file:///c:/springsm/imgs/
+    uploadimgdir: c:/springsm/imgs/
     # logdir: /root/users/project/logs
-    logdir: file:///c:/CoMong_Project/logs/
-    readlogdir: c:/CoMong_Project/logs/
+    logdir: file:///c:/springsm/logs/
+    readlogdir: c:/springsm/logs/
   key:
     algo: PBEWithMD5AndDES
     skey: mykey

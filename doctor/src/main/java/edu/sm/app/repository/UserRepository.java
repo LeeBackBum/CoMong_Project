@@ -22,5 +22,4 @@ public interface UserRepository extends SMRepository<String, UserDto> {
     List<AppointmentDto> selectAppointments(String doctorId);
     List<MedicalRecordsDto> getMedicalRecords(String userId);
     List<CounselDto> getCounsel(String userId);
-    List<AppointmentDto> dateAppointments(String doctorId, String date);
 }

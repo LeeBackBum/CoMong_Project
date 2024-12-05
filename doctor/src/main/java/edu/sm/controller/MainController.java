@@ -1,7 +1,6 @@
 package edu.sm.controller;
 
 import edu.sm.app.dto.DoctorDto;
-import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.DoctorService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +20,9 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 public class MainController {
+
+    @Value("${app.dir.imgdir}")
+    private String imgDir;
 
     @Value("${app.dir.imgmypage}")
     private String imgmypage;
@@ -51,29 +53,88 @@ public class MainController {
         return "main";
     }
 
+    @RequestMapping("button")
+    public String button(Model model) {
+        model.addAttribute("center", "center");
+        return "button";
+    }
+
+    @RequestMapping("/chart")
+    public String chart(Model model) {
+        model.addAttribute("center", "chart");
+        return "main";
+    }
+
+    @RequestMapping("element")
+    public String element(Model model) {
+        model.addAttribute("center", "center");
+        return "element";
+    }
+
+    @RequestMapping("errorpage")
+    public String errorpage(Model model) {
+        model.addAttribute("center", "center");
+        return "errorpage";
+    }
+
+    @RequestMapping("form")
+    public String form(Model model) {
+        model.addAttribute("center", "center");
+        return "form";
+    }
+
+    @RequestMapping("signin")
+    public String signin(Model model) {
+        model.addAttribute("center", "center");
+        return "signin";
+    }
+
+    @RequestMapping("signup")
+    public String signup(Model model) {
+        model.addAttribute("center", "center");
+        return "signup";
+    }
+
+    @RequestMapping("table")
+    public String table(Model model) {
+        model.addAttribute("center", "center");
+        return "table";
+    }
+
+    @RequestMapping("typography")
+    public String typography(Model model) {
+        model.addAttribute("center", "center");
+        return "typography";
+    }
+
+    @RequestMapping("widget")
+    public String widget(Model model) {
+        model.addAttribute("center", "widget");
+        return "index";
+    }
 
     @RequestMapping("/loginimpl")
     public String loginimpl(
             @RequestParam("id") String id,
             @RequestParam("pwd") String pwd,
-            HttpSession httpSession){
+            HttpSession httpSession) {
         DoctorDto doctorDto = null;
 
         try {
             doctorDto = doctorService.get(id);
-            if(doctorDto == null){
+            if (doctorDto == null) {
                 throw new Exception();
             }
-            if(!doctorDto.getDoctorPwd().equals(pwd)){
+            if (!doctorDto.getDoctorPwd().equals(pwd)) {
                 throw new Exception();
             }
-            httpSession.setAttribute("doctor",doctorDto);
+            httpSession.setAttribute("doctor", doctorDto);
             httpSession.setAttribute("doctorid", doctorDto);
         } catch (Exception e) {
             return "/";
         }
 
-        return  "redirect:/main";
+        return "redirect:/main";
     }
 
     @GetMapping("/mypage")
@@ -85,6 +146,25 @@ public class MainController {
         model.addAttribute("doctor", doctor);
         model.addAttribute("center", "mypage");
         return "main";
+    }
+
+    @RequestMapping("/counseling")
+    public String counseling(HttpSession session, Model model) {
+        // 세션에서 로그인된 사용자 정보 가져오기
+        Object loginid = session.getAttribute("doctorid");
+
+        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
+        String doctorName = ((DoctorDto) loginid).getDoctorName();
+
+        // JSP에 데이터 전달
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("doctorName", doctorName);
+        model.addAttribute("center", "Counseling/counseling");
+
+        System.out.println("Server URL: " + serverurl);
+        System.out.println("User Name: " + doctorName);
+
+        return "/main";
     }
 
     @PostMapping("/mypage/update")
@@ -103,7 +183,7 @@ public class MainController {
 
             // 파일 업로드 처리
             if (doctorImg != null && !doctorImg.isEmpty()) {
-                File destDir = new File(imgmypage);
+                File destDir = new File(imgDir);
 
                 if (!destDir.exists()) {
                     destDir.mkdirs();
@@ -146,5 +226,4 @@ public class MainController {
             return "redirect:/mypage?error=update_failed";
         }
     }
-
 }
