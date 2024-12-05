@@ -491,6 +491,13 @@
         </div>
         <div class="card-footer text-end">
             <a href="<c:url value='/board' />" class="btn btn-secondary">목록으로</a>
+            <!-- 수정 및 삭제 버튼 -->
+            <c:if test="${user != null && (user.userId == board.userId || user.role == '1')}">
+                <a href="<c:url value='/board/edit/${board.boardId}' />" class="btn btn-warning">수정</a>
+                <form action="<c:url value='/board/delete/${board.boardId}' />" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+                </form>
+            </c:if>
         </div>
     </div>
 
