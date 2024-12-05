@@ -5,9 +5,6 @@
     <file type="web" url="file://$PROJECT_DIR$/doctor" />
     <file type="web" url="file://$PROJECT_DIR$/user" />
   </component>
-  <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/user" />
-  </component>
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
