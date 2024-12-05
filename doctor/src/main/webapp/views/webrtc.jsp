@@ -1,70 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Admin WebRTC Video Chat</title>
-    <style>
-        .admin-webrtc-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            background: #000;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .video-stream {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16/9;
-        }
-        .video-label {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .control-button {
-            padding: 10px 20px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .start-call {
-            background: #4CAF50;
-            color: white;
-        }
-        .end-call {
-            background: #f44336;
-            color: white;
-        }
-        .connection-status {
-            text-align: center;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
+
+<style>
+    .admin-webrtc-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .video-stream {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+    .video-label {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 5px 10px;
+        border-radius: 4px;
+    }
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .control-button {
+        padding: 10px 20px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .start-call {
+        background: #4CAF50;
+        color: white;
+    }
+    .end-call {
+        background: #f44336;
+        color: white;
+    }
+    .connection-status {
+        text-align: center;
+        font-size: 14px;
+    }
+</style>
+
 <div class="admin-webrtc-container">
     <div class="video-grid">
         <div class="video-wrapper">
@@ -93,15 +88,14 @@
 
     const configuration = {
         iceServers: [{
-            urls: 'turn:127.0.0.1:3478',
-            username: 'turnuser',
-            credential: 'Turn2024!@#'
+            urls: 'stun:stun.l.google.com:19302'
+
         }]
     };
 
     async function initialize() {
         try {
-            websocket = new WebSocket('ws://127.0.0.1/ws/signal');
+            websocket = new WebSocket('${serverurl}/signal');
 
             websocket.onopen = () => {
                 console.log('WebSocket connected');
@@ -283,5 +277,3 @@
     // Initialize on page load
     initialize();
 </script>
-</body>
-</html>

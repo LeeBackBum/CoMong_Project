@@ -170,11 +170,32 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody> <!-- 데이터를 추가할 위치 -->
                             </table>
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-12 col-xl-12">
+                    <div class="h-100 bg-light rounded p-4">
+                        <h6 class="mb-4">다른 의사 정보</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">ZIP</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
