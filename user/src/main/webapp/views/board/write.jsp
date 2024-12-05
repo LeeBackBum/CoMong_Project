@@ -72,10 +72,13 @@
         </div>
     </form>
 </div>
+
 <!-- Write Form End -->
+
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -84,6 +87,7 @@
 <script src="<c:url value='/lib/easing/easing.min.js'/>"></script>
 <script src="<c:url value='/lib/waypoints/waypoints.min.js'/>"></script>
 <script src="<c:url value='/lib/owlcarousel/owl.carousel.min.js'/>"></script>
+
 
 <!-- Template Javascript -->
 <script src="<c:url value='/js/main.js'/>"></script>

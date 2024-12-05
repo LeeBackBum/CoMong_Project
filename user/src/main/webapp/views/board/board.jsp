@@ -117,7 +117,6 @@
       <c:forEach var="i" begin="1" end="${totalPages}">
         <a href="?page=${i}&size=${pageSize}&keyword=${keyword}" class="btn mx-1 ${i == currentPage ? 'btn-primary' : 'btn-light'}">${i}</a>
       </c:forEach>
-
       <c:if test="${currentPage < totalPages}">
         <a href="?page=${currentPage + 1}&size=${pageSize}&keyword=${keyword}" class="btn btn-secondary mx-1">다음</a>
       </c:if>

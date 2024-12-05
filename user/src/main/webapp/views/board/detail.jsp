@@ -34,6 +34,13 @@
 <body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+
+    $(document).ready(function () {
+        // 페이지 로드 시 댓글 목록 초기화
+        const boardId = ${board.boardId}; // 서버에서 전달된 boardId 사용
+        reloadComments(boardId);
+    });
+
     // 댓글 추가
     function addComment(boardId) {
         const content = $("#newCommentContent").val().trim();
@@ -69,45 +76,52 @@
     function addReply(parentAnswerId, boardId) {
         console.log("addReply 호출, parentAnswerId:", parentAnswerId, "boardId:", boardId);
 
+        // DOM에서 부모 댓글의 대댓글 입력 필드 찾기
         const contentElement = $(`#replyContent-${parentAnswerId}`);
         if (!contentElement.length) {
             console.error(`ID가 ${parentAnswerId}인 요소를 찾을 수 없습니다.`);
-            alert("대댓글 입력란을 찾을 수 없습니다. 페이지를 새로고침하거나 다시 시도해주세요.");
+            alert("대댓글 입력란을 찾을 수 없습니다. 댓글 목록을 다시 불러옵니다.");
+
+            // 댓글 목록 다시 로드
+            reloadComments(boardId);
             return;
         }
 
         const content = contentElement.val().trim();
-
         if (!content) {
             alert("대댓글 내용을 입력하세요.");
             return;
         }
 
         $.ajax({
-            url: '<c:url value="/answers/reply/" />'+parentAnswerId,
+            url: '<c:url value="/answers/reply/" />' + parentAnswerId,
             method: "POST",
             data: { content, boardId },
             success: function (response) {
-                if (response.status === "success") {
+                if (response.status === "success" && response.reply.answerId > 0) {
                     const reply = response.reply;
 
-                    // 입력창 초기화
+                    // 대댓글 입력 필드 초기화
                     contentElement.val("");
 
-                    // 대댓글 DOM 추가
+                    // DOM에 대댓글 추가
                     addReplyToDOM(reply);
 
                     console.log("대댓글 추가 완료:", reply);
                 } else {
-                    alert(response.message);
+                    alert(response.message || "대댓글 추가 실패");
+                    reloadComments(boardId); // 댓글 목록 재로드
                 }
             },
             error: function (xhr) {
                 alert("대댓글 추가 중 오류가 발생했습니다.");
                 console.error(xhr.responseText);
+                reloadComments(boardId); // 댓글 목록 재로드
             }
         });
     }
+
+
 
     // 댓글 수정
     function editComment(answerId, boardId) {
@@ -118,22 +132,16 @@
         }
 
         $.ajax({
-            url: "<c:url value='/answers/edit/' />"+answerId,
+            url: "<c:url value='/answers/edit/' />" + answerId,
             method: "POST",
             data: { content: newContent },
             success: function (response) {
                 console.log("댓글 수정 성공 응답:", response);
 
                 if (response.status === "success") {
-                    const updatedAnswer = response.answer;
-
-                    // DOM 업데이트: 기존 요소 삭제 후 새로 추가
-                    $(`#comment-${answerId}`).remove();
-                    addCommentToDOM(updatedAnswer); // 새로 추가
-
-                    console.log("댓글 수정 완료:", updatedAnswer);
+                    updateCommentDOM(response.answer); // 공통 DOM 업데이트 함수 사용
                 } else {
-                    alert(response.message);
+                    alert(response.message || "댓글 수정 실패");
                 }
             },
             error: function (xhr) {
@@ -143,6 +151,10 @@
         });
     }
 
+
+
+
+    // 대댓글 수정
     // 대댓글 수정
     function editReply(replyId, boardId) {
         const newContent = prompt("수정할 내용을 입력하세요:");
@@ -152,37 +164,16 @@
         }
 
         $.ajax({
-            url: "<c:url value='/answers/edit/' />"+replyId,
+            url: "<c:url value='/answers/edit/' />" + replyId,
             method: "POST",
             data: { content: newContent },
             success: function (response) {
-                console.log("대댓글 수정 성공 응답:", response);
-
                 if (response.status === "success") {
                     const updatedReply = response.answer;
-
-                    // DOM 업데이트
-                    const replyElement = $(`#comment-${replyId}`);
-
-                    // 작성자와 날짜 업데이트
-                    const formattedDate = new Date(updatedReply.answerDate).toLocaleString("ko-KR", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    });
-
-                    replyElement.find("p:first").html(
-                        `<strong>${updatedReply.userName || "알 수 없음"}</strong> - ${formattedDate}`
-                    );
-
-                    // 내용 업데이트
-                    replyElement.find("p:nth-of-type(2)").text(updatedReply.answerContent || "내용 없음");
-
+                    updateReplyDOM(updatedReply); // DOM 업데이트 함수 호출
                     console.log("대댓글 수정 완료:", updatedReply);
                 } else {
-                    alert(response.message);
+                    alert(response.message || "대댓글 수정 실패");
                 }
             },
             error: function (xhr) {
@@ -191,6 +182,61 @@
             }
         });
     }
+
+    // 대댓글 DOM 업데이트 함수
+    function updateReplyDOM(reply) {
+        const replyElement = $(`#comment-${reply.answerId}`);
+        if (replyElement.length === 0) {
+            console.error("대댓글 DOM 요소를 찾을 수 없습니다:", reply.answerId);
+            return;
+        }
+
+        // 날짜 포맷팅
+        const formattedDate = new Date(reply.answerDate).toLocaleString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+
+        // 작성자와 내용 업데이트
+        replyElement.find("p:first").html(
+            `<strong>${reply.userName || "알 수 없음"}</strong> - ${formattedDate}`
+        );
+        replyElement.find("p:nth-of-type(2)").text(reply.answerContent || "내용 없음");
+
+        console.log("대댓글 DOM 업데이트 완료:", reply);
+    }
+
+
+
+
+
+    function updateCommentDOM(answer) {
+        const commentElement = $(`#comment-${answer.answerId}`);
+        if (commentElement.length === 0) {
+            console.error("댓글 DOM을 찾을 수 없습니다.");
+            return;
+        }
+
+        const formattedDate = new Date(answer.answerDate).toLocaleString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+
+        commentElement.find("p:first").html(
+            `<strong>${answer.userName || "알 수 없음"}</strong> - ${formattedDate}`
+        );
+        commentElement.find("p:nth-of-type(2)").text(answer.answerContent || "내용 없음");
+    }
+
+
+
+
 
 
     // 댓글 삭제
@@ -203,41 +249,49 @@
             data: { boardId },
             success: function (response) {
                 if (response.status === "success") {
-                    $(`#comment-${answerId}`).remove(); // DOM에서 즉시 삭제
+                    reloadComments(boardId); // 댓글 목록 갱신
                 } else {
-                    alert(response.message);
+                    alert(response.message || "댓글 삭제 중 문제가 발생했습니다.");
                 }
             },
             error: function (xhr) {
-                alert("댓글 삭제 중 오류가 발생했습니다.");
-                console.error(xhr.responseText);
+                console.error("댓글 삭제 요청 실패:", xhr.responseText);
+                alert("서버와 통신 중 오류가 발생했습니다.");
             }
         });
     }
+
 
     // 댓글 목록 갱신
     function reloadComments(boardId) {
         $.ajax({
-            url: "<c:url value='/answers/board/' />" + boardId,
+            url: '<c:url value="/answers/board/"/>'+ boardId,
             method: "GET",
             success: function (response) {
-                if (response.answers) {
+                if (response.status === "success" && response.answers) {
                     $("#commentList").empty(); // 기존 댓글 목록 비우기
-
-                    // 댓글 목록 다시 렌더링
                     response.answers.forEach((answer) => {
-                        addCommentToDOM(answer);
+                        if (answer.depth === 0) {
+                            addCommentToDOM(answer); // 댓글
+                        } else {
+                            addReplyToDOM(answer); // 대댓글
+                        }
                     });
-
-                    console.log("댓글 목록 갱신 완료");
+                    console.log("댓글 목록 갱신 완료:", response.answers);
+                } else {
+                    alert(response.message || "댓글을 불러오는 중 문제가 발생했습니다.");
                 }
             },
             error: function (xhr) {
-                alert("댓글 목록 갱신 중 오류가 발생했습니다.");
-                console.error(xhr.responseText);
+                console.error("AJAX 요청 실패:", xhr.responseText);
+                alert("서버와 통신 중 오류가 발생했습니다.");
             }
         });
     }
+
+
+
+
 
 
 
@@ -259,11 +313,14 @@
             minute: "2-digit",
         });
 
+        // 들여쓰기 계산 (depth에 따라 20px씩 증가)
+        const indent = answer.depth * 20;
+
         // 댓글 DOM 생성
         const commentCard = $("<div>")
             .attr("id", `comment-${answer.answerId}`)
-            .addClass(`card mb-2`)
-            .css("margin-left", `${answer.depth * 20}px`); // 들여쓰기 동적 적용
+            .addClass("card mb-2")
+            .css("margin-left", `${indent}px`); // 들여쓰기 적용
 
         const cardBody = $("<div>").addClass("card-body");
 
@@ -297,7 +354,7 @@
             .addClass("btn btn-warning btn-sm")
             .attr("type", "button")
             .text("수정")
-            .click(() => editComment(answer.answerId, answer.boardId));
+            .click(() => editReply(answer.answerId, answer.boardId));
         const deleteButton = $("<button>")
             .addClass("btn btn-danger btn-sm")
             .attr("type", "button")
@@ -314,87 +371,90 @@
 
 
 
+
     // 대댓글 DOM에 추가
-        function addReplyToDOM(reply) {
-            const userName = reply.userName || "알 수 없음";
-            const answerContent = reply.answerContent || "내용 없음";
-
-            const formattedDate = new Date(reply.answerDate).toLocaleString("ko-KR", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-            });
-
-            const replyCard = $("<div>")
-                .attr("id", `comment-${reply.answerId}`)
-                .addClass("card mb-2")
-                .css("margin-left", `${reply.depth * 20}px`); // 들여쓰기 적용
-
-            const cardBody = $("<div>").addClass("card-body");
-
-            const authorDate = $("<p>")
-                .append($("<strong>").text(userName))
-                .append(` - ${formattedDate}`);
-            cardBody.append(authorDate);
-
-            const commentContent = $("<p>").text(answerContent);
-            cardBody.append(commentContent);
-
-            const replyForm = $("<form>")
-                .attr("id", `replyForm-${reply.answerId}`)
-                .addClass("mt-2");
-            const replyTextarea = $("<textarea>")
-                .attr("id", `replyContent-${reply.answerId}`)
-                .addClass("form-control mb-2")
-                .attr("rows", 3)
-                .attr("placeholder", "대댓글을 입력하세요");
-            const replyButton = $("<button>")
-                .addClass("btn btn-success btn-sm")
-                .attr("type", "button")
-                .text("대댓글")
-                .click(() => addReply(reply.answerId, reply.boardId));
-
-            replyForm.append(replyTextarea).append(replyButton);
-            cardBody.append(replyForm);
-
-            const buttonGroup = $("<div>").addClass("mt-2");
-            const editButton = $("<button>")
-                .addClass("btn btn-warning btn-sm")
-                .attr("type", "button")
-                .text("수정")
-                .click(() => editReply(reply.answerId, reply.boardId));
-            const deleteButton = $("<button>")
-                .addClass("btn btn-danger btn-sm")
-                .attr("type", "button")
-                .text("삭제")
-                .click(() => deleteComment(reply.answerId, reply.boardId));
-
-            buttonGroup.append(editButton).append(deleteButton);
-            cardBody.append(buttonGroup);
-
-            replyCard.append(cardBody);
-
-            // 부모 댓글 바로 아래에 대댓글 추가
-            const parentComment = $(`#comment-${reply.parentAnswerId}`);
-            if (parentComment.length > 0) {
-                parentComment.after(replyCard); // 부모 댓글 바로 아래 추가
-            } else {
-                console.error(`부모 댓글을 찾을 수 없습니다. parentAnswerId: ${reply.parentAnswerId}`);
-                $("#commentList").append(replyCard); // 부모 댓글이 없으면 목록에 추가
-            }
-
-            console.log("대댓글 추가 완료:", `#comment-${reply.answerId}`);
-
-            // 대댓글 입력 필드 확인 (수정된 부분)
-            const replyField = $(`#replyContent-${reply.answerId}`);
-            if (replyField.length > 0) {
-                console.log("대댓글 입력 필드 확인 성공:", replyField.attr("id"));
-            } else {
-                console.error(`대댓글 입력 필드를 찾을 수 없습니다. answerId: ${reply.answerId}`);
-            }
+    function addReplyToDOM(reply) {
+        if (!reply.answerId || reply.answerId === 0) {
+            console.error("유효하지 않은 answerId:", reply);
+            alert("대댓글 추가 중 문제가 발생했습니다. 다시 시도해주세요.");
+            return;
         }
+
+        const userName = reply.userName || "알 수 없음";
+        const answerContent = reply.answerContent || "내용 없음";
+
+        const formattedDate = new Date(reply.answerDate).toLocaleString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+        });
+
+        // 들여쓰기 계산 (depth 기반)
+        const indent = reply.depth * 20;
+
+        const replyCard = $("<div>")
+            .attr("id", `comment-${reply.answerId}`)
+            .addClass("card mb-2")
+            .css("margin-left", `${indent}px`); // 들여쓰기 동적 적용
+
+        const cardBody = $("<div>").addClass("card-body");
+
+        const authorDate = $("<p>")
+            .append($("<strong>").text(userName))
+            .append(` - ${formattedDate}`);
+        cardBody.append(authorDate);
+
+        const commentContent = $("<p>").text(answerContent);
+        cardBody.append(commentContent);
+
+        const replyForm = $("<form>")
+            .attr("id", `replyForm-${reply.answerId}`)
+            .addClass("mt-2");
+        const replyTextarea = $("<textarea>")
+            .attr("id", `replyContent-${reply.answerId}`)
+            .addClass("form-control mb-2")
+            .attr("rows", 3)
+            .attr("placeholder", "대댓글을 입력하세요");
+        const replyButton = $("<button>")
+            .addClass("btn btn-success btn-sm")
+            .attr("type", "button")
+            .text("대댓글")
+            .click(() => addReply(reply.answerId, reply.boardId));
+
+        replyForm.append(replyTextarea).append(replyButton);
+        cardBody.append(replyForm);
+
+        const buttonGroup = $("<div>").addClass("mt-2");
+        const editButton = $("<button>")
+            .addClass("btn btn-warning btn-sm")
+            .attr("type", "button")
+            .text("수정")
+            .click(() => editReply(reply.answerId, reply.boardId));
+        const deleteButton = $("<button>")
+            .addClass("btn btn-danger btn-sm")
+            .attr("type", "button")
+            .text("삭제")
+            .click(() => deleteComment(reply.answerId, reply.boardId));
+
+        buttonGroup.append(editButton).append(deleteButton);
+        cardBody.append(buttonGroup);
+
+        replyCard.append(cardBody);
+
+        // 부모 댓글 아래에 삽입
+        const parentComment = $(`#comment-${reply.parentAnswerId}`);
+        if (parentComment.length > 0) {
+            parentComment.after(replyCard);
+        } else {
+            console.error(`부모 댓글을 찾을 수 없습니다. parentAnswerId: ${reply.parentAnswerId}`);
+            $("#commentList").append(replyCard);
+        }
+    }
+
+
+
 
 </script>
 
@@ -455,13 +515,14 @@
                     </form>
 
                     <div class="mt-2">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editComment(${answer.answerId}, ${answer.boardId})">수정</button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="editReply(${answer.answerId}, ${answer.boardId})">수정</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment(${answer.answerId}, ${answer.boardId})">삭제</button>
                     </div>
                 </div>
             </div>
         </c:forEach>
     </div>
+
 
 </div>
 

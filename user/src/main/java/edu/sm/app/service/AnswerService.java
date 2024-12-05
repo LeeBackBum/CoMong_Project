@@ -32,7 +32,7 @@ public class AnswerService {
         }
     }
 
-    public void addReply(AnswerDto reply, int parentAnswerId) {
+    public AnswerDto addReply(AnswerDto reply, int parentAnswerId) {
         try {
             AnswerDto parent = answerRepository.selectAnswerById(parentAnswerId);
             if (parent == null) {
@@ -42,9 +42,16 @@ public class AnswerService {
             reply.setAnswerDate(LocalDateTime.now());
             reply.setGroupId(parent.getGroupId()); // 그룹 ID는 부모와 동일
             reply.setDepth(parent.getDepth() + 1); // 깊이는 부모 + 1
+
+            // 대댓글 저장
             answerRepository.insertReply(reply);
 
+            if (reply.getAnswerId() == 0) {
+                throw new RuntimeException("대댓글 저장 실패: 생성된 ID가 유효하지 않음.");
+            }
+
             log.info("대댓글 저장 성공: {}", reply);
+            return reply; // 저장된 대댓글 반환
         } catch (Exception e) {
             log.error("대댓글 저장 실패: {}", e.getMessage(), e);
             throw e;
@@ -56,6 +63,10 @@ public class AnswerService {
     }
 
     public void deleteAnswer(int answerId) {
+        AnswerDto answer = answerRepository.selectAnswerById(answerId);
+        if (answer == null) {
+            throw new IllegalArgumentException("삭제하려는 댓글이 존재하지 않습니다. answerId=" + answerId);
+        }
         answerRepository.deleteAnswerById(answerId);
     }
 

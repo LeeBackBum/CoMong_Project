@@ -5,9 +5,6 @@
 <mapper namespace="edu.sm.app.repository.AnswerRepository">
 
 
-
-
-
     <update id="updateGroupId" parameterType="edu.sm.app.dto.AnswerDto">
         UPDATE answer
         SET group_id = #{groupId}
@@ -19,10 +16,11 @@
         VALUES (#{answerContent}, NOW(), #{userId}, #{userName}, #{boardId}, #{groupId}, #{depth});
     </insert>
 
-    <insert id="insertReply" parameterType="edu.sm.app.dto.AnswerDto">
+    <insert id="insertReply" parameterType="edu.sm.app.dto.AnswerDto" useGeneratedKeys="true" keyProperty="answerId">
         INSERT INTO answer (answer_content, answer_date, user_id, user_name, board_id, parent_answer_id, group_id, depth)
         VALUES (#{answerContent}, NOW(), #{userId}, #{userName}, #{boardId}, #{parentAnswerId}, #{groupId}, #{depth});
     </insert>
+
 
     <!-- 특정 게시글의 모든 댓글 및 대댓글 조회 (그룹과 깊이 기준 정렬) -->
     <select id="selectAnswersByBoardId" parameterType="int" resultType="edu.sm.app.dto.AnswerDto">

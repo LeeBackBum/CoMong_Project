@@ -21,5 +21,6 @@ public class BoardDto {
     private int boardAnswerNum;
     private String userId;
     private String userName;  // 작성자 이름
+    private String formattedDate; // 포맷된 날짜
 
 }

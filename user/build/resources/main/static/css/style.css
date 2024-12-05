@@ -166,6 +166,27 @@
     }
 }
 
+.comment {
+    margin-left: 0 !important; /* 기본값 */
+}
+
+.comment-depth-1 {
+    margin-left: 20px !important;
+}
+
+.comment-depth-2 {
+    margin-left: 40px !important;
+}
+
+.comment-depth-3 {
+    margin-left: 60px !important;
+}
+
+.comment-depth-4 {
+    margin-left: 80px;
+}
+
+
 .header-carousel .owl-nav {
     position: absolute;
     top: 50%;

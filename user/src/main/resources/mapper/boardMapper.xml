@@ -7,51 +7,47 @@
     <!-- 단일 게시글 조회 -->
     <select id="selectOne" parameterType="int" resultType="edu.sm.app.dto.BoardDto">
         SELECT board_id AS boardId,
-        board_title AS boardTitle,
-        board_content AS boardContent,
-        board_date AS boardDate,
-        board_update AS boardUpdate,
-        board_hits AS boardHits,
-        board_answer_num AS boardAnswerNum,
-        user_id AS userId,
-        user_name AS userName, <!-- 작성자 이름 -->
-
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               user_name AS userName
         FROM board
         WHERE board_id = #{boardId};
     </select>
 
-    <!-- 모든 게시글 조회 (공지 포함) -->
+    <!-- 모든 게시글 조회 -->
     <select id="select" resultType="edu.sm.app.dto.BoardDto">
         SELECT board_id AS boardId,
-        board_title AS boardTitle,
-        board_content AS boardContent,
-        board_date AS boardDate,
-        board_update AS boardUpdate,
-        board_hits AS boardHits,
-        board_answer_num AS boardAnswerNum,
-        user_id AS userId,
-        user_name AS userName, <!-- 작성자 이름 -->
-
-
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               user_name AS userName
         FROM board
-        ORDER BY is_notice DESC, board_date DESC;
+        ORDER BY board_date DESC;
     </select>
 
     <!-- 페이징을 위한 게시글 조회 -->
     <select id="selectBoardsWithPagination" parameterType="map" resultType="edu.sm.app.dto.BoardDto">
         SELECT board_id AS boardId,
-        board_title AS boardTitle,
-        board_content AS boardContent,
-        board_date AS boardDate,
-        board_update AS boardUpdate,
-        board_hits AS boardHits,
-        board_answer_num AS boardAnswerNum,
-        user_id AS userId,
-        user_name AS userName, <!-- 작성자 이름 -->
-
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_update AS boardUpdate,
+               board_hits AS boardHits,
+               board_answer_num AS boardAnswerNum,
+               user_id AS userId,
+               user_name AS userName
         FROM board
-        ORDER BY is_notice DESC, board_date DESC
-        LIMIT #{offset}, #{pageSize};
+        ORDER BY board_date DESC
+            LIMIT #{offset}, #{pageSize};
     </select>
 
     <!-- 총 게시글 수 조회 -->
@@ -69,13 +65,8 @@
     <update id="update" parameterType="edu.sm.app.dto.BoardDto">
         UPDATE board
         SET board_title = #{boardTitle},
-        board_content = #{boardContent},
-        board_update = #{boardUpdate},
-        board_hits = #{boardHits},
-        board_answer_num = #{boardAnswerNum},
-        user_id = #{userId},
-        user_name = #{userName}, <!-- 작성자 이름 -->
-
+            board_content = #{boardContent},
+            board_update = NOW()
         WHERE board_id = #{boardId};
     </update>
 
@@ -91,54 +82,20 @@
         DELETE FROM board WHERE board_id = #{boardId};
     </delete>
 
-    <!-- 공지사항만 가져오기 -->
-    <select id="selectNotices" resultType="edu.sm.app.dto.BoardDto">
-        SELECT board_id AS boardId,
-        board_title AS boardTitle,
-        board_content AS boardContent,
-        board_date AS boardDate,
-        board_update AS boardUpdate,
-        board_hits AS boardHits,
-        board_answer_num AS boardAnswerNum,
-        user_id AS userId,
-        user_name AS userName, <!-- 작성자 이름 -->
-
-        FROM board
-        WHERE is_notice = 1
-        ORDER BY board_date DESC;
-    </select>
-
-    <!-- 일반 게시글만 가져오기 -->
-    <select id="selectGeneralBoards" resultType="edu.sm.app.dto.BoardDto">
-        SELECT board_id AS boardId,
-        board_title AS boardTitle,
-        board_content AS boardContent,
-        board_date AS boardDate,
-        board_update AS boardUpdate,
-        board_hits AS boardHits,
-        board_answer_num AS boardAnswerNum,
-        user_id AS userId,
-        user_name AS userName, <!-- 작성자 이름 -->
-
-        FROM board
-        WHERE is_notice = 0
-        ORDER BY board_date DESC;
-    </select>
-
     <!-- 제목 또는 내용으로 게시글 검색 -->
     <select id="searchBoards" parameterType="map" resultType="edu.sm.app.dto.BoardDto">
         SELECT board_id AS boardId,
-        board_title AS boardTitle,
-        board_content AS boardContent,
-        board_date AS boardDate,
-        board_hits AS boardHits,
-        user_id AS userId,
-        user_name AS userName <!-- 작성자 이름 -->
+               board_title AS boardTitle,
+               board_content AS boardContent,
+               board_date AS boardDate,
+               board_hits AS boardHits,
+               user_id AS userId,
+               user_name AS userName
         FROM board
         WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
-        OR board_content LIKE CONCAT('%', #{keyword}, '%')
+           OR board_content LIKE CONCAT('%', #{keyword}, '%')
         ORDER BY board_date DESC
-        LIMIT #{offset}, #{pageSize};
+            LIMIT #{offset}, #{pageSize};
     </select>
 
     <!-- 검색 결과 총 개수 조회 -->
