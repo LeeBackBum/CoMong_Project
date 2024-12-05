@@ -1,4 +1,4 @@
-package edu.sm.handler;
+package edu.sm.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.sm.app.dto.SignalMessage;
