@@ -132,21 +132,20 @@
         }
 
         $.ajax({
-            url: "<c:url value='/answers/edit/' />" + answerId,
+            url: '<c:url value="/answers/edit/" />'+answerId,
             method: "POST",
             data: { content: newContent },
             success: function (response) {
-                console.log("댓글 수정 성공 응답:", response);
-
                 if (response.status === "success") {
-                    updateCommentDOM(response.answer); // 공통 DOM 업데이트 함수 사용
+                    // 댓글 목록을 다시 불러오기
+                    reloadComments(boardId);
                 } else {
                     alert(response.message || "댓글 수정 실패");
                 }
             },
             error: function (xhr) {
-                alert("댓글 수정 중 오류가 발생했습니다.");
-                console.error(xhr.responseText);
+                console.error("댓글 수정 중 오류:", xhr.responseText);
+                alert("댓글 수정 중 문제가 발생했습니다.");
             }
         });
     }
@@ -154,7 +153,6 @@
 
 
 
-    // 대댓글 수정
     // 대댓글 수정
     function editReply(replyId, boardId) {
         const newContent = prompt("수정할 내용을 입력하세요:");
@@ -164,21 +162,23 @@
         }
 
         $.ajax({
-            url: "<c:url value='/answers/edit/' />" + replyId,
+            url: '<c:url value="/answers/edit/" />'+replyId,
             method: "POST",
             data: { content: newContent },
             success: function (response) {
                 if (response.status === "success") {
                     const updatedReply = response.answer;
-                    updateReplyDOM(updatedReply); // DOM 업데이트 함수 호출
+
+                    // DOM 업데이트
+                    updateReplyDOM(updatedReply);
                     console.log("대댓글 수정 완료:", updatedReply);
                 } else {
                     alert(response.message || "대댓글 수정 실패");
                 }
             },
             error: function (xhr) {
-                alert("대댓글 수정 중 오류가 발생했습니다.");
-                console.error(xhr.responseText);
+                console.error("대댓글 수정 중 오류:", xhr.responseText);
+                alert("대댓글 수정 중 문제가 발생했습니다.");
             }
         });
     }
@@ -186,8 +186,8 @@
     // 대댓글 DOM 업데이트 함수
     function updateReplyDOM(reply) {
         const replyElement = $(`#comment-${reply.answerId}`);
-        if (replyElement.length === 0) {
-            console.error("대댓글 DOM 요소를 찾을 수 없습니다:", reply.answerId);
+        if (!replyElement.length) {
+            console.error("대댓글 DOM을 찾을 수 없습니다:", reply.answerId);
             return;
         }
 
@@ -205,8 +205,6 @@
             `<strong>${reply.userName || "알 수 없음"}</strong> - ${formattedDate}`
         );
         replyElement.find("p:nth-of-type(2)").text(reply.answerContent || "내용 없음");
-
-        console.log("대댓글 DOM 업데이트 완료:", reply);
     }
 
 
@@ -215,11 +213,12 @@
 
     function updateCommentDOM(answer) {
         const commentElement = $(`#comment-${answer.answerId}`);
-        if (commentElement.length === 0) {
-            console.error("댓글 DOM을 찾을 수 없습니다.");
+        if (!commentElement.length) {
+            console.error("댓글 DOM을 찾을 수 없습니다:", answer.answerId);
             return;
         }
 
+        // 날짜 포맷팅
         const formattedDate = new Date(answer.answerDate).toLocaleString("ko-KR", {
             year: "numeric",
             month: "2-digit",
@@ -228,6 +227,7 @@
             minute: "2-digit",
         });
 
+        // 작성자와 내용 업데이트
         commentElement.find("p:first").html(
             `<strong>${answer.userName || "알 수 없음"}</strong> - ${formattedDate}`
         );

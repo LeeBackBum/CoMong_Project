@@ -202,14 +202,17 @@ public class AnswerController {
             answer.setAnswerContent(content);
             answerService.editAnswer(answer);
 
+            // 수정 후 최신 데이터 반환
+            AnswerDto updatedAnswer = answerService.getAnswerById(answerId); // 작성자 포함 데이터
             response.put("status", "success");
-            response.put("answer", answer); // 수정된 댓글 데이터를 반환
+            response.put("answer", updatedAnswer); // 수정된 댓글 데이터를 반환
         } catch (Exception e) {
             response.put("status", "error");
             response.put("message", "댓글 수정 실패: " + e.getMessage());
         }
         return response;
     }
+
 
 
 
