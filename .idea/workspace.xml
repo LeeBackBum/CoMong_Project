@@ -4,14 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="2024.12.03 최신화">
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" afterDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="WebRTC">
+      <change afterPath="$PROJECT_DIR$/doctor_iot/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/util/HttpSendData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/user.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/user_main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/user.test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/gradlew.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/build/classes/java/main/edu/sm/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/compileTransaction/stash-dir/Main.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +119,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,
-    &quot;accountId&quot;: &quot;7d47f15d-1ae1-4a83-967b-c172d0a78733&quot;
+    &quot;accountId&quot;: &quot;379c5a3c-6fb4-49d3-9c29-33059c50308e&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -110,9 +141,9 @@
     &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;NewJunHee&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Bum&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/doctor/src/main/resources/static/img&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/doctor/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -123,6 +154,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\doctor\src\main\resources" />
+      <recent name="C:\CoMong_Project\doctor_iot" />
       <recent name="C:\CoMong_Project\doctor\src\main\resources\static\img" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
     </key>
@@ -130,7 +163,7 @@
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.doctor [bootRun]">
+  <component name="RunManager" selected="Gradle.user [bootRun]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
       <module name="doctor_iot.main" />
@@ -196,11 +229,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user_main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.sm.UserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
       </list>
@@ -231,6 +272,7 @@
       <workItem from="1733192574282" duration="11014000" />
       <workItem from="1733224617568" duration="248000" />
       <workItem from="1733276148654" duration="5643000" />
+      <workItem from="1733382538303" duration="2731000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -329,7 +371,8 @@
     <MESSAGE value="2024.11.21 master+hyun" />
     <MESSAGE value="2024.11.29 리셋" />
     <MESSAGE value="2024.12.03 최신화" />
-    <option name="LAST_COMMIT_MESSAGE" value="2024.12.03 최신화" />
+    <MESSAGE value="WebRTC" />
+    <option name="LAST_COMMIT_MESSAGE" value="WebRTC" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
