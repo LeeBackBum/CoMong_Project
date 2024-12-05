@@ -177,15 +177,15 @@
                 </div>
                 <div class="col-sm-12 col-xl-12">
                     <div class="h-100 bg-light rounded p-4">
-                        <h6 class="mb-4">다른 의사 정보</h6>
+                        <h6 class="mb-4">소속 의사 정보</h6>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Phone Number</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Ancestry</th>
                                         <th scope="col">Society</th>
                                         <th scope="col">SubjectName</th>
                                     </tr>
@@ -194,10 +194,11 @@
                                     <c:forEach var="d" items="${doctors}">
                                         <tr>
                                             <td>${d.doctorName}</td>
-                                            <td>${d.carType}</td>
-                                            <td>${c.carPrice}</td> <!-- carPrice는 String이므로 그냥 출력 -->
-                                            <!-- carDate(LocalDateTime)는 형식을 지정해서 출력 -->
-                                            <td>${c.formattedCarDate}</td>
+                                            <td>${d.doctorNumber}</td>
+                                            <td>${d.doctorEmail}</td>
+                                            <td>${d.ancestry}</td>
+                                            <td>${d.society}</td>
+                                            <td>${d.subjectName}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
