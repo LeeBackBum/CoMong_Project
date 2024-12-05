@@ -36,9 +36,6 @@ public class MainController {
     @Value("${app.key.apikey}")
     String apikey;
 
-
-
-
     private final UserService userService;
 
     @Value("${app.url.server_url}")
@@ -46,6 +43,15 @@ public class MainController {
 
     public MainController(UserService userService) {
         this.userService = userService;
+    }
+
+    @RequestMapping("/webrtc")
+    public String webrtc(Model model){
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("roomId", "1");
+        model.addAttribute("center", "webrtc");
+
+        return "index";
     }
 
     @RequestMapping("/")
@@ -284,14 +290,5 @@ public class MainController {
 
         userService.modify(userDto);
         return "redirect:/mypage";
-    }
-
-    @RequestMapping("/webrtc")
-    public String webrtc(Model model){
-        model.addAttribute("serverurl", serverurl);
-        model.addAttribute("roomId", "1");
-        model.addAttribute("center", "Counseling/webrtc");
-
-        return "index";
     }
 }

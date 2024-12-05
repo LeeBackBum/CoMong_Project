@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="webrtc">
-      <change afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/webrtc.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/SignalMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/handler/WebRTCSignalingHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/webrtc.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/webrtc.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/webrtc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +146,7 @@
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.user [bootRun]">
+  <component name="RunManager" selected="Gradle.doctor [bootRun]">
     <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -206,8 +201,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
+        <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.doctor [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
@@ -239,6 +234,8 @@
       <workItem from="1733185328246" duration="12970000" />
       <workItem from="1733223091900" duration="1750000" />
       <workItem from="1733275286884" duration="4562000" />
+      <workItem from="1733288791302" duration="2743000" />
+      <workItem from="1733291958216" duration="8492000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -304,7 +301,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733224843945</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="webrtc">
+      <option name="closed" value="true" />
+      <created>1733288809605</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733288809605</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

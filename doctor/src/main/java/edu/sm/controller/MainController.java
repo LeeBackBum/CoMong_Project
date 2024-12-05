@@ -33,7 +33,7 @@ public class MainController {
     private final DoctorService doctorService;
     private final CounselService counselService;
 
-    @Value("${app.url.server-url}")
+    @Value("${app.url.server_url}")
     String serverurl;
 
     @RequestMapping("/")
@@ -273,7 +273,8 @@ public class MainController {
     @RequestMapping("/webrtc")
     public String webrtc(Model model) {
         model.addAttribute("roomId", "1");    // 하드코딩된 roomId
-        model.addAttribute("center", "Counseling/webrtc");
+        model.addAttribute("center", "webrtc");
+        model.addAttribute("serverurl", serverurl);
         return "main";
     }
 }
