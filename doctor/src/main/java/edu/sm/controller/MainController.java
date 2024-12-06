@@ -10,6 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,9 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -102,7 +104,7 @@ public class MainController {
     }
 
     @PostMapping("/mypage/update")
-    public String updateDoctorInfo(
+    public ResponseEntity<Map<String, Object>> updateDoctorInfo(
             @RequestParam("doctorId") String doctorId,
             @RequestParam(value = "doctorImg", required = false) MultipartFile doctorImg,
             @RequestParam("doctorName") String doctorName,
@@ -112,6 +114,7 @@ public class MainController {
             @RequestParam("subjectName") String subjectName,
             HttpSession session
     ) {
+        Map<String, Object> response = new HashMap<>();
         try {
             String fileName = null;
 
@@ -153,13 +156,34 @@ public class MainController {
             // 세션 업데이트
             session.setAttribute("doctor", existingDoctor);
 
-            return "redirect:/mypage?success=true";
+            response.put("success", true);
+            response.put("updatedImg", existingDoctor.getDoctorImg());
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
             log.error("Error updating doctor info: {}", e.getMessage(), e);
-            return "redirect:/mypage?error=update_failed";
+            response.put("success", false);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
+    @GetMapping("/img/{filename}")
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+        try {
+            Resource file = doctorService.loadAsResource(filename);
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate")
+                    .header(HttpHeaders.PRAGMA, "no-cache")
+                    .header(HttpHeaders.EXPIRES, "0")
+                    .body(file);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+
+
 
     // 웹소켓
     @RequestMapping("/counseling")

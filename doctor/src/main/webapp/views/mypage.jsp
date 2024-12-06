@@ -48,13 +48,13 @@
 
                 <!-- Profile Picture -->
                 <div class="text-center mb-4">
-                    <img src="<c:url value='/img/${doctor.doctorImg != null ? doctor.doctorImg : "default-profile.png"}'/>"
-                         alt="Profile Picture" class="rounded-circle"
-                         style="width: 150px; height: 150px; object-fit: cover;">
-                </div>
+                    <img src="<c:url value='/img/${doctor.doctorImg != null ? doctor.doctorImg : "default-profile.png"}'/>?${System.currentTimeMillis()}"
+                         alt="Profile Picture" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;" id="profile-picture">
 
-                <!-- Form for Updating Profile -->
-                <form action="<c:url value='/mypage/update'/>" method="post" enctype="multipart/form-data">
+
+                </div>
+<!-- Form for Updating Profile -->
+                <form action="<c:url value='/mypage/update'/>" method="post" enctype="multipart/form-data" id="update-profile-form">
                     <div class="mb-3">
                         <label for="doctorId" class="form-label">Doctor ID</label>
                         <input type="text" class="form-control" id="doctorId" name="doctorId"
@@ -101,5 +101,47 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // 실시간으로 프로필 이미지를 미리 보기
+        $('#doctorImg').change(function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#profile-picture').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 폼 제출 후 성공 시 페이지 리프레시 없이 이미지를 업데이트
+        $('#update-profile-form').on('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.success) {
+                        // 고유한 쿼리 파라미터를 추가하여 캐시 방지
+                        const newImgSrc = '/img/' + response.updatedImg + '?' + new Date().getTime();
+                        $('#profile-picture').attr('src', newImgSrc);
+                        alert('Profile updated successfully!');
+                    } else {
+                        alert('Failed to update profile. Please try again.');
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while updating the profile.');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
