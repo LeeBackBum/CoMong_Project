@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.CounselRepository">
+
+    <insert id="insert" parameterType="counselDto">
+        INSERT INTO counsel (counsel_date, counsel_content, counsel_type, doctor_id, user_id)
+        VALUES (#{counselDate}, #{counselContent}, #{counselType}, #{doctorId}, #{userId})
+    </insert>
+
+    <select id="selectOne" parameterType="String" resultType="counselDto">
+        SELECT * FROM counsel
+        WHERE doctor_id = #{doctorId}
+    </select>
+
+    <select id="select" resultType="counselDto">
+        SELECT * FROM counsel
+    </select>
+
+
+    <delete id="delete" parameterType="counselDto">
+        DELETE FROM counsel WHERE counsel_id = #{counselId}
+    </delete>
+
+    <select id="findById" resultType="counselDto" parameterType="String">
+        SELECT * FROM counsel WHERE user_id = #{userId}
+    </select>
+
+
+</mapper>

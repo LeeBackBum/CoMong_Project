@@ -16,7 +16,24 @@
         #map {
             width: 100%;
             height: 100%;
+            background-color: black;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        #content {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+
+
     </style>
 
 </head>
@@ -43,9 +60,27 @@
 
 <div id="map" style="width:100%;height:800px;"></div>
 <div id="result"></div>
+<div id="content">
+    <h2>Map Example</h2>
+    <p>카카오 지도 API와 관련된 예제가 여기에 표시됩니다.</p>
+    <p>더 자세한 정보는 <a href="https://apis.map.kakao.com/web/sample/addMapClickEventWithMarker/" target="_blank">이 링크</a>를 통해 확인하세요.</p>
+</div>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const link = document.getElementById('displayLink');
+        if (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                alert('Link clicked!');
+            });
+        } else {
+            console.error('Element with id "displayLink" not found.');
+        }
+    });
 
+</script>
 
 <%----------------------------사용자 위치 기반 병원 목록--------------------------------------------------------%>
 <script>
@@ -165,7 +200,8 @@
                                     '</div>' +
                                     '<div class="desc">' +
                                     '<div class="ellipsis">' + (dutyAddr || '병원 주소 없음') + '</div>' +
-                                    '<div class="ellipsis">잔여 병상수: ' +'0' + '개</div>' +
+                                    '<div class="ellipsis">잔여 병상수: ' + '0' + '개</div>' +
+                                    '<a href="https://apis.map.kakao.com/web/sample/addMapClickEventWithMarker/">클릭</a>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
@@ -201,7 +237,17 @@
                             });
                         });
 
-
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const link = document.getElementById('displayLink');
+                            if (link) {
+                                link.addEventListener('click', function (event) {
+                                    event.preventDefault();
+                                    alert('Link clicked!');
+                                });
+                            } else {
+                                console.error('Element with id "displayLink" not found.');
+                            }
+                        });
 
 
 
@@ -236,7 +282,8 @@
             // 인포윈도우로 현재 위치를 표시합니다
             var infowindow = new kakao.maps.InfoWindow({
                 // content: '<div style="width:150px;text-align:center;padding:6px 0;">현재 위치입니다.</div>'
-                content: '<div class="title">현재 위치입니다.</div>'
+                content: '<div class="title">현재 위치입니다.</div>' +
+                    '<a href ="/mypage" >내정보 확인</a>'
 
             });
             infowindow.open(map, usermarker);
@@ -433,6 +480,7 @@
                             '<div class="desc">' +
                             '<div class="ellipsis">' + (dutyAddr || '병원 주소 없음') + '</div>' +
                             '<div class="ellipsis">잔여 병상수: ' + (hpbdn || '0') + '개</div>' +
+                            '<a href="#" id="displayLink">클릭</a>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +

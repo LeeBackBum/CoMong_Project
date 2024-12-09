@@ -191,24 +191,58 @@
         },
 
 
-        display1: function(data) {
+        // display1: function(data) {
+        //     const normalRange = { min: 80, max: 139 }; // 예시 정상 범위
+        //     const processedData = data.map(item => item.value);
+        //     const pointBackgroundColors = processedData.map(value =>
+        //         (value < normalRange.min || value > normalRange.max) ? "red" : "rgba(0, 156, 255, .3)"
+        //     );
+        //
+        //     // 날짜와 혈압 수치를 추출
+        //     const labels = data.map(item => {
+        //         const date = new Date(item.timestamp);
+        //         return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
+        //     });
+        //
+        //     var ctx3 = $("#line-chart").get(0).getContext("2d");
+        //     this.chartInstance = new Chart(ctx3, {
+        //         type: "line",
+        //         data: {
+        //             labels: labels, // 변환된 라벨 사용
+        //             datasets: [{
+        //                 label: "위험 수치",
+        //                 fill: false,
+        //                 backgroundColor: pointBackgroundColors,
+        //                 data: processedData
+        //             }]
+        //         },
+        //         options: {
+        //             responsive: true
+        //         }
+        //     });
+        // },
+        display1: function(data = []) { // 기본값 설정
+            if (!Array.isArray(data) || data.length === 0) {
+                console.error("혈압 데이터가 비어 있거나 잘못되었습니다.");
+                return;
+            }
+
             const normalRange = { min: 80, max: 139 }; // 예시 정상 범위
             const processedData = data.map(item => item.value);
             const pointBackgroundColors = processedData.map(value =>
                 (value < normalRange.min || value > normalRange.max) ? "red" : "rgba(0, 156, 255, .3)"
             );
 
-            // 날짜와 혈압 수치를 추출
             const labels = data.map(item => {
                 const date = new Date(item.timestamp);
-                return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
+                return `${date.getMonth() + 1}월 ${date.getDate()}일`;
             });
 
-            var ctx3 = $("#line-chart").get(0).getContext("2d");
+            const ctx3 = $("#line-chart").get(0).getContext("2d");
             this.chartInstance = new Chart(ctx3, {
                 type: "line",
                 data: {
-                    labels: labels, // 변환된 라벨 사용
+                    labels: labels,
                     datasets: [{
                         label: "위험 수치",
                         fill: false,
@@ -260,25 +294,63 @@
             });
         },
 
-        display3: function(data) {
-            // 최근 5개의 데이터만 가져오기
-            const recentData = data.slice(-5); // 배열의 마지막 5개 요소를 선택
+        // display3: function(data) {
+        //     // 최근 5개의 데이터만 가져오기
+        //     const recentData = data.slice(-5); // 배열의 마지막 5개 요소를 선택
+        //
+        //     // 날짜와 우울증 점수를 추출
+        //     const labels = recentData.map(item => {
+        //         const date = new Date(item.timestamp);
+        //         return (date.getMonth() + 1)+'월' +(date.getDate())+'일'; // "12월 1일" 형식으로 변환
+        //     });
+        //     const depressionScores = recentData.map(item => item.value); // 우울증 점수 추출
+        //
+        //     var ctx4 = $("#bar-chart").get(0).getContext("2d");
+        //     if (this.charts && this.charts.depressionChart) {
+        //         this.charts.depressionChart.destroy(); // 기존 차트 인스턴스 제거
+        //     }
+        //     this.charts.depressionChart = new Chart(ctx4, {
+        //         type: "bar",
+        //         data: {
+        //             labels: labels, // x축 라벨 설정
+        //             datasets: [{
+        //                 label: "우울증 점수",
+        //                 backgroundColor: [
+        //                     "rgba(0, 156, 255, .7)",
+        //                     "rgba(0, 156, 255, .6)",
+        //                     "rgba(0, 156, 255, .5)",
+        //                     "rgba(0, 156, 255, .4)",
+        //                     "rgba(0, 156, 255, .3)"
+        //                 ],
+        //                 data: depressionScores // y축 데이터 설정
+        //             }]
+        //         },
+        //         options: {
+        //             responsive: true
+        //         }
+        //     });
+        // },
+        display3: function(data = []) {
+            if (!this.charts) {
+                this.charts = {}; // charts 객체 초기화
+            }
 
-            // 날짜와 우울증 점수를 추출
+            const recentData = data.slice(-5);
             const labels = recentData.map(item => {
                 const date = new Date(item.timestamp);
-                return (date.getMonth() + 1)+'월' +(date.getDate())+'일'; // "12월 1일" 형식으로 변환
+                return `${date.getMonth() + 1}월 ${date.getDate()}일`;
             });
-            const depressionScores = recentData.map(item => item.value); // 우울증 점수 추출
+            const depressionScores = recentData.map(item => item.value);
 
-            var ctx4 = $("#bar-chart").get(0).getContext("2d");
-            if (this.charts && this.charts.depressionChart) {
-                this.charts.depressionChart.destroy(); // 기존 차트 인스턴스 제거
+            const ctx4 = $("#bar-chart").get(0).getContext("2d");
+            if (this.charts.depressionChart) {
+                this.charts.depressionChart.destroy(); // 기존 차트 제거
             }
+
             this.charts.depressionChart = new Chart(ctx4, {
                 type: "bar",
                 data: {
-                    labels: labels, // x축 라벨 설정
+                    labels: labels,
                     datasets: [{
                         label: "우울증 점수",
                         backgroundColor: [
@@ -288,15 +360,14 @@
                             "rgba(0, 156, 255, .4)",
                             "rgba(0, 156, 255, .3)"
                         ],
-                        data: depressionScores // y축 데이터 설정
+                        data: depressionScores
                     }]
                 },
                 options: {
                     responsive: true
                 }
             });
-        },
-
+        }
 
 
     }

@@ -26,10 +26,10 @@
         }
 
         /* 클릭된 항목에 테두리와 배경색 추가 */
-        /*#doctorList li a.selected {*/
-        /*    border: 2px solid #007bff;  !* 파란색 테두리 *!*/
-        /*background-color: #f0f8ff;  !* 선택된 배경색 *!*/
-        /*}
+        #doctorList li a.selected {
+            border: 2px solid #007bff;  /* 파란색 테두리 */
+            background-color: #f0f8ff;  /* 선택된 배경색 */
+        }
 
 
 

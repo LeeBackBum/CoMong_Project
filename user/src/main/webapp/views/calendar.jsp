@@ -105,13 +105,13 @@
         }
 
         // 선택한 날짜를 동적으로 표시 (예: 선택된 UI 강조)
-        const dateElements = document.querySelectorAll('li a'); // 날짜 요소들 선택
-        dateElements.forEach(item => item.classList.remove('selected')); // 모든 선택 해제
-
-        const selectedElement = [...dateElements].find(el => el.textContent.trim() === date);
-        if (selectedElement) {
-            selectedElement.classList.add('selected'); // 선택된 날짜 강조
-        }
+        // const dateElements = document.querySelectorAll('li a'); // 날짜 요소들 선택
+        // dateElements.forEach(item => item.classList.remove('selected')); // 모든 선택 해제
+        //
+        // const selectedElement = [...dateElements].find(el => el.textContent.trim() === date);
+        // if (selectedElement) {
+        //     selectedElement.classList.add('selected'); // 선택된 날짜 강조
+        // }
 
 
     }

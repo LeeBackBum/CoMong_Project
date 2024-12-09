@@ -3,8 +3,8 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/doctor" />
-    <file type="web" url="file://$PROJECT_DIR$/doctor_iot" />
     <file type="web" url="file://$PROJECT_DIR$/user" />
+    <file type="web" url="file://$PROJECT_DIR$/user_iot" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
