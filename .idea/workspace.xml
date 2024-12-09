@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.06 캠 위치, 디자인 완료">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_59__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__3_01__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_59_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_3_01_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29__4_08__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-11-29_오후_4_08_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.09 차트 최신화">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/blood_pressure.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/blood_pressure.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +258,7 @@
       <workItem from="1733372323582" duration="10098000" />
       <workItem from="1733458607487" duration="9360000" />
       <workItem from="1733477304724" duration="407000" />
-      <workItem from="1733544181311" duration="2082000" />
+      <workItem from="1733544181311" duration="3232000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -379,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733472600572</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat.jhKim 2024.12.09 차트 최신화">
+      <option name="closed" value="true" />
+      <created>1733718946643</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733718946643</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +410,8 @@
     <MESSAGE value="feat.jhKim 2024.12.05 15:53 최신화" />
     <MESSAGE value="feat.jhKim 2024.12.05 메인페이지 완료" />
     <MESSAGE value="feat.jhKim 2024.12.06 캠 위치, 디자인 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.06 캠 위치, 디자인 완료" />
+    <MESSAGE value="feat.jhKim 2024.12.09 차트 최신화" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.09 차트 최신화" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
