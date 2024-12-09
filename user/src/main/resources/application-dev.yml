@@ -43,9 +43,11 @@ logging:
 app:
   url:
     server_url: https://210.119.34.219:8443
+    chatbot: https://3vd0tljt1i.apigw.ntruss.com/custom/v1/16402/205063ee66a82cd2b7f65a402f1b0dc671fae8675c4b9802bf72077a388fffd4
   key:
     wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
     wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)
     algo: PBEWithMD5AndDES
     skey: mykey
     apikey: ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D
+    chatbot: SXZzcnFIVmpNa0FQR2hOSk52Wm5MWk5mUWJzbUFPdFg=

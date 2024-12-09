@@ -4,13 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="commit">
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="WebRTC">
+      <change afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/util/HttpSendData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/Msg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketBrokerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ChatbotController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/ChatBotUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/NcpUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/OCRUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/chatbot.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/test/java/edu/sm/ncp/ChatbotTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/user_main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_22__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29__2_24__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_22_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-11-29_오후_2_24_[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/user/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/TestHpDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/TestHpDate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/utill/HpDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/HpDate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +56,9 @@
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/doctor">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/doctor_iot">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/user">
@@ -36,23 +76,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="doctor" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="doctor" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="doctor" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -63,6 +87,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,7 +108,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,
-    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;
+    &quot;accountId&quot;: &quot;379c5a3c-6fb4-49d3-9c29-33059c50308e&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -100,13 +125,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.ChatbotTests.executor": "Run",
     "Gradle.doctor [bootRun].executor": "Run",
     "Gradle.user [bootRun].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Bum",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/CoMong_Project/user/src/main/webapp/views/notice",
+    "last_opened_file_path": "C:/CoMong_Project/user",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -117,13 +143,43 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\doctor_iot" />
+      <recent name="C:\CoMong_Project\user\src\main\java\edu\sm\utill" />
+      <recent name="C:\CoMong_Project\user\src\main\java\edu\sm\config" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="edu.sm.app.dto" />
+    </key>
   </component>
   <component name="RunManager" selected="Gradle.user [bootRun]">
+    <configuration name="ChatbotTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;edu.sm.ncp.ChatbotTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -187,8 +243,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.user [bootRun]" />
-        <item itemvalue="Gradle.user [bootRun]" />
+        <item itemvalue="Gradle.ChatbotTests" />
         <item itemvalue="Gradle.doctor [bootRun]" />
+        <item itemvalue="Gradle.user [bootRun]" />
         <item itemvalue="Gradle.user [bootRun]" />
       </list>
     </recent_temporary>
@@ -214,6 +271,9 @@
       <workItem from="1732151216633" duration="1199000" />
       <workItem from="1732153049903" duration="1679000" />
       <workItem from="1732163119469" duration="2628000" />
+      <workItem from="1733449435373" duration="5801000" />
+      <workItem from="1733464726771" duration="130000" />
+      <workItem from="1733464872330" duration="10274000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -255,7 +315,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732167733780</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="WebRTC">
+      <option name="closed" value="true" />
+      <created>1733394449492</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733394449492</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +336,7 @@
     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
     <MESSAGE value="2024.11.21 master+hyun" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="WebRTC" />
+    <option name="LAST_COMMIT_MESSAGE" value="WebRTC" />
   </component>
 </project>

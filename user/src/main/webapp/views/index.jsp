@@ -48,6 +48,81 @@
   <%-- web socket --%>
   <script src="/webjars/sockjs-client/sockjs.min.js"></script>
   <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+  <style>
+    /* 버튼 스타일 */
+    #chatbot-button {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #06bbcc;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #chatbot-popup.open {
+      display: block; /* 열렸을 때 표시 */
+    }
+
+    #chatbot-popup {
+      position: fixed;
+      bottom: 30px; /* 팝업 위치 */
+      left: 30px;
+      width: 300px; /* 팝업 너비 */
+      height: 500px; /* 팝업 전체 높이 조정 */
+      border: 1px solid #ccc;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none; /* 기본적으로 숨김 */
+    }
+
+    .chat-header {
+      background-color: #06bbcc;
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-body {
+      padding: 10px;
+      height: calc(100% - 110px); /* 팝업 높이에서 헤더(50px)와 푸터(60px) 제외 */
+      overflow-y: auto; /* 내용이 많으면 스크롤 활성화 */
+      background-color: #f9f9f9;
+    }
+
+    .chat-footer {
+      display: flex;
+      padding: 10px;
+      height: 60px; /* 푸터 높이 */
+      border-top: 1px solid #ddd;
+      background-color: white;
+    }
+
+    .chat-footer input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .chat-footer button {
+      background-color: #06bbcc;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-left: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -113,8 +188,108 @@
       </li>
       </c:otherwise>
       </c:choose>
+
+    </ul>
+    <!-- Chatbot Button -->
+    <button id="chatbot-button">🤖</button>
+
+    <!-- Chatbot Popup -->
+    <div id="chatbot-popup">
+      <div class="chat-header">Chatbot</div>
+      <div class="chat-body" id="chatbox">
+        <!-- 메시지가 여기에 추가됩니다 -->
+      </div>
+      <div class="chat-footer">
+        <input id="user-input" type="text" placeholder="Type a message">
+        <button id="send-button">Send</button>
+      </div>
+    </div>
   </div>
 </nav>
+
+
+
+<!-- JavaScript -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatbotButton = document.getElementById("chatbot-button");
+    const chatbotPopup = document.getElementById("chatbot-popup");
+    const userInput = document.getElementById("user-input");
+    const chatbox = document.getElementById("chatbox");
+    const sendButton = document.getElementById("send-button");
+
+    let stompClient = null;
+
+    // 챗봇 팝업 열기/닫기
+    chatbotButton.addEventListener("click", () => {
+      chatbotPopup.classList.toggle("open");
+    });
+
+    // WebSocket 연결
+    function connectWebSocket() {
+      const socket = new SockJS('/chatbot'); // WebSocket 엔드포인트
+      stompClient = Stomp.over(socket);
+
+      stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+
+        // 서버에서 메시지 수신
+        stompClient.subscribe('/sendto/user1', function (message) {
+          const msg = JSON.parse(message.body);
+          addMessage(`Bot: ${msg.content1}`, 'left');
+        });
+      }, function (error) {
+        console.error('WebSocket connection error:', error);
+      });
+    }
+
+    // 메시지 추가 함수
+    function addMessage(message, align) {
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = message;
+      messageDiv.style.textAlign = align;
+      messageDiv.style.marginBottom = "10px";
+      messageDiv.style.padding = "5px 10px";
+      messageDiv.style.borderRadius = "10px";
+      messageDiv.style.backgroundColor = align === 'right' ? '#06bbcc' : '#ddd';
+      messageDiv.style.color = align === 'right' ? 'white' : 'black';
+      chatbox.appendChild(messageDiv);
+      chatbox.scrollTop = chatbox.scrollHeight; // 스크롤 아래로 이동
+    }
+
+    // 메시지 전송
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message) {
+        // 사용자 메시지 표시
+        addMessage(`You: ${message}`, 'right');
+
+        // 서버로 메시지 전송
+        if (stompClient) {
+          stompClient.send('/app/sendchatbot', {}, JSON.stringify({ sendid: 'user1', content1: message }));
+        }
+
+        // 입력 필드 초기화
+        userInput.value = '';
+      }
+    }
+
+    // 메시지 전송 버튼 클릭 이벤트
+    sendButton.addEventListener("click", sendMessage);
+
+    // Enter 키로 메시지 전송
+    userInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        sendMessage();
+        event.preventDefault();
+      }
+    });
+
+    // WebSocket 연결 초기화
+    connectWebSocket();
+  });
+
+</script>
 
 
 <!-- Navbar End -->

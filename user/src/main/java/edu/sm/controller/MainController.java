@@ -2,32 +2,18 @@ package edu.sm.controller;
 
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import edu.sm.app.dto.UserDto;
-import edu.sm.app.service.UserService;
-import edu.sm.utill.HpDate;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import edu.sm.util.HpDate;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Slf4j
@@ -290,5 +276,11 @@ public class MainController {
 
         userService.modify(userDto);
         return "redirect:/mypage";
+    }
+
+    @RequestMapping("/chatbot")
+    public String chatbot(Model model) {
+        model.addAttribute("center", "chatbot");
+        return "index";
     }
 }
