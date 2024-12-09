@@ -4,9 +4,13 @@
 
 <script>
   let chart1 = {
+
     chartInstance : null,
     livedata: [], // 현재 데이터를 저장
+    userId: null, // 사용자 ID를 저장할 변수 추가
+
     init: function () {
+      this.getUserId(); // 사용자 ID를 가져오는 메서드 호출
       this.getBloodPressure();
       this.getBloodSugar();
       this.getDepressionScore();
@@ -15,6 +19,11 @@
       this.display2();
       this.display3();
       this.display4();
+    },
+    getUserId: function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      this.userId = urlParams.get('id'); // URL에서 사용자 ID 추출
+      console.log('사용자 ID:', this.userId); // 디버깅용 로그
     },
     getdata:function(){
       $.ajax({
@@ -27,33 +36,55 @@
         }
       });
     },
-    getBloodPressure:function(){
+    getBloodPressure: function () {
       $.ajax({
-        url:'/iot/bloodPressure/data',
+        url: '/iot/bloodPressure/data',
         success: (bloodPressuredatas) => {
-          this.display1(bloodPressuredatas); // 화살표 함수로 this 고정
+          // 사용자 ID에 따라 데이터 랜덤 조정
+          const adjustedData = bloodPressuredatas.map(item => {
+            const randomFactor = Math.random() * 20 - 10; // -10에서 +10까지 랜덤 값
+            return { ...item, value: item.value + randomFactor }; // 값에 랜덤 오프셋 추가
+          });
+
+          this.display1(adjustedData); // 변형된 데이터를 차트에 전달
         },
         error: (xhr, status, error) => {
           console.error('AJAX 요청 실패:', status, error);
         }
       });
     },
-    getBloodSugar:function(){
+    getBloodSugar: function () {
       $.ajax({
-        url:'/iot/bloodSugar/data',
+        url: '/iot/bloodSugar/data',
         success: (bloodSugardatas) => {
-          this.display2(bloodSugardatas); // 화살표 함수로 this 고정
+          const userIdNumber = parseInt(this.userId.replace("user", ""), 10);
+          const randomRange = userIdNumber * 10; // 범위를 더 크게 설정
+
+          const adjustedData = bloodSugardatas.map(item => {
+            const randomFactor = Math.random() * randomRange - (randomRange / 2);
+            return { ...item, value: item.value + randomFactor };
+          });
+
+          this.display2(adjustedData); // 변형된 데이터를 차트에 전달
         },
         error: (xhr, status, error) => {
           console.error('AJAX 요청 실패:', status, error);
         }
       });
     },
-    getDepressionScore:function(){
+    getDepressionScore: function () {
       $.ajax({
-        url:'/iot/depressionScore/data',
+        url: '/iot/depressionScore/data',
         success: (depressionScoredatas) => {
-          this.display3(depressionScoredatas); // 화살표 함수로 this 고정
+          const userIdNumber = parseInt(this.userId.replace("user", ""), 10);
+          const randomRange = userIdNumber * 3; // 작은 범위로 설정
+
+          const adjustedData = depressionScoredatas.map(item => {
+            const randomFactor = Math.random() * randomRange - (randomRange / 2);
+            return { ...item, value: item.value + randomFactor };
+          });
+
+          this.display3(adjustedData); // 변형된 데이터를 차트에 전달
         },
         error: (xhr, status, error) => {
           console.error('AJAX 요청 실패:', status, error);
@@ -359,4 +390,3 @@
     <!-- Footer End -->
   </div>
 </div>
-

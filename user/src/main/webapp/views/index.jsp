@@ -150,17 +150,10 @@
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
+      <a href="<c:url value="/Test"/>" class="nav-item nav-link">Courses</a>
       <a href="<c:url value="/webrtc"/>" class="nav-item nav-link">WebRTC</a>
       <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
-      <a href="<c:url value="/mapTest"/>" class="nav-item nav-link">Map</a>
-      <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-        <div class="dropdown-menu fade-down m-0">
-          <a href="<c:url value="/team"/>" class="dropdown-item">Our Team</a>
-          <a href="<c:url value="/testimonial"/>" class="dropdown-item">Testimonial</a>
-          <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
-        </div>
-      </div>
+      <a href="<c:url value="/map"/>" class="nav-item nav-link">Map</a>
       <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
       <a href="<c:url value="/board"/>" class="nav-item nav-link">게시판</a>
     </div>
@@ -181,7 +174,7 @@
           </a>
           <div class="dropdown-menu fade-down m-0" style="right: 0; width: 10px;">
             <a href="<c:url value="/mypage"/>" class="dropdown-item">MyPage</a>
-            <a href="<c:url value="/recordpage"/>" class="dropdown-item">Record</a>
+            <a href="<c:url value="/chart"/>" class="dropdown-item">Chart</a>
             <a href="<c:url value="/logoutimpl"/>" class="dropdown-item">LogOut</a>
           </div>
         </div>

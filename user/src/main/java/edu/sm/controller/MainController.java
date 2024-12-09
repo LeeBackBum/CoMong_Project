@@ -100,27 +100,11 @@ public class MainController {
 
     @RequestMapping("/Test")
     public String test(Model model) {
-        model.addAttribute("center", "gethp");
+        model.addAttribute("center", "Test");
         return "index";
     }
 
-    @RequestMapping("/gethp")
-    public String gethp(Model model) {
-        model.addAttribute("center", "gethp");
-        return "index";
-    }
 
-    @RequestMapping("/apiTest")
-    public String apiTest(Model model) {
-        model.addAttribute("center", "apiTest");
-        return "index";
-    }
-
-    @RequestMapping("/map")
-    public String map(Model model) {
-        model.addAttribute("center", "map");
-        return "index";
-    }
 
     @RequestMapping("/reservation")
     public String reservations(HttpSession session, Model model) throws Exception {
@@ -144,7 +128,7 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/mapTest")
+    @RequestMapping("/map")
     public String map(HttpSession session, Model model) throws Exception {
         UserDto userDto = (UserDto) session.getAttribute("loginid");
 
@@ -160,7 +144,7 @@ public class MainController {
 
         model.addAttribute("userAddress",userAddress);
 
-        model.addAttribute("center","mapTest");
+        model.addAttribute("center","map");
 
 
         return "index";
@@ -281,6 +265,12 @@ public class MainController {
     @RequestMapping("/chatbot")
     public String chatbot(Model model) {
         model.addAttribute("center", "chatbot");
+        return "index";
+    }
+
+    @RequestMapping("/chart")
+    public String chart(Model model) {
+        model.addAttribute("center", "chart");
         return "index";
     }
 }

@@ -253,6 +253,12 @@
                 websocket.setConnected(true);
                 console.log('WebSocket Connected: ' + frame);
 
+                // 연결 성공 메시지를 채팅창에 추가
+                $("#all").append(
+                    "<p>연결되었습니다.</p>" +
+                    "<hr>"
+                );
+
                 // /send 경로 구독
                 this.subscribe('/send', function (msg) {
                     const parsedMsg = JSON.parse(msg.body);

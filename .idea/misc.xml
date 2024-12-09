@@ -5,6 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/doctor" />
     <file type="web" url="file://$PROJECT_DIR$/doctor_iot" />
     <file type="web" url="file://$PROJECT_DIR$/user" />
+    <file type="web" url="file://$PROJECT_DIR$/user_iot" />
   </component>
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />

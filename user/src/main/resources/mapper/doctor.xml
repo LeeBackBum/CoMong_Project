@@ -4,34 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sm.app.repository.DoctorRepository">
 
-
-<!--    <select id="findByName" resultType="doctorDto" parameterType="String">-->
-<!--        SELECT * FROM doctor WHERE name LIKE CONCAT('%', #{name}, '%')-->
-<!--    </select>-->
-<!--    <select id="getpage" resultType="doctorDto">-->
-<!--        SELECT * FROM doctor-->
-<!--    </select>-->
-<!--    <select id="getfindpage" resultType="doctorDto" parameterType="search">-->
-<!--        SELECT * FROM doctor WHERE 1=1-->
-<!--        <if test="keyword == 'id'">-->
-<!--            AND doctor_id LIKE CONCAT('%', #{search}, '%')-->
-<!--        </if>-->
-<!--        <if test="keyword == 'name'">-->
-<!--            AND doctort_name LIKE CONCAT('%', #{search}, '%')-->
-<!--        </if>-->
-<!--    </select>-->
-
-
-<!--     특정 진료과(subjectName) 기준으로 의사 목록 조회-->
+    <!--     특정 진료과(subjectName) 기준으로 의사 목록 조회-->
     <select id="serachSubjectName" parameterType="String" resultType="doctorDto">
         SELECT * FROM doctor WHERE subject_name = #{subjectName};
     </select>
-
-<!--    <select id="serachSubjectName" parameterType="String" resultType="doctorDto">-->
-<!--        SELECT * FROM doctors WHERE subjectName = :subjectName;-->
-<!--    </select>-->
-
-
     <select id="selectOne" parameterType="String" resultType="doctorDto">
         SELECT * FROM doctor WHERE doctor_id=#{id}
     </select>
@@ -39,7 +15,7 @@
         SELECT * FROM doctor
     </select>
     <insert id="insert" parameterType="doctorDto">
-        INSERT INTO doctor VALUES (#{doctorId},#{doctorPwd},#{doctorNumber},#{doctorName},#{doctorAge},#{doctorEmail},#{doctorImg},#{career},#{ancestry},#{society},#{subjectName})
+        INSERT INTO doctor VALUES (#{doctorId},#{doctorPwd},#{doctorNumber},#{imgName},#{doctorName},#{doctorAge},#{doctorEmail},#{doctorImg},#{career},#{ancestry},#{society},#{subjectName})
     </insert>
     <update id="update" parameterType="doctorDto">
         UPDATE doctor SET doctor_pwd=#{doctorPwd},doctor_name=#{doctorName} WHERE doctor_id=#{doctorId}

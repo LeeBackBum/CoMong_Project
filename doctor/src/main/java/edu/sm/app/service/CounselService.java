@@ -1,7 +1,6 @@
 package edu.sm.app.service;
 
 import edu.sm.app.dto.CounselDto;
-import edu.sm.app.dto.UserDto;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.CounselRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +12,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CounselService implements SMService< String, CounselDto> {
     private final CounselRepository counselRepository;
-    private UserDto userDto;
-
     @Override
     public void add(CounselDto counselDto) throws Exception {
         counselRepository.insert(counselDto);
@@ -39,6 +36,4 @@ public class CounselService implements SMService< String, CounselDto> {
     public List<CounselDto> get() throws Exception {
         return List.of();
     }
-
-
 }

@@ -31,6 +31,15 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/user_iot" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/user_iot" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>

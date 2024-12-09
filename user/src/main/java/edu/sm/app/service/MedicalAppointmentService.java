@@ -2,6 +2,7 @@ package edu.sm.app.service;
 
 import edu.sm.app.dto.DoctorDto;
 import edu.sm.app.dto.MedicalAppointmentDto;
+import edu.sm.app.dto.UserDto;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.MedicalAppointmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,21 +25,26 @@ public class MedicalAppointmentService implements SMService<String, MedicalAppoi
 
     @Override
     public void modify(MedicalAppointmentDto medicalAppointmentDto) throws Exception {
-
+        medicalAppointmentrepository.update(medicalAppointmentDto);
     }
 
     @Override
     public void del(String s) throws Exception {
-
+        medicalAppointmentrepository.delete(s);
     }
 
     @Override
     public MedicalAppointmentDto get(String s) throws Exception {
-        return null;
+        return medicalAppointmentrepository.selectOne(s);
     }
 
     @Override
     public List<MedicalAppointmentDto> get() throws Exception {
-        return List.of();
+        return medicalAppointmentrepository.select();
     }
+
+    public List<MedicalAppointmentDto> findById(String userId) throws Exception {
+        return medicalAppointmentrepository.findById(userId);
+    }
+
 }

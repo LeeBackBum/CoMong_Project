@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sm.app.repository.CounselRepository">
 
+    <insert id="insert" parameterType="counselDto">
+        INSERT INTO counsel (counsel_date, counsel_content, counsel_type, doctor_id, user_id)
+        VALUES (#{counselDate}, #{counselContent}, #{counselType}, #{doctorId}, #{userId})
+    </insert>
 
     <select id="selectOne" parameterType="String" resultType="counselDto">
         SELECT * FROM counsel
@@ -14,17 +18,9 @@
         SELECT * FROM counsel
     </select>
 
-    <insert id="insert" parameterType="counselDto">
-        INSERT INTO counsel (counsel_date, counsel_content, counsel_type, doctor_id, user_id)
-        VALUES (#{counselDate}, #{counselContent}, #{counselType}, #{doctorId}, #{userId})
-    </insert>
 
     <delete id="delete" parameterType="counselDto">
         DELETE FROM counsel WHERE counsel_id = #{counselId}
     </delete>
-
-    <select id="findUserIdByUserName" parameterType="string" resultType="string">
-        SELECT userId FROM user WHERE userName = #{userName}
-    </select>
 
 </mapper>
