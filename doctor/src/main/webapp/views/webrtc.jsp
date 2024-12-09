@@ -8,8 +8,9 @@
     }
     .video-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: 1fr; /* 한 열만 생성 */
+        grid-template-rows: repeat(2, 1fr); /* 두 행 생성 */
+        gap: 20px; /* 요소 간 간격 유지 */
         margin-bottom: 20px;
     }
     .video-wrapper {
@@ -58,28 +59,150 @@
         text-align: center;
         font-size: 14px;
     }
-</style>
 
-<div class="admin-webrtc-container">
-    <div class="video-grid">
-        <div class="video-wrapper">
-            <video id="localVideo" autoplay playsinline muted class="video-stream"></video>
-            <div class="video-label">Admin Stream</div>
-        </div>
-        <div class="video-wrapper">
-            <video id="remoteVideo" autoplay playsinline class="video-stream"></video>
-            <div class="video-label">User Stream</div>
+    .record-container {
+        display: inline-block;
+        width: 100%; /* 적절한 너비 설정 */
+        vertical-align: top; /* 상단 정렬 */
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        height: 650px;
+        max-height: 900px;
+        position: relative;
+    }
+
+    .record-title {
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 배치 */
+        gap: 20px; /* 각 요소 간의 간격을 20px로 설정 */
+    }
+
+    input, textarea, button {
+        margin: 10px 0; /* 각 요소 위아래로 10px의 여백 추가 */
+        padding: 12px; /* 내부 여백을 추가해 요소 크기 확대 */
+        font-size: 16px; /* 텍스트 크기를 적절히 조정 */
+    }
+
+    button {
+        border: none;
+        border-radius: 5px; /* 모서리를 둥글게 처리 */
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3; /* 호버 시 버튼 색상 변경 */
+    }
+</style>
+<div class="container-fluid position-relative bg-white d-flex p-0">
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <div class="admin-webrtc-container">
+                        <div class="video-grid">
+                            <div class="video-wrapper">
+                                <video id="localVideo" autoplay playsinline muted class="video-stream"></video>
+                                <div class="video-label">Admin Stream</div>
+                            </div>
+                            <div class="video-wrapper">
+                                <video id="remoteVideo" autoplay playsinline class="video-stream"></video>
+                                <div class="video-label">User Stream</div>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button id="startButton" class="control-button start-call">Start Call</button>
+                            <button id="endButton" class="control-button end-call" style="display: none;">End Call</button>
+                        </div>
+                        <div class="connection-status" id="connectionStatus">
+                            Status: Disconnected
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <div class="record-container">
+                        <h2 class="mb-4 record-title">Record</h2>
+                        <form id="recordForm" name="recordForm" class="form-group" method="post" action="/recordimpl">
+                            <!-- 날짜와 시간 입력 -->
+                            <div class="form-group">
+                                <label for="datetime">날짜 및 시간</label>
+                                <input
+                                        type="datetime-local"
+                                        class="form-control"
+                                        id="datetime"
+                                        name="counselDate"
+                                        required="required"
+                                />
+                            </div>
+
+                            <!-- 내용 입력 -->
+                            <div class="form-group">
+                                <label for="content">내용</label>
+                                <textarea
+                                        class="form-control"
+                                        rows="11"
+                                        id="content"
+                                        name="counselContent"
+                                        placeholder="내용 작성"
+                                ></textarea>
+                            </div>
+
+                            <!-- 의사 ID와 환자 이름 입력 -->
+                            <div class="form-group">
+                                <label for="doctorId">의사 ID</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="doctorId"
+                                        name="doctorId"
+                                        placeholder="의사 ID 입력"
+                                        required="required"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="userId">환자 ID</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="userId"
+                                        name="userId"
+                                        placeholder="환자 ID 입력"
+                                        required="required"
+                                />
+                            </div>
+
+                            <input type="hidden" name="counselType" value="채팅상담" />
+
+                            <button type="submit" class="btn btn-primary">등록</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="controls">
-        <button id="startButton" class="control-button start-call">Start Call</button>
-        <button id="endButton" class="control-button end-call" style="display: none;">End Call</button>
-    </div>
-    <div class="connection-status" id="connectionStatus">
-        Status: Disconnected
+
+</div>
+<!-- Footer Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light rounded-top p-4">
+        <div class="row">
+            <div class="col-12 col-sm-6 text-center text-sm-start">
+                &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+            </div>
+            <div class="col-12 col-sm-6 text-center text-sm-end">
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+            </div>
+        </div>
     </div>
 </div>
-
 <script>
     const roomId = '1'; // 하드코딩된 방 번호
     let peerConnection = null;

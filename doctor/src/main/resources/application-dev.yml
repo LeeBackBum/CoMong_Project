@@ -50,6 +50,3 @@ app:
     # logdir: /root/users/project/logs
     logdir: file:///c:/CoMong_Project/logs/
     readlogdir: c:/CoMong_Project/logs/
-  key:
-    algo: PBEWithMD5AndDES
-    skey: mykey
