@@ -147,42 +147,7 @@
                             hpid = items[i].getElementsByTagName('hpid')[0].textContent.trim();
 
 
-                            // kakao.maps.LatLng 형식으로 변환
-                            //     var position = new kakao.maps.LatLng(latitude, longitude);
-                            //
-                            //     // positions 배열에 새로운 위치 추가
-                            //     positions.push({
-                            //         content: '<div>' + (dutyName || '병원 정보 없음') + '</div>'+
-                            //                  '<div>'+ (dutyAddr || '병원 주소 정보 없음') +'</div>'+
-                            //                  '<div>'+ (hpid || '병원 ID 정보 없음') +'<div>',
-                            //         latlng: position
-                            //     });
-                            // }
-                            //
-                            // // HTML에 위도와 경도 표시
-                            // resultDiv.innerHTML = '<p>'+ (hpid) +'</p>';
-                            //
-                            // // 각 위치에 마커 생성
-                            // for (var i = 0; i < positions.length; i++) {
-                            //     // 마커 생성
-                            //     var marker = new kakao.maps.Marker({
-                            //         map: map, // 마커를 표시할 지도
-                            //         position: positions[i].latlng // 마커의 위치
-                            //     });
-                            //
-                            //     // 마커에 표시할 인포윈도우를 생성합니다
-                            //     var infowindow = new kakao.maps.InfoWindow({
-                            //         content: positions[i].content,// 인포윈도우에 표시할 내용
-                            //     });
-                            //
-                            //
-                            //
-                            //
-                            //     // 마커에 클릭 이벤트 등록
-                            //     kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
-                            //     // 마커에 마우스오버 이벤트 등록
-                            //     kakao.maps.event.addListener(marker, 'mouseover', makeOutListener(infowindow));
-                            // }
+
                             if (latitude && longitude) {
                                 const position = new kakao.maps.LatLng(latitude, longitude);
 

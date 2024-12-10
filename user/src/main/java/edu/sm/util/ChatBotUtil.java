@@ -13,14 +13,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatBotUtil {
 
-    public static String getMsg(String apiUrl, String secretKey, String msg) throws Exception {
+    public static Map<String, String> getMsg(String apiUrl, String secretKey, String msg) throws Exception {
+        Map<String, String> responseMap = new HashMap<>();
         URL url = new URL(apiUrl);
-        String chatMessage = msg;
-        String message = getReqMessage(chatMessage);
+        String message = getReqMessage(msg);
         String encodeBase64String = makeSignature(message, secretKey);
+
         System.out.println("Request Message: " + message);
         System.out.println("Signature: " + encodeBase64String);
 
@@ -28,59 +31,121 @@ public class ChatBotUtil {
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json;UTF-8");
         con.setRequestProperty("X-NCP-CHATBOT_SIGNATURE", encodeBase64String);
-
         con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.write(message.getBytes("UTF-8"));
-        wr.flush();
-        wr.close();
+
+        try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+            wr.write(message.getBytes("UTF-8"));
+            wr.flush();
+        }
 
         int responseCode = con.getResponseCode();
         System.out.println("Response Code: " + responseCode);
 
         if (responseCode == 200) { // 정상 호출
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder jsonString = new StringBuilder();
-            String decodedString;
-            while ((decodedString = in.readLine()) != null) {
-                jsonString.append(decodedString);
-            }
-            in.close();
-
-            System.out.println("Response Body: " + jsonString.toString());
-
-            JSONParser jsonParser = new JSONParser();
-            try {
-                JSONObject json = (JSONObject) jsonParser.parse(jsonString.toString());
-                if (json.containsKey("bubbles")) {
-                    JSONArray bubblesArray = (JSONArray) json.get("bubbles");
-                    if (!bubblesArray.isEmpty()) {
-                        JSONObject bubbles = (JSONObject) bubblesArray.get(0);
-                        if (bubbles.containsKey("data")) {
-                            JSONObject data = (JSONObject) bubbles.get("data");
-                            if (data.containsKey("description")) {
-                                chatMessage = (String) data.get("description");
-                            }
-                        }
-                    }
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+                StringBuilder jsonString = new StringBuilder();
+                String decodedString;
+                while ((decodedString = in.readLine()) != null) {
+                    jsonString.append(decodedString);
                 }
-            } catch (Exception e) {
-                System.out.println("Error while parsing JSON response");
-                e.printStackTrace();
+
+                System.out.println("Response Body: " + jsonString);
+
+                // JSON 응답 파싱
+                JSONParser jsonParser = new JSONParser();
+                JSONObject json = (JSONObject) jsonParser.parse(jsonString.toString());
+                responseMap = parseChatbotResponse(json); // 응답 파싱
             }
         } else { // 에러 발생
-            BufferedReader errorReader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-            StringBuilder errorResponse = new StringBuilder();
-            String line;
-            while ((line = errorReader.readLine()) != null) {
-                errorResponse.append(line);
+            try (BufferedReader errorReader = new BufferedReader(new InputStreamReader(con.getErrorStream()))) {
+                StringBuilder errorResponse = new StringBuilder();
+                String line;
+                while ((line = errorReader.readLine()) != null) {
+                    errorResponse.append(line);
+                }
+                System.out.println("Error Response: " + errorResponse.toString());
+                responseMap.put("description", null);
+                responseMap.put("buttonTitle", null);
+                responseMap.put("buttonUrl", null);
             }
-            errorReader.close();
-            System.out.println("Error Response: " + errorResponse.toString());
-            chatMessage = errorResponse.toString();
         }
-        return chatMessage;
+
+        return responseMap;
     }
+
+    private static Map<String, String> parseChatbotResponse(JSONObject json) {
+        Map<String, String> responseMap = new HashMap<>();
+        responseMap.put("description", null);
+        responseMap.put("buttonTitle", null);
+        responseMap.put("buttonUrl", null);
+
+        try {
+            if (json.containsKey("bubbles")) {
+                JSONArray bubblesArray = (JSONArray) json.get("bubbles");
+                if (!bubblesArray.isEmpty()) {
+                    JSONObject firstBubble = (JSONObject) bubblesArray.get(0); // 첫 번째 bubble
+                    JSONObject data = (JSONObject) firstBubble.get("data");
+
+                    // "description" 텍스트 추출
+                    JSONObject cover = (JSONObject) data.get("cover");
+                    JSONObject coverData = (JSONObject) cover.get("data");
+                    responseMap.put("description", (String) coverData.get("description"));
+
+                    // "contentTable" 확인 및 버튼 데이터 추출
+                    if (data.containsKey("contentTable")) {
+                        JSONArray contentTableArray = (JSONArray) data.get("contentTable");
+                        if (!contentTableArray.isEmpty()) {
+                            JSONArray buttonRow = (JSONArray) contentTableArray.get(0);
+                            if (!buttonRow.isEmpty()) {
+                                JSONObject button = (JSONObject) buttonRow.get(0);
+                                JSONObject buttonData = (JSONObject) button.get("data");
+                                responseMap.put("buttonTitle", (String) buttonData.get("title"));
+
+                                // URL 추출
+                                if (buttonData.containsKey("data")) { // 중첩된 data 객체 접근
+                                    JSONObject nestedData = (JSONObject) buttonData.get("data");
+                                    if (nestedData.containsKey("action")) {
+                                        JSONObject action = (JSONObject) nestedData.get("action");
+                                        if (action != null && action.containsKey("data")) {
+                                            JSONObject actionData = (JSONObject) action.get("data");
+                                            String url = (String) actionData.get("url");
+                                            if (url != null && !url.isEmpty()) {
+                                                responseMap.put("buttonUrl", url);
+                                            } else {
+                                                System.out.println("URL is null or empty in action data.");
+                                            }
+                                        } else {
+                                            System.out.println("Action data is missing or null.");
+                                        }
+                                    } else {
+                                        System.out.println("Action key is missing in nested data.");
+                                    }
+                                } else {
+                                    System.out.println("Data key is missing in button data.");
+                                }
+                            } else {
+                                System.out.println("Button Row is empty.");
+                            }
+                        } else {
+                            System.out.println("Content Table Array is empty.");
+                        }
+                    } else {
+                        System.out.println("Content Table key is missing.");
+                    }
+                } else {
+                    System.out.println("Bubbles Array is empty.");
+                }
+            } else {
+                System.out.println("Bubbles key is missing.");
+            }
+        } catch (Exception e) {
+            System.out.println("Error while parsing chatbot response: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return responseMap;
+    }
+
 
     public static String getReqMessage(String voiceMessage) {
         String requestBody = "";

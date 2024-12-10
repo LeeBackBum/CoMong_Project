@@ -65,6 +65,16 @@
       z-index: 1000;
     }
 
+    #chatbox {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #f9f9f9;
+    }
+
     #chatbot-popup.open {
       display: block; /* 열렸을 때 표시 */
     }
@@ -122,6 +132,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
   </style>
 </head>
 
@@ -188,7 +199,10 @@
 
     <!-- Chatbot Popup -->
     <div id="chatbot-popup">
-      <div class="chat-header">Chatbot</div>
+      <div class="chat-header">
+        Chatbot
+        <button id="close-button" style="float: right; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+      </div>
       <div class="chat-body" id="chatbox">
         <!-- 메시지가 여기에 추가됩니다 -->
       </div>
@@ -213,9 +227,14 @@
 
     let stompClient = null;
 
-    // 챗봇 팝업 열기/닫기
+    // 챗봇 팝업 닫기 버튼 이벤트
+    document.getElementById('close-button').addEventListener('click', function () {
+      chatbotPopup.style.display = 'none'; // 팝업 닫기
+    });
+
+    // 챗봇 팝업 열기/닫기 버튼 이벤트
     chatbotButton.addEventListener("click", () => {
-      chatbotPopup.classList.toggle("open");
+      chatbotPopup.style.display = chatbotPopup.style.display === 'none' || chatbotPopup.style.display === '' ? 'block' : 'none';
     });
 
     // WebSocket 연결
@@ -226,10 +245,23 @@
       stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
 
-        // 서버에서 메시지 수신
         stompClient.subscribe('/sendto/user1', function (message) {
-          const msg = JSON.parse(message.body);
-          addMessage(`Bot: ${msg.content1}`, 'left');
+          const response = JSON.parse(message.body);
+          console.log('Parsed Response:', response);
+
+          const botResponse = response.botResponse;
+          if (botResponse) {
+            addMessage("Bot: " + botResponse, 'left');
+          }
+
+          const buttonTitle = response.buttonTitle;
+          const buttonUrl = response.buttonUrl;
+          if (buttonTitle && buttonUrl) {
+            console.log("Button Data - Title:", buttonTitle, ", URL:", buttonUrl);
+            addButton(buttonTitle, buttonUrl);
+          } else {
+            console.warn("Button data missing or incomplete:", { buttonTitle, buttonUrl });
+          }
         });
       }, function (error) {
         console.error('WebSocket connection error:', error);
@@ -238,33 +270,86 @@
 
     // 메시지 추가 함수
     function addMessage(message, align) {
+      console.log(`Rendering message: "${message}", Align: ${align}`); // 디버깅 로그
+
+      if (!message || message.trim() === "") {
+        console.error(`Message is empty or invalid: "${message}"`);
+        return;
+      }
+
       const messageDiv = document.createElement('div');
       messageDiv.textContent = message;
-      messageDiv.style.textAlign = align;
       messageDiv.style.marginBottom = "10px";
-      messageDiv.style.padding = "5px 10px";
+      messageDiv.style.padding = "8px 12px";
       messageDiv.style.borderRadius = "10px";
+      messageDiv.style.maxWidth = "80%";
+      messageDiv.style.display = "inline-block";
+
       messageDiv.style.backgroundColor = align === 'right' ? '#06bbcc' : '#ddd';
       messageDiv.style.color = align === 'right' ? 'white' : 'black';
-      chatbox.appendChild(messageDiv);
+      messageDiv.style.alignSelf = align === 'right' ? 'flex-end' : 'flex-start';
+
+      const messageContainer = document.createElement('div');
+      messageContainer.style.display = 'flex';
+      messageContainer.style.justifyContent = align === 'right' ? 'flex-end' : 'flex-start';
+      messageContainer.appendChild(messageDiv);
+
+      chatbox.appendChild(messageContainer);
+      chatbox.scrollTop = chatbox.scrollHeight; // 스크롤 아래로 이동
+    }
+
+    // 버튼 추가 함수
+    function addButton(title, url) {
+      const button = document.createElement('button');
+      button.textContent = title; // 버튼 텍스트 설정
+      button.style.padding = "8px 12px";
+      button.style.marginTop = "-6px";
+      button.style.border = "none";
+      button.style.borderRadius = "5px";
+      button.style.cursor = "pointer";
+      button.style.backgroundColor = '#DDD';
+      button.style.color = 'black';
+
+      button.addEventListener("mouseenter", () => {
+        button.style.backgroundColor = 'white'; // 호버 시 배경색 변경
+        button.style.color = "black"; // 호버 시 글씨 색상 변경
+        button.style.transform = "scale(1.05)"; // 호버 시 크기 확대
+        button.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"; // 호버 시 그림자 효과
+      });
+
+      button.addEventListener("mouseleave", () => {
+        button.style.backgroundColor = "#DDD"; // 기본 배경색 복원
+        button.style.color = "black"; // 기본 글씨 색상 복원
+        button.style.transform = "scale(1)"; // 크기 원래대로 복원
+        button.style.boxShadow = "none"; // 그림자 제거
+      });
+
+      button.onclick = () => {
+        window.location.href = url;
+      };
+
+      const messageContainer = document.createElement('div');
+      messageContainer.style.display = 'flex';
+      messageContainer.style.justifyContent = 'flex-start';
+      messageContainer.appendChild(button);
+
+      chatbox.appendChild(messageContainer);
       chatbox.scrollTop = chatbox.scrollHeight; // 스크롤 아래로 이동
     }
 
     // 메시지 전송
     function sendMessage() {
-      const message = userInput.value.trim();
-      if (message) {
-        // 사용자 메시지 표시
-        addMessage(`You: ${message}`, 'right');
+      const message = userInput.value.trim(); // 입력값 가져오기
+      if (!message) return;
 
-        // 서버로 메시지 전송
-        if (stompClient) {
-          stompClient.send('/app/sendchatbot', {}, JSON.stringify({ sendid: 'user1', content1: message }));
-        }
+      addMessage("You: " + message, 'right'); // 사용자 메시지 표시
 
-        // 입력 필드 초기화
-        userInput.value = '';
+      // WebSocket으로 서버에 메시지 전송
+      if (stompClient) {
+        stompClient.send('/app/sendchatbot', {}, JSON.stringify({ sendid: 'user1', content1: message }));
       }
+
+      userInput.value = ''; // 입력 필드 초기화
     }
 
     // 메시지 전송 버튼 클릭 이벤트
@@ -281,7 +366,6 @@
     // WebSocket 연결 초기화
     connectWebSocket();
   });
-
 </script>
 
 

@@ -4,102 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="merge">
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/CounselRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/CounselService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/CounselController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MedicalAppointmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/conselmapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/css/kakaomarker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/d1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/d2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcare2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/medical_service.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/testimg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Test.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/chart.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/src/main/java/edu/sm/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/src/main/java/edu/sm/util/HttpSendData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__10_25__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__10_26__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_43__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_45__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_46__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-29__3_01__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-11-29__3_03__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="ChatBot">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/DoctorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/DoctorApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebMessageConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebSocketConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/ChartsRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/usermapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/mapper/usermapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/blank.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/blank.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/button.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/chart.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/element.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/errorpage.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/form.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/left.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/signin.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/signup.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/table.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/typography.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/widget.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/test/java/edu/sm/DoctorSelectTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/blood_pressure.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/blood_pressure.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/CounselDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/MedicalAppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/repository/MedicalAppointmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/MedicalAppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/MedicalAppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/medicalAppointment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/medicalAppointment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/apiTest.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/gethp.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/Msg.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/Msg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketBrokerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketBrokerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ChatbotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ChatbotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/ChatBotUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/ChatBotUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/mapTest.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/mypage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/test/java/edu/sm/ncp/ChatbotTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,6 +302,8 @@
       <workItem from="1733292989121" duration="6895000" />
       <workItem from="1733372323582" duration="6144000" />
       <workItem from="1733724047612" duration="5983000" />
+      <workItem from="1733731963145" duration="3822000" />
+      <workItem from="1733790365031" duration="15135000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -481,7 +401,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733381591564</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="merge">
+      <option name="closed" value="true" />
+      <created>1733732000246</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733732000246</updated>
+    </task>
+    <task id="LOCAL-00014" summary="merge">
+      <option name="closed" value="true" />
+      <created>1733732018664</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733732018664</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +446,8 @@
     <MESSAGE value="feat.jhKim 2024.12.05 화상 50% 완료" />
     <MESSAGE value="feat.jhKim 2024.12.05 15:53 최신화" />
     <MESSAGE value="merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge" />
+    <MESSAGE value="ChatBot" />
+    <option name="LAST_COMMIT_MESSAGE" value="ChatBot" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
