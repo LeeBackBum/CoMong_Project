@@ -4,266 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="12 05 마이페이지 - 예약현황,상담기록,차트">
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/counselmapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcare2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/medical_service.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/testimg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Test.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/.gradle/file-system.probe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/build/classes/java/main/edu/sm/util/HttpSendData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user_iot/src/main/java/edu/sm/util/HttpSendData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/doctor.main.iml" beforeDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="12 09 실시간 가용병상정보 작업중">
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/강동경희대학교의대병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/건국대학교병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/부민병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/분당서울대학교병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/삼성서울병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/성심의료재단강동성심병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/연세대학교의과대학 강남세브란스병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인서울효천의료재단에이치플러스양지병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/이화여자대학교의과대학부속서울병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/한국보훈복지의료공단 중앙보훈병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/hpmarker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__10_25__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__10_26__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_43__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_45__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_46__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_10_25_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_10_26_[Changes]1/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_10_26_[Changes]1/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_10_26_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_9_43_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_9_45_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_9_46_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/DoctorApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AdminDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AnswerDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/AppointmentDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/BoardDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/CounselDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/ManagerDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/MedicalRecordsDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/Msg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/NoticeDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/RoleDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/dto/UserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/frame/SMRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/frame/SMService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/AdminRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/CounselRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/DoctorRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/MedicalRecordsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/AdminService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/CounselService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/MedicalRecordsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/app/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/StomWebSocketConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebMessageConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/config/WebMvcConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/ChartsRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/log4jdbc.log4j2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/counselmapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/doctormapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/medicalrecordsmapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/mapper/usermapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/css/chat.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/11cd2c22-cdb6-48a2-9666-36ab52442fdf_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/2df272b0-baeb-4fb0-976e-ebf1d558fa62_doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/ce3b3eed-0b27-45c5-90f7-c8fe349f6663_img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/doctor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/eb14b9a5-5c74-4c41-901e-c15bc362d389_testimonial-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/img1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/testimonial-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/testimonial-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/img/user.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/chart/chart.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/easing/easing.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/easing/easing.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/ajax-loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.carousel.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.carousel.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.theme.default.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.theme.default.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.theme.green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.theme.green.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/assets/owl.video.play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/owl.carousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/owlcarousel/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/tempusdominus/css/tempusdominus-bootstrap-4.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/tempusdominus/js/moment-timezone.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/tempusdominus/js/moment.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/waypoints/links.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/lib/waypoints/waypoints.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_accordion.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_alert.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_badge.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_breadcrumb.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_button-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_card.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_carousel.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_close.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_containers.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_dropdown.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_forms.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_functions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_helpers.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_images.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_list-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_mixins.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_modal.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_nav.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_navbar.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_offcanvas.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_pagination.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_popover.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_progress.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_reboot.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_root.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_spinners.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_tables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_toasts.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_tooltip.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_transitions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_type.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/bootstrap-grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/bootstrap-reboot.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/bootstrap-utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/bootstrap.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_floating-labels.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_form-check.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_form-control.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_form-range.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_form-select.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_form-text.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_input-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_labels.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/forms/_validation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_clearfix.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_colored-links.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_position.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_ratio.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_stretched-link.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_text-truncation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/helpers/_visually-hidden.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_alert.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_border-radius.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_box-shadow.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_breakpoints.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_caret.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_clearfix.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_color-scheme.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_container.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_deprecate.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_forms.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_gradients.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_grid.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_image.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_list-group.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_lists.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_pagination.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_reset-text.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_resize.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_table-variants.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_text-truncate.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_transition.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/mixins/_visually-hidden.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/utilities/_api.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/static/scss/bootstrap/scss/vendor/_rfs.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/blank.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/button.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/chart.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/counselnav.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/element.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/errorpage.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/form.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/left.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/mypage.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/nav.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/signin.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/signup.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/table.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/typography.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/appointments.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/chart.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/detail.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/widget.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/test/java/edu/sm/DoctorApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/test/java/edu/sm/RecordTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/dependencies-accessors/gc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/dependencies-accessors/gc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileChanges/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/fileChanges/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/gc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/8.10.2/gc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/vcs-1/gc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/classes/java/main/edu/sm/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/classes/java/main/edu/sm/util/HttpSendData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/compileTransaction/stash-dir/Main.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/doctor_iot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/user_iot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/src/main/java/edu/sm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/util/HttpSendData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/blood_pressure.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/blood_pressure.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/blood_sugar.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/blood_sugar.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/depression_score.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/depression_score.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/doctor_iot/edu/sm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/user_iot/build/classes/java/main/edu/sm/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/doctor_iot/edu/sm/util/HttpSendData.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/Test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Test.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/chart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/chart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/gethp.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/getmedicalAppointment.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/testimonial.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -370,44 +150,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ApointmentSelectTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build doctor.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build user.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build user_iot.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SelectTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.doctor_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.userSelectTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;YUN&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/resources/static/imgt&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Gradle.ApointmentSelectTest.executor": "Run",
+    "Gradle.Build doctor.executor": "Run",
+    "Gradle.Build user.executor": "Run",
+    "Gradle.Build user_iot.executor": "Run",
+    "Gradle.SelectTest.executor": "Run",
+    "Gradle.doctor [bootRun].executor": "Run",
+    "Gradle.doctor_iot [:edu.sm.Main.main()].executor": "Run",
+    "Gradle.user [bootRun].executor": "Run",
+    "Gradle.userSelectTest.executor": "Run",
+    "Gradle.user_iot [:edu.sm.Main.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "YUN",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CoMong_Project/user/src/main/resources/static/imgt",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\CoMong_Project\user\src\main\resources\static\imgt" />
+      <recent name="C:\CoMong_Project\user\src\main\resources\static\hpimg" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\user\src\main\resources\static\hpimg" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
@@ -578,7 +360,9 @@
       <workItem from="1733381639813" duration="4288000" />
       <workItem from="1733394312734" duration="1625000" />
       <workItem from="1733446756097" duration="17070000" />
-      <workItem from="1733703320536" duration="12509000" />
+      <workItem from="1733703320536" duration="19853000" />
+      <workItem from="1733731313656" duration="8759000" />
+      <workItem from="1733795452218" duration="6631000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -636,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733383918627</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="12 09 실시간 가용병상정보 작업중">
+      <option name="closed" value="true" />
+      <created>1733721948681</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733721948681</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -663,7 +455,8 @@
     <MESSAGE value="Edit Profile" />
     <MESSAGE value="1204 병합" />
     <MESSAGE value="12 05 마이페이지 - 예약현황,상담기록,차트" />
-    <option name="LAST_COMMIT_MESSAGE" value="12 05 마이페이지 - 예약현황,상담기록,차트" />
+    <MESSAGE value="12 09 실시간 가용병상정보 작업중" />
+    <option name="LAST_COMMIT_MESSAGE" value="12 09 실시간 가용병상정보 작업중" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -672,11 +465,6 @@
           <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp</url>
           <line>1</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user/src/main/webapp/views/Test.jsp</url>
-          <line>239</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

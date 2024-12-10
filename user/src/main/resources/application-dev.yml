@@ -1,6 +1,12 @@
 #1.
 server:
-  port: 80
+  port: 8443  # HTTPS를 위한 포트 설정
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12  # 인증서 파일 경로 <- keystore.p12를
+    # src/main/resources밑에 뒀다면 경로 수정 X
+    key-store-password: 111111  # 인증서 생성 시 설정한 비밀번호
+    key-store-type: PKCS12  # 인증서 형식
   servlet:
     encoding:
       charset: UTF-8
@@ -35,7 +41,7 @@ logging:
 
 app:
   url:
-    server_url: http://210.119.34.218:81
+    server_url: https://210.119.34.218:8443
   key:
     wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
     wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)

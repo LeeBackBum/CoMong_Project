@@ -54,8 +54,9 @@
         }
 
         .event.selected {
-            background-color: floralwhite;
-            color: white;
+            background-color: lightyellow;
+            color: black;
+            /*floralwhite*/
         }
     </style>
 </head>

@@ -166,11 +166,6 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/testimonial")
-    public String testimonial(Model model) {
-        model.addAttribute("center", "testimonial");
-        return "index";
-    }
 
     @RequestMapping("/mypage")
     public String mypage(HttpSession session, Model model) throws Exception {
@@ -241,12 +236,6 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/hpdataload")
-    @ResponseBody
-    public Object hpdataload(Model model) throws IOException, ParseException {
-
-        return HpDate.getHpAddress(apikey);
-    }
 
     @RequestMapping("/updateimpl")
     public String updateimpl(HttpSession session,  UserDto userDto
