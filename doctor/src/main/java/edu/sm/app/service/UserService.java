@@ -8,10 +8,11 @@ import edu.sm.app.dto.UserDto;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService implements SMService<String, UserDto> {
@@ -54,4 +55,9 @@ public class UserService implements SMService<String, UserDto> {
     public List<CounselDto> getCounsel(String userId){
         return userRepository.getCounsel(userId);
     }
+
+
+
+
 }
+

@@ -1,6 +1,6 @@
 # 1. Tomcat Server Setting
 server:
-  port: 8443
+  port: 81
   ssl:
     enabled: true
     key-store: classpath:keystore.p12  # 인증서 파일 경로 <- keystore.p12를
@@ -42,7 +42,7 @@ logging:
 # 5. Application Environment Setting
 app:
   url:
-    server_url: https://127.0.0.1:8443
+    server_url: https://127.0.0.1:81
   dir:
     imgdir: file:///c:/CoMong_Project/imgs/
     imgmypage: C:/CoMong_Project/doctor/src/main/resources/static/img

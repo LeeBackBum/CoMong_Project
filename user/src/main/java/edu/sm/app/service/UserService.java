@@ -4,12 +4,18 @@ import edu.sm.app.dto.UserDto;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService implements SMService<String, UserDto> {
@@ -53,4 +59,6 @@ public class UserService implements SMService<String, UserDto> {
     public UserDto authenticate(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password);
     }
+
+
 }

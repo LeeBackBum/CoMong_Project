@@ -63,12 +63,15 @@
 
 
     display4: function () {
-      // On chart load, start an interval that fetches data from the server and animates the pulsating marker.
+      let alertTimer = null; // 알림 타이머를 관리하는 변수
+      const alertDuration = 5000; // 5초 이상 지속되면 알림 발생
+      const dangerThreshold = { low: 65, high: 120 }; // 위험 수치 기준
+
       const onChartLoad = function () {
         const chart = this,
                 series = chart.series[0];
 
-        // 실시간 데이터 업데이트 (3초 간격)
+        // 실시간 데이터 업데이트 (5초 간격)
         setInterval(() => {
           $.ajax({
             url: '/iot/power/data', // 서버에서 데이터를 가져옴
@@ -77,6 +80,23 @@
                 const point = [new Date(value.timestamp).getTime(), value.value];
                 console.log('추가할 포인트:', point);
                 series.addPoint(point, true, series.data.length > 20); // 차트에 포인트 추가
+
+                // 위험 수치인지 확인
+                if (point[1] < dangerThreshold.low || point[1] > dangerThreshold.high) {
+                  if (!alertTimer) {
+                    // 위험 상태가 지속되면 알림 트리거
+                    alertTimer = setTimeout(() => {
+                      alert(`⚠️ 위험 수치 감지: ${point[1]}`);
+                      alertTimer = null; // 타이머 초기화
+                    }, alertDuration);
+                  }
+                } else {
+                  // 정상 상태로 돌아오면 타이머 초기화
+                  if (alertTimer) {
+                    clearTimeout(alertTimer);
+                    alertTimer = null;
+                  }
+                }
               });
             },
             error: (xhr, status, error) => {
@@ -105,34 +125,6 @@
         return initialData;
       }());
 
-      // Plugin to add a pulsating marker on add point
-      Highcharts.addEvent(Highcharts.Series, 'addPoint', e => {
-        const point = e.point,
-                series = e.target;
-
-        if (!series.pulse) {
-          series.pulse = series.chart.renderer.circle()
-                  .add(series.markerGroup);
-        }
-
-        setTimeout(() => {
-          series.pulse
-                  .attr({
-                    x: series.xAxis.toPixels(point.x, true),
-                    y: series.yAxis.toPixels(point.y, true),
-                    r: series.options.marker.radius,
-                    opacity: 1,
-                    fill: series.color
-                  })
-                  .animate({
-                    r: 20,
-                    opacity: 0
-                  }, {
-                    duration: 1000
-                  });
-        }, 1);
-      });
-
       // Highcharts 차트 생성
       Highcharts.chart('container', {
         chart: {
@@ -143,19 +135,6 @@
         time: { useUTC: false },
 
         title: { text: 'HealthCare Live Data' },
-
-        accessibility: {
-          announceNewData: {
-            enabled: true,
-            minAnnounceInterval: 15000,
-            announcementFormatter: function (allSeries, newSeries, newPoint) {
-              if (newPoint) {
-                return 'New point added. Value: ' + newPoint.y;
-              }
-              return false;
-            }
-          }
-        },
 
         xAxis: {
           type: 'datetime',
@@ -188,7 +167,8 @@
           }
         ]
       });
-    },
+    }
+    ,
 
 
     display1: function(data) {

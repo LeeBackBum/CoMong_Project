@@ -5,6 +5,7 @@ import edu.sm.app.dto.DoctorDto;
 import edu.sm.app.dto.UserDto;
 import edu.sm.app.service.CounselService;
 import edu.sm.app.service.DoctorService;
+import edu.sm.app.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,7 @@ public class MainController {
 
     private final DoctorService doctorService;
     private final CounselService counselService;
+
 
     @Value("${app.dir.imgmypage}")
     private String imgmypage;
@@ -66,6 +68,8 @@ public class MainController {
         model.addAttribute("center", "webrtc");
         return "main";
     }
+
+
 
     @RequestMapping("/loginimpl")
     public String loginimpl(

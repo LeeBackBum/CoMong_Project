@@ -30,9 +30,9 @@ public class Main {
         // 랜덤 숫자 데이터를 5초마다 전송
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(() -> {
-            int randomNumber = 1 + random.nextInt(100);
+            int randomNumber = 1 + random.nextInt(170);
             HttpSendData.send(randomNumberUrl, String.valueOf(randomNumber));
-        }, 0, 5, TimeUnit.SECONDS);
+        }, 0, 1, TimeUnit.SECONDS);
     }
 
     private static void sendDataOnce(String bloodPressureUrl, String bloodSugarUrl,

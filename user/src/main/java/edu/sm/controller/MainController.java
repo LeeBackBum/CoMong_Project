@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -36,8 +37,6 @@ public class MainController {
 
     @Value("${app.key.apikey}")
     String apikey;
-
-
 
 
     private final UserService userService;
@@ -145,9 +144,9 @@ public class MainController {
         System.out.println("로그인된 사용자 ID: " + userId);
 
 
-        model.addAttribute("userId",userId);
+        model.addAttribute("userId", userId);
 
-        model.addAttribute("center","reservation");
+        model.addAttribute("center", "reservation");
 
 
         return "index";
@@ -167,9 +166,9 @@ public class MainController {
         System.out.println("로그인된 사용자 Address: " + userAddress);
 
 
-        model.addAttribute("userAddress",userAddress);
+        model.addAttribute("userAddress", userAddress);
 
-        model.addAttribute("center","mapTest");
+        model.addAttribute("center", "mapTest");
 
 
         return "index";
@@ -261,4 +260,11 @@ public class MainController {
 
         return HpDate.getHpAddress(apikey);
     }
+
+    @RequestMapping("/payment")
+    public String payment(Model model) {
+        model.addAttribute("center", "payment");
+        return "index";
+    }
+
 }

@@ -45,6 +45,7 @@ public class DoctorService implements SMService<String, DoctorDto> {
     public List<DoctorDto> get() throws Exception {
         return doctorRepository.select();
     }
+
     public Resource loadAsResource(String fileName) throws Exception {
         try {
             Path filePath = Paths.get(imgmypage).resolve(fileName).normalize();

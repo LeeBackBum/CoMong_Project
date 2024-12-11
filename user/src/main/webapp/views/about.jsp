@@ -71,8 +71,8 @@
         <div class="service-item text-center pt-3">
           <div class="p-4">
             <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-            <h5 class="mb-3">Skilled Instructors</h5>
-            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+            <h5 class="mb-3">맞춤형 건강관리</h5>
+            <p>실시간 의료진과의 화상 상담을 지원하고 진료 예약 기능으로 일정 관리 간소화할 수 있는 서비스 제공.</p>
           </div>
         </div>
       </div>
@@ -80,8 +80,8 @@
         <div class="service-item text-center pt-3">
           <div class="p-4">
             <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-            <h5 class="mb-3">Online Classes</h5>
-            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+            <h5 class="mb-3">헬스케어 장비 연계</h5>
+            <p> 헬스케어 장비에서 수집된 데이터를 기반으로 실시간 상태를 평가하여 필요한 경우 즉각 대응합니다.</p>
           </div>
         </div>
       </div>
@@ -89,8 +89,8 @@
         <div class="service-item text-center pt-3">
           <div class="p-4">
             <i class="fa fa-3x fa-home text-primary mb-4"></i>
-            <h5 class="mb-3">Home Projects</h5>
-            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+            <h5 class="mb-3">의료 상담 및 진료 관리</h5>
+            <p>환자의 실시간 건강 데이터를 모니터링하여 신속히 상태를 파악하고 진료가 가능한 맞춤형 상담을 제공합니다.</p>
           </div>
         </div>
       </div>
@@ -98,8 +98,8 @@
         <div class="service-item text-center pt-3">
           <div class="p-4">
             <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-            <h5 class="mb-3">Book Library</h5>
-            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+            <h5 class="mb-3">실시간 건강확인</h5>
+            <p> 환자는 병원 방문 없이도 실시간으로 자신의 건강 상태를 관리할 수 있는 건강 정보를 제공합니다.         </p>
           </div>
         </div>
       </div>
@@ -115,35 +115,29 @@
     <div class="row g-5">
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
         <div class="position-relative h-100">
-          <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+          <img class="img-fluid position-absolute w-100 h-100" src="img/docgg.jpg" alt="" style="object-fit: cover;">
         </div>
       </div>
       <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
         <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
-        <h1 class="mb-4">Welcome to eLEARNING</h1>
-        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+        <h1 class="mb-4">COMONG에 오신 것을 환영합니다</h1>
+        <p class="mb-4">환자와 의료진을 연결하여 실시간 건강 관리를 지원하는 스마트 헬스케어 서비스를 소개합니다. 헬스케어 기술을 활용하여 환자의 건강 데이터를 실시간으로 모니터링하며 의료진이 필요한 순간에 신속히 대응할 수 있도록 설계된 서비스를 제공합니다.</p>
+
         <div class="row gy-2 gx-4 mb-4">
           <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
+            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>맞춤형 건강관리</p>
           </div>
           <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
+            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>헬스케어 장비 연계</p>
           </div>
           <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
+            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>의료 상담 및 진료 관리</p>
           </div>
           <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
-          </div>
-          <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
-          </div>
-          <div class="col-sm-6">
-            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
+            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>실시간 건강확인</p>
           </div>
         </div>
-        <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+        <a class="btn btn-primary py-3 px-5 mt-2" href="">COMONG</a>
       </div>
     </div>
   </div>
