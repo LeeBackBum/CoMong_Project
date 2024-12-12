@@ -162,7 +162,7 @@
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/Test"/>" class="nav-item nav-link">Courses</a>
-      <a href="<c:url value="/webrtc"/>" class="nav-item nav-link">WebRTC</a>
+      <a href="<c:url value="/webrtc"/>" class="nav-item nav-link">Video</a>
       <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
       <a href="<c:url value="/map"/>" class="nav-item nav-link">Map</a>
       <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>

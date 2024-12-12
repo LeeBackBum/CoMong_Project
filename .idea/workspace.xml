@@ -10,14 +10,8 @@
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/MedicalAppointmentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/Msg.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/Msg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketBrokerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/WebSocketBrokerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ChatbotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/ChatbotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/ChatBotUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/ChatBotUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/test/java/edu/sm/ncp/ChatbotTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/webrtc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,6 +298,8 @@
       <workItem from="1733724047612" duration="5983000" />
       <workItem from="1733731963145" duration="3822000" />
       <workItem from="1733790365031" duration="15135000" />
+      <workItem from="1733817031955" duration="3139000" />
+      <workItem from="1733876574611" duration="8203000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -417,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733732018664</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ChatBot">
+      <option name="closed" value="true" />
+      <created>1733817059464</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733817059464</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
