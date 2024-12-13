@@ -10,6 +10,4 @@ public class CalendarController {
     public String getCalendar() {
         return "calendar"; // calendar.jsp 파일을 반환
     }
-
-
 }

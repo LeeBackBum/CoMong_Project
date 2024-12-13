@@ -98,11 +98,19 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/Test")
-    public String test(Model model) {
-        model.addAttribute("center", "Test");
+    @RequestMapping("/search")
+    public String search(Model model) {
+        model.addAttribute("center", "search");
+        model.addAttribute("isChatbotEnabled", false);
         return "index";
     }
+
+    @RequestMapping("/3DTest")
+    public String index( Model model) {
+        model.addAttribute("center","3DTest");
+        return "index";  // src/main/resources/static/index.html을 반환
+    }
+
 
 
 

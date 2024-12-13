@@ -17,6 +17,8 @@
             width: 100%;
             height: 100%;
             background-color: black;
+            border: 2px solid black; /* 흰색 테두리 */
+            border-radius: 8px;
         }
 
         .hidden {
@@ -68,23 +70,15 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const link = document.getElementById('displayLink');
-        if (link) {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                alert('Link clicked!');
-            });
-        } else {
-            console.error('Element with id "displayLink" not found.');
-        }
-    });
 
 </script>
 
+
+
 <%----------------------------사용자 위치 기반 병원 목록--------------------------------------------------------%>
 <script>
-    var hpid;
+
+
     // 사용자가 입력한 주소 (예시)
     var address = '${userAddress}';
 
@@ -102,7 +96,7 @@
     var geocoder = new kakao.maps.services.Geocoder();
 
     // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(address, function(result, status) {
+    geocoder.addressSearch(address, function (result, status) {
 
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
@@ -144,9 +138,7 @@
                             const longitude = items[i].getElementsByTagName('longitude')[0].textContent;
                             const dutyName = items[i].getElementsByTagName('dutyName')[0].textContent.trim();
                             const dutyAddr = items[i].getElementsByTagName('dutyAddr')[0].textContent.trim();
-                            hpid = items[i].getElementsByTagName('hpid')[0].textContent.trim();
-
-
+                            const hpid = items[i].getElementsByTagName('hpid')[0].textContent.trim();
 
                             if (latitude && longitude) {
                                 const position = new kakao.maps.LatLng(latitude, longitude);
@@ -161,16 +153,18 @@
                                     '</div>' +
                                     '<div class="body">' +
                                     '<div class="img">' +
-                                    '<img src="data:image/png;base64,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" width="73" height="70">' +
+                                    '<img src="/imgt/hpmarker.png" width="73" height="70">' +
                                     '</div>' +
                                     '<div class="desc">' +
                                     '<div class="ellipsis">' + (dutyAddr || '병원 주소 없음') + '</div>' +
-                                    '<div class="ellipsis">잔여 병상수: ' + '0' + '개</div>' +
-                                    '<a href="https://apis.map.kakao.com/web/sample/addMapClickEventWithMarker/">클릭</a>' +
+                                    '<div class="ellipsis">잔여 병상수: ' + (hpbdn || '0') + '개</div>' +
+                                    '<div id="cattery" style="display:none;">' + (hpid || '기관아이디없음') + '</div>'+
+                                    '<a href="https://map.kakao.com/?q='+encodeURIComponent(dutyAddr || '병원 이름 없음')+'">클릭</a>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>' +
                                     '</div>';
+
 
                                 positions.push({ content, latlng: position });
                             }
@@ -201,20 +195,6 @@
                                 });
                             });
                         });
-
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const link = document.getElementById('displayLink');
-                            if (link) {
-                                link.addEventListener('click', function (event) {
-                                    event.preventDefault();
-                                    alert('Link clicked!');
-                                });
-                            } else {
-                                console.error('Element with id "displayLink" not found.');
-                            }
-                        });
-
-
 
                     } else {
                         resultDiv.innerHTML = "데이터가 없습니다.";
@@ -306,6 +286,7 @@
                     const dutyName = items[i].getElementsByTagName('dutyName')[0]?.textContent.trim() || '병원 이름 없음';
                     const dutyAddr = items[i].getElementsByTagName('dutyAddr')[0]?.textContent.trim() || '병원 주소 없음';
                     const hpbdn = items[i].getElementsByTagName('hpbdn')[0]?.textContent.trim() || '0';
+                    const hpid = items[i].getElementsByTagName('hpid')[0]?.textContent.trim() || '0';
 
                     if (latitude && longitude) {
                         const position = new kakao.maps.LatLng(latitude, longitude);
@@ -320,12 +301,13 @@
                             '</div>' +
                             '<div class="body">' +
                             '<div class="img">' +
-                            '<img src="data:image/png;base64,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" width="73" height="70">' +
+                            '<img src="/imgt/hpmarker.png" width="73" height="70">' +
                             '</div>' +
                             '<div class="desc">' +
                             '<div class="ellipsis">' + (dutyAddr || '병원 주소 없음') + '</div>' +
                             '<div class="ellipsis">잔여 병상수: ' + (hpbdn || '0') + '개</div>' +
-                            '<a href="#" id="displayLink">클릭</a>' +
+                            '<div id="cattery" style="display:none;">' + (hpid || '기관아이디없음') + '</div>'+
+                            '<a href="https://map.kakao.com/?q='+encodeURIComponent(dutyAddr || '병원 이름 없음')+'">클릭</a>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -380,7 +362,6 @@
 <%----------------------------도시 기반 병원 목록--------------------------------------------------------%>
 <script>
 
-
     var xhr = new XMLHttpRequest();
     var url = 'https://apis.data.go.kr/B552657/ErmctInfoInqireService/getEgytListInfoInqire'; /*URL*/
     var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D'; /*Service Key*/
@@ -409,6 +390,7 @@
                     const dutyName = items[i].getElementsByTagName('dutyName')[0]?.textContent.trim() || '병원 이름 없음';
                     const dutyAddr = items[i].getElementsByTagName('dutyAddr')[0]?.textContent.trim() || '병원 주소 없음';
                     const hpbdn = items[i].getElementsByTagName('hpbdn')[0]?.textContent.trim() || '0';
+                    const hpid = items[i].getElementsByTagName('hpid')[0]?.textContent.trim() || '0';
 
                     if (latitude && longitude) {
                         const position = new kakao.maps.LatLng(latitude, longitude);
@@ -423,11 +405,13 @@
                             '</div>' +
                             '<div class="body">' +
                             '<div class="img">' +
-                            '<img src="data:image/png;base64,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" width="73" height="70">' +
+                            '<img src="/imgt/hpmarker.png" width="73" height="70">' +
                             '</div>' +
                             '<div class="desc">' +
                             '<div class="ellipsis">' + (dutyAddr || '병원 주소 없음') + '</div>' +
                             '<div class="ellipsis">잔여 병상수: ' + (hpbdn || '0') + '개</div>' +
+                            '<div id="cattery" >' + (hpid || '기관아이디없음') + '</div>'+
+                            '<a href="https://map.kakao.com/?q='+encodeURIComponent(dutyAddr || '병원 이름 없음')+'">클릭</a>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +

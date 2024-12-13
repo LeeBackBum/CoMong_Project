@@ -8,6 +8,7 @@
     <select id="serachSubjectName" parameterType="String" resultType="doctorDto">
         SELECT * FROM doctor WHERE subject_name = #{subjectName};
     </select>
+
     <select id="selectOne" parameterType="String" resultType="doctorDto">
         SELECT * FROM doctor WHERE doctor_id=#{id}
     </select>
@@ -15,7 +16,7 @@
         SELECT * FROM doctor
     </select>
     <insert id="insert" parameterType="doctorDto">
-        INSERT INTO doctor VALUES (#{doctorId},#{doctorPwd},#{doctorNumber},#{imgName},#{doctorName},#{doctorAge},#{doctorEmail},#{doctorImg},#{career},#{ancestry},#{society},#{subjectName})
+        INSERT INTO doctor VALUES (#{doctorId},#{doctorPwd},#{doctorNumber},#{doctorName},#{doctorAge},#{doctorEmail},#{doctorImg},#{career},#{ancestry},#{society},#{subjectName})
     </insert>
     <update id="update" parameterType="doctorDto">
         UPDATE doctor SET doctor_pwd=#{doctorPwd},doctor_name=#{doctorName} WHERE doctor_id=#{doctorId}
