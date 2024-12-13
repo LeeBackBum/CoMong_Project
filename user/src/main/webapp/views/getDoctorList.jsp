@@ -27,7 +27,7 @@
         <li>
             <a href="javascript:void(0);"  onclick="handleDoctorClick('${doctor.doctorId}', this)">
                 <div class="image-box">
-                    <img src="<c:url value='/imgt'/>/${doctor.imgName}" alt="이가영" class="image-doctor" width="100px">
+                    <img src="<c:url value='/imgt'/>/${doctor.doctorImg}" alt="이가영" class="image-doctor" width="100px">
                 </div>
                 <span class="doctor-information" id="staffIdx_2" major="${doctor.subjectName}" doctor="${doctor.doctorName}" doctorid="${doctor.doctorId}">
                 <span class="type" style="font-size:14px;">${doctor.subjectName}</span>

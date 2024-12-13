@@ -84,6 +84,7 @@
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/Test"/>" class="nav-item nav-link">Address Search</a>
+      <a href="<c:url value="/3DTest"/>" class="nav-item nav-link">3DTest</a>
       <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
       <a href="<c:url value="/map"/>" class="nav-item nav-link">Map</a>
       <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
