@@ -273,4 +273,10 @@ public class MainController {
         model.addAttribute("center", "chart");
         return "index";
     }
+
+    @RequestMapping("/payment")
+    public String payment(Model model) {
+        model.addAttribute("center", "payment");
+        return "index";
+    }
 }

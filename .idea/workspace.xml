@@ -4,14 +4,66 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="ChatBot">
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="merge..ing_1213">
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/112.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/abdoc.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/docchart.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/docchart2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/docgg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/doctorsss.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/medical1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/pexels-edward-jenner-4031821.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/pexels-karolina-grabowska-4021769.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/pexels-karolina-grabowska-4386470.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/pexels-oles-kanebckuu-34911-127873.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/screenvideo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/payment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02__9_43__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-02_오전_9_43_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-05__7_26__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-05_오후_7_26_[Changes]/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-05_오후_7_26_[Changes]/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-05_오후_7_26_[Changes]/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-05_오후_7_26_[Changes]/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-12-05_오후_7_26_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05__7_10__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05__7_25__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05_오후_7_10_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05_오후_7_25_[Changes]/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05_오후_7_25_[Changes]/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05_오후_7_25_[Changes]/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05_오후_7_25_[Changes]/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-12-05_오후_7_25_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/webrtc.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/AnswerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/AnswerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/NoticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/NoticeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/AnswerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/NoticeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/NoticeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/AnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/NoticeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/NoticeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/boardMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/boardMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/noticeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/noticeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg1.png" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/healthcareimg1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/imgt/medical_service.png" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/medical_service.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/about.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/about.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/write.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/notice/write.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,36 +173,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.DoctorSelectTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.doctor_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Bum&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/resources/static/imgt&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.DoctorSelectTest.executor": "Run",
+    "Gradle.doctor [bootRun].executor": "Run",
+    "Gradle.doctor_iot [:edu.sm.Main.main()].executor": "Run",
+    "Gradle.user [bootRun].executor": "Run",
+    "Gradle.user_iot [:edu.sm.Main.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Bum",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/CoMong_Project/user/src/main/resources/static/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\user\src\main\resources\static\img" />
       <recent name="C:\CoMong_Project\user\src\main\resources\static\imgt" />
       <recent name="C:\CoMong_Project\user_iot\src\main\java\edu\sm" />
       <recent name="C:\CoMong_Project\doctor\src\main\java\edu\sm" />
       <recent name="C:\CoMong_Project\doctor\src\main\resources" />
-      <recent name="C:\CoMong_Project\doctor\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\CoMong_Project\user\src\main\resources\static\img" />
       <recent name="C:\CoMong_Project\doctor\src\main\resources" />
       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
     </key>
@@ -300,6 +353,9 @@
       <workItem from="1733790365031" duration="15135000" />
       <workItem from="1733817031955" duration="3139000" />
       <workItem from="1733876574611" duration="8203000" />
+      <workItem from="1733965504315" duration="9021000" />
+      <workItem from="1733999232973" duration="1399000" />
+      <workItem from="1734052240774" duration="11100000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -421,7 +477,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733817059464</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="ChatBot">
+      <option name="closed" value="true" />
+      <created>1733968486061</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733968486061</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +515,8 @@
     <MESSAGE value="feat.jhKim 2024.12.05 15:53 최신화" />
     <MESSAGE value="merge" />
     <MESSAGE value="ChatBot" />
-    <option name="LAST_COMMIT_MESSAGE" value="ChatBot" />
+    <MESSAGE value="merge..ing_1213" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge..ing_1213" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

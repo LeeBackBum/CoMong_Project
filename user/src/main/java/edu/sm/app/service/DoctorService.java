@@ -55,7 +55,6 @@ public class DoctorService implements SMService<String, DoctorDto> {
                         doctor.getDoctorName(),
                         doctor.getDoctorAge(),
                         doctor.getDoctorEmail(),
-                        doctor.getDoctorImg(),
                         doctor.getCareer(),
                         doctor.getAncestry(),
                         doctor.getSociety(),

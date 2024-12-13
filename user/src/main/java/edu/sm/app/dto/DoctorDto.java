@@ -17,7 +17,6 @@ public class DoctorDto {
         private String doctorName;
         private String doctorAge;
         private String doctorEmail;
-        private String doctorImg;
         private String career;         // 경력
         private String ancestry;       // 학력
         private String society;        // 학회

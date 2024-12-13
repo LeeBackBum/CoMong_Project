@@ -6,10 +6,13 @@ import edu.sm.app.service.AnswerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,27 +27,34 @@ public class AnswerController {
 
     // 특정 게시글의 모든 댓글 조회
     @GetMapping("/board/{boardId}")
-    public String getAnswersByBoardId(@PathVariable int boardId, Model model) {
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> getAnswersByBoardId(@PathVariable int boardId) {
+        Map<String, Object> response = new HashMap<>();
         try {
             List<AnswerDto> answers = answerService.getAnswersByBoardId(boardId);
-            model.addAttribute("answers", answers);
+            response.put("answers", answers);
+            response.put("status", "success");
             log.info("댓글 목록 로드 완료: boardId={}, 댓글 수={}", boardId, answers.size());
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            log.error("댓글 조회 실패: {}", e.getMessage(), e);
-            model.addAttribute("errorMessage", "댓글을 로드하는 중 오류가 발생했습니다.");
+            log.error("댓글 조회 실패: {}", e.getMessage());
+            response.put("status", "error");
+            response.put("message", "댓글을 로드하는 중 오류가 발생했습니다.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
-        return "board/detail";
     }
 
-    // 댓글 추가
+    // 댓글 추가 시 작성 시간 포함
     @PostMapping("/board/{boardId}/add")
-    public String addAnswer(@PathVariable int boardId, @RequestParam("content") String content, HttpSession session) {
+    @ResponseBody
+    public Map<String, Object> addAnswerAjax(@PathVariable int boardId, @RequestParam("content") String content, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
         try {
-            // 세션에서 UserDto 가져오기
             UserDto user = (UserDto) session.getAttribute("loginid");
             if (user == null) {
-                log.warn("로그인 정보 없음: 댓글 작성 불가");
-                return "redirect:/login?error=session_missing";
+                response.put("status", "error");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
             }
 
             AnswerDto answerDto = AnswerDto.builder()
@@ -52,107 +62,167 @@ public class AnswerController {
                     .boardId(boardId)
                     .userId(user.getUserId())
                     .userName(user.getUserName())
-                    .depth(0) // 댓글 기본 깊이
+                    .answerDate(LocalDateTime.now())
                     .build();
 
-            log.info("댓글 작성 요청 데이터: {}", answerDto);
             answerService.addAnswer(answerDto);
 
-        } catch (Exception e) {
-            log.error("댓글 작성 중 오류 발생: {}", e.getMessage(), e);
-            return "redirect:/board/" + boardId + "?error=true";
-        }
-        return "redirect:/board/" + boardId;
-    }
+            response.put("status", "success");
+            response.put("answer", answerDto);
 
-    // 대댓글 추가
+            // 서버에서 응답 데이터를 로그로 출력
+            log.info("서버 응답 데이터: {}", response);
+
+        } catch (Exception e) {
+            response.put("status", "error");
+            response.put("message", "댓글 추가 실패: " + e.getMessage());
+            log.error("댓글 추가 중 오류 발생:", e);
+        }
+        return response;
+    }
+    //대댓글
     @PostMapping("/reply/{parentAnswerId}")
-    public String addReply(@PathVariable int parentAnswerId, @RequestParam("content") String content,
-                           @RequestParam("boardId") int boardId, HttpSession session) {
+    @ResponseBody
+    public Map<String, Object> addReplyAjax(@PathVariable int parentAnswerId, @RequestParam("content") String content,
+                                            @RequestParam("boardId") int boardId, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
         try {
-            // 세션에서 UserDto 가져오기
             UserDto user = (UserDto) session.getAttribute("loginid");
             if (user == null) {
-                log.warn("로그인 정보 없음: 대댓글 작성 불가");
-                return "redirect:/login?error=not_logged_in";
+                response.put("status", "error");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
             }
 
-            // 부모 댓글 확인
             AnswerDto parentAnswer = answerService.getAnswerById(parentAnswerId);
             if (parentAnswer == null) {
-                log.error("부모 댓글이 존재하지 않습니다: parentAnswerId={}", parentAnswerId);
-                return "redirect:/board/" + boardId + "?error=true";
+                response.put("status", "error");
+                response.put("message", "부모 댓글이 존재하지 않습니다.");
+                return response;
             }
 
             AnswerDto replyDto = AnswerDto.builder()
                     .answerContent(content)
                     .boardId(boardId)
                     .userId(user.getUserId())
-                    .userName(user.getUserName())
+                    .userName(user.getUserName()) // 작성자 정보 추가
                     .parentAnswerId(parentAnswerId)
-                    .groupId(parentAnswer.getGroupId()) // 부모와 같은 그룹
-                    .depth(parentAnswer.getDepth() + 1) // 부모 깊이에 +1
+                    .groupId(parentAnswer.getGroupId())
+                    .depth(parentAnswer.getDepth() + 1)
+                    .answerDate(LocalDateTime.now())
                     .build();
 
-            log.info("대댓글 작성 요청 데이터: {}", replyDto);
-            answerService.addReply(replyDto, parentAnswerId);
+            AnswerDto savedReply = answerService.addReply(replyDto, parentAnswerId);
 
+            if (savedReply.getAnswerId() == 0) {
+                throw new RuntimeException("대댓글 저장 실패: 생성된 ID가 유효하지 않음.");
+            }
+
+            response.put("status", "success");
+            response.put("reply", savedReply);
         } catch (Exception e) {
-            log.error("대댓글 작성 중 오류 발생: {}", e.getMessage(), e);
-            return "redirect:/board/" + boardId + "?error=true";
+            response.put("status", "error");
+            response.put("message", "대댓글 추가 실패: " + e.getMessage());
+            log.error("대댓글 추가 중 오류 발생:", e);
         }
-        return "redirect:/board/" + boardId;
+        return response;
     }
 
-    // 댓글 삭제
+
+
     @PostMapping("/delete/{answerId}")
-    public String deleteAnswer(@PathVariable int answerId, @RequestParam int boardId, HttpSession session) {
-        UserDto user = (UserDto) session.getAttribute("loginid");
-        AnswerDto answer = answerService.getAnswerById(answerId);
-
-        if (!hasPermission(user, answer)) {
-            log.warn("삭제 권한 없음: 사용자 ID={}, 댓글 작성자 ID={}",
-                    user != null ? user.getUserId() : "null",
-                    answer != null ? answer.getUserId() : "null");
-            return "redirect:/board/" + boardId + "?error=unauthorized";
-        }
-
+    @ResponseBody
+    public Map<String, Object> deleteAnswerAjax(@PathVariable int answerId, @RequestParam int boardId, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
         try {
+            UserDto user = (UserDto) session.getAttribute("loginid");
+
+            // 댓글 객체를 삭제 직전에 재조회
+            AnswerDto answer = answerService.getAnswerById(answerId);
+            if (answer == null) {
+                response.put("status", "error");
+                response.put("message", "댓글이 이미 삭제되었거나 존재하지 않습니다.");
+                return response;
+            }
+
+            // 삭제 권한 확인
+            if (user == null || (!user.getUserId().equals(answer.getUserId()) && !"1".equals(user.getRole()))) {
+                response.put("status", "error");
+                response.put("message", "삭제 권한이 없습니다.");
+                return response;
+            }
+
+            // 댓글 삭제
             answerService.deleteAnswer(answerId);
-            log.info("댓글 삭제 성공: answerId={}", answerId);
+
+            // 삭제 후 최신 댓글 목록 가져오기
+            List<AnswerDto> updatedAnswers = answerService.getAnswersByBoardId(boardId);
+
+            log.info("삭제 후 남은 댓글 수: {}", updatedAnswers.size());
+
+            response.put("status", "success");
+            response.put("answers", updatedAnswers); // 최신 댓글 목록 반환
         } catch (Exception e) {
-            log.error("댓글 삭제 실패", e);
-            return "redirect:/board/" + boardId + "?error=true";
+            response.put("status", "error");
+            response.put("message", "댓글 삭제 실패: " + e.getMessage());
+            log.error("댓글 삭제 중 오류 발생:", e);
         }
-        return "redirect:/board/" + boardId;
+        return response;
     }
 
-    // 댓글 수정
+
+
+
     @PostMapping("/edit/{answerId}")
-    public String editAnswer(@PathVariable int answerId, @RequestParam("content") String content,
-                             @RequestParam("boardId") int boardId, HttpSession session) {
-        UserDto user = (UserDto) session.getAttribute("loginid");
-        AnswerDto answerDto = answerService.getAnswerById(answerId);
-
-        if (!hasPermission(user, answerDto)) {
-            log.warn("수정 권한 없음: 사용자 ID={}, 댓글 작성자 ID={}",
-                    user != null ? user.getUserId() : "null",
-                    answerDto != null ? answerDto.getUserId() : "null");
-            return "redirect:/board/" + boardId + "?error=unauthorized";
-        }
-
+    @ResponseBody
+    public Map<String, Object> editAnswerAjax(@PathVariable int answerId, @RequestParam("content") String content, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
         try {
-            answerDto.setAnswerContent(content);
-            answerService.editAnswer(answerDto);
-            log.info("댓글 수정 성공: answerId={}", answerId);
+            UserDto user = (UserDto) session.getAttribute("loginid");
+            if (user == null) {
+                response.put("status", "error");
+                response.put("message", "로그인이 필요합니다.");
+                return response;
+            }
+
+            AnswerDto answer = answerService.getAnswerById(answerId);
+            if (answer == null) {
+                response.put("status", "error");
+                response.put("message", "댓글이 존재하지 않습니다.");
+                return response;
+            }
+
+            if (!user.getUserId().equals(answer.getUserId()) && !"1".equals(user.getRole())) {
+                response.put("status", "error");
+                response.put("message", "수정 권한이 없습니다.");
+                return response;
+            }
+
+            // 댓글 내용 수정
+            answer.setAnswerContent(content);
+            answerService.editAnswer(answer);
+
+            // 수정 후 최신 데이터 반환
+            AnswerDto updatedAnswer = answerService.getAnswerById(answerId); // 작성자 포함 데이터
+            response.put("status", "success");
+            response.put("answer", updatedAnswer); // 수정된 댓글 데이터를 반환
         } catch (Exception e) {
-            log.error("댓글 수정 실패: {}", e.getMessage(), e);
-            return "redirect:/board/" + boardId + "?error=true";
+            response.put("status", "error");
+            response.put("message", "댓글 수정 실패: " + e.getMessage());
         }
-        return "redirect:/board/" + boardId + "#comment-" + answerId;
+        return response;
     }
+
+
+
+
+
+
+
+
     // 권한 확인 메서드
     private boolean hasPermission(UserDto user, AnswerDto answer) {
         return user != null && (user.getUserId().equals(answer.getUserId()) || "1".equals(user.getRole()));
     }
+
 }

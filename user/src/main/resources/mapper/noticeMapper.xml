@@ -38,16 +38,7 @@
         VALUES (#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeDate}, #{noticeHits}, #{userId}, #{userName})
     </insert>
 
-    <!-- 공지사항 수정 -->
-<!--    <update id="update" parameterType="edu.sm.app.dto.NoticeDto">-->
-<!--        UPDATE notice-->
-<!--        SET notice_title = #{noticeTitle},-->
-<!--            notice_content = #{noticeContent},-->
-<!--            notice_date = #{noticeDate},-->
-<!--            notice_hits = #{noticeHits},-->
-<!--            user_id = #{userId}-->
-<!--        WHERE notice_id = #{noticeId}-->
-<!--    </update>-->
+
     <update id="update" parameterType="edu.sm.app.dto.NoticeDto">
         UPDATE notice
         SET notice_title = #{noticeTitle},
