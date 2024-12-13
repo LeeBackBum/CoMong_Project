@@ -2183,7 +2183,6 @@
       <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/js/utils/WebGLTextureUtils.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/js/utils/WebGPUTextureUtils.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/js/utils/WorkerPool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/user/src/package.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/user/src/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -2191,13 +2190,6 @@
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/imgt/d1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/img2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/imgt/d2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/img1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2524,6 +2516,7 @@
       <workItem from="1733879458953" duration="2250000" />
       <workItem from="1733982292281" duration="14881000" />
       <workItem from="1734048950081" duration="15032000" />
+      <workItem from="1734074909375" duration="609000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -2597,7 +2590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733810168796</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="12-13 (3D 모델링)">
+      <option name="closed" value="true" />
+      <created>1734075121621</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734075121621</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
