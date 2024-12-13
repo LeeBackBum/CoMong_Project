@@ -35,4 +35,5 @@ public class MsgController {
 
         template.convertAndSend("/send/to/"+target,msg);
     }
+
 }

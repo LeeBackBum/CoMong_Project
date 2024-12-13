@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.09 차트 최신화">
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="feat.jhKim 2024.12.09 최신화">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/blood_pressure.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/blood_pressure.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/blood_sugar.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/blood_sugar.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/depression_score.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/depression_score.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +261,11 @@
       <workItem from="1733372323582" duration="10098000" />
       <workItem from="1733458607487" duration="9360000" />
       <workItem from="1733477304724" duration="407000" />
-      <workItem from="1733544181311" duration="3232000" />
+      <workItem from="1733544181311" duration="10479000" />
+      <workItem from="1733809985094" duration="2488000" />
+      <workItem from="1733896725882" duration="3396000" />
+      <workItem from="1733980337607" duration="2142000" />
+      <workItem from="1734051295020" duration="610000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -380,7 +387,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733718946643</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat.jhKim 2024.12.09 차트 최신화">
+      <option name="closed" value="true" />
+      <created>1733719766973</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733719766973</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat.jhKim 2024.12.09 최신화">
+      <option name="closed" value="true" />
+      <created>1733719853576</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733719853576</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +434,8 @@
     <MESSAGE value="feat.jhKim 2024.12.05 메인페이지 완료" />
     <MESSAGE value="feat.jhKim 2024.12.06 캠 위치, 디자인 완료" />
     <MESSAGE value="feat.jhKim 2024.12.09 차트 최신화" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.09 차트 최신화" />
+    <MESSAGE value="feat.jhKim 2024.12.09 최신화" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat.jhKim 2024.12.09 최신화" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
