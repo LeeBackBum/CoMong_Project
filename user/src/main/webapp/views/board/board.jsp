@@ -67,10 +67,17 @@
 <%--  </c:if>--%>
 
   <!-- 검색 폼 -->
-  <form action="<c:url value='/board' />" method="get" class="d-flex mb-3">
-    <input type="text" name="keyword" class="form-control me-2" placeholder="제목 또는 내용 검색" value="${keyword}">
-    <button type="submit" class="btn btn-primary">검색</button>
+<%--  <form action="<c:url value='/board' />" method="get" class="d-flex mb-3">--%>
+<%--    <input type="text" name="keyword" class="form-control me-2" placeholder="제목 또는 내용 검색" value="${keyword}">--%>
+<%--    <button type="submit" class="btn btn-primary">검색</button>--%>
+<%--  </form>--%>
+  <form action="<c:url value='/board' />" method="get" class="d-flex mb-2" style="max-width: 500px;">
+    <input type="text" name="keyword" class="form-control me-2" style="width: 85%; font-size: 1rem; padding: 0.5rem;" placeholder="검색어 입력" value="${keyword}">
+    <button type="submit" class="btn btn-primary btn-sm" style="font-size: 1.1rem; padding: 0.5rem 1rem;">검색</button>
   </form>
+
+
+
 
   <table class="table">
     <thead>
