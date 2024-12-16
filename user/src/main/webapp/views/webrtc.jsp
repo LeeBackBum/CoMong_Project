@@ -43,12 +43,12 @@
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-10 text-center">
-        <h1 class="display-3 text-white animated slideInDown">Counseling</h1>
+        <h1 class="display-3 text-white animated slideInDown">화상 상담</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">Home</a></li>
-            <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">수정</a></li>
-            <li class="breadcrumb-item text-white active" aria-current="page">수정</li>
+            <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">Page</a></li>
+            <li class="breadcrumb-item text-white active" aria-current="page">Video</li>
           </ol>
         </nav>
       </div>

@@ -4,20 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="merge">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="User 완료">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/user.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/config/JasyptConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/PapagoUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/(의)서일의료재단기장병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/단국대학교의과대학부속병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/대동병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/동남권원자력의학원원자력병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/동래봉생병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/부산성모병원(재단법인 천주교부산교구유지재단).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/아산충무병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인 광혜의료재단 광혜병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인 온그룹의료재단 온종합병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인영서의료재단천안충무병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인정화의료재단 봉생기념병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/인제대학교부산백병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/재단법인아산사회복지재단 서울아산병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/좋은문화병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/충청남도천안의료원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/학교법인동은학원순천향대학교부속천안병원.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/현대병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/user/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/강동경희대학교의대병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/강동경희대학교의대병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/건국대학교병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/건국대학교병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/부민병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/부민병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/분당서울대학교병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/분당서울대학교병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/삼성서울병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/삼성서울병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/성심의료재단강동성심병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/성심의료재단강동성심병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/연세대학교의과대학 강남세브란스병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/연세대학교의과대학 강남세브란스병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인서울효천의료재단에이치플러스양지병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인서울효천의료재단에이치플러스양지병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/이화여자대학교의과대학부속서울병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/이화여자대학교의과대학부속서울병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/한국보훈복지의료공단 중앙보훈병원.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/한국보훈복지의료공단 중앙보훈병원.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/img/carousel-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/carousel-1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/Test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/board/board.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/chart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/chart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/contact.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/courses.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/forgot.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/forgot.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/payment.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/payment.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/renew.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/renew.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/reservation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/search.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/team.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/testimonial.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/webrtc.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +140,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -265,6 +315,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="user.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="edu.sm.UserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.user [bootRun]" />
@@ -314,6 +372,7 @@
       <workItem from="1734077708670" duration="3961000" />
       <workItem from="1734082349035" duration="1273000" />
       <workItem from="1734308666389" duration="4059000" />
+      <workItem from="1734312797060" duration="9739000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -459,7 +518,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734082381267</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="merge">
+      <option name="closed" value="true" />
+      <created>1734312822065</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1734312822065</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +557,8 @@
     <MESSAGE value="ChatBot" />
     <MESSAGE value="merge..ing_1213" />
     <MESSAGE value="merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge" />
+    <MESSAGE value="User 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="User 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

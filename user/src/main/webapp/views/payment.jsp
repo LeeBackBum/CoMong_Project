@@ -119,11 +119,11 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
-                <h1 class="display-3 text-white animated slideInDown">SM Korea</h1>
+                <h1 class="display-3 text-white animated slideInDown">멤버십 결제</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a class="text-white" href="/">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">멤버십 결제</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Pay</li>
                     </ol>
                 </nav>
             </div>

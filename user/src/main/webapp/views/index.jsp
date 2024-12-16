@@ -6,17 +6,13 @@
 
 <head>
   <meta charset="utf-8">
-  <title>eLEARNING - eLearning HTML Template</title>
+  <title>COMONG</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-
   <!-- map -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8848ba17cfa4393e77b560b938dc5a46&libraries=services"></script>
-
-
-
 
   <!-- Favicon -->
   <link href="<c:url value="/img/icon.ico"/>" rel="icon">
@@ -170,12 +166,16 @@
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
       <a href="<c:url value="/search"/>" class="nav-item nav-link">Search</a>
-      <a href="<c:url value="/3DTest"/>" class="nav-item nav-link">3D</a>
-      <a href="<c:url value="/webrtc"/>" class="nav-item nav-link">Video</a>
+      <a href="<c:url value="/board"/>" class="nav-item nav-link">Board</a>
       <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
       <a href="<c:url value="/map"/>" class="nav-item nav-link">Map</a>
-      <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
-      <a href="<c:url value="/board"/>" class="nav-item nav-link">Board</a>
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Counsel</a>
+        <div class="dropdown-menu fade-down m-0">
+          <a href="<c:url value="/counseling"/>" class="dropdown-item">Chat</a>
+          <a href="<c:url value="/webrtc"/>" class="dropdown-item">Video</a>
+        </div>
+      </div>
     </div>
     <ul class="nav justify-content-end">
       <c:choose>
@@ -413,7 +413,7 @@
         <h4 class="text-white mb-3">Contact</h4>
         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+        <p class="mb-2"><i class="fa fa-envelope me-3"></i>Comong@sunmoon.ac.kr</p>
         <div class="d-flex pt-2">
           <a class="btn btn-outline-light btn-social" href="<c:url value="/"/>"><i class="fab fa-twitter"></i></a>
           <a class="btn btn-outline-light btn-social" href="<c:url value="/"/>"><i class="fab fa-facebook-f"></i></a>
@@ -425,28 +425,28 @@
         <h4 class="text-white mb-3">Gallery</h4>
         <div class="row g-2 pt-2">
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src=<c:url value="/img/course-1.jpg" /> alt="">
+            <img class="img-fluid bg-light p-1" src=<c:url value="/img/docchart2.jpg" /> alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/docchart.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-3.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/docgg.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/doctorsss.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/medical1.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/pexels-karolina-grabowska-4021769.jpg' />" alt="">
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
         <h4 class="text-white mb-3">Newsletter</h4>
-        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+        <p>Easy care anytime, anywhere.</p>
         <div class="position-relative mx-auto" style="max-width: 400px;">
           <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
           <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
@@ -458,7 +458,7 @@
     <div class="copyright">
       <div class="row">
         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-          &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+          &copy; <a class="border-bottom" href="#">CoMong</a>, All Right Reserved.
 
           <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
           Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>

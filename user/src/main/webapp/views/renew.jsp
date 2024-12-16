@@ -75,7 +75,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">Home</a></li>
-            <li class="breadcrumb-item"><a class="text-white" href="<c:url value="renew"/> ">수정</a></li>
+            <li class="breadcrumb-item"><a class="text-white" href="<c:url value="renew"/> ">Update</a></li>
           </ol>
         </nav>
       </div>

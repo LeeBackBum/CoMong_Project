@@ -40,11 +40,6 @@
     </style>
 
 
-
-
-
-
-
     <meta charset="utf-8">
     <title>eLEARNING - eLearning HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -81,7 +76,7 @@
 
         function displayInput() {
             // 사용자가 입력한 값을 업데이트
-            userInputResult = document.getElementById('user-input').value.trim();
+            userInputResult = document.getElementById('user-search').value.trim();
             const outputDiv = document.getElementById('output');
 
             if (userInputResult !== "") {
@@ -178,7 +173,7 @@
                     '<div class="overflow-hidden">' +
                     '<img class="img-fluid" src="' + imageUrl + '" alt="' + (hospital.dutyName || '병원 이름 없음') + ' 이미지">' +
                     '</div>' +
-                    '<a class="btn btn-sm-square btn-primary mx-1" href="/map?hpid=' + encodeURIComponent(hospital.hpid) +'"><i class="fab fa"></i></a>' +
+                    // '<a class="btn btn-sm-square btn-primary mx-1" href="/map?hpid=' + encodeURIComponent(hospital.hpid) +'"><i class="fab fa"></i></a>' +
                     '<div class="text-center p-4">' +
                     '<h5 class="mb-0">' + (hospital.dutyName || '병원 이름 없음') + '</h5>' +
                     '<small>응급실: ' + (hospital.hvec || '잔여 병실 없음') + '</small>' +
@@ -216,12 +211,12 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
-                <h1 class="display-3 text-white animated slideInDown">Courses</h1>
+                <h1 class="display-3 text-white animated slideInDown">검색</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                         <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Courses</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Search</li>
                     </ol>
                 </nav>
             </div>
@@ -231,7 +226,7 @@
 
 <div id="input-container">
     <h3>검색 하실 주소(시도)입력해주세요</h3>
-    <input type="text" id="user-input" placeholder="">
+    <input type="text" id="user-search" placeholder="">
     <button onclick="displayInput()">검색</button>
     <div id="output"></div>
 </div>

@@ -89,7 +89,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
     let currentYear = 2024;
-    let currentMonth = 10; // 11월을 기준으로 시작 (0부터 시작이므로 10은 11월)
+    let currentMonth = 11; // 11월을 기준으로 시작 (0부터 시작이므로 10은 11월)
     let selectedDate = null;
 
     // 서버로 날짜 전송
