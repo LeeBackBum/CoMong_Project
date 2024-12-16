@@ -5,32 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="merge">
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/강동경희대학교의대병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/건국대학교병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/부민병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/분당서울대학교병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/삼성서울병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/성심의료재단강동성심병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/연세대학교의과대학 강남세브란스병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/의료법인서울효천의료재단에이치플러스양지병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/이화여자대학교의과대학부속서울병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/hpimg/한국보훈복지의료공단 중앙보훈병원.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor_iot/src/main/java/edu/sm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/app/service/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/CalendarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/CalendarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/mapper/doctor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/calendar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/IOTRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/IOTRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/3DTest.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/search.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,6 +312,8 @@
       <workItem from="1734052240774" duration="11100000" />
       <workItem from="1734074854814" duration="2818000" />
       <workItem from="1734077708670" duration="3961000" />
+      <workItem from="1734082349035" duration="1273000" />
+      <workItem from="1734308666389" duration="4059000" />
     </task>
     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
       <option name="closed" value="true" />
@@ -462,7 +451,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734074888466</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="merge">
+      <option name="closed" value="true" />
+      <created>1734082381267</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1734082381267</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

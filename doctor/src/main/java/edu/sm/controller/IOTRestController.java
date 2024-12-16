@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import jakarta.annotation.PostConstruct;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@EnableScheduling // 스케줄링 활성화
 @RestController
 @Slf4j
 @RequestMapping("/iot")
@@ -58,6 +61,17 @@ public class IOTRestController {
 
     @RequestMapping("/power")
     public Object power(@RequestBody String data) {
+        // 날짜 포맷을 현재 시간으로 설정
+        String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+        // 1부터 100까지의 랜덤 숫자 생성
+        Random random = new Random();
+        int randomNumber = 1 + random.nextInt(100);
+
+        // 로그에 날짜와 랜덤 숫자 포함하여 출력
+        log.debug("Received at {} with random number {}: {}", formattedDate, randomNumber, data);
+
+        // 받은 데이터를 처리하는 코드 (예시)
         return processData(data, POWER_LOG_FILE_PATH, powerDataList);
     }
 
@@ -160,5 +174,18 @@ public class IOTRestController {
         }
 
         return jsonArray;
+    }
+
+    // 5초마다 power.log에 로그를 추가하는 스케줄러 메서드
+    @Scheduled(fixedRate = 5000)
+    public void logPowerData() {
+        String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        Random random = new Random();
+        int randomNumber = 1 + random.nextInt(100);
+
+        String logData = formattedDate + ", " + randomNumber;
+
+        log.debug("Scheduled task running, log data: {}", logData);
+        appendToLogFile(logData, POWER_LOG_FILE_PATH);
     }
 }

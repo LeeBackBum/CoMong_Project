@@ -273,37 +273,6 @@
       });
     },
 
-
-    // display1: function(data) {
-    //     const normalRange = { min: 80, max: 139 }; // 예시 정상 범위
-    //     const processedData = data.map(item => item.value);
-    //     const pointBackgroundColors = processedData.map(value =>
-    //         (value < normalRange.min || value > normalRange.max) ? "red" : "rgba(0, 156, 255, .3)"
-    //     );
-    //
-    //     // 날짜와 혈압 수치를 추출
-    //     const labels = data.map(item => {
-    //         const date = new Date(item.timestamp);
-    //         return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; // "12월 1일" 형식으로 변환
-    //     });
-    //
-    //     var ctx3 = $("#line-chart").get(0).getContext("2d");
-    //     this.chartInstance = new Chart(ctx3, {
-    //         type: "line",
-    //         data: {
-    //             labels: labels, // 변환된 라벨 사용
-    //             datasets: [{
-    //                 label: "위험 수치",
-    //                 fill: false,
-    //                 backgroundColor: pointBackgroundColors,
-    //                 data: processedData
-    //             }]
-    //         },
-    //         options: {
-    //             responsive: true
-    //         }
-    //     });
-    // },
     display1: function(data = []) { // 기본값 설정
       if (!Array.isArray(data) || data.length === 0) {
         console.error("혈압 데이터가 비어 있거나 잘못되었습니다.");
@@ -377,42 +346,6 @@
       });
     },
 
-    // display3: function(data) {
-    //     // 최근 5개의 데이터만 가져오기
-    //     const recentData = data.slice(-5); // 배열의 마지막 5개 요소를 선택
-    //
-    //     // 날짜와 우울증 점수를 추출
-    //     const labels = recentData.map(item => {
-    //         const date = new Date(item.timestamp);
-    //         return (date.getMonth() + 1)+'월' +(date.getDate())+'일'; // "12월 1일" 형식으로 변환
-    //     });
-    //     const depressionScores = recentData.map(item => item.value); // 우울증 점수 추출
-    //
-    //     var ctx4 = $("#bar-chart").get(0).getContext("2d");
-    //     if (this.charts && this.charts.depressionChart) {
-    //         this.charts.depressionChart.destroy(); // 기존 차트 인스턴스 제거
-    //     }
-    //     this.charts.depressionChart = new Chart(ctx4, {
-    //         type: "bar",
-    //         data: {
-    //             labels: labels, // x축 라벨 설정
-    //             datasets: [{
-    //                 label: "우울증 점수",
-    //                 backgroundColor: [
-    //                     "rgba(0, 156, 255, .7)",
-    //                     "rgba(0, 156, 255, .6)",
-    //                     "rgba(0, 156, 255, .5)",
-    //                     "rgba(0, 156, 255, .4)",
-    //                     "rgba(0, 156, 255, .3)"
-    //                 ],
-    //                 data: depressionScores // y축 데이터 설정
-    //             }]
-    //         },
-    //         options: {
-    //             responsive: true
-    //         }
-    //     });
-    // },
     display3: function(data = []) {
       if (!this.charts) {
         this.charts = {}; // charts 객체 초기화
@@ -464,58 +397,6 @@
 
 
 
-<%--&lt;%&ndash;-----------------------------Chart  Main Start---------------------------------&ndash;%&gt;--%>
-<%--<div id="hiddenDiv">--%>
-<%--        <!-- Chart Start -->--%>
-<%--        <div class="container-fluid pt-4 px-4">--%>
-<%--            <div class="row g-4">--%>
-<%--                <div class="col-sm-12 col-xl-6">--%>
-<%--                    <div class="bg-light rounded h-100 p-4">--%>
-<%--                        <div class="d-flex align-items-center justify-content-between mb-4">--%>
-<%--                            <h6 class="mb-0">일별 혈압</h6>--%>
-<%--                        </div>--%>
-<%--                        <canvas id="line-chart"></canvas>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="col-sm-12 col-xl-6">--%>
-<%--                    <div class="bg-light rounded h-100 p-4">--%>
-<%--                        <div class="d-flex align-items-center justify-content-between mb-4">--%>
-<%--                            <h6 class="mb-0">일별 혈당</h6>--%>
-<%--                        </div>--%>
-<%--                        <canvas id="line-chart2"></canvas>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="col-sm-12 col-xl-6">--%>
-<%--                    <div class="bg-light rounded h-100 p-4">--%>
-<%--                        <h6 class="mb-4">우울증 수치</h6>--%>
-<%--                        <canvas id="bar-chart"></canvas>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="col-sm-12 col-xl-6">--%>
-<%--                    <div class="bg-light rounded h-100 p-4">--%>
-<%--                        <h6 class="mb-4">특이사항에 관한 실시간 데이터</h6>--%>
-<%--                        <div id="container" style="width: 100%; height: 300px;"></div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- Chart End -->--%>
-
-<%--        <!-- Footer Start -->--%>
-<%--        <div class="container-fluid pt-4 px-4">--%>
-<%--            <div class="bg-light rounded-top p-4">--%>
-<%--                <div class="row">--%>
-<%--                    <div class="col-12 col-sm-6 text-center text-sm-start">--%>
-<%--                        &copy; <a href="#">Your Site Name</a>, All Right Reserved.--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- Footer End -->--%>
-<%--    </div>--%>
-<%--&lt;%&ndash;-----------------------------Chart  Main End---------------------------------&ndash;%&gt;--%>
-
-
 <script type="importmap">
   {
     "imports": {
@@ -549,17 +430,11 @@
     console.log('mouse', mouse)
     console.log('camera position:', camera.position);
     console.log('scene.resource.obj', scene.resource.obj.children)
-    if (selectedObject) {
-      // console.log('selectedObj', selectedObject)
-    }
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
     raycaster.setFromCamera(mouse, camera)
     const intersects = raycaster.intersectObjects(scene.resource.obj.children, true) //array
     console.log('intersects', intersects)
-    // console.log('mouse:', mouse);
-    // console.log('scene.resource.obj.children:', scene.resource.obj.children);
-    // console.log('camera position:', camera.position);
 
     if (intersects.length > 0) {
       const res = intersects.filter(function (res) {
@@ -582,11 +457,6 @@
 
   let scene = new THREE.Scene();
   scene.resource = { obj: new THREE.Group() };
-  // const mesh = new THREE.Mesh(
-  //     new THREE.BoxGeometry(1, 1, 1),
-  //     new THREE.MeshBasicMaterial({ color: 0xff0000 })
-  // );
-  // scene.resource.obj.add(mesh); // mesh 객체를 추가합니다.
   console.log(scene.resource.obj.children);
 
   let renderer = new THREE.WebGLRenderer({
@@ -599,20 +469,12 @@
 
   // 고정된 사이즈로 설정
   renderer.setSize(width, height);
-  // renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio); // 고해상도 디스플레이 대응
-  // document.body.appendChild(renderer.domElement); //코드 사용시 document방식이라  문서가 로딩된후 마지막에 랜더링 됨
 
 
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(10, 10, 10);
-  // scene.add(light);
-
   renderer.outputEncoding = THREE.sRGBEncoding;
-  // let camera = new THREE.PerspectiveCamera(30, 1);
-
-
-  // const targetPosition = new THREE.Vector3(30, 69, 93);
 
   const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
   camera.position.z = 3;
@@ -628,7 +490,6 @@
   // 카메라가 목표 지점을 바라보도록 설정
   camera.lookAt(target);
 
-  // camera.lookAt(0,0,0);      // 모델 중심을 향하도록 설정
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
   console.log("Camera Direction: x=" + camera.position.x + ", y=" + camera.position.y + ", z=" + camera.position.z);
@@ -643,55 +504,16 @@
   controls.update();
 
 
-
-  // controls.target.copy(targetPosition);
-
-
   const textureLoader = new THREE.TextureLoader();
   const map = textureLoader.load( 'examples/models/gltf/LeePerrySmith/Map-COL.jpg' );
   map.colorSpace = THREE.SRGBColorSpace;
   const specularMap = textureLoader.load( 'examples/models/gltf/LeePerrySmith/Map-SPEC.jpg' );
   const normalMap = textureLoader.load( 'examples/models/gltf/LeePerrySmith/Infinite-Level_02_Tangent_SmoothUV.jpg' );
 
-  // -------------------------------------gltf 모델 렌더링 start------------------------------------------------
-  // let loader = new GLTFLoader();
-  // loader.load('examples/models/gltf/LeePerrySmith/LeePerrySmith.glb', function (gltf) {
-  //     mesh = gltf.scene.children[ 0 ];
-  //     mesh.material = new THREE.MeshPhongMaterial( {
-  //         specular: 0x111111,
-  //         map: map,
-  //         specularMap: specularMap,
-  //         normalMap: normalMap,
-  //         shininess: 25
-  //     } );
-  //
-  //     scene.add( mesh );
-  //     mesh.scale.multiplyScalar( 10 );
-  //
-  //
-  //     //
-  //     scene.add(gltf.scene);
-  //     scene.background = new THREE.Color('black');
-  //
-  //     let ambientLight = new THREE.AmbientLight(0xffffff, 0.5);  // 색상과 강도
-  //     scene.add(ambientLight);
-  //
-  //     let dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  //     dirLight.position.set(0, 5, 5);  // 위치 설정
-  //     scene.add(dirLight);
-  //
-  //     function animate(){
-  //         requestAnimationFrame(animate);
-  //         controls.update(); // OrbitControls 업데이트를 추가합니다.
-  //         renderer.render(scene, camera);
-  //     }
-  //     animate();
-  // });
-  // -------------------------------------gltf 모델 렌더링 end------------------------------------------------
+
   var material = new THREE.MeshStandardMaterial;
 
   var texture = new THREE.TextureLoader().load('models/obj/apple_watch_nike_face.jpg');
-  // vmppmax_v4_1_3_2_g.png
   material.map = texture;
 
 
@@ -713,25 +535,6 @@
         function animate(){
           requestAnimationFrame(animate);
           controls.update(); // OrbitControls 업데이트를 추가합니다.
-
-
-          // // 카메라 방향 계산
-          // const direction = new THREE.Vector3();
-          // camera.getWorldDirection(direction);
-          //
-          // // 카메라의 위치를 OrbitControls.target을 기준으로 설정
-          // const distance = 10; // 원하는 거리
-          // const newPosition = new THREE.Vector3();
-          // newPosition.copy(controls.target).sub(direction.multiplyScalar(distance));
-          //
-          // camera.position.set(newPosition.x, newPosition.y, newPosition.z);
-          //
-          // // 콘솔에 카메라 위치와 방향 출력
-          // console.log("Camera Position: x=" + camera.position.x + ", y=" + camera.position.y + ", z=" + camera.position.z);
-          // console.log("Camera Direction: x=" + direction.x + ", y=" + direction.y + ", z=" + direction.z);
-
-
-
 
           renderer.render(scene, camera);
         }

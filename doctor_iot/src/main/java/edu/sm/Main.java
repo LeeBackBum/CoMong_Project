@@ -14,10 +14,10 @@ public class Main {
         Random random = new Random();
 
         // 각 데이터 타입에 대한 URL 설정
-        String bloodPressureUrl = "http://127.0.0.1:81/iot/bloodPressure";
-        String bloodSugarUrl = "http://127.0.0.1:81/iot/bloodSugar";
-        String depressionScoreUrl = "http://127.0.0.1:81/iot/depressionScore";
-        String randomNumberUrl = "http://127.0.0.1:81/iot/power";
+        String bloodPressureUrl = "http://127.0.0.1:8443/iot/bloodPressure";
+        String bloodSugarUrl = "http://127.0.0.1:8443/iot/bloodSugar";
+        String depressionScoreUrl = "http://127.0.0.1:8443/iot/depressionScore";
+        String randomNumberUrl = "http://127.0.0.1:8443/iot/power";
 
         // 날짜 설정: 2024년 1월 1일 22시
         Calendar calendar = Calendar.getInstance();
@@ -31,7 +31,9 @@ public class Main {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(() -> {
             int randomNumber = 1 + random.nextInt(100);
+            System.out.println("[LOG] Random Number: " + randomNumber);
             HttpSendData.send(randomNumberUrl, String.valueOf(randomNumber));
+
         }, 0, 5, TimeUnit.SECONDS);
     }
 

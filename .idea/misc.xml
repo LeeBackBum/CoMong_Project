@@ -7,7 +7,7 @@
     <file type="web" url="file://$PROJECT_DIR$/user" />
     <file type="web" url="file://$PROJECT_DIR$/user_iot" />
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
