@@ -106,9 +106,17 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/3DTest")
+    public String Test(Model model) {
+        model.addAttribute("center", "3DTest");
+        return "index";
+    }
+
+
+
     @RequestMapping("/Test")
     public String test(Model model) {
-        model.addAttribute("center", "gethp");
+        model.addAttribute("center", "Test");
         return "index";
     }
 
