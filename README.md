@@ -64,3 +64,32 @@ https://github.com/user-attachments/assets/dc511bc8-6bf5-44b6-85b2-f34aec66c2c9
 ![몰입형sw구성도](https://github.com/user-attachments/assets/f538392f-8ab7-4f01-a847-b8bed02acb05)
 
 ***
+
+### ✨ERD
+
+![몰입형 ERD](https://github.com/user-attachments/assets/d8d79155-fa5d-4f5b-8458-61cea1a1e574)
+
+***
+
+### ✨WBS
+
+![image](https://github.com/user-attachments/assets/4c30f665-859e-4ff3-b463-a47870742ad8)
+
+***
+
+### ✨개발환경 및 개발도구
+
+![image](https://github.com/user-attachments/assets/42c5961d-b4a9-47c4-99ea-f0ac0767220e)
+
+협업도구: Github, ERD Cloud, Notion, Canva <br>
+개발도구: IntelliJ <br>
+언어: Java, JavaScript,HTML5,CSS,SQL <br>
+DB: MySQL <br>
+프레임워크: Spring Boot, My Batis, Bootstrap, three.js <br>
+기술: Ajax, WebSocket, Spring MVC, WebRTC <br>
+API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파고 <br>
+
+***
+
+
+
