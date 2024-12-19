@@ -8,3 +8,8 @@ DEV : 윤창현, 이백범
 🔗[노션 링크](?)  
 
 <br>
+
+![image](https://github.com/user-attachments/assets/d876281a-ac22-4c59-b3d5-fe6d8819ea88)
+
+
+<br>
