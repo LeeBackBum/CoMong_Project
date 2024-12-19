@@ -1,0 +1,26 @@
+Index: user/build/resources/main/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#1.\r\nserver:\r\n  port: 80\r\n  servlet:\r\n    encoding:\r\n      charset: UTF-8\r\n      force: true\r\n\r\n#2.\r\nspring:\r\n  mvc:\r\n    view:\r\n      prefix: /views/\r\n      suffix: .jsp\r\n  datasource:\r\n    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy\r\n    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8\r\n    #driver-class-name: com.mysql.cj.jdbc.Driver\r\n    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8\r\n    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul\r\n    username: smuser\r\n    password: 111111\r\n\r\n# 3. Mybatis Setting 210.119.34.219\r\nmybatis:\r\n  type-aliases-package: edu.sm.app.dto\r\n  mapper-locations: classpath:/mapper/*.xml\r\n  configuration:\r\n    map-underscore-to-camel-case: true\r\n\r\n#4.\r\nlogging:\r\n  level:\r\n    root: info\r\n\r\napp:\r\n  url:\r\n    server_url: http://210.119.34.216:80\r\n  key:\r\n    wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)\r\n    wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)\r\n    algo: PBEWithMD5AndDES\r\n    skey: mykey\r\n    apikey: ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D\r\n
+===================================================================
+diff --git a/user/build/resources/main/application-dev.yml b/user/build/resources/main/application-dev.yml
+--- a/user/build/resources/main/application-dev.yml	(revision 968762579db561153bc99df9720af4c8314c6e4a)
++++ b/user/build/resources/main/application-dev.yml	(date 1733378491660)
+@@ -21,7 +21,7 @@
+     username: smuser
+     password: 111111
+ 
+-# 3. Mybatis Setting 210.119.34.219
++# 3. Mybatis Setting
+ mybatis:
+   type-aliases-package: edu.sm.app.dto
+   mapper-locations: classpath:/mapper/*.xml
+@@ -35,7 +35,7 @@
+ 
+ app:
+   url:
+-    server_url: http://210.119.34.216:80
++    server_url: http://210.119.34.219:81
+   key:
+     wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
+     wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)
