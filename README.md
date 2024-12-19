@@ -1,4 +1,5 @@
-# Spring boot 기반 환자 건강관리 헬스케어 시스템​ ![image](https://github.com/user-attachments/assets/4a7ec140-3f9f-4499-bfd8-f7f95bc28df2)
+# Spring boot 기반 환자 건강관리 헬스케어 시스템​ ![free-icon-healthcare-4003747](https://github.com/user-attachments/assets/0bf78393-9ee5-4d52-ab3e-eb9bac521ec1)
+
 
 PM (Project Manager) : 김준희  <br>
 PL (Project Leader) : 이백범 <br>
