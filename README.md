@@ -210,10 +210,12 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 
 ### 3) 의사 마이페이지
 - 우상단 프로필을 클릭하여 마이페이지로 이동가능
+
+  
 ![image](https://github.com/user-attachments/assets/837353a6-1dde-4e80-82cc-c8d4abfa69af)
 
 - 아이디 비밀번호를 제외한 의사 본인의 정보를 업데이트 가능
-https://github.com/user-attachments/assets/ee44fd63-befb-41f3-8980-b408269b69ec
+
 
 
 
