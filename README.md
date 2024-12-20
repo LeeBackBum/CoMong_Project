@@ -208,11 +208,6 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 동적인 움직임을 적용함
 - 상단 메뉴바와 하단 푸터를 통한 접근성 향상
 
-
-![메인화면1](https://github.com/user-attachments/assets/6a7cc304-054a-49c0-a752-382870443625)
-
-![메인화면3](https://github.com/user-attachments/assets/0b2ab6a9-4579-49c7-8893-30fbf7964421)
-
 ![메인화면2](https://github.com/user-attachments/assets/7ddf6681-23f6-481f-a3bc-882c95f05082)
 
 ***
@@ -222,8 +217,23 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 사용자가 이용할 수 있는 게시판
 - Ajax를 활용해 댓글작성,삭제,수정 기능 구현
 
+- 게시판 목록
+![image](https://github.com/user-attachments/assets/e81b4de4-7add-45d3-8b41-b6762fda5b81)
 
+- 공지사항
+![image](https://github.com/user-attachments/assets/e0421d85-2335-40bf-bd3b-6fb0e085d3ad)
 
+- 게시판 검색
+
+![게시판 검색](https://github.com/user-attachments/assets/31b708e8-fdd7-442b-9bd9-2fe44ce1b381)
+
+- 게시판 글쓰기
+  
+![게시판 글쓰기](https://github.com/user-attachments/assets/b8c9c18c-0441-40eb-a85f-36d1cd99335f)
+
+- 댓글 작성
+
+![댓글작성](https://github.com/user-attachments/assets/e8ca648a-c4e3-4353-8470-b171d787f5ac)
 
 ***
 <br><br>
