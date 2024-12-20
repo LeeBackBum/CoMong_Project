@@ -209,12 +209,11 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 상단 메뉴바와 하단 푸터를 통한 접근성 향상
 
 
-![메인화면1](https://github.com/user-attachments/assets/ca87c8a7-e277-4bb4-9c44-20bae9a3e908)
+![메인화면1](https://github.com/user-attachments/assets/6a7cc304-054a-49c0-a752-382870443625)
 
+![메인화면3](https://github.com/user-attachments/assets/0b2ab6a9-4579-49c7-8893-30fbf7964421)
 
 ![메인화면2](https://github.com/user-attachments/assets/7ddf6681-23f6-481f-a3bc-882c95f05082)
-
-
 
 ***
 <br><br>
