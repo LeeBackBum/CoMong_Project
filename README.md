@@ -71,6 +71,13 @@ https://github.com/user-attachments/assets/dc511bc8-6bf5-44b6-85b2-f34aec66c2c9
 
 ***
 
+### ✨화면설계
+
+![image](https://github.com/user-attachments/assets/c114e805-00e9-4c60-bada-969978c023a0)
+![image](https://github.com/user-attachments/assets/000d7cf0-f816-4990-a374-0dad1a06ea23)
+
+***
+
 ### ✨개발환경 및 개발도구
 
 ![image](https://github.com/user-attachments/assets/42c5961d-b4a9-47c4-99ea-f0ac0767220e)
