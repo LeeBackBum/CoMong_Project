@@ -112,8 +112,10 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 딥러닝 학습을 하여 가르친 대화를 상세하게 답변
 - 링크 답변을 통해 고객에게 직관적인 사이트 이용 경험을 전달  
 
-사진
-영상
+
+![결제영상](https://github.com/user-attachments/assets/57e056cc-dd14-4169-bf7d-2f5439417f6b)
+
+
 ***
 <br><br>
 
@@ -121,14 +123,7 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 카카오 페이 API를 이용하여 결제 시스템 구현
 
 
-![카카오 페이 결제](https://github.com/user-attachments/assets/b849aec2-b6e8-4b86-a171-86e4a744fd9d)
-
-
-- 결제 영상
-
 ![결제영상](https://github.com/user-attachments/assets/7b2e5d27-e6f1-489d-b64c-477005392015)
-
-
 
 
 ***
@@ -137,8 +132,11 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 ### 3) 병상정보(공공데이터)
 - 공공데이터 API를 통해 남은 병상 수 확인 가능
 - 검색 기능을 이용하여 원하는 병원의 정보를 확인 가능
-  사진
-  영상
+
+
+![공공데이터](https://github.com/user-attachments/assets/a26c2719-26b5-4fad-8873-b27d1d65bbdb)
+
+
 ***
 <br><br>
 
@@ -147,8 +145,10 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 사용자의 위치 정보를 이용해 근처 병원들을 표시
 - 병원 길 안내등 추가적인 지도 기능도 제공
 
-  사진
-  영상
+
+![카카오맵](https://github.com/user-attachments/assets/5f79d23f-866d-466e-8c55-acd3c0e89627)
+
+
 ***
 <br><br>
 
@@ -159,8 +159,16 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - JAVA의 Date 객체를 활용하여 서버 기준 현재 시간으로 설정, 데이터는 JSON 형태로 전달받아 처리 
 - 주시해야할 데이터에 대해 실시간 데이터로 받는다고 설정하면 5초마다 데이터를 전달하여 차트로 표시
 
-사진
-영상
+
+![image](https://github.com/user-attachments/assets/57147722-99d8-4cdc-841c-86fad583d5d3)
+
+![image](https://github.com/user-attachments/assets/a1285fff-e31c-4fab-a76b-134f05dc473a)
+
+![image](https://github.com/user-attachments/assets/09eb52ec-304a-4cd0-ac94-e6f185445abd)
+
+![실시간차트](https://github.com/user-attachments/assets/d7a07e4f-8cdd-4b02-a45f-90b352c36b04)
+
+
 ***
 <br><br>
 
