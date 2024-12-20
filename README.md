@@ -119,9 +119,17 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 
 ### 2) 결제(kakao)
 - 카카오 페이 API를 이용하여 결제 시스템 구현
+
+
 ![카카오 페이 결제](https://github.com/user-attachments/assets/b849aec2-b6e8-4b86-a171-86e4a744fd9d)
 
-  영상
+
+- 결제 영상
+
+![결제영상](https://github.com/user-attachments/assets/7b2e5d27-e6f1-489d-b64c-477005392015)
+
+
+
 
 ***
 <br><br>
