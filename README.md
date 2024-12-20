@@ -65,42 +65,6 @@ https://github.com/user-attachments/assets/dc511bc8-6bf5-44b6-85b2-f34aec66c2c9
 
 ***
 
-### ✨UserUML
-![service](https://github.com/user-attachments/assets/a7a0e09f-ecbf-4adc-a6cc-ad4c9d7895cc)
-![repository](https://github.com/user-attachments/assets/27d92be2-7237-4425-9069-0059bfa4574c)
-![frame](https://github.com/user-attachments/assets/19681d89-64b7-4708-bf0d-9c84ac3338e9)
-![dto](https://github.com/user-attachments/assets/28e6b1a3-58a4-43bc-bdc9-ddb08e50c41d)
-![controller](https://github.com/user-attachments/assets/210d3dc9-5458-46e3-ad37-bb13dc404f47)
-![config](https://github.com/user-attachments/assets/11469857-98a3-4c95-9a05-b15eb78c3317)
-
-
-***
-
-### ✨DoctorUML
-![service](https://github.com/user-attachments/assets/9b54fd7b-9e0a-4b26-a0cd-7c99fb791030)
-![repository](https://github.com/user-attachments/assets/36572a93-adac-4840-ae7c-77321e4a504f)
-![frame](https://github.com/user-attachments/assets/809d6c72-9815-4333-ae1d-b9de5e848db5)
-![dto](https://github.com/user-attachments/assets/20149f33-2183-44fc-b121-2c70715d5f39)
-![controller](https://github.com/user-attachments/assets/b20da1cc-136f-4554-9597-8298444a684f)
-![config](https://github.com/user-attachments/assets/12c8cc4b-c6c2-421b-aeb2-4ffe19f1245a)
-
-
-***
-
-### ✨시스템 구성도
-
-![몰입형시스템구성도](https://github.com/user-attachments/assets/495d26bb-616e-4b1c-a92f-303a3ac06bfb)
-
-***
-
-### ✨SW 구성도
-
-![몰입형sw구성도](https://github.com/user-attachments/assets/f538392f-8ab7-4f01-a847-b8bed02acb05)
-
-***
-
-
-
 ### ✨WBS
 
 ![image](https://github.com/user-attachments/assets/4c30f665-859e-4ff3-b463-a47870742ad8)
@@ -120,6 +84,19 @@ DB: MySQL <br>
 API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파고 <br>
 
 ***
+
+### ✨시스템 구성도
+
+![몰입형시스템구성도](https://github.com/user-attachments/assets/495d26bb-616e-4b1c-a92f-303a3ac06bfb)
+
+***
+
+### ✨SW 구성도
+
+![몰입형sw구성도](https://github.com/user-attachments/assets/f538392f-8ab7-4f01-a847-b8bed02acb05)
+
+***
+
 
 
 
