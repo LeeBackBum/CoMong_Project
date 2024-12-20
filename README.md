@@ -217,7 +217,7 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 - 아이디 비밀번호를 제외한 의사 본인의 정보를 업데이트 가능
 
 
-![마이페이지](https://github.com/user-attachments/assets/12504e24-f52e-4be3-a6f8-cbc673eded51)
+
 
 
 
