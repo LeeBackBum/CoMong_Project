@@ -1,35 +1,39 @@
 package edu.sm.controller;
 
+import edu.sm.app.dto.CounselDto;
 import edu.sm.app.dto.DoctorDto;
+import edu.sm.app.dto.UserDto;
+import edu.sm.app.service.CounselService;
 import edu.sm.app.service.DoctorService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class MainController {
 
-    @Value("${app.dir.imgdir}")
-    private String imgDir;
+    private final DoctorService doctorService;
+    private final CounselService counselService;
 
     @Value("${app.dir.imgmypage}")
     private String imgmypage;
-
-
-
-    private final DoctorService doctorService;
 
     @Value("${app.url.server-url}")
     String serverurl;
@@ -42,7 +46,10 @@ public class MainController {
     }
 
     @RequestMapping("/main")
-    public String main(Model model) {
+    public String main(Model model) throws Exception {
+        List<DoctorDto> doctors = doctorService.get();
+
+        model.addAttribute("doctors",doctors);
         log.info("Start Main ,,,,,,");
         return "main";
     }
@@ -53,64 +60,11 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("button")
-    public String button(Model model) {
-        model.addAttribute("center", "center");
-        return "button";
-    }
-
-    @RequestMapping("/chart")
-    public String chart(Model model) {
-        model.addAttribute("center", "chart");
+    @RequestMapping("/webrtc")
+    public String webrtc(Model model) {
+        model.addAttribute("roomId", "1");    // 하드코딩된 roomId
+        model.addAttribute("center", "webrtc");
         return "main";
-    }
-
-    @RequestMapping("element")
-    public String element(Model model) {
-        model.addAttribute("center", "center");
-        return "element";
-    }
-
-    @RequestMapping("errorpage")
-    public String errorpage(Model model) {
-        model.addAttribute("center", "center");
-        return "errorpage";
-    }
-
-    @RequestMapping("form")
-    public String form(Model model) {
-        model.addAttribute("center", "center");
-        return "form";
-    }
-
-    @RequestMapping("signin")
-    public String signin(Model model) {
-        model.addAttribute("center", "center");
-        return "signin";
-    }
-
-    @RequestMapping("signup")
-    public String signup(Model model) {
-        model.addAttribute("center", "center");
-        return "signup";
-    }
-
-    @RequestMapping("table")
-    public String table(Model model) {
-        model.addAttribute("center", "center");
-        return "table";
-    }
-
-    @RequestMapping("typography")
-    public String typography(Model model) {
-        model.addAttribute("center", "center");
-        return "typography";
-    }
-
-    @RequestMapping("widget")
-    public String widget(Model model) {
-        model.addAttribute("center", "widget");
-        return "index";
     }
 
     @RequestMapping("/loginimpl")
@@ -137,6 +91,7 @@ public class MainController {
         return "redirect:/main";
     }
 
+    //mypage
     @GetMapping("/mypage")
     public String myPage(HttpSession session, Model model) {
         DoctorDto doctor = (DoctorDto) session.getAttribute("doctor");
@@ -148,27 +103,8 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping("/counseling")
-    public String counseling(HttpSession session, Model model) {
-        // 세션에서 로그인된 사용자 정보 가져오기
-        Object loginid = session.getAttribute("doctorid");
-
-        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
-        String doctorName = ((DoctorDto) loginid).getDoctorName();
-
-        // JSP에 데이터 전달
-        model.addAttribute("serverurl", serverurl);
-        model.addAttribute("doctorName", doctorName);
-        model.addAttribute("center", "Counseling/counseling");
-
-        System.out.println("Server URL: " + serverurl);
-        System.out.println("User Name: " + doctorName);
-
-        return "/main";
-    }
-
     @PostMapping("/mypage/update")
-    public String updateDoctorInfo(
+    public ResponseEntity<Map<String, Object>> updateDoctorInfo(
             @RequestParam("doctorId") String doctorId,
             @RequestParam(value = "doctorImg", required = false) MultipartFile doctorImg,
             @RequestParam("doctorName") String doctorName,
@@ -178,12 +114,13 @@ public class MainController {
             @RequestParam("subjectName") String subjectName,
             HttpSession session
     ) {
+        Map<String, Object> response = new HashMap<>();
         try {
             String fileName = null;
 
             // 파일 업로드 처리
             if (doctorImg != null && !doctorImg.isEmpty()) {
-                File destDir = new File(imgDir);
+                File destDir = new File(imgmypage);
 
                 if (!destDir.exists()) {
                     destDir.mkdirs();
@@ -219,11 +156,89 @@ public class MainController {
             // 세션 업데이트
             session.setAttribute("doctor", existingDoctor);
 
-            return "redirect:/mypage?success=true";
+            response.put("success", true);
+            response.put("updatedImg", existingDoctor.getDoctorImg());
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
             log.error("Error updating doctor info: {}", e.getMessage(), e);
-            return "redirect:/mypage?error=update_failed";
+            response.put("success", false);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    @GetMapping("/img/{filename}")
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+        try {
+            Resource file = doctorService.loadAsResource(filename);
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate")
+                    .header(HttpHeaders.PRAGMA, "no-cache")
+                    .header(HttpHeaders.EXPIRES, "0")
+                    .body(file);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    // 웹소켓
+    @RequestMapping("/counseling")
+    public String counseling(HttpSession session, Model model) {
+        // 세션에서 로그인된 사용자 정보 가져오기
+        Object loginid = session.getAttribute("doctorid");
+
+        // UserDto 객체에서 userName 가져오기 (loginid가 UserDto라고 가정)
+        String doctorName = ((DoctorDto) loginid).getDoctorName();
+
+        // JSP에 데이터 전달
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("doctorName", doctorName);
+        model.addAttribute("center", "Counseling/counseling");
+
+        System.out.println("Server URL: " + serverurl);
+        System.out.println("User Name: " + doctorName);
+
+        return "/main";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+    @PostMapping("/recordimpl")
+    public String recordImpl(@ModelAttribute CounselDto counselDto, Model model) {
+        System.out.println("받은 CounselDto: " + counselDto);
+
+        try {
+            // Counsel 데이터 저장
+            counselService.add(counselDto);
+            System.out.println("Counsel 데이터 삽입 성공: " + counselDto);
+
+            // 성공 메시지 설정
+            model.addAttribute("message", "상담 기록이 성공적으로 저장되었습니다.");
+            return "forward:/counseling"; // 성공 시 메시지와 함께 원래 페이지로 이동
+        } catch (Exception e) {
+            // 에러 처리
+            String errorMessage = "알 수 없는 오류가 발생했습니다.";
+
+            // 외래 키 제약 조건 위반 에러 처리
+            if (e.getCause() instanceof java.sql.SQLIntegrityConstraintViolationException) {
+                if (e.getMessage().contains("FOREIGN KEY (`doctor_id`)")) {
+                    errorMessage = "존재하지 않는 의사 ID입니다.";
+                } else if (e.getMessage().contains("FOREIGN KEY (`user_id`)")) {
+                    errorMessage = "존재하지 않는 환자 ID입니다.";
+                }
+            }
+
+            System.err.println("Counsel 데이터 삽입 실패: " + errorMessage);
+            model.addAttribute("error", errorMessage);
+
+            // 에러 페이지 대신 원래 페이지로 리턴
+            return "forward:/counseling";
         }
     }
 }

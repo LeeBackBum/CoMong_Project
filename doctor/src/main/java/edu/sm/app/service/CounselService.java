@@ -14,7 +14,7 @@ public class CounselService implements SMService< String, CounselDto> {
     private final CounselRepository counselRepository;
     @Override
     public void add(CounselDto counselDto) throws Exception {
-
+        counselRepository.insert(counselDto);
     }
 
     @Override

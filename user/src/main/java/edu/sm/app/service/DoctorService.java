@@ -70,5 +70,3 @@ public class DoctorService implements SMService<String, DoctorDto> {
     }
 
 }
-    
-

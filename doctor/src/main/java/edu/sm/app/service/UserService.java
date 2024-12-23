@@ -54,4 +54,7 @@ public class UserService implements SMService<String, UserDto> {
     public List<CounselDto> getCounsel(String userId){
         return userRepository.getCounsel(userId);
     }
+    public List<AppointmentDto> dateAppointments(String doctorId,String date){
+        return userRepository.dateAppointments(doctorId,date);
+    }
 }

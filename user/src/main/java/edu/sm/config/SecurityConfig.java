@@ -17,7 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @AllArgsConstructor
-public class SecurityConfig  {
+public class SecurityConfig {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -25,7 +25,7 @@ public class SecurityConfig  {
     }
 
     @Bean
-    public StandardPBEStringEncryptor  textEncoder(@Value("${app.key.algo}") String algo, @Value("${app.key.skey}") String skey) {
+    public StandardPBEStringEncryptor textEncoder(@Value("${app.key.algo}") String algo, @Value("${app.key.skey}") String skey) {
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
         encryptor.setAlgorithm(algo);
         encryptor.setPassword(skey);
@@ -34,23 +34,27 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //CSRF, CORS
-        http.csrf((csrf) -> csrf.disable());
-        //http.cors(Customizer.withDefaults());
+        // CSRF 비활성화
+        http.csrf(csrf -> csrf.disable());
+
+        // X-Frame-Options 설정 (같은 도메인에서 iframe 허용)
+        http.headers(headers -> headers.defaultsDisabled()
+                .frameOptions(frameOptions -> frameOptions.sameOrigin())); // 새로운 방식
+
+        // CORS 설정
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin(CorsConfiguration.ALL);
+        configuration.addAllowedOrigin("https://210.119.34.219:81"); // 허용할 도메인
         configuration.addAllowedMethod(CorsConfiguration.ALL);
         configuration.addAllowedHeader(CorsConfiguration.ALL);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**,/chbot", configuration);
-        // 권한 규칙 작성
+        source.registerCorsConfiguration("/**", configuration); // 모든 경로 허용
+        http.cors(cors -> cors.configurationSource(source));
+
+        // 권한 규칙
         http.authorizeHttpRequests(authorize -> authorize
-                        //@PreAuthrization을 사용할 것이기 때문에 모든 경로에 대한 인증처리는 Pass
-                        .anyRequest().permitAll()
-                //.anyRequest().authenticated()
+                .anyRequest().permitAll()
         );
+
         return http.build();
     }
-
-
 }

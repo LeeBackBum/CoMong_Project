@@ -1,0 +1,137 @@
+Index: doctor/src/main/webapp/views/webrtc.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page language=\"java\" contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\"%>\r\n\r\n<style>\r\n    .admin-webrtc-container {\r\n        max-width: 1200px;\r\n        margin: 0 auto;\r\n        padding: 20px;\r\n    }\r\n    .video-grid {\r\n        display: grid;\r\n        grid-template-columns: 1fr; /* 한 열만 생성 */\r\n        grid-template-rows: repeat(2, 1fr); /* 두 행 생성 */\r\n        gap: 20px; /* 요소 간 간격 유지 */\r\n        margin-bottom: 20px;\r\n    }\r\n    .video-wrapper {\r\n        position: relative;\r\n        width: 100%;\r\n        background: #000;\r\n        border-radius: 8px;\r\n        overflow: hidden;\r\n    }\r\n    .video-stream {\r\n        width: 100%;\r\n        height: auto;\r\n        aspect-ratio: 16/9;\r\n    }\r\n    .video-label {\r\n        position: absolute;\r\n        bottom: 10px;\r\n        left: 10px;\r\n        color: white;\r\n        background: rgba(0, 0, 0, 0.5);\r\n        padding: 5px 10px;\r\n        border-radius: 4px;\r\n    }\r\n    .controls {\r\n        display: flex;\r\n        justify-content: center;\r\n        gap: 10px;\r\n        margin: 20px 0;\r\n    }\r\n    .control-button {\r\n        padding: 10px 20px;\r\n        border-radius: 4px;\r\n        border: none;\r\n        cursor: pointer;\r\n        font-size: 16px;\r\n    }\r\n    .start-call {\r\n        background: #4CAF50;\r\n        color: white;\r\n    }\r\n    .end-call {\r\n        background: #f44336;\r\n        color: white;\r\n    }\r\n    .connection-status {\r\n        text-align: center;\r\n        font-size: 14px;\r\n    }\r\n\r\n    .record-container {\r\n        display: inline-block;\r\n        width: 100%; /* 적절한 너비 설정 */\r\n        vertical-align: top; /* 상단 정렬 */\r\n        max-width: 700px;\r\n        margin-left: auto;\r\n        margin-right: auto;\r\n        margin-top: auto;\r\n        height: 650px;\r\n        max-height: 900px;\r\n        position: relative;\r\n    }\r\n\r\n    .record-title {\r\n        text-align: center;\r\n    }\r\n\r\n    form {\r\n        display: flex;\r\n        flex-direction: column; /* 세로 방향으로 배치 */\r\n        gap: 20px; /* 각 요소 간의 간격을 20px로 설정 */\r\n    }\r\n\r\n    input, textarea, button {\r\n        margin: 10px 0; /* 각 요소 위아래로 10px의 여백 추가 */\r\n        padding: 12px; /* 내부 여백을 추가해 요소 크기 확대 */\r\n        font-size: 16px; /* 텍스트 크기를 적절히 조정 */\r\n    }\r\n\r\n    button {\r\n        border: none;\r\n        border-radius: 5px; /* 모서리를 둥글게 처리 */\r\n        cursor: pointer;\r\n    }\r\n\r\n    button:hover {\r\n        background-color: #0056b3; /* 호버 시 버튼 색상 변경 */\r\n    }\r\n</style>\r\n<div class=\"container-fluid position-relative bg-white d-flex p-0\">\r\n    <div class=\"container-fluid pt-4 px-4\">\r\n        <div class=\"row g-4\">\r\n            <div class=\"col-sm-12 col-xl-6\">\r\n                <div class=\"bg-light rounded h-100 p-4\">\r\n                    <div class=\"admin-webrtc-container\">\r\n                        <div class=\"video-grid\">\r\n                            <div class=\"video-wrapper\">\r\n                                <video id=\"localVideo\" autoplay playsinline muted class=\"video-stream\"></video>\r\n                                <div class=\"video-label\">Admin Stream</div>\r\n                            </div>\r\n                            <div class=\"video-wrapper\">\r\n                                <video id=\"remoteVideo\" autoplay playsinline class=\"video-stream\"></video>\r\n                                <div class=\"video-label\">User Stream</div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"controls\">\r\n                            <button id=\"startButton\" class=\"control-button start-call\">Start Call</button>\r\n                            <button id=\"endButton\" class=\"control-button end-call\" style=\"display: none;\">End Call</button>\r\n                        </div>\r\n                        <div class=\"connection-status\" id=\"connectionStatus\">\r\n                            Status: Disconnected\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-12 col-xl-6\">\r\n                <div class=\"bg-light rounded h-100 p-4\">\r\n                    <div class=\"record-container\">\r\n                        <h2 class=\"mb-4 record-title\">Record</h2>\r\n                        <form id=\"recordForm\" name=\"recordForm\" class=\"form-group\" method=\"post\" action=\"/recordimpl\">\r\n                            <!-- 날짜와 시간 입력 -->\r\n                            <div class=\"form-group\">\r\n                                <label for=\"datetime\">날짜 및 시간</label>\r\n                                <input\r\n                                        type=\"datetime-local\"\r\n                                        class=\"form-control\"\r\n                                        id=\"datetime\"\r\n                                        name=\"counselDate\"\r\n                                        required=\"required\"\r\n                                />\r\n                            </div>\r\n\r\n                            <!-- 내용 입력 -->\r\n                            <div class=\"form-group\">\r\n                                <label for=\"content\">내용</label>\r\n                                <textarea\r\n                                        class=\"form-control\"\r\n                                        rows=\"11\"\r\n                                        id=\"content\"\r\n                                        name=\"counselContent\"\r\n                                        placeholder=\"내용 작성\"\r\n                                ></textarea>\r\n                            </div>\r\n\r\n                            <!-- 의사 ID와 환자 이름 입력 -->\r\n                            <div class=\"form-group\">\r\n                                <label for=\"doctorId\">의사 ID</label>\r\n                                <input\r\n                                        type=\"text\"\r\n                                        class=\"form-control\"\r\n                                        id=\"doctorId\"\r\n                                        name=\"doctorId\"\r\n                                        placeholder=\"의사 ID 입력\"\r\n                                        required=\"required\"\r\n                                />\r\n                            </div>\r\n                            <div class=\"form-group\">\r\n                                <label for=\"userId\">환자 ID</label>\r\n                                <input\r\n                                        type=\"text\"\r\n                                        class=\"form-control\"\r\n                                        id=\"userId\"\r\n                                        name=\"userId\"\r\n                                        placeholder=\"환자 ID 입력\"\r\n                                        required=\"required\"\r\n                                />\r\n                            </div>\r\n\r\n                            <input type=\"hidden\" name=\"counselType\" value=\"채팅상담\" />\r\n\r\n                            <button type=\"submit\" class=\"btn btn-primary\">등록</button>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</div>\r\n<!-- Footer Start -->\r\n<div class=\"container-fluid pt-4 px-4\">\r\n    <div class=\"bg-light rounded-top p-4\">\r\n        <div class=\"row\">\r\n            <div class=\"col-12 col-sm-6 text-center text-sm-start\">\r\n                &copy; <a href=\"#\">Your Site Name</a>, All Right Reserved.\r\n            </div>\r\n            <div class=\"col-12 col-sm-6 text-center text-sm-end\">\r\n                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from \"https://htmlcodex.com/credit-removal\". Thank you for your support. ***/-->\r\n                Designed By <a href=\"https://htmlcodex.com\">HTML Codex</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<script>\r\n    const roomId = '1'; // 하드코딩된 방 번호\r\n    let peerConnection = null;\r\n    let localStream = null;\r\n    let websocket = null;\r\n\r\n    const configuration = {\r\n        iceServers: [{\r\n            urls: 'stun:stun.l.google.com:19302'\r\n\r\n        }]\r\n    };\r\n\r\n    async function initialize() {\r\n        try {\r\n            websocket = new WebSocket('${serverurl}/signal');\r\n\r\n            websocket.onopen = () => {\r\n                console.log('WebSocket connected');\r\n                updateConnectionStatus('WebSocket Connected');\r\n                sendSignalingMessage({\r\n                    type: 'join',\r\n                    roomId: roomId\r\n                });\r\n            };\r\n\r\n            const stream = await navigator.mediaDevices.getUserMedia({\r\n                video: {\r\n                    width: { ideal: 1280 },\r\n                    height: { ideal: 720 }\r\n                },\r\n                audio: true\r\n            });\r\n\r\n            localStream = stream;\r\n            document.getElementById('localVideo').srcObject = stream;\r\n            document.getElementById('startButton').disabled = false;\r\n\r\n            setupWebSocketHandlers();\r\n        } catch (error) {\r\n            console.error('Error initializing WebRTC:', error);\r\n            updateConnectionStatus('Error: ' + error.message);\r\n        }\r\n    }\r\n\r\n    function setupWebSocketHandlers() {\r\n        websocket.onmessage = async (event) => {\r\n            try {\r\n                const message = JSON.parse(event.data);\r\n                console.log('Received message:', message.type);\r\n\r\n                switch (message.type) {\r\n                    case 'offer':\r\n                        await handleOffer(message.data);\r\n                        break;\r\n                    case 'answer':\r\n                        await handleAnswer(message.data);\r\n                        break;\r\n                    case 'ice-candidate':\r\n                        await handleIceCandidate(message.data);\r\n                        break;\r\n                }\r\n            } catch (error) {\r\n                console.error('Error handling WebSocket message:', error);\r\n            }\r\n        };\r\n\r\n        websocket.onclose = () => {\r\n            updateConnectionStatus('WebSocket Disconnected');\r\n        };\r\n\r\n        websocket.onerror = (error) => {\r\n            console.error('WebSocket error:', error);\r\n            updateConnectionStatus('WebSocket Error');\r\n        };\r\n    }\r\n\r\n    function sendSignalingMessage(message) {\r\n        if (websocket?.readyState === WebSocket.OPEN) {\r\n            websocket.send(JSON.stringify(message));\r\n        }\r\n    }\r\n\r\n    async function createPeerConnection() {\r\n        peerConnection = new RTCPeerConnection(configuration);\r\n\r\n        localStream.getTracks().forEach(track => {\r\n            peerConnection.addTrack(track, localStream);\r\n        });\r\n\r\n        peerConnection.ontrack = (event) => {\r\n            if (document.getElementById('remoteVideo') && event.streams[0]) {\r\n                document.getElementById('remoteVideo').srcObject = event.streams[0];\r\n            }\r\n        };\r\n\r\n        peerConnection.onicecandidate = (event) => {\r\n            if (event.candidate) {\r\n                sendSignalingMessage({\r\n                    type: 'ice-candidate',\r\n                    data: event.candidate,\r\n                    roomId: roomId\r\n                });\r\n            }\r\n        };\r\n\r\n        peerConnection.onconnectionstatechange = () => {\r\n            updateConnectionStatus('Connection: ' + peerConnection.connectionState);\r\n        };\r\n\r\n        return peerConnection;\r\n    }\r\n\r\n    async function startCall() {\r\n        try {\r\n            if (!peerConnection) {\r\n                await createPeerConnection();\r\n            }\r\n\r\n            const offer = await peerConnection.createOffer();\r\n            await peerConnection.setLocalDescription(offer);\r\n\r\n            sendSignalingMessage({\r\n                type: 'offer',\r\n                data: offer,\r\n                roomId: roomId\r\n            });\r\n\r\n            document.getElementById('startButton').style.display = 'none';\r\n            document.getElementById('endButton').style.display = 'block';\r\n        } catch (error) {\r\n            console.error('Error starting call:', error);\r\n            updateConnectionStatus('Error starting call');\r\n        }\r\n    }\r\n\r\n    async function handleOffer(offer) {\r\n        try {\r\n            if (!peerConnection) {\r\n                await createPeerConnection();\r\n            }\r\n\r\n            await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));\r\n            const answer = await peerConnection.createAnswer();\r\n            await peerConnection.setLocalDescription(answer);\r\n\r\n            sendSignalingMessage({\r\n                type: 'answer',\r\n                data: answer,\r\n                roomId: roomId\r\n            });\r\n        } catch (error) {\r\n            console.error('Error handling offer:', error);\r\n        }\r\n    }\r\n\r\n    async function handleAnswer(answer) {\r\n        try {\r\n            await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));\r\n        } catch (error) {\r\n            console.error('Error handling answer:', error);\r\n        }\r\n    }\r\n\r\n    async function handleIceCandidate(candidate) {\r\n        try {\r\n            await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));\r\n        } catch (error) {\r\n            console.error('Error handling ICE candidate:', error);\r\n        }\r\n    }\r\n\r\n    function endCall() {\r\n        if (localStream) {\r\n            localStream.getTracks().forEach(track => track.stop());\r\n        }\r\n        if (peerConnection) {\r\n            peerConnection.close();\r\n            peerConnection = null;\r\n        }\r\n        document.getElementById('remoteVideo').srcObject = null;\r\n        document.getElementById('startButton').style.display = 'block';\r\n        document.getElementById('endButton').style.display = 'none';\r\n        updateConnectionStatus('Call Ended');\r\n    }\r\n\r\n    function updateConnectionStatus(status) {\r\n        document.getElementById('connectionStatus').textContent = 'Status: ' + status;\r\n    }\r\n\r\n    // Event Listeners\r\n    document.getElementById('startButton').addEventListener('click', startCall);\r\n    document.getElementById('endButton').addEventListener('click', endCall);\r\n\r\n    // Initialize on page load\r\n    initialize();\r\n</script>
+===================================================================
+diff --git a/doctor/src/main/webapp/views/webrtc.jsp b/doctor/src/main/webapp/views/webrtc.jsp
+--- a/doctor/src/main/webapp/views/webrtc.jsp	(revision 874b477a1764aa101225c22e398400b1e2070549)
++++ b/doctor/src/main/webapp/views/webrtc.jsp	(date 1734677831725)
+@@ -108,11 +108,11 @@
+                         <div class="video-grid">
+                             <div class="video-wrapper">
+                                 <video id="localVideo" autoplay playsinline muted class="video-stream"></video>
+-                                <div class="video-label">Admin Stream</div>
++                                <div class="video-label">의사화면</div>
+                             </div>
+                             <div class="video-wrapper">
+                                 <video id="remoteVideo" autoplay playsinline class="video-stream"></video>
+-                                <div class="video-label">User Stream</div>
++                                <div class="video-label">환자화면</div>
+                             </div>
+                         </div>
+                         <div class="controls">
+@@ -194,7 +194,7 @@
+     <div class="bg-light rounded-top p-4">
+         <div class="row">
+             <div class="col-12 col-sm-6 text-center text-sm-start">
+-                &copy; <a href="#">Your Site Name</a>, All Right Reserved.
++                &copy; <a href="#">CoDoctor</a>, All Right Reserved.
+             </div>
+             <div class="col-12 col-sm-6 text-center text-sm-end">
+                 <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+Index: user/src/main/java/edu/sm/util/PapagoUtil.java
+===================================================================
+diff --git a/user/src/main/java/edu/sm/util/PapagoUtil.java b/doctor/src/main/java/edu/sm/util/PapagoUtil.java
+rename from user/src/main/java/edu/sm/util/PapagoUtil.java
+rename to doctor/src/main/java/edu/sm/util/PapagoUtil.java
+--- a/user/src/main/java/edu/sm/util/PapagoUtil.java	(revision 874b477a1764aa101225c22e398400b1e2070549)
++++ b/doctor/src/main/java/edu/sm/util/PapagoUtil.java	(date 1734332599245)
+@@ -1,67 +1,74 @@
+ package edu.sm.util;
+ 
+-import org.json.simple.JSONArray;
+ import org.json.simple.JSONObject;
+ import org.json.simple.parser.JSONParser;
+ 
+-import javax.crypto.Mac;
+-import javax.crypto.spec.SecretKeySpec;
+ import java.io.BufferedReader;
+ import java.io.DataOutputStream;
+ import java.io.InputStreamReader;
+ import java.net.HttpURLConnection;
+ import java.net.URL;
+ import java.net.URLEncoder;
+-import java.util.Base64;
+-import java.util.Date;
+ 
+ public class PapagoUtil {
+ 
+     public static String getMsg(String clientId, String clientSecret, String msg, String target) {
+-        String result = "";
++        String result = msg; // 기본적으로 원문 그대로 반환
+         try {
+             String text = URLEncoder.encode(msg, "UTF-8");
+             String apiURL = "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation";
+             URL url = new URL(apiURL);
+-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
++            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+             con.setRequestMethod("POST");
+             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+             con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+             con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+-            // post request
+-            String postParams = "source=auto&target="+target+"&text=" + text;
++
++            // POST 요청 파라미터 설정
++            String postParams = "source=auto&target=" + target + "&text=" + text;
+             con.setDoOutput(true);
+             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+             wr.writeBytes(postParams);
+             wr.flush();
+             wr.close();
++
+             int responseCode = con.getResponseCode();
+             BufferedReader br;
+-            if(responseCode==200) { // 정상 호출
++            if (responseCode == 200) { // 정상 호출
+                 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+-            } else {  // 오류 발생
++            } else { // 오류 발생
+                 br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+             }
++
+             String inputLine;
+             StringBuffer response = new StringBuffer();
+             while ((inputLine = br.readLine()) != null) {
+                 response.append(inputLine);
+             }
+             br.close();
++
++            // 응답 파싱
+             JSONParser jsonparser = new JSONParser();
+-            try {
+-                JSONObject json = (JSONObject)jsonparser.parse(response.toString());
+-                JSONObject message = (JSONObject)json.get("message");
+-                JSONObject jresult = (JSONObject)message.get("result");
+-                result = (String)jresult.get("translatedText");
+-            } catch (Exception e) {
+-                System.out.println("error");
+-                e.printStackTrace();
+-            }
+-
+-
+-        } catch (Exception e) {
+-            System.out.println(e);
++            JSONObject json = (JSONObject) jsonparser.parse(response.toString());
++
++            if (responseCode == 200) { // 번역 성공
++                JSONObject message = (JSONObject) json.get("message");
++                JSONObject jresult = (JSONObject) message.get("result");
++                String srcLang = (String) jresult.get("srcLangType");
++                String tarLang = (String) jresult.get("tarLangType");
++
++                // source와 target 언어가 동일하면 번역하지 않음
++                if (srcLang.equals(tarLang)) {
++                    result = msg;
++                } else {
++                    result = (String) jresult.get("translatedText");
++                }
++            } else { // 번역 실패
++                System.out.println("Error Response: " + response.toString());
++            }
++        } catch (Exception e) {
++            System.out.println("Error: " + e.getMessage());
++            e.printStackTrace();
+         }
+         return result;
+     }

@@ -39,7 +39,7 @@
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-10 text-center">
-        <h1 class="display-3 text-white animated slideInDown">SM Korea</h1>
+        <h1 class="display-3 text-white animated slideInDown">게시판</h1>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -62,14 +62,15 @@
   </c:if>
 
   <!-- 글쓰기 버튼 (role이 0 또는 1인 사용자 표시) -->
-<%--  <c:if test="${user.role == '1' || user.role == '0'}">--%>
-    <a href="<c:url value='/board/write' />" class="btn btn-primary">글쓰기</a>
-<%--  </c:if>--%>
+  <%--  <c:if test="${user.role == '1' || user.role == '0'}">--%>
+
+  <%--  </c:if>--%>
 
   <!-- 검색 폼 -->
-  <form action="<c:url value='/board' />" method="get" class="d-flex mb-3">
-    <input type="text" name="keyword" class="form-control me-2" placeholder="제목 또는 내용 검색" value="${keyword}">
-    <button type="submit" class="btn btn-primary">검색</button>
+  <form action="<c:url value='/board' />" method="get" class="d-flex mb-2" style="max-width: 500px;">
+    <input type="text" name="keyword" class="form-control me-2" style="width: 85%; height: 40px; font-size: 1rem; padding: 0.5rem;" placeholder="검색어 입력" value="${keyword}">
+    <button type="submit" class="btn btn-primary btn-sm" style="font-size: 1.1rem; width: 80px; height: 40px; padding: 0.5rem 1rem;">검색</button>
+    <a href="<c:url value='/board/write' />" class="btn btn-primary" style="margin-left: 10px; border-radius: 3px; width: 100px;">글쓰기</a>
   </form>
 
   <table class="table">

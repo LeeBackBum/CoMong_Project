@@ -54,8 +54,9 @@
         }
 
         .event.selected {
-            background-color: floralwhite;
-            color: white;
+            background-color: lightyellow;
+            color: black;
+            /*floralwhite*/
         }
     </style>
 </head>
@@ -88,35 +89,33 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
     let currentYear = 2024;
-    let currentMonth = 10; // 11월을 기준으로 시작 (0부터 시작이므로 10은 11월)
+    let currentMonth = 11; // 11월을 기준으로 시작 (0부터 시작이므로 10은 11월)
     let selectedDate = null;
 
     // 서버로 날짜 전송
     function sendDateToServer(date) {
         sessionStorage.setItem('selectedDate', date);
         console.log(date)
+
+        const dateInput = document.getElementById("date");
+        if (dateInput) {
+            dateInput.value = date;
+            console.log("Date saved and input updated: " + date);
+        } else {
+            console.error("Hidden input field not found.");
+        }
+
+        // 선택한 날짜를 동적으로 표시 (예: 선택된 UI 강조)
+        // const dateElements = document.querySelectorAll('li a'); // 날짜 요소들 선택
+        // dateElements.forEach(item => item.classList.remove('selected')); // 모든 선택 해제
+        //
+        // const selectedElement = [...dateElements].find(el => el.textContent.trim() === date);
+        // if (selectedElement) {
+        //     selectedElement.classList.add('selected'); // 선택된 날짜 강조
+        // }
+
+
     }
-
-    function updateReservationDate(date) {
-        // 날짜 값을 바로 reservation.jsp의 input 필드에 전달하는 AJAX 요청
-        $.ajax({
-            url: '/updateReservationDate',  // 서버에 날짜를 보내는 엔드포인트
-            type: 'POST',
-            data: {
-                selectedDate: date  // 선택된 날짜를 서버로 전달
-            },
-            success: function(response) {
-                // 성공적으로 날짜 업데이트 후 수행할 작업 (응답에 따라 알림 등 처리 가능)
-                console.log('날짜 업데이트 성공:', response);
-            },
-            error: function(xhr, status, error) {
-                console.error('날짜 업데이트 실패:', error);
-            }
-        });
-    }
-
-
-
 
 
     // 달력 그리기
@@ -178,7 +177,7 @@
         selectedDate = date;
         document.querySelector('[data-date="' + selectedDate + '"]').classList.add('selected');
         sendDateToServer(selectedDate);
-        updateReservationDate(selectedDate);
+
     }
 
 

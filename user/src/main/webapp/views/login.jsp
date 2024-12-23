@@ -55,8 +55,6 @@
 
 <body>
 
-<!-- Navbar End -->
-
 
 <!-- Header Start -->
 <div class="container-fluid bg-primary py-5 mb-5 page-header">
@@ -67,8 +65,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">Home</a></li>
-                        <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">수정</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">수정</li>
+                        <li class="breadcrumb-item"><a class="text-white" href="<c:url value="/"/> ">Page</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Login</li>
                     </ol>
                 </nav>
             </div>
@@ -138,6 +136,7 @@
                 $('#pwd').focus();
                 return;
             }
+
             this.send();
         },
         send:function(){

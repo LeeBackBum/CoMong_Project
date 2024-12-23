@@ -16,21 +16,6 @@ public class BoardService implements SMService<Integer, BoardDto> {
         this.boardRepository = boardRepository;
     }
 
-//    // 공지사항만 가져오기
-//    public List<BoardDto> getNotices() {
-//        return boardRepository.selectNotices();
-//    }
-//
-//    // 일반 게시글만 가져오기
-//    public List<BoardDto> getGeneralBoards() {
-//        return boardRepository.selectGeneralBoards();
-//    }
-//
-//    // 공지사항 포함한 모든 게시글 가져오기
-//    public List<BoardDto> getAllBoards() {
-//        return boardRepository.selectAllBoards();
-//    }
-
     // 게시글 추가
     @Override
     @Transactional
@@ -91,5 +76,3 @@ public class BoardService implements SMService<Integer, BoardDto> {
         return boardRepository.countSearchResults(keyword);
     }
 }
-
-

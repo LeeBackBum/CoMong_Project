@@ -534,17 +534,17 @@
 </div>
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<c:url value='/lib/wow/wow.min.js' />"></script>
-    <script src="<c:url value='/lib/easing/easing.min.js' />"></script>
-    <script src="<c:url value='/lib/waypoints/waypoints.min.js' />"></script>
-    <script src="<c:url value='/lib/owlcarousel/owl.carousel.min.js' />"></script>
+<!-- JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<c:url value='/lib/wow/wow.min.js' />"></script>
+<script src="<c:url value='/lib/easing/easing.min.js' />"></script>
+<script src="<c:url value='/lib/waypoints/waypoints.min.js' />"></script>
+<script src="<c:url value='/lib/owlcarousel/owl.carousel.min.js' />"></script>
 
-    <!-- Template Javascript -->
-    <script src="<c:url value='/js/main.js' />"></script>
+<!-- Template Javascript -->
+<script src="<c:url value='/js/main.js' />"></script>
 </body>
 </html>

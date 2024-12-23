@@ -6,17 +6,13 @@
 
 <head>
   <meta charset="utf-8">
-  <title>eLEARNING - eLearning HTML Template</title>
+  <title>COMONG</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-
   <!-- map -->
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8848ba17cfa4393e77b560b938dc5a46&libraries=services"></script>
-
-
-
 
   <!-- Favicon -->
   <link href="<c:url value="/img/icon.ico"/>" rel="icon">
@@ -48,6 +44,100 @@
   <%-- web socket --%>
   <script src="/webjars/sockjs-client/sockjs.min.js"></script>
   <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script><!-- JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    /* 버튼 스타일 */
+    #chatbot-button {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: #06bbcc;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #chatbox {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #f9f9f9;
+    }
+
+    #chatbot-popup.open {
+      display: block; /* 열렸을 때 표시 */
+    }
+
+    #chatbot-popup {
+      position: fixed;
+      bottom: 30px; /* 팝업 위치 */
+      left: 30px;
+      width: 300px; /* 팝업 너비 */
+      height: 500px; /* 팝업 전체 높이 조정 */
+      border: 1px solid #ccc;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none; /* 기본적으로 숨김 */
+    }
+
+    .chat-header {
+      background-color: #06bbcc;
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-body {
+      padding: 10px;
+      height: calc(100% - 110px); /* 팝업 높이에서 헤더(50px)와 푸터(60px) 제외 */
+      overflow-y: auto; /* 내용이 많으면 스크롤 활성화 */
+      background-color: #f9f9f9;
+    }
+
+    .chat-footer {
+      display: flex;
+      padding: 10px;
+      height: 60px; /* 푸터 높이 */
+      border-top: 1px solid #ddd;
+      background-color: white;
+    }
+
+    .chat-footer input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .chat-footer button {
+      background-color: #06bbcc;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-left: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -75,19 +165,17 @@
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="<c:url value="/"/>" class="nav-item nav-link active">Home</a>
       <a href="<c:url value="/about"/>" class="nav-item nav-link">About</a>
-      <a href="<c:url value="/courses"/>" class="nav-item nav-link">Courses</a>
+      <a href="<c:url value="/search"/>" class="nav-item nav-link">Search</a>
+      <a href="<c:url value="/board"/>" class="nav-item nav-link">Board</a>
       <a href="<c:url value="/reservation"/>" class="nav-item nav-link">Reservation</a>
-      <a href="<c:url value="/mapTest"/>" class="nav-item nav-link">Map</a>
+      <a href="<c:url value="/map"/>" class="nav-item nav-link">Map</a>
       <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Counsel</a>
         <div class="dropdown-menu fade-down m-0">
-          <a href="<c:url value="/team"/>" class="dropdown-item">Our Team</a>
-          <a href="<c:url value="/testimonial"/>" class="dropdown-item">Testimonial</a>
-          <a href="<c:url value="/errorpage"/>" class="dropdown-item">404 Page</a>
+          <a href="<c:url value="/counseling"/>" class="dropdown-item">Chat</a>
+          <a href="<c:url value="/webrtc"/>" class="dropdown-item">Video</a>
         </div>
       </div>
-      <a href="<c:url value="/counseling"/>" class="nav-item nav-link">Counseling</a>
-      <a href="<c:url value="/board"/>" class="nav-item nav-link">게시판</a>
     </div>
     <ul class="nav justify-content-end">
       <c:choose>
@@ -106,15 +194,188 @@
           </a>
           <div class="dropdown-menu fade-down m-0" style="right: 0; width: 10px;">
             <a href="<c:url value="/mypage"/>" class="dropdown-item">MyPage</a>
-            <a href="<c:url value="/recordpage"/>" class="dropdown-item">Record</a>
+            <a href="<c:url value="/chart"/>" class="dropdown-item">Chart</a>
             <a href="<c:url value="/logoutimpl"/>" class="dropdown-item">LogOut</a>
           </div>
         </div>
       </li>
       </c:otherwise>
       </c:choose>
+
+    </ul>
+    <!-- Chatbot Button -->
+    <button id="chatbot-button">🤖</button>
+
+    <!-- Chatbot Popup -->
+    <div id="chatbot-popup">
+      <div class="chat-header">
+        Chatbot
+        <button id="close-button" style="float: right; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">&times;</button>
+      </div>
+      <div class="chat-body" id="chatbox">
+        <!-- 메시지가 여기에 추가됩니다 -->
+      </div>
+      <div class="chat-footer">
+        <input id="user-input" type="text" placeholder="Type a message">
+        <button id="send-button">Send</button>
+      </div>
+    </div>
   </div>
 </nav>
+
+
+
+<!-- JavaScript -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatbotButton = document.getElementById("chatbot-button");
+    const chatbotPopup = document.getElementById("chatbot-popup");
+    const userInput = document.getElementById("user-input");
+    const chatbox = document.getElementById("chatbox");
+    const sendButton = document.getElementById("send-button");
+
+    let stompClient = null;
+
+    // 챗봇 팝업 닫기 버튼 이벤트
+    document.getElementById('close-button').addEventListener('click', function () {
+      chatbotPopup.style.display = 'none'; // 팝업 닫기
+    });
+
+    // 챗봇 팝업 열기/닫기 버튼 이벤트
+    chatbotButton.addEventListener("click", () => {
+      chatbotPopup.style.display = chatbotPopup.style.display === 'none' || chatbotPopup.style.display === '' ? 'block' : 'none';
+    });
+
+    // WebSocket 연결
+    function connectWebSocket() {
+      const socket = new SockJS('/chatbot'); // WebSocket 엔드포인트
+      stompClient = Stomp.over(socket);
+
+      stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+
+        stompClient.subscribe('/sendto/user1', function (message) {
+          const response = JSON.parse(message.body);
+          console.log('Parsed Response:', response);
+
+          const botResponse = response.botResponse;
+          if (botResponse) {
+            addMessage("Bot: " + botResponse, 'left');
+          }
+
+          const buttonTitle = response.buttonTitle;
+          const buttonUrl = response.buttonUrl;
+          if (buttonTitle && buttonUrl) {
+            console.log("Button Data - Title:", buttonTitle, ", URL:", buttonUrl);
+            addButton(buttonTitle, buttonUrl);
+          } else {
+            console.warn("Button data missing or incomplete:", { buttonTitle, buttonUrl });
+          }
+        });
+      }, function (error) {
+        console.error('WebSocket connection error:', error);
+      });
+    }
+
+    // 메시지 추가 함수
+    function addMessage(message, align) {
+      console.log(`Rendering message: "${message}", Align: ${align}`); // 디버깅 로그
+
+      if (!message || message.trim() === "") {
+        console.error(`Message is empty or invalid: "${message}"`);
+        return;
+      }
+
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = message;
+      messageDiv.style.marginBottom = "10px";
+      messageDiv.style.padding = "8px 12px";
+      messageDiv.style.borderRadius = "10px";
+      messageDiv.style.maxWidth = "80%";
+      messageDiv.style.display = "inline-block";
+
+      messageDiv.style.backgroundColor = align === 'right' ? '#06bbcc' : '#ddd';
+      messageDiv.style.color = align === 'right' ? 'white' : 'black';
+      messageDiv.style.alignSelf = align === 'right' ? 'flex-end' : 'flex-start';
+
+      const messageContainer = document.createElement('div');
+      messageContainer.style.display = 'flex';
+      messageContainer.style.justifyContent = align === 'right' ? 'flex-end' : 'flex-start';
+      messageContainer.appendChild(messageDiv);
+
+      chatbox.appendChild(messageContainer);
+      chatbox.scrollTop = chatbox.scrollHeight; // 스크롤 아래로 이동
+    }
+
+    // 버튼 추가 함수
+    function addButton(title, url) {
+      const button = document.createElement('button');
+      button.textContent = title; // 버튼 텍스트 설정
+      button.style.padding = "8px 12px";
+      button.style.marginTop = "-6px";
+      button.style.border = "none";
+      button.style.borderRadius = "5px";
+      button.style.cursor = "pointer";
+      button.style.backgroundColor = '#DDD';
+      button.style.color = 'black';
+
+      button.addEventListener("mouseenter", () => {
+        button.style.backgroundColor = 'white'; // 호버 시 배경색 변경
+        button.style.color = "black"; // 호버 시 글씨 색상 변경
+        button.style.transform = "scale(1.05)"; // 호버 시 크기 확대
+        button.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"; // 호버 시 그림자 효과
+      });
+
+      button.addEventListener("mouseleave", () => {
+        button.style.backgroundColor = "#DDD"; // 기본 배경색 복원
+        button.style.color = "black"; // 기본 글씨 색상 복원
+        button.style.transform = "scale(1)"; // 크기 원래대로 복원
+        button.style.boxShadow = "none"; // 그림자 제거
+      });
+
+      button.onclick = () => {
+        window.location.href = url;
+      };
+
+      const messageContainer = document.createElement('div');
+      messageContainer.style.display = 'flex';
+      messageContainer.style.justifyContent = 'flex-start';
+      messageContainer.appendChild(button);
+
+      chatbox.appendChild(messageContainer);
+      chatbox.scrollTop = chatbox.scrollHeight; // 스크롤 아래로 이동
+    }
+
+    // 메시지 전송
+    function sendMessage() {
+      const message = userInput.value.trim(); // 입력값 가져오기
+      if (!message) return;
+
+      addMessage("You: " + message, 'right'); // 사용자 메시지 표시
+
+      // WebSocket으로 서버에 메시지 전송
+      if (stompClient) {
+        stompClient.send('/app/sendchatbot', {}, JSON.stringify({ sendid: 'user1', content1: message }));
+      }
+
+      userInput.value = ''; // 입력 필드 초기화
+    }
+
+    // 메시지 전송 버튼 클릭 이벤트
+    sendButton.addEventListener("click", sendMessage);
+
+    // Enter 키로 메시지 전송
+    userInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        sendMessage();
+        event.preventDefault();
+      }
+    });
+
+    // WebSocket 연결 초기화
+    connectWebSocket();
+  });
+</script>
 
 
 <!-- Navbar End -->
@@ -152,7 +413,7 @@
         <h4 class="text-white mb-3">Contact</h4>
         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+        <p class="mb-2"><i class="fa fa-envelope me-3"></i>Comong@sunmoon.ac.kr</p>
         <div class="d-flex pt-2">
           <a class="btn btn-outline-light btn-social" href="<c:url value="/"/>"><i class="fab fa-twitter"></i></a>
           <a class="btn btn-outline-light btn-social" href="<c:url value="/"/>"><i class="fab fa-facebook-f"></i></a>
@@ -164,28 +425,28 @@
         <h4 class="text-white mb-3">Gallery</h4>
         <div class="row g-2 pt-2">
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src=<c:url value="/img/course-1.jpg" /> alt="">
+            <img class="img-fluid bg-light p-1" src=<c:url value="/img/docchart2.jpg" /> alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/docchart.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-3.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/docgg.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-2.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/doctorsss.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/medical1.jpg' />" alt="">
           </div>
           <div class="col-4">
-            <img class="img-fluid bg-light p-1" src="<c:url value='/img/course-1.jpg' />" alt="">
+            <img class="img-fluid bg-light p-1" src="<c:url value='/img/pexels-karolina-grabowska-4021769.jpg' />" alt="">
           </div>
         </div>
       </div>
       <div class="col-lg-3 col-md-6">
         <h4 class="text-white mb-3">Newsletter</h4>
-        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+        <p>Easy care anytime, anywhere.</p>
         <div class="position-relative mx-auto" style="max-width: 400px;">
           <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
           <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
@@ -197,7 +458,7 @@
     <div class="copyright">
       <div class="row">
         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-          &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+          &copy; <a class="border-bottom" href="#">CoMong</a>, All Right Reserved.
 
           <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
           Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>

@@ -1,10 +1,17 @@
 # 1. Tomcat Server Setting
 server:
-  port: 81
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12  # 인증서 파일 경로 <- keystore.p12를
+    # src/main/resources밑에 뒀다면 경로 수정 X
+    key-store-password: 111111  # 인증서 생성 시 설정한 비밀번호
+    key-store-type: PKCS12  # 인증서 형식
   servlet:
     encoding:
       charset: UTF-8
       force: true
+  address: 0.0.0.0
 
 # 2. SpringBoot Environment Setting
 spring:
@@ -35,14 +42,12 @@ logging:
 # 5. Application Environment Setting
 app:
   url:
-    server_url: http://210.119.34.219:81
+    server_url: https://210.119.34.219:8443
+    #    server_url: https://127.0.0.1:81
   dir:
-    imgdirs: C:/CoMong_Project/doctor/src/main/resources/static/img
-    imgdir: file:///c:/springsm/imgs/
-    uploadimgdir: c:/springsm/imgs/
+    imgdir: file:///c:/CoMong_Project/imgs/
+    imgmypage: C:/CoMong_Project/doctor/src/main/resources/static/img
+    uploadimgdir: c:/CoMong_Project/imgs/
     # logdir: /root/users/project/logs
-    logdir: file:///c:/springsm/logs/
-    readlogdir: c:/springsm/logs/
-  key:
-    algo: PBEWithMD5AndDES
-    skey: mykey
+    logdir: file:///c:/CoMong_Project/logs/
+    readlogdir: c:/CoMong_Project/logs/

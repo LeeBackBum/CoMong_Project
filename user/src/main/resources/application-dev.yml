@@ -1,10 +1,16 @@
 #1.
 server:
-  port: 80
+  port: 81
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: ENC(H3Wkrm5G3VRwYaSjdiGXBg==)
+    key-store-type: ENC(7pCUjOnXZ0v/+SjTZQsTYQ==)
   servlet:
     encoding:
       charset: UTF-8
       force: true
+  address: 0.0.0.0
 
 #2.
 spring:
@@ -15,11 +21,8 @@ spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8
-    #driver-class-name: com.mysql.cj.jdbc.Driver
-    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
-    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
-    username: smuser
-    password: 111111
+    username: ENC(dXAw/zweiJekPkTFmEYcJA==)
+    password: ENC(0n0hP4FG9PQxFvMynj0jEA==)
 
 # 3. Mybatis Setting
 mybatis:
@@ -35,10 +38,12 @@ logging:
 
 app:
   url:
-    server_url: http://210.119.34.219:81
+    server_url: ENC(g3LEIFaF9r2Q0d9oE2HQv6rrs1BHE015GPEAAajB6fa+tToRsP8nIw==)
+    chatbot: ENC(vmlC91iwl3BHNrfwb+44pJ2zoiVntX5dlTgQqe/U2SoLZVvHjEIIliiG3xvSZKAhXIGrdwPT36W2zcOMqZu4xJs71cw3Cl84p5AHu/VpCi/gyXrVj4ZeLYEbZaQRzFoZDnl/SoIWHRWrO42zYYxhzWNAZO0zphZ5qhPtIv97qHk=)
   key:
-    wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
-    wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)
-    algo: PBEWithMD5AndDES
-    skey: mykey
-    apikey: ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D
+    algo: ENC(zfKKV02bWkSIpWZrfhPApI1WrIzNJMYh23XNriJ0uec=)
+    skey: ENC(x6QIt3UPybBnWr7Ndskf5Q==)
+    apikey: ENC(CkAec+yDqODaOnWwF8d1I7GeqgiVQ4BerFx/zQPwLQqLhdKEOqyccpecVzeIoiStCVTvXH4QH02ZVwpqYn1VodpaWUolzgT7nRnxCzeCNAKUCH1LjoBJMoQzVQYOhA8NlOIrY7ZTo2sys0/nedeiPw==)
+    chatbot: ENC(WGfnTkMuk4/zFWkbqH9FV06tPak7w3aYJMUb2epUG9qJKUdLxjQyZw+PXhUMTxWtFFeF79huCxI=)
+    papagoId: ENC(sxMbGwi+fPc8W0gwZmaJbifROwYWvgab)
+    papagoSecret: ENC(/RAjA7PA6HEj3/+4sGUUfibyL0FKYx83tn3qto3iJp3UHivu0E6kn0XCBjG7pjwBYg5emwZCKKI=)

@@ -232,6 +232,6 @@ public class BoardController {
         return "redirect:/board";
     }
 
-   
+
 
 }
