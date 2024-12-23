@@ -248,7 +248,9 @@ API: 네이버 클로바 챗봇, 카카오페이 결제, 공공데이터, 파파
 <br><br>
 
 ### 2) 메인화면
-- 
+
+![image](https://github.com/user-attachments/assets/95dffa1c-9cf2-4dd6-b31a-2cec8645d94b)
+
 ***
 
 <br><br>
