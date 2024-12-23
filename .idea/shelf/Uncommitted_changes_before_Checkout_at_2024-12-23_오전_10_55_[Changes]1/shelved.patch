@@ -1,0 +1,613 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0e6d21f1-92f4-4a60-be64-2d8fda23877f\" name=\"Changes\" comment=\"commit\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/modules.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/resourceHashesCache.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/resourceHashesCache.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/.gradle/file-system.probe\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/.gradle/file-system.probe\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto$DoctorDtoBuilder.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto$DoctorDtoBuilder.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto$MedicalAppointmentDtoBuilder.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto$MedicalAppointmentDtoBuilder.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/controller/MainController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/classes/java/main/edu/sm/controller/MainController.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/application-dev.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/application-dev.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/application-pro.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/application-pro.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/application.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/application.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/application.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/mapper/noticeMapper.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/mapper/noticeMapper.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/mapper/usermapper.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/mapper/usermapper.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/css/bootstrap.min.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/css/bootstrap.min.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/js/main.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/js/main.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.min.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.min.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.min.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.min.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/LICENSE\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/LICENSE\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.min.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.min.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.min.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.min.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.min.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.min.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.min.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.min.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/links.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/links.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/waypoints.min.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/waypoints.min.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.min.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.min.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_accordion.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_accordion.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_alert.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_alert.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_badge.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_badge.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_breadcrumb.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_breadcrumb.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_button-group.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_button-group.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_buttons.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_buttons.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_card.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_card.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_carousel.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_carousel.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_close.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_close.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_containers.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_containers.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_dropdown.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_dropdown.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_forms.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_forms.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_functions.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_functions.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_grid.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_grid.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_helpers.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_helpers.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_images.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_images.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_list-group.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_list-group.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_mixins.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_mixins.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_modal.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_modal.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_nav.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_nav.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_navbar.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_navbar.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_offcanvas.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_offcanvas.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_pagination.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_pagination.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_popover.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_popover.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_progress.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_progress.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_reboot.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_reboot.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_root.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_root.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_spinners.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_spinners.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tables.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tables.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_toasts.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_toasts.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tooltip.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tooltip.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_transitions.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_transitions.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_type.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_type.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_utilities.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_utilities.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_variables.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_variables.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-grid.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-grid.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-reboot.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-reboot.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-utilities.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-utilities.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_floating-labels.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_floating-labels.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-check.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-check.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-control.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-control.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-range.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-range.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-select.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-select.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-text.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-text.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_input-group.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_input-group.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_labels.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_labels.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_validation.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_validation.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_clearfix.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_clearfix.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_colored-links.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_colored-links.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_position.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_position.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_ratio.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_ratio.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_stretched-link.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_stretched-link.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_text-truncation.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_text-truncation.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_visually-hidden.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_visually-hidden.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_alert.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_alert.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_border-radius.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_border-radius.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_box-shadow.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_box-shadow.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_breakpoints.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_breakpoints.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_buttons.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_buttons.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_caret.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_caret.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_clearfix.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_clearfix.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_color-scheme.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_color-scheme.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_container.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_container.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_deprecate.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_deprecate.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_forms.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_forms.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_gradients.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_gradients.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_grid.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_grid.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_image.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_image.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_list-group.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_list-group.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_lists.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_lists.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_pagination.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_pagination.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_reset-text.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_reset-text.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_resize.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_resize.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_table-variants.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_table-variants.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_text-truncate.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_text-truncate.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_transition.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_transition.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_utilities.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_utilities.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_visually-hidden.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_visually-hidden.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/utilities/_api.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/utilities/_api.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/vendor/_rfs.scss\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/vendor/_rfs.scss\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/user/build/tmp/compileJava/previous-compilation-data.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/user/build/tmp/compileJava/previous-compilation-data.bin\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$/doctor\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/user\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/user\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$/doctor\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"application\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"user\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Dependencies\" type=\"6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Jsp File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mococoland&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,\r\n    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2p38BPaiVqiU5uAqNPK0VLSU4lF\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;hyun&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/webapp/views/notice&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\CoMong_Project\\user\\src\\main\\webapp\\views\\notice\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\CoMong_Project\\user\\src\\main\\webapp\\views\\board\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Gradle.user [bootRun]\">\r\n    <configuration name=\"doctor [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/doctor\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"user [bootRun]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/user\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"bootRun\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>false</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"DoctorApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"doctor.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"edu.sm.DoctorApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"user.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"edu.sm.UserApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n        <item itemvalue=\"Gradle.doctor [bootRun]\" />\r\n        <item itemvalue=\"Gradle.user [bootRun]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0e6d21f1-92f4-4a60-be64-2d8fda23877f\" name=\"Changes\" comment=\"\" />\r\n      <created>1731983263742</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1731983263742</updated>\r\n      <workItem from=\"1731983264956\" duration=\"18486000\" />\r\n      <workItem from=\"1732064413075\" duration=\"5863000\" />\r\n      <workItem from=\"1732151216633\" duration=\"1199000\" />\r\n      <workItem from=\"1732153049903\" duration=\"1679000\" />\r\n      <workItem from=\"1732163119469\" duration=\"2628000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"2024.11.19 14:26 작업 댓글오류수정완료\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731994040358</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731994040358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"2024.11.19 14:26 작업 댓글오류수정완료\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731994510417</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731994510417</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"2024.11.19 15:28 center일단 적용 ,이상함.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731997761957</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731997761957</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"2024.11.19 15:44 공지 센터이동 및 작성자이름 출력\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731998718993</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731998718993</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"2024.11.21 master+hyun\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732167733780</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732167733780</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"2024.11.19 14:26 작업 댓글오류수정완료\" />\r\n    <MESSAGE value=\"2024.11.19 15:28 center일단 적용 ,이상함.\" />\r\n    <MESSAGE value=\"2024.11.19 15:44 공지 센터이동 및 작성자이름 출력\" />\r\n    <MESSAGE value=\"2024.11.21 사용자,관리자 권한 분리\" />\r\n    <MESSAGE value=\"2024.11.21 master+hyun\" />\r\n    <MESSAGE value=\"commit\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"commit\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/user/src/main/webapp/views/board/detail.jsp</url>\r\n          <line>1</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 968762579db561153bc99df9720af4c8314c6e4a)
++++ b/.idea/workspace.xml	(date 1734918884514)
+@@ -4,132 +4,108 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="commit">
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
++    <list default="true" id="0e6d21f1-92f4-4a60-be64-2d8fda23877f" name="Changes" comment="User 완료">
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm10.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm11.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm12.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm13.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm14.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm15.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm16.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm17.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm3.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm4.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm5.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm6.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm7.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm8.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dm9.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dmf1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dmf2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dmf3.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dmf4.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dmf5.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw3.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw4.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw5.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw6.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw7.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw8.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dw9.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dwf1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/dwf2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/doctor/src/main/resources/static/img/icon.ico" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm10.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm11.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm12.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm13.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm14.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm15.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm16.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm17.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm3.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm4.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm5.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm6.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm7.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm8.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dm9.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dmf1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dmf2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dmf3.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dmf4.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dmf5.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw3.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw4.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw5.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw6.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw7.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw8.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dw9.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dwf1.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/docimg/dwf2.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/user/src/main/resources/static/imgt/hpmarker.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2024-12-09__1_34__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/controller/MsgController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/resources/application-dev.yml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/center.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/index.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/main.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/appointments.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/user/appointments.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/webapp/views/webrtc.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logs/power.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/power.log" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/executionHistory/executionHistory.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/8.10.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/user/.gradle/file-system.probe" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto$DoctorDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto$DoctorDtoBuilder.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/DoctorDto.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto$MedicalAppointmentDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto$MedicalAppointmentDtoBuilder.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/app/dto/MedicalAppointmentDto.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/classes/java/main/edu/sm/controller/MainController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application-dev.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application-pro.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application-pro.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/application.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/mapper/noticeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/mapper/noticeMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/mapper/usermapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/mapper/usermapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/css/bootstrap.min.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/js/main.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/animate/animate.min.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/easing/easing.min.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/LICENSE" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.carousel.min.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.default.min.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/assets/owl.theme.green.min.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/owlcarousel/owl.carousel.min.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/links.php" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/links.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/waypoints.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/waypoints/waypoints.min.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/lib/wow/wow.min.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_accordion.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_accordion.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_alert.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_badge.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_badge.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_breadcrumb.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_breadcrumb.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_button-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_button-group.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_buttons.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_card.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_card.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_carousel.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_carousel.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_close.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_close.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_containers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_containers.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_dropdown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_dropdown.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_forms.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_functions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_functions.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_grid.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_helpers.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_helpers.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_images.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_images.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_list-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_list-group.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_mixins.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_modal.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_modal.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_nav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_nav.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_navbar.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_offcanvas.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_offcanvas.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_pagination.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_popover.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_popover.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_progress.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_progress.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_reboot.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_reboot.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_root.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_root.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_spinners.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_spinners.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tables.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_toasts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_toasts.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tooltip.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_tooltip.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_transitions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_transitions.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_type.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_type.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_utilities.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/_variables.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-grid.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-reboot.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-reboot.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap-utilities.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/bootstrap.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_floating-labels.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_floating-labels.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-check.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-check.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-control.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-control.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-range.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-range.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-select.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-select.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-text.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_form-text.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_input-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_input-group.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_labels.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_labels.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_validation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/forms/_validation.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_clearfix.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_clearfix.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_colored-links.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_colored-links.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_position.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_position.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_ratio.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_ratio.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_stretched-link.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_stretched-link.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_text-truncation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_text-truncation.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_visually-hidden.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/helpers/_visually-hidden.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_alert.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_alert.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_border-radius.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_border-radius.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_box-shadow.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_box-shadow.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_breakpoints.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_breakpoints.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_buttons.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_caret.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_caret.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_clearfix.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_clearfix.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_color-scheme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_color-scheme.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_container.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_container.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_deprecate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_deprecate.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_forms.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_forms.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_gradients.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_gradients.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_grid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_grid.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_image.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_image.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_list-group.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_list-group.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_lists.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_lists.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_pagination.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_reset-text.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_reset-text.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_resize.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_resize.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_table-variants.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_table-variants.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_text-truncate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_text-truncate.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_transition.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_transition.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_utilities.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_utilities.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_visually-hidden.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/mixins/_visually-hidden.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/utilities/_api.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/utilities/_api.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/vendor/_rfs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/resources/main/static/scss/bootstrap/scss/vendor/_rfs.scss" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/user/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/user/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/BoardController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/java/edu/sm/controller/MainController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/java/edu/sm/util/PapagoUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctor/src/main/java/edu/sm/util/PapagoUtil.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/css/bootstrap.min.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/img/carousel-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/carousel-1.jpg" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/img/team-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/team-1.jpg" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/img/team-2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/team-2.jpg" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/img/team-3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/team-3.jpg" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/resources/static/img/team-4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/resources/static/img/team-4.jpg" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/counseling.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/Counseling/counseling.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/about.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/about.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/center.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/getDoctorList.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/index.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/login.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/map.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/user/src/main/webapp/views/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/user/src/main/webapp/views/search.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -138,9 +114,15 @@
+   </component>
+   <component name="ExternalProjectsData">
+     <projectState path="$PROJECT_DIR$/doctor">
++      <ProjectState />
++    </projectState>
++    <projectState path="$PROJECT_DIR$/doctor_iot">
+       <ProjectState />
+     </projectState>
+     <projectState path="$PROJECT_DIR$/user">
++      <ProjectState />
++    </projectState>
++    <projectState path="$PROJECT_DIR$/user_iot">
+       <ProjectState />
+     </projectState>
+   </component>
+@@ -158,23 +140,33 @@
+             <expand>
+               <path>
+                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="user" type="f1a62948:ProjectNode" />
++                <item name="doctor" type="f1a62948:ProjectNode" />
+               </path>
+               <path>
+                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="user" type="f1a62948:ProjectNode" />
++                <item name="doctor" type="f1a62948:ProjectNode" />
+                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+               </path>
+               <path>
+                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="user" type="f1a62948:ProjectNode" />
++                <item name="doctor" type="f1a62948:ProjectNode" />
+                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                 <item name="application" type="c8890929:TasksNode$1" />
+               </path>
+               <path>
+                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                 <item name="user" type="f1a62948:ProjectNode" />
+-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
++              </path>
++              <path>
++                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
++                <item name="user" type="f1a62948:ProjectNode" />
++                <item name="Tasks" type="e4a08cd1:TasksNode" />
++              </path>
++              <path>
++                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
++                <item name="user" type="f1a62948:ProjectNode" />
++                <item name="Tasks" type="e4a08cd1:TasksNode" />
++                <item name="application" type="c8890929:TasksNode$1" />
+               </path>
+             </expand>
+             <select />
+@@ -187,6 +179,7 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Jsp File" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+@@ -207,7 +200,7 @@
+   <component name="GithubPullRequestsUISettings">{
+   &quot;selectedUrlAndAccountId&quot;: {
+     &quot;url&quot;: &quot;https://github.com/LeeBackBum/CoMong_Project.git&quot;,
+-    &quot;accountId&quot;: &quot;b0b3ff05-36b0-4440-8eb1-1509a7961066&quot;
++    &quot;accountId&quot;: &quot;379c5a3c-6fb4-49d3-9c29-33059c50308e&quot;
+   }
+ }</component>
+   <component name="ProjectColorInfo">{
+@@ -224,13 +217,17 @@
+   </component>
+   <component name="PropertiesComponent">{
+   &quot;keyToString&quot;: {
++    &quot;Gradle.DoctorSelectTest.executor&quot;: &quot;Run&quot;,
+     &quot;Gradle.doctor [bootRun].executor&quot;: &quot;Run&quot;,
++    &quot;Gradle.doctor_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
+     &quot;Gradle.user [bootRun].executor&quot;: &quot;Run&quot;,
++    &quot;Gradle.user_iot [:edu.sm.Main.main()].executor&quot;: &quot;Run&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;hyun&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;Bum&quot;,
++    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/user/src/main/webapp/views/notice&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/CoMong_Project/doctor/src/main/resources/static/img&quot;,
+     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+@@ -241,13 +238,71 @@
+ }</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+-      <recent name="C:\CoMong_Project\user\src\main\webapp\views\notice" />
++      <recent name="C:\CoMong_Project\doctor\src\main\resources\static\img" />
++      <recent name="C:\CoMong_Project\user\src\main\resources\static\docimg" />
++      <recent name="C:\CoMong_Project\user\src\main\resources\static\hpimg" />
++      <recent name="C:\CoMong_Project\user\src\main\resources\static\img" />
++      <recent name="C:\CoMong_Project\user\src\main\resources\static\imgt" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\CoMong_Project\user\src\main\resources\static\imgt" />
++      <recent name="C:\CoMong_Project\doctor\src\main\resources\static\img" />
++      <recent name="C:\CoMong_Project\user\src\main\resources\static\img" />
++      <recent name="C:\CoMong_Project\doctor\src\main\resources" />
+       <recent name="C:\CoMong_Project\user\src\main\webapp\views\board" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Gradle.user [bootRun]">
++  <component name="RunManager" selected="Gradle.doctor [bootRun]">
++    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
++      <module name="user_iot.main" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="edu.sm.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="edu.sm.Main" />
++      <module name="doctor_iot.main" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="edu.sm.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="DoctorSelectTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
++      <ExternalSystemSettings>
++        <option name="executionName" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$/doctor" />
++        <option name="externalSystemIdString" value="GRADLE" />
++        <option name="scriptParameters" value="" />
++        <option name="taskDescriptions">
++          <list />
++        </option>
++        <option name="taskNames">
++          <list>
++            <option value=":test" />
++            <option value="--tests" />
++            <option value="&quot;edu.sm.DoctorSelectTest&quot;" />
++          </list>
++        </option>
++        <option name="vmOptions" />
++      </ExternalSystemSettings>
++      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
++      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
++      <DebugAllEnabled>false</DebugAllEnabled>
++      <RunAsTest>true</RunAsTest>
++      <method v="2" />
++    </configuration>
+     <configuration name="doctor [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+@@ -310,10 +365,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Gradle.user [bootRun]" />
+-        <item itemvalue="Gradle.user [bootRun]" />
+         <item itemvalue="Gradle.doctor [bootRun]" />
+         <item itemvalue="Gradle.user [bootRun]" />
++        <item itemvalue="Application.Main (1)" />
++        <item itemvalue="Gradle.DoctorSelectTest" />
++        <item itemvalue="Application.Main" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -338,6 +394,30 @@
+       <workItem from="1732151216633" duration="1199000" />
+       <workItem from="1732153049903" duration="1679000" />
+       <workItem from="1732163119469" duration="2628000" />
++      <workItem from="1733105731599" duration="21325000" />
++      <workItem from="1733192574282" duration="11014000" />
++      <workItem from="1733224617568" duration="248000" />
++      <workItem from="1733276148654" duration="5643000" />
++      <workItem from="1733292989121" duration="6895000" />
++      <workItem from="1733372323582" duration="6144000" />
++      <workItem from="1733724047612" duration="5983000" />
++      <workItem from="1733731963145" duration="3822000" />
++      <workItem from="1733790365031" duration="15135000" />
++      <workItem from="1733817031955" duration="3139000" />
++      <workItem from="1733876574611" duration="8203000" />
++      <workItem from="1733965504315" duration="9021000" />
++      <workItem from="1733999232973" duration="1399000" />
++      <workItem from="1734052240774" duration="11100000" />
++      <workItem from="1734074854814" duration="2818000" />
++      <workItem from="1734077708670" duration="3961000" />
++      <workItem from="1734082349035" duration="1273000" />
++      <workItem from="1734308666389" duration="4059000" />
++      <workItem from="1734312797060" duration="9739000" />
++      <workItem from="1734328282080" duration="12289000" />
++      <workItem from="1734394833415" duration="6150000" />
++      <workItem from="1734496960320" duration="5112000" />
++      <workItem from="1734568389902" duration="4221000" />
++      <workItem from="1734657989157" duration="6035000" />
+     </task>
+     <task id="LOCAL-00001" summary="2024.11.19 14:26 작업 댓글오류수정완료">
+       <option name="closed" value="true" />
+@@ -379,20 +459,159 @@
+       <option name="project" value="LOCAL" />
+       <updated>1732167733780</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="2024.11.29 리셋">
++      <option name="closed" value="true" />
++      <created>1732863085263</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1732863085263</updated>
++    </task>
++    <task id="LOCAL-00007" summary="2024.11.29 리셋">
++      <option name="closed" value="true" />
++      <created>1732863170448</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1732863170448</updated>
++    </task>
++    <task id="LOCAL-00008" summary="2024.11.29 리셋">
++      <option name="closed" value="true" />
++      <created>1732863213948</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1732863213948</updated>
++    </task>
++    <task id="LOCAL-00009" summary="2024.12.03 최신화">
++      <option name="closed" value="true" />
++      <created>1733224863426</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1733224863426</updated>
++    </task>
++    <task id="LOCAL-00010" summary="feat.jhKim 2024.12.04 채팅 ui 개선">
++      <option name="closed" value="true" />
++      <created>1733309968122</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1733309968123</updated>
++    </task>
++    <task id="LOCAL-00011" summary="feat.jhKim 2024.12.05 화상 50% 완료">
++      <option name="closed" value="true" />
++      <created>1733380373131</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1733380373132</updated>
++    </task>
++    <task id="LOCAL-00012" summary="feat.jhKim 2024.12.05 15:53 최신화">
++      <option name="closed" value="true" />
++      <created>1733381591564</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1733381591564</updated>
++    </task>
++    <task id="LOCAL-00013" summary="merge">
++      <option name="closed" value="true" />
++      <created>1733732000246</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1733732000246</updated>
++    </task>
++    <task id="LOCAL-00014" summary="merge">
++      <option name="closed" value="true" />
++      <created>1733732018664</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1733732018664</updated>
++    </task>
++    <task id="LOCAL-00015" summary="ChatBot">
++      <option name="closed" value="true" />
++      <created>1733817059464</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1733817059464</updated>
++    </task>
++    <task id="LOCAL-00016" summary="ChatBot">
++      <option name="closed" value="true" />
++      <created>1733968486061</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1733968486061</updated>
++    </task>
++    <task id="LOCAL-00017" summary="merge..ing_1213">
++      <option name="closed" value="true" />
++      <created>1734074888466</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1734074888466</updated>
++    </task>
++    <task id="LOCAL-00018" summary="merge">
++      <option name="closed" value="true" />
++      <created>1734082381267</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1734082381267</updated>
++    </task>
++    <task id="LOCAL-00019" summary="merge">
++      <option name="closed" value="true" />
++      <created>1734312822065</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1734312822065</updated>
++    </task>
++    <task id="LOCAL-00020" summary="User 완료">
++      <option name="closed" value="true" />
++      <created>1734328327501</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
++      <option name="project" value="LOCAL" />
++      <updated>1734328327501</updated>
++    </task>
++    <option name="localTasksCounter" value="21" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="2024.11.19 14:26 작업 댓글오류수정완료" />
+     <MESSAGE value="2024.11.19 15:28 center일단 적용 ,이상함." />
+     <MESSAGE value="2024.11.19 15:44 공지 센터이동 및 작성자이름 출력" />
+     <MESSAGE value="2024.11.21 사용자,관리자 권한 분리" />
+     <MESSAGE value="2024.11.21 master+hyun" />
+-    <MESSAGE value="commit" />
+-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
++    <MESSAGE value="2024.11.29 리셋" />
++    <MESSAGE value="2024.12.03 최신화" />
++    <MESSAGE value="feat.jhKim 2024.12.04 채팅 ui 개선" />
++    <MESSAGE value="feat.jhKim 2024.12.05 화상 50% 완료" />
++    <MESSAGE value="feat.jhKim 2024.12.05 15:53 최신화" />
++    <MESSAGE value="ChatBot" />
++    <MESSAGE value="merge..ing_1213" />
++    <MESSAGE value="merge" />
++    <MESSAGE value="User 완료" />
++    <option name="LAST_COMMIT_MESSAGE" value="User 완료" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
