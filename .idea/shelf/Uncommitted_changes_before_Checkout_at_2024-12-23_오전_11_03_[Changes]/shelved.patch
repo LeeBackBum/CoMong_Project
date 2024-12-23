@@ -1,0 +1,143 @@
+Index: user/build/resources/main/mapper/noticeMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<!DOCTYPE mapper\r\n        PUBLIC \"-//mybatis.org/DTD Mapper 3.0//EN\"\r\n        \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\"edu.sm.app.repository.NoticeRepository\">\r\n\r\n    <!-- 단일 공지사항 조회 -->\r\n    <select id=\"selectOne\" parameterType=\"int\" resultType=\"edu.sm.app.dto.NoticeDto\">\r\n        SELECT n.notice_id AS noticeId,\r\n               n.notice_title AS noticeTitle,\r\n               n.notice_content AS noticeContent,\r\n               n.notice_date AS noticeDate,\r\n               n.notice_hits AS noticeHits,\r\n               n.user_id AS userId,\r\n               m.user_name AS userName\r\n        FROM notice n\r\n                 LEFT JOIN user m ON n.user_id = m.user_id\r\n        WHERE n.notice_id = #{noticeId}\r\n    </select>\r\n\r\n    <!-- 모든 공지사항 조회 -->\r\n    <select id=\"selectAllNotices\" resultType=\"edu.sm.app.dto.NoticeDto\">\r\n        SELECT n.notice_id AS noticeId,\r\n               n.notice_title AS noticeTitle,\r\n               n.notice_content AS noticeContent,\r\n               n.notice_date AS noticeDate,\r\n               n.notice_hits AS noticeHits,\r\n               n.user_id AS userId,\r\n               m.user_name AS userName\r\n        FROM notice n\r\n                 LEFT JOIN user m ON n.user_id = m.user_id\r\n        ORDER BY n.notice_date ASC\r\n    </select>\r\n\r\n    <!-- 공지사항 추가 -->\r\n    <insert id=\"insert\" parameterType=\"edu.sm.app.dto.NoticeDto\">\r\n        INSERT INTO notice (notice_id, notice_title, notice_content, notice_date, notice_hits, user_Id, user_name)\r\n        VALUES (#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeDate}, #{noticeHits}, #{userId}, #{userName})\r\n    </insert>\r\n\r\n    <!-- 공지사항 수정 -->\r\n<!--    <update id=\"update\" parameterType=\"edu.sm.app.dto.NoticeDto\">-->\r\n<!--        UPDATE notice-->\r\n<!--        SET notice_title = #{noticeTitle},-->\r\n<!--            notice_content = #{noticeContent},-->\r\n<!--            notice_date = #{noticeDate},-->\r\n<!--            notice_hits = #{noticeHits},-->\r\n<!--            user_id = #{userId}-->\r\n<!--        WHERE notice_id = #{noticeId}-->\r\n<!--    </update>-->\r\n    <update id=\"update\" parameterType=\"edu.sm.app.dto.NoticeDto\">\r\n        UPDATE notice\r\n        SET notice_title = #{noticeTitle},\r\n            notice_content = #{noticeContent},\r\n            notice_hits = #{noticeHits} -- 작성자와 작성시간은 수정하지 않음\r\n        WHERE notice_id = #{noticeId}\r\n    </update>\r\n\r\n    <!-- 공지사항 삭제 -->\r\n    <delete id=\"delete\" parameterType=\"int\">\r\n        DELETE FROM notice WHERE notice_id = #{noticeId}\r\n    </delete>\r\n</mapper>\r\n
+===================================================================
+diff --git a/user/build/resources/main/mapper/noticeMapper.xml b/user/build/resources/main/mapper/noticeMapper.xml
+--- a/user/build/resources/main/mapper/noticeMapper.xml	(revision bfb95d918a1db797f6ed4cb30a0fd0a1747c207c)
++++ b/user/build/resources/main/mapper/noticeMapper.xml	(date 1734919147670)
+@@ -38,16 +38,7 @@
+         VALUES (#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeDate}, #{noticeHits}, #{userId}, #{userName})
+     </insert>
+ 
+-    <!-- 공지사항 수정 -->
+-<!--    <update id="update" parameterType="edu.sm.app.dto.NoticeDto">-->
+-<!--        UPDATE notice-->
+-<!--        SET notice_title = #{noticeTitle},-->
+-<!--            notice_content = #{noticeContent},-->
+-<!--            notice_date = #{noticeDate},-->
+-<!--            notice_hits = #{noticeHits},-->
+-<!--            user_id = #{userId}-->
+-<!--        WHERE notice_id = #{noticeId}-->
+-<!--    </update>-->
++
+     <update id="update" parameterType="edu.sm.app.dto.NoticeDto">
+         UPDATE notice
+         SET notice_title = #{noticeTitle},
+@@ -60,4 +51,4 @@
+     <delete id="delete" parameterType="int">
+         DELETE FROM notice WHERE notice_id = #{noticeId}
+     </delete>
+-</mapper>
++</mapper>
+\ No newline at end of file
+Index: user/build/resources/main/mapper/usermapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<!DOCTYPE mapper\r\n        PUBLIC \"-//mybatis.org/DTD Mapper 3.0//EN\"\r\n        \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\"edu.sm.app.repository.UserRepository\">\r\n\r\n    <update id=\"updatePwd\" parameterType=\"userDto\">\r\n        UPDATE user SET user_pwd=#{userPwd} WHERE user_id=#{userId}\r\n    </update>\r\n    <select id=\"findById\" resultType=\"UserDto\" parameterType=\"String\">\r\n        SELECT * FROM user WHERE user_id = #{userId}\r\n    </select>\r\n\r\n\r\n    <select id=\"selectOne\" parameterType=\"String\" resultType=\"userDto\">\r\n        SELECT * FROM user WHERE user_id=#{id}\r\n    </select>\r\n    <select id=\"select\" resultType=\"userDto\">\r\n        SELECT * FROM user\r\n    </select>\r\n    <insert id=\"insert\" parameterType=\"userDto\">\r\n        INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber},CASE WHEN #{role} IS NULL OR #{role} = '' THEN '0' ELSE #{role} END)\r\n    </insert>\r\n    <update id=\"update\" parameterType=\"userDto\">\r\n        UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}\r\n    </update>\r\n    <delete id=\"delete\" parameterType=\"String\">\r\n        DELETE FROM user WHERE user_id=#{id}\r\n    </delete>\r\n\r\n    <!-- 사용자 인증: 사용자명과 비밀번호로 사용자 조회 추가 -->\r\n    <select id=\"findByUsernameAndPassword\" parameterType=\"map\" resultType=\"edu.sm.app.dto.UserDto\">\r\n        SELECT user_id AS userId,\r\n               user_name AS userName,\r\n               user_pwd AS userPwd\r\n        FROM user\r\n        WHERE user_id = #{username}\r\n          AND user_pwd = #{password}\r\n    </select>\r\n\r\n</mapper>
+===================================================================
+diff --git a/user/build/resources/main/mapper/usermapper.xml b/user/build/resources/main/mapper/usermapper.xml
+--- a/user/build/resources/main/mapper/usermapper.xml	(revision bfb95d918a1db797f6ed4cb30a0fd0a1747c207c)
++++ b/user/build/resources/main/mapper/usermapper.xml	(date 1734919147671)
+@@ -22,7 +22,7 @@
+         INSERT INTO user VALUES (#{userId},#{userPwd},#{userEmail},#{userName},#{userAddress},#{userAge},#{userSex},#{diseaseStatus},#{userNumber},CASE WHEN #{role} IS NULL OR #{role} = '' THEN '0' ELSE #{role} END)
+     </insert>
+     <update id="update" parameterType="userDto">
+-        UPDATE user SET user_pwd=#{userPwd},user_name=#{userName} WHERE user_id=#{userId}
++        UPDATE user SET user_email=#{userEmail},user_number=#{userNumber}, user_address=#{userAddress} WHERE user_id=#{userId}
+     </update>
+     <delete id="delete" parameterType="String">
+         DELETE FROM user WHERE user_id=#{id}
+Index: user/build/resources/main/mapper/boardMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<!DOCTYPE mapper\r\n        PUBLIC \"-//mybatis.org/DTD Mapper 3.0//EN\"\r\n        \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\"edu.sm.app.repository.BoardRepository\">\r\n\r\n    <!-- 단일 게시글 조회 -->\r\n    <select id=\"selectOne\" parameterType=\"int\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n               board_title AS boardTitle,\r\n               board_content AS boardContent,\r\n               board_date AS boardDate,\r\n               board_update AS boardUpdate,\r\n               board_hits AS boardHits,\r\n               board_answer_num AS boardAnswerNum,\r\n               user_id AS userId,\r\n               user_name AS userName\r\n        FROM board\r\n        WHERE board_id = #{boardId};\r\n    </select>\r\n\r\n    <!-- 모든 게시글 조회 -->\r\n    <select id=\"select\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n               board_title AS boardTitle,\r\n               board_content AS boardContent,\r\n               board_date AS boardDate,\r\n               board_update AS boardUpdate,\r\n               board_hits AS boardHits,\r\n               board_answer_num AS boardAnswerNum,\r\n               user_id AS userId,\r\n               user_name AS userName\r\n        FROM board\r\n        ORDER BY board_date DESC;\r\n    </select>\r\n\r\n    <!-- 페이징을 위한 게시글 조회 -->\r\n    <select id=\"selectBoardsWithPagination\" parameterType=\"map\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n               board_title AS boardTitle,\r\n               board_content AS boardContent,\r\n               board_date AS boardDate,\r\n               board_update AS boardUpdate,\r\n               board_hits AS boardHits,\r\n               board_answer_num AS boardAnswerNum,\r\n               user_id AS userId,\r\n               user_name AS userName\r\n        FROM board\r\n        ORDER BY board_date DESC\r\n            LIMIT #{offset}, #{pageSize};\r\n    </select>\r\n\r\n    <!-- 총 게시글 수 조회 -->\r\n    <select id=\"countTotalBoards\" resultType=\"int\">\r\n        SELECT COUNT(*) FROM board;\r\n    </select>\r\n\r\n    <!-- 게시글 삽입 -->\r\n    <insert id=\"insert\" parameterType=\"edu.sm.app.dto.BoardDto\">\r\n        INSERT INTO board (board_title, board_content, board_date, board_hits, user_id, user_name)\r\n        VALUES (#{boardTitle}, #{boardContent}, NOW(), 0, #{userId}, #{userName});\r\n    </insert>\r\n\r\n    <!-- 게시글 수정 -->\r\n    <update id=\"update\" parameterType=\"edu.sm.app.dto.BoardDto\">\r\n        UPDATE board\r\n        SET board_title = #{boardTitle},\r\n            board_content = #{boardContent},\r\n            board_update = NOW()\r\n        WHERE board_id = #{boardId};\r\n    </update>\r\n\r\n    <!-- 조회수 증가 -->\r\n    <update id=\"increaseHits\" parameterType=\"int\">\r\n        UPDATE board\r\n        SET board_hits = board_hits + 1\r\n        WHERE board_id = #{boardId};\r\n    </update>\r\n\r\n    <!-- 게시글 삭제 -->\r\n    <delete id=\"delete\" parameterType=\"int\">\r\n        DELETE FROM board WHERE board_id = #{boardId};\r\n    </delete>\r\n\r\n    <!-- 제목 또는 내용으로 게시글 검색 -->\r\n    <select id=\"searchBoards\" parameterType=\"map\" resultType=\"edu.sm.app.dto.BoardDto\">\r\n        SELECT board_id AS boardId,\r\n               board_title AS boardTitle,\r\n               board_content AS boardContent,\r\n               board_date AS boardDate,\r\n               board_hits AS boardHits,\r\n               user_id AS userId,\r\n               user_name AS userName\r\n        FROM board\r\n        WHERE board_title LIKE CONCAT('%', #{keyword}, '%')\r\n           OR board_content LIKE CONCAT('%', #{keyword}, '%')\r\n        ORDER BY board_date DESC\r\n            LIMIT #{offset}, #{pageSize};\r\n    </select>\r\n\r\n    <!-- 검색 결과 총 개수 조회 -->\r\n    <select id=\"countSearchResults\" parameterType=\"string\" resultType=\"int\">\r\n        SELECT COUNT(*)\r\n        FROM board\r\n        WHERE board_title LIKE CONCAT('%', #{keyword}, '%')\r\n           OR board_content LIKE CONCAT('%', #{keyword}, '%');\r\n    </select>\r\n</mapper>\r\n
+===================================================================
+diff --git a/user/build/resources/main/mapper/boardMapper.xml b/user/build/resources/main/mapper/boardMapper.xml
+--- a/user/build/resources/main/mapper/boardMapper.xml	(revision bfb95d918a1db797f6ed4cb30a0fd0a1747c207c)
++++ b/user/build/resources/main/mapper/boardMapper.xml	(date 1734919147664)
+@@ -105,4 +105,4 @@
+         WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+            OR board_content LIKE CONCAT('%', #{keyword}, '%');
+     </select>
+-</mapper>
++</mapper>
+\ No newline at end of file
+Index: user/build/resources/main/application-dev.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#1.\r\nserver:\r\n  port: 80\r\n  servlet:\r\n    encoding:\r\n      charset: UTF-8\r\n      force: true\r\n\r\n#2.\r\nspring:\r\n  mvc:\r\n    view:\r\n      prefix: /views/\r\n      suffix: .jsp\r\n  datasource:\r\n    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy\r\n    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8\r\n    #driver-class-name: com.mysql.cj.jdbc.Driver\r\n    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8\r\n    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul\r\n    username: smuser\r\n    password: 111111\r\n\r\n# 3. Mybatis Setting 210.119.34.219\r\nmybatis:\r\n  type-aliases-package: edu.sm.app.dto\r\n  mapper-locations: classpath:/mapper/*.xml\r\n  configuration:\r\n    map-underscore-to-camel-case: true\r\n\r\n#4.\r\nlogging:\r\n  level:\r\n    root: info\r\n\r\napp:\r\n  url:\r\n    server_url: http://210.119.34.216:80\r\n  key:\r\n    wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)\r\n    wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)\r\n    algo: PBEWithMD5AndDES\r\n    skey: mykey\r\n    apikey: ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D\r\n
+===================================================================
+diff --git a/user/build/resources/main/application-dev.yml b/user/build/resources/main/application-dev.yml
+--- a/user/build/resources/main/application-dev.yml	(revision bfb95d918a1db797f6ed4cb30a0fd0a1747c207c)
++++ b/user/build/resources/main/application-dev.yml	(date 1734919147642)
+@@ -1,10 +1,16 @@
+ #1.
+ server:
+-  port: 80
++  port: 81
++  ssl:
++    enabled: true
++    key-store: classpath:keystore.p12
++    key-store-password: ENC(H3Wkrm5G3VRwYaSjdiGXBg==)
++    key-store-type: ENC(7pCUjOnXZ0v/+SjTZQsTYQ==)
+   servlet:
+     encoding:
+       charset: UTF-8
+       force: true
++  address: 0.0.0.0
+ 
+ #2.
+ spring:
+@@ -15,13 +21,10 @@
+   datasource:
+     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smhs?characterEncoding=utf8
+-    #driver-class-name: com.mysql.cj.jdbc.Driver
+-    #url: jdbc:mysql://127.0.0.1:3306/shopdb?characterEncoding=utf8
+-    #url: jdbc:mysql://127.0.0.1:3306/shopdb?serverTimezone=Asia/Seoul
+-    username: smuser
+-    password: 111111
++    username: ENC(dXAw/zweiJekPkTFmEYcJA==)
++    password: ENC(0n0hP4FG9PQxFvMynj0jEA==)
+ 
+-# 3. Mybatis Setting 210.119.34.219
++# 3. Mybatis Setting
+ mybatis:
+   type-aliases-package: edu.sm.app.dto
+   mapper-locations: classpath:/mapper/*.xml
+@@ -35,10 +38,12 @@
+ 
+ app:
+   url:
+-    server_url: http://210.119.34.216:80
++    server_url: ENC(g3LEIFaF9r2Q0d9oE2HQv6rrs1BHE015GPEAAajB6fa+tToRsP8nIw==)
++    chatbot: ENC(vmlC91iwl3BHNrfwb+44pJ2zoiVntX5dlTgQqe/U2SoLZVvHjEIIliiG3xvSZKAhXIGrdwPT36W2zcOMqZu4xJs71cw3Cl84p5AHu/VpCi/gyXrVj4ZeLYEbZaQRzFoZDnl/SoIWHRWrO42zYYxhzWNAZO0zphZ5qhPtIv97qHk=)
+   key:
+-    wkey2: ENC(AGzLAgsPMOJE5zDYsXEricMGvjB/S1GVF2ZFRTuO9qjnlj/sMv6d/xF0pAuzWJkn)
+-    wkey: ENC(sk0nvdR+8O/fFU/24TTyTz0RjawRE+FcCEtN+yKfTghs2TItjkvbs/H7ueayNEkPAbqqvdsUn6E+uNHgDhuaIMJy1eNiRMF5FCLbNFDOVYJYLiaMtJpjgJNpuv/hHZf0XGyjHZ/tNa0=)
+-    algo: PBEWithMD5AndDES
+-    skey: mykey
+-    apikey: ymM0cegTHI9EEDldHJd0Bk1pFJ7Is8b%2B9qmZ8zQMpMLLoZI9B2zPT0rwSX6dOvLI0736SD4F6yOn0vXUg9OKiw%3D%3D
++    algo: ENC(zfKKV02bWkSIpWZrfhPApI1WrIzNJMYh23XNriJ0uec=)
++    skey: ENC(x6QIt3UPybBnWr7Ndskf5Q==)
++    apikey: ENC(CkAec+yDqODaOnWwF8d1I7GeqgiVQ4BerFx/zQPwLQqLhdKEOqyccpecVzeIoiStCVTvXH4QH02ZVwpqYn1VodpaWUolzgT7nRnxCzeCNAKUCH1LjoBJMoQzVQYOhA8NlOIrY7ZTo2sys0/nedeiPw==)
++    chatbot: ENC(WGfnTkMuk4/zFWkbqH9FV06tPak7w3aYJMUb2epUG9qJKUdLxjQyZw+PXhUMTxWtFFeF79huCxI=)
++    papagoId: ENC(sxMbGwi+fPc8W0gwZmaJbifROwYWvgab)
++    papagoSecret: ENC(/RAjA7PA6HEj3/+4sGUUfibyL0FKYx83tn3qto3iJp3UHivu0E6kn0XCBjG7pjwBYg5emwZCKKI=)
+Index: user/build/resources/main/static/css/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/********** Template CSS **********/\r\n:root {\r\n    --primary: #06BBCC;\r\n    --light: #F0FBFC;\r\n    --dark: #181d38;\r\n}\r\n\r\n.fw-medium {\r\n    font-weight: 600 !important;\r\n}\r\n\r\n.fw-semi-bold {\r\n    font-weight: 700 !important;\r\n}\r\n\r\n.back-to-top {\r\n    position: fixed;\r\n    display: none;\r\n    right: 45px;\r\n    bottom: 45px;\r\n    z-index: 99;\r\n}\r\n\r\n\r\n/*** Spinner ***/\r\n#spinner {\r\n    opacity: 0;\r\n    visibility: hidden;\r\n    transition: opacity .5s ease-out, visibility 0s linear .5s;\r\n    z-index: 99999;\r\n}\r\n\r\n#spinner.show {\r\n    transition: opacity .5s ease-out, visibility 0s linear 0s;\r\n    visibility: visible;\r\n    opacity: 1;\r\n}\r\n\r\n\r\n/*** Button ***/\r\n.btn {\r\n    font-family: 'Nunito', sans-serif;\r\n    font-weight: 600;\r\n    transition: .5s;\r\n}\r\n\r\n.btn.btn-primary,\r\n.btn.btn-secondary {\r\n    color: #FFFFFF;\r\n}\r\n\r\n.btn-square {\r\n    width: 38px;\r\n    height: 38px;\r\n}\r\n\r\n.btn-sm-square {\r\n    width: 32px;\r\n    height: 32px;\r\n}\r\n\r\n.btn-lg-square {\r\n    width: 48px;\r\n    height: 48px;\r\n}\r\n\r\n.btn-square,\r\n.btn-sm-square,\r\n.btn-lg-square {\r\n    padding: 0;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    font-weight: normal;\r\n    border-radius: 0px;\r\n}\r\n\r\n\r\n/*** Navbar ***/\r\n.navbar .dropdown-toggle::after {\r\n    border: none;\r\n    content: \"\\f107\";\r\n    font-family: \"Font Awesome 5 Free\";\r\n    font-weight: 900;\r\n    vertical-align: middle;\r\n    margin-left: 8px;\r\n}\r\n\r\n.navbar-light .navbar-nav .nav-link {\r\n    margin-right: 30px;\r\n    padding: 25px 0;\r\n    color: #FFFFFF;\r\n    font-size: 15px;\r\n    text-transform: uppercase;\r\n    outline: none;\r\n}\r\n\r\n.navbar-light .navbar-nav .nav-link:hover,\r\n.navbar-light .navbar-nav .nav-link.active {\r\n    color: var(--primary);\r\n}\r\n\r\n@media (max-width: 991.98px) {\r\n    .navbar-light .navbar-nav .nav-link  {\r\n        margin-right: 0;\r\n        padding: 10px 0;\r\n    }\r\n\r\n    .navbar-light .navbar-nav {\r\n        border-top: 1px solid #EEEEEE;\r\n    }\r\n}\r\n\r\n.navbar-light .navbar-brand,\r\n.navbar-light a.btn {\r\n    height: 75px;\r\n}\r\n\r\n.navbar-light .navbar-nav .nav-link {\r\n    color: var(--dark);\r\n    font-weight: 500;\r\n}\r\n\r\n.navbar-light.sticky-top {\r\n    top: -100px;\r\n    transition: .5s;\r\n}\r\n\r\n@media (min-width: 992px) {\r\n    .navbar .nav-item .dropdown-menu {\r\n        display: block;\r\n        margin-top: 0;\r\n        opacity: 0;\r\n        visibility: hidden;\r\n        transition: .5s;\r\n    }\r\n\r\n    .navbar .dropdown-menu.fade-down {\r\n        top: 100%;\r\n        transform: rotateX(-75deg);\r\n        transform-origin: 0% 0%;\r\n    }\r\n\r\n    .navbar .nav-item:hover .dropdown-menu {\r\n        top: 100%;\r\n        transform: rotateX(0deg);\r\n        visibility: visible;\r\n        transition: .5s;\r\n        opacity: 1;\r\n    }\r\n}\r\n\r\n\r\n/*** Header carousel ***/\r\n@media (max-width: 768px) {\r\n    .header-carousel .owl-carousel-item {\r\n        position: relative;\r\n        min-height: 500px;\r\n    }\r\n    \r\n    .header-carousel .owl-carousel-item img {\r\n        position: absolute;\r\n        width: 100%;\r\n        height: 100%;\r\n        object-fit: cover;\r\n    }\r\n}\r\n\r\n.comment {\r\n    margin-left: 0 !important; /* 기본값 */\r\n}\r\n\r\n.comment-depth-1 {\r\n    margin-left: 20px !important;\r\n}\r\n\r\n.comment-depth-2 {\r\n    margin-left: 40px !important;\r\n}\r\n\r\n.comment-depth-3 {\r\n    margin-left: 60px !important;\r\n}\r\n\r\n.comment-depth-4 {\r\n    margin-left: 80px;\r\n}\r\n\r\n\r\n.header-carousel .owl-nav {\r\n    position: absolute;\r\n    top: 50%;\r\n    right: 8%;\r\n    transform: translateY(-50%);\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.header-carousel .owl-nav .owl-prev,\r\n.header-carousel .owl-nav .owl-next {\r\n    margin: 7px 0;\r\n    width: 45px;\r\n    height: 45px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: #FFFFFF;\r\n    background: transparent;\r\n    border: 1px solid #FFFFFF;\r\n    font-size: 22px;\r\n    transition: .5s;\r\n}\r\n\r\n.header-carousel .owl-nav .owl-prev:hover,\r\n.header-carousel .owl-nav .owl-next:hover {\r\n    background: var(--primary);\r\n    border-color: var(--primary);\r\n}\r\n\r\n.page-header {\r\n    background: linear-gradient(rgba(24, 29, 56, .7), rgba(24, 29, 56, .7)), url(../img/carousel-1.jpg);\r\n    background-position: center center;\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n}\r\n\r\n.page-header-inner {\r\n    background: rgba(15, 23, 43, .7);\r\n}\r\n\r\n.breadcrumb-item + .breadcrumb-item::before {\r\n    color: var(--light);\r\n}\r\n\r\n\r\n/*** Section Title ***/\r\n.section-title {\r\n    position: relative;\r\n    display: inline-block;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.section-title::before {\r\n    position: absolute;\r\n    content: \"\";\r\n    width: calc(100% + 80px);\r\n    height: 2px;\r\n    top: 4px;\r\n    left: -40px;\r\n    background: var(--primary);\r\n    z-index: -1;\r\n}\r\n\r\n.section-title::after {\r\n    position: absolute;\r\n    content: \"\";\r\n    width: calc(100% + 120px);\r\n    height: 2px;\r\n    bottom: 5px;\r\n    left: -60px;\r\n    background: var(--primary);\r\n    z-index: -1;\r\n}\r\n\r\n.section-title.text-start::before {\r\n    width: calc(100% + 40px);\r\n    left: 0;\r\n}\r\n\r\n.section-title.text-start::after {\r\n    width: calc(100% + 60px);\r\n    left: 0;\r\n}\r\n\r\n\r\n/*** Service ***/\r\n.service-item {\r\n    background: var(--light);\r\n    transition: .5s;\r\n}\r\n\r\n.service-item:hover {\r\n    margin-top: -10px;\r\n    background: var(--primary);\r\n}\r\n\r\n.service-item * {\r\n    transition: .5s;\r\n}\r\n\r\n.service-item:hover * {\r\n    color: var(--light) !important;\r\n}\r\n\r\n\r\n/*** Categories & Courses ***/\r\n.category img,\r\n.course-item img {\r\n    transition: .5s;\r\n}\r\n\r\n.category a:hover img,\r\n.course-item:hover img {\r\n    transform: scale(1.1);\r\n}\r\n\r\n\r\n/*** Team ***/\r\n.team-item img {\r\n    transition: .5s;\r\n}\r\n\r\n.team-item:hover img {\r\n    transform: scale(1.1);\r\n}\r\n\r\n\r\n/*** Testimonial ***/\r\n.testimonial-carousel::before {\r\n    position: absolute;\r\n    content: \"\";\r\n    top: 0;\r\n    left: 0;\r\n    height: 100%;\r\n    width: 0;\r\n    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);\r\n    z-index: 1;\r\n}\r\n\r\n.testimonial-carousel::after {\r\n    position: absolute;\r\n    content: \"\";\r\n    top: 0;\r\n    right: 0;\r\n    height: 100%;\r\n    width: 0;\r\n    background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);\r\n    z-index: 1;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .testimonial-carousel::before,\r\n    .testimonial-carousel::after {\r\n        width: 200px;\r\n    }\r\n}\r\n\r\n@media (min-width: 992px) {\r\n    .testimonial-carousel::before,\r\n    .testimonial-carousel::after {\r\n        width: 300px;\r\n    }\r\n}\r\n\r\n.testimonial-carousel .owl-item .testimonial-text,\r\n.testimonial-carousel .owl-item.center .testimonial-text * {\r\n    transition: .5s;\r\n}\r\n\r\n.testimonial-carousel .owl-item.center .testimonial-text {\r\n    background: var(--primary) !important;\r\n}\r\n\r\n.testimonial-carousel .owl-item.center .testimonial-text * {\r\n    color: #FFFFFF !important;\r\n}\r\n\r\n.testimonial-carousel .owl-dots {\r\n    margin-top: 24px;\r\n    display: flex;\r\n    align-items: flex-end;\r\n    justify-content: center;\r\n}\r\n\r\n.testimonial-carousel .owl-dot {\r\n    position: relative;\r\n    display: inline-block;\r\n    margin: 0 5px;\r\n    width: 15px;\r\n    height: 15px;\r\n    border: 1px solid #CCCCCC;\r\n    transition: .5s;\r\n}\r\n\r\n.testimonial-carousel .owl-dot.active {\r\n    background: var(--primary);\r\n    border-color: var(--primary);\r\n}\r\n\r\n\r\n/*** Footer ***/\r\n.footer .btn.btn-social {\r\n    margin-right: 5px;\r\n    width: 35px;\r\n    height: 35px;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: var(--light);\r\n    font-weight: normal;\r\n    border: 1px solid #FFFFFF;\r\n    border-radius: 35px;\r\n    transition: .3s;\r\n}\r\n\r\n.footer .btn.btn-social:hover {\r\n    color: var(--primary);\r\n}\r\n\r\n.footer .btn.btn-link {\r\n    display: block;\r\n    margin-bottom: 5px;\r\n    padding: 0;\r\n    text-align: left;\r\n    color: #FFFFFF;\r\n    font-size: 15px;\r\n    font-weight: normal;\r\n    text-transform: capitalize;\r\n    transition: .3s;\r\n}\r\n\r\n.footer .btn.btn-link::before {\r\n    position: relative;\r\n    content: \"\\f105\";\r\n    font-family: \"Font Awesome 5 Free\";\r\n    font-weight: 900;\r\n    margin-right: 10px;\r\n}\r\n\r\n.footer .btn.btn-link:hover {\r\n    letter-spacing: 1px;\r\n    box-shadow: none;\r\n}\r\n\r\n.footer .copyright {\r\n    padding: 25px 0;\r\n    font-size: 15px;\r\n    border-top: 1px solid rgba(256, 256, 256, .1);\r\n}\r\n\r\n.footer .copyright a {\r\n    color: var(--light);\r\n}\r\n\r\n.footer .footer-menu a {\r\n    margin-right: 15px;\r\n    padding-right: 15px;\r\n    border-right: 1px solid rgba(255, 255, 255, .1);\r\n}\r\n\r\n.footer .footer-menu a:last-child {\r\n    margin-right: 0;\r\n    padding-right: 0;\r\n    border-right: none;\r\n}
+===================================================================
+diff --git a/user/build/resources/main/static/css/style.css b/user/build/resources/main/static/css/style.css
+--- a/user/build/resources/main/static/css/style.css	(revision bfb95d918a1db797f6ed4cb30a0fd0a1747c207c)
++++ b/user/build/resources/main/static/css/style.css	(date 1734919147678)
+@@ -277,6 +277,7 @@
+ .service-item {
+     background: var(--light);
+     transition: .5s;
++    height: 300px;
+ }
+ 
+ .service-item:hover {

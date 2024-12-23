@@ -15,7 +15,6 @@
         WHERE user_id = #{userId}
         ORDER BY counsel_date DESC
     </select>
-
     <!-- 의사 ID에 따른 가장 최근 예약 또는 상담 정보를 조회 -->
     <select id="selectAppointments" parameterType="String" resultType="appointmentDto">
         WITH CombinedRecords AS (
