@@ -8,8 +8,8 @@ PL (Project Leader) : 이백범 <br>
 DEV : 윤창현, 이백범 <br>
 기간: 2024.11.18~2024.12.20  
 <br>
-💿[웹 시연영상](?)  
-🔗[노션 링크](?)  
+💿[웹 시연영상](https://www.youtube.com/watch?v=AnEqwYsaeNg)  
+🔗[노션 링크](https://www.notion.so/Team-CoMong-Project-135010e9dc7c806fbe9dcef17c3a4d46?pvs=4)  
 
 <br>
 
