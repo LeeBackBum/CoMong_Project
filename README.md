@@ -5,7 +5,7 @@
 
 PM (Project Manager) : 김준희  <br>
 PL (Project Leader) : 이백범 <br>
-DEV : 윤창현, 이백범 <br>
+DEV : 윤창현, 이백범 ,이승현,김준희<br>
 기간: 2024.10.25~2024.12.20  
 <br>
 💿[웹 시연영상](https://www.youtube.com/watch?v=AnEqwYsaeNg)  
